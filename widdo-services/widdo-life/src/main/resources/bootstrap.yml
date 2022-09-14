@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: widdo-life
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: 502d9fe0-6893-41e7-8fc5-0afe6f197d17
+        group: DEFAULT_GROUP
+        enabled: true
+      config:
+        server-addr: localhost:8848
+        namespace: 502d9fe0-6893-41e7-8fc5-0afe6f197d17
+        group: DEFAULT_GROUP
+        prefix: widdo-life
+        file-extension: yaml
+        enabled: true
+        extension-configs:
+          - data-id: widdo-ip-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: widdo-neo4j-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: widdo-orientdb-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+      username: nacos
+      password: nacos
+
+#项目启动时，用来关闭自动配置的日志输出。如果存在logback.xml时，以logback.xml中的配置为准；反之，以此处的配置为准
+logging:
+  level:
+    root: error
+    com:
+      alibaba:
+        cloud:
+          nacos:
+            client:
+              NacosPropertySourceBuilder: error
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"

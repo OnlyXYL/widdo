@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.com.bmsmart.client.configuration.RestTemplateConfig,\
+  cn.com.bmsmart.client.configuration.SpringUtils
