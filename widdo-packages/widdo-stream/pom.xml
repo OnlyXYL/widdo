@@ -9,28 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.widdo</groupId>
-    <artifactId>widdo-data</artifactId>
+    <artifactId>widdo-stream</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>cn.widdo</groupId>
-            <artifactId>widdo-kernel</artifactId>
+            <artifactId>widdo-assistant</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>p6spy</groupId>
-            <artifactId>p6spy</artifactId>
-        </dependency>
-
     </dependencies>
-
 </project>

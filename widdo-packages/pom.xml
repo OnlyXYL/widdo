@@ -5,7 +5,7 @@
     <parent>
         <artifactId>widdo</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>2.6.3.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,6 +17,7 @@
         <module>widdo-kernel</module>
         <module>widdo-graph</module>
         <module>widdo-data</module>
+        <module>widdo-stream</module>
     </modules>
 
 
