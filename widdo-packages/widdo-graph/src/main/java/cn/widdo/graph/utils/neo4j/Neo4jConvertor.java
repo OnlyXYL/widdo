@@ -13,6 +13,7 @@ import org.neo4j.driver.types.Relationship;
  * @version 1.0
  * @date 2022/08/15 15:09
  */
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 public class Neo4jConvertor {
     public static Neo4jConvertor build() {
         return new Neo4jConvertor();
@@ -21,9 +22,12 @@ public class Neo4jConvertor {
     /**
      * 转换neo4j的node
      *
-     * @param nodeOrigin
-     * @return
-     */
+     * @param nodeOrigin 原始节点
+     * @return cn.widdo.graph.entity.neo4j.Node
+     * @author XYL
+     * @className cn.widdo.graph.utils.neo4j.Neo4jConvertor
+     * @date 2022/09/26 18:24
+     **/
     public cn.widdo.graph.entity.neo4j.Node convertNeo4jNodeToNode(Node nodeOrigin) {
         cn.widdo.graph.entity.neo4j.Node node = new cn.widdo.graph.entity.neo4j.Node();
         node.setProperties(nodeOrigin.asMap());
@@ -33,11 +37,14 @@ public class Neo4jConvertor {
     }
 
     /**
-     * 转换neo4j的relastionship
+     * 转换neo4j的relationship
      *
-     * @param relationshipOrigin
-     * @return
-     */
+     * @param relationshipOrigin 原始关系
+     * @return cn.widdo.graph.entity.neo4j.Relationship
+     * @author XYL
+     * @className cn.widdo.graph.utils.neo4j.Neo4jConvertor
+     * @date 2022/09/26 18:24
+     **/
     public cn.widdo.graph.entity.neo4j.Relationship convertNeo4jRelationshipToRelationship(Relationship relationshipOrigin) {
         cn.widdo.graph.entity.neo4j.Relationship relationship = new cn.widdo.graph.entity.neo4j.Relationship();
         relationship.setId(relationshipOrigin.id());
@@ -51,9 +58,12 @@ public class Neo4jConvertor {
     /**
      * 转换neo4j的Point2D
      *
-     * @param pointOrigin
-     * @return
-     */
+     * @param pointOrigin 原始 point
+     * @return cn.widdo.graph.entity.neo4j.Point2D
+     * @author XYL
+     * @className cn.widdo.graph.utils.neo4j.Neo4jConvertor
+     * @date 2022/09/26 18:25
+     **/
     public cn.widdo.graph.entity.neo4j.Point2D convertNeo4jPoint2DToPoint2D(Point pointOrigin) {
         cn.widdo.graph.entity.neo4j.Point2D point = new cn.widdo.graph.entity.neo4j.Point2D();
         point.setSrid(pointOrigin.srid());
@@ -65,9 +75,12 @@ public class Neo4jConvertor {
     /**
      * 转换neo4j的Point3D
      *
-     * @param pointOrigin
-     * @return
-     */
+     * @param pointOrigin 原始 point
+     * @return cn.widdo.graph.entity.neo4j.Point3D
+     * @author XYL
+     * @className cn.widdo.graph.utils.neo4j.Neo4jConvertor
+     * @date 2022/09/26 18:25
+     **/
     public cn.widdo.graph.entity.neo4j.Point3D convertNeo4jPoint2DToPoint3D(Point pointOrigin) {
         cn.widdo.graph.entity.neo4j.Point3D point = new cn.widdo.graph.entity.neo4j.Point3D();
         point.setSrid(pointOrigin.srid());
@@ -80,9 +93,12 @@ public class Neo4jConvertor {
     /**
      * 转换neo4j的Duration
      *
-     * @param durationOrigin
-     * @return
-     */
+     * @param durationOrigin 原始 pint
+     * @return cn.widdo.graph.entity.neo4j.IsoDuration
+     * @author XYL
+     * @className cn.widdo.graph.utils.neo4j.Neo4jConvertor
+     * @date 2022/09/26 18:26
+     **/
     public cn.widdo.graph.entity.neo4j.IsoDuration convertNeo4jDurationToDuration(IsoDuration durationOrigin) {
         cn.widdo.graph.entity.neo4j.IsoDuration duration = new cn.widdo.graph.entity.neo4j.IsoDuration();
         duration.setDays(durationOrigin.days());

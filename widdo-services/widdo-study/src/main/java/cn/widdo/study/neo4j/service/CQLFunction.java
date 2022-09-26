@@ -12,6 +12,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2022/07/15 0:02
  */
+@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 @FunctionalInterface
 public interface CQLFunction {
 

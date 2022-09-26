@@ -10,10 +10,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * SmartKG返回结果
+ * widdo返回结果
  *
  * @author XYL
- * @version 1.0
+ * @version 2.6.3.1
  * @since 2021/4/20 0020 17:28
  */
 @Data
@@ -49,10 +49,10 @@ public class JsonResult implements Serializable {
     /**
      * 成功，默认返回结果
      *
-     * @param
-     * @return cn.com.bmsmart.entity.KgResult
+     * @return cn.widdo.assistant.entity.result.JsonResult
      * @author XYL
-     * @since 17:50 2021/4/20 0020
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:30
      **/
     public static JsonResult success() {
 
@@ -66,13 +66,13 @@ public class JsonResult implements Serializable {
     /**
      * 成功，有数据
      *
-     * @param data
-     * @return cn.com.bmsmart.entity.KgResult
+     * @param data 数据
+     * @return cn.widdo.assistant.entity.result.JsonResult
      * @author XYL
-     * @since 18:16 2021/4/20 0020
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:30
      **/
     public static JsonResult success(Object data) {
-
         JsonResult kgResult = new JsonResult();
         kgResult.setMessage(ResponseCode.SUCCESS.getMessage());
         kgResult.setCode(ResponseCode.SUCCESS.getCode());
@@ -84,11 +84,13 @@ public class JsonResult implements Serializable {
     /**
      * 构建返回结果
      *
-     * @param code
-     * @param data
-     * @return cn.com.bmsmart.entity.KgResult
+     * @param code    编码
+     * @param data    数据
+     * @param message 消息
+     * @return cn.widdo.assistant.entity.result.JsonResult
      * @author XYL
-     * @since 18:15 2021/4/20 0020
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:30
      **/
     public static JsonResult build(ResponseCode code, Object data, String message) {
         JsonResult kgResult = new JsonResult();
@@ -98,6 +100,15 @@ public class JsonResult implements Serializable {
         return kgResult;
     }
 
+    /**
+     * 构建返回结果
+     *
+     * @param code 编码
+     * @return cn.widdo.assistant.entity.result.JsonResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:28
+     **/
     public static JsonResult build(ResponseCode code) {
         JsonResult kgResult = new JsonResult();
         kgResult.setMessage(code.getMessage());
@@ -106,6 +117,16 @@ public class JsonResult implements Serializable {
         return kgResult;
     }
 
+    /**
+     * 构建返回结果
+     *
+     * @param e    异常
+     * @param code 编码
+     * @return cn.widdo.assistant.entity.result.JsonResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:28
+     **/
     public static JsonResult build(Exception e, ResponseCode code) {
 
         if (e instanceof MyException) {
@@ -117,6 +138,7 @@ public class JsonResult implements Serializable {
         }
 
         JsonResult kgResult = new JsonResult();
+        assert code != null;
         kgResult.setMessage(code.getMessage());
         kgResult.setCode(code.getCode());
         kgResult.setData(null);
@@ -139,15 +161,15 @@ public class JsonResult implements Serializable {
         return kgResult;
     }
 
-
     /**
      * 构建返回结果 远程调用返回code码不为200，返回指定结果
      *
-     * @param code
-     * @param responseCode
-     * @return cn.com.bmsmart.entity.KgResult
-     * @author ymy
-     * @since 2021/12/31 16:10
+     * @param code         编码
+     * @param responseCode 编码对象
+     * @return cn.widdo.assistant.entity.result.JsonResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:31
      **/
     public static JsonResult build(String code, ResponseCode responseCode) {
         if (String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
@@ -178,15 +200,16 @@ public class JsonResult implements Serializable {
     /**
      * 根据组件接口返回的数据构建返回数据
      *
-     * @param map  前端组件接口返回的数据
-     * @param responseCode
-     * @return cn.com.bmsmart.entity.KgResult
-     * @author ymy
-     * @since 2022/4/6 17:54
+     * @param map          前端组件接口返回的数据
+     * @param responseCode 编码对象
+     * @return cn.widdo.assistant.entity.result.JsonResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.JsonResult
+     * @date 2022/09/26 18:31
      **/
     public static JsonResult build(Map<String, Object> map, ResponseCode responseCode) {
         JsonResult kgResult = new JsonResult();
-        Integer status = Integer.valueOf(String.valueOf(map.get("status")));
+        int status = Integer.parseInt(String.valueOf(map.get("status")));
         String message = Optional.ofNullable(map.get("message")).map(Objects::toString).orElse("");
         Object data = map.get("data");
         if (ResponseCode.SKC_SUCCESS.getCode() == status) {

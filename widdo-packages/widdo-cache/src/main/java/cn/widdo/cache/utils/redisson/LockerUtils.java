@@ -18,9 +18,7 @@ public class LockerUtils {
     /**
      * 设置工具类使用的locker
      *
-     * @param locker
-     * @return void
-     * @throws
+     * @param locker 锁对象
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -32,9 +30,7 @@ public class LockerUtils {
     /**
      * 获取锁
      *
-     * @param lockKey
-     * @return void
-     * @throws
+     * @param lockKey lockKey
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -46,9 +42,7 @@ public class LockerUtils {
     /**
      * 释放锁
      *
-     * @param lockKey
-     * @return void
-     * @throws
+     * @param lockKey lockKey
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -60,10 +54,8 @@ public class LockerUtils {
     /**
      * 获取锁，超时释放
      *
-     * @param lockKey
-     * @param timeout
-     * @return void
-     * @throws
+     * @param lockKey lockKey
+     * @param timeout 超时时间
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -75,11 +67,9 @@ public class LockerUtils {
     /**
      * 获取锁，超时释放，指定时间单位
      *
-     * @param lockKey
-     * @param unit
-     * @param timeout
-     * @return void
-     * @throws
+     * @param lockKey   lockKey
+     * @param unit  时间单位
+     * @param timeout   超时时间
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -93,9 +83,8 @@ public class LockerUtils {
      * <p>
      * todo:该方法获取到锁之后，释放有问题。判断是否有锁，使用isLocked。后面调查
      *
-     * @param lockKey
+     * @param lockKey lockKey
      * @return boolean
-     * @throws
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -107,12 +96,12 @@ public class LockerUtils {
     /**
      * 尝试获取锁，在给定的waitTime时间内尝试，获取到返回true,获取失败返回false,获取到后再给定的leaseTime时间超时释放
      *
-     * @param lockKey
-     * @param waitTime
-     * @param leaseTime
-     * @param unit
+     * @param lockKey lockKey
+     * @param waitTime 等待时间
+     * @param leaseTime 施放时间
+     * @param unit  时间单位
      * @return boolean
-     * @throws InterruptedException
+     * @throws InterruptedException 异常
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:44
@@ -125,9 +114,8 @@ public class LockerUtils {
     /**
      * 锁释放被任意一个线程持有
      *
-     * @param lockKey
+     * @param lockKey lockKey
      * @return boolean
-     * @throws
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:44

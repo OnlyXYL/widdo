@@ -8,15 +8,15 @@ package cn.widdo.graph.entity.neo4j.result;
  * @date 2022/08/15 15:09
  */
 public class ResultUtil {
-    public static final Integer PAGESIZE_MAX = 500;
-    public static final Integer PAGESIZE_DEFAULT = 10;
+    public static final Integer PAGE_SIZE_MAX = 500;
+    public static final Integer PAGE_SIZE_DEFAULT = 10;
 
     public static <T> Result<T> success(T t) {
         return success(t, null);
     }
 
     public static <T> Result<T> success(T t, ResultPageInfo resultPageInfo) {
-        Result<T> result = new Result();
+        Result<T> result = new Result<>();
         result.setStatus(ResultEnum.SUCCESS);
         result.setCode(200);
         result.setMsg("接口调用成功！");

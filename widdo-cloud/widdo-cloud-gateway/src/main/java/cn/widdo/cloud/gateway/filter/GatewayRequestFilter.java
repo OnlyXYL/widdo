@@ -59,14 +59,6 @@ public class GatewayRequestFilter implements GlobalFilter {
         //日志打印
         printLog(exchange);
 
-//        byte[] token = Base64Utils.encode((MyConstant.ZUUL_TOKEN_VALUE).getBytes());
-//
-//        final String tokenValue = new String(token);
-//
-//        log.info("------ 【GateWay】,TokenValue:{} ------", tokenValue);
-//
-//        ServerHttpRequest build = request.mutate().header(MyConstant.ZUUL_TOKEN_HEADER, new String(token)).build();
-//        ServerWebExchange newExchange = exchange.mutate().request(build).build();
         return chain.filter(exchange);
     }
 

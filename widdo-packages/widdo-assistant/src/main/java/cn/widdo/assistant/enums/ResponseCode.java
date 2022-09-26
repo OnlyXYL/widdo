@@ -299,9 +299,6 @@ public enum ResponseCode {
 
     private String message;
 
-    ResponseCode() {
-    }
-
     ResponseCode(int code, String message) {
         this.code = code;
         this.message = message;

@@ -14,6 +14,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2022/07/15 2:10
  */
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 public class OrientdbUtils {
 
     /**

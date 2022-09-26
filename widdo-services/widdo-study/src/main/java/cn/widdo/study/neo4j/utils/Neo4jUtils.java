@@ -18,6 +18,7 @@ import java.util.Optional;
  * @version 1.0
  * @since 2021/4/1 0001 21:26
  */
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 @Component
 public class Neo4jUtils {
 

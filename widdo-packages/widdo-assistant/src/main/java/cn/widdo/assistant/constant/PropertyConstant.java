@@ -7,6 +7,7 @@ package cn.widdo.assistant.constant;
  * @version 1.0
  * @date 2022/08/15 15:03
  */
+@SuppressWarnings("AlibabaConstantFieldShouldBeUpperCase")
 public class PropertyConstant {
 
     /* ---------- 通用配置属性 ---------- */

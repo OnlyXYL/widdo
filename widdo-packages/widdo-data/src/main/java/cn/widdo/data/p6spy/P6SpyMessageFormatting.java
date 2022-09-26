@@ -15,24 +15,22 @@ import java.util.Date;
  */
 public class P6SpyMessageFormatting implements MessageFormattingStrategy {
 
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
 
-        StringBuilder builder = new StringBuilder(this.format.format(new Date()));
-        builder.append(" | took ");
-        builder.append(elapsed);
-        builder.append("ms | ");
-        builder.append(category);
-        builder.append(" | connection ");
-        builder.append(connectionId);
-        builder.append(" | url ");
-        builder.append(url);
-        builder.append("\n------------------------| ");
-        builder.append(sql);
-        builder.append(";");
-
-        return StringUtils.isNotEmpty(sql.trim()) ? String.valueOf(builder) : "";
+        String builder = this.format.format(new Date()) + " | took " +
+                elapsed +
+                "ms | " +
+                category +
+                " | connection " +
+                connectionId +
+                " | url " +
+                url +
+                "\n------------------------| " +
+                sql +
+                ";";
+        return StringUtils.isNotEmpty(sql.trim()) ? builder : "";
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import javax.annotation.PostConstruct;
+
 /**
  * 图谱配置
  *
@@ -19,5 +21,10 @@ import org.springframework.context.annotation.Import;
 @Import({Neo4jConfiguration.class, OrientdbConfiguration.class})
 public class GraphConfiguration {
 
-    private Logger log = LoggerFactory.getLogger(GraphConfiguration.class);
+    private final Logger log = LoggerFactory.getLogger(GraphConfiguration.class);
+
+    @PostConstruct
+    public void postConstruct() {
+        log.info("[Widdo] |- Components [Widdo Graph] Auto Configure.");
+    }
 }

@@ -45,49 +45,18 @@ public class MyUtil {
     }
 
     /**
-     * 获取用户id
-     *
-     * @param
-     * @return java.lang.String
-     * @author XYL
-     * @since 17:37 2021/4/21 0021
-     **/
-    public static String userId() {
-//        String authParams = SecurityContextHolder.getContext().getAuthentication().getName();
-//        return authParams.split(":")[1];
-
-        return "";
-    }
-
-    /**
      * 获取异常信息
      *
-     * @param bindingResult
+     * @param bindingResult 异常绑定结果
      * @return java.lang.String
      * @author XYL
      * @since 15:28 2021/4/28 0028
      **/
     public static String errorMessage(BindingResult bindingResult) {
         List<String> jsonList = new ArrayList<>();
-        bindingResult.getFieldErrors().stream().forEach(fieldError -> {
-            jsonList.add(fieldError.getDefaultMessage());
-        });
+        bindingResult.getFieldErrors().forEach(fieldError -> jsonList.add(fieldError.getDefaultMessage()));
 
-        String s = JSON.toJSONString(jsonList);
-        return s;
-    }
-
-    /**
-     * 回滚
-     *
-     * @param
-     * @return void
-     * @author XYL
-     * @since 18:01 2021/4/29 0029
-     **/
-    public static void rollback() {
-//        log.warn("------ [发生错误，进行回滚] ------");
-//        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        return JSON.toJSONString(jsonList);
     }
 
 }

@@ -21,8 +21,9 @@ public class Neo4jGremlinServiceImpl implements Neo4jGremlinService {
 
         final GraphTraversalSource g = new GraphTraversalSource(null);
 
-//        GraphTraversalSource g = traversal().withRemote(DriverRemoteConnection.using("localhost",8182,"g"));
-
+        /**
+         * <p>GraphTraversalSource g = traversal().withRemote(DriverRemoteConnection.using("localhost",8182,"g"));</p>
+         */
         final Object next = g.V().hasLabel("label").select("name").next();
 
         return null;

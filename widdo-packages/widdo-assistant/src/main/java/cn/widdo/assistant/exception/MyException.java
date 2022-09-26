@@ -2,6 +2,7 @@ package cn.widdo.assistant.exception;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
  * @date 2022/06/29 15:59
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class MyException extends Exception {
 
     private String message;
@@ -36,11 +38,8 @@ public class MyException extends Exception {
     }
 
     public MyException(BindingResult bindingResult) {
-
         List<String> jsonList = new ArrayList<>();
-        bindingResult.getFieldErrors().stream().forEach(fieldError -> {
-            jsonList.add(fieldError.getDefaultMessage());
-        });
+        bindingResult.getFieldErrors().forEach(fieldError -> jsonList.add(fieldError.getDefaultMessage()));
 
         String s = JSON.toJSONString(jsonList);
         this.setMessage(s);

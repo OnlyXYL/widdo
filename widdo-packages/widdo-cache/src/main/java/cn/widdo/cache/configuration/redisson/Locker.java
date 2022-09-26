@@ -12,9 +12,7 @@ public interface Locker {
     /**
      * 获取锁，如果锁不可用，则当前线程处于休眠状态，直到获得锁为止。
      *
-     * @param lockKey
-     * @return void
-     * @throws
+     * @param lockKey key
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -24,9 +22,7 @@ public interface Locker {
     /**
      * 释放锁
      *
-     * @param lockKey
-     * @return void
-     * @throws
+     * @param lockKey key
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -36,10 +32,8 @@ public interface Locker {
     /**
      * 获取锁,如果锁不可用，则当前线程处于休眠状态，直到获得锁为止。如果获取到锁后，执行结束后解锁或达到超时时间后会自动释放锁
      *
-     * @param lockKey
-     * @param timeout
-     * @return void
-     * @throws
+     * @param lockKey lockKey
+     * @param timeout timeout
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -49,11 +43,9 @@ public interface Locker {
     /**
      * 获取锁,如果锁不可用，则当前线程处于休眠状态，直到获得锁为止。如果获取到锁后，执行结束后解锁或达到超时时间后会自动释放锁
      *
-     * @param lockKey
-     * @param unit
-     * @param timeout
-     * @return void
-     * @throws
+     * @param lockKey lockKey
+     * @param unit    unit
+     * @param timeout timeout
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -63,9 +55,8 @@ public interface Locker {
     /**
      * 尝试获取锁，获取到立即返回true,未获取到立即返回false
      *
-     * @param lockKey
+     * @param lockKey lockKey
      * @return boolean
-     * @throws
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -76,12 +67,12 @@ public interface Locker {
      * 尝试获取锁，在等待时间内获取到锁则返回true,否则返回false,如果获取到锁，则要么执行完后程序释放锁，
      * 要么在给定的超时时间leaseTime后释放锁
      *
-     * @param lockKey key
+     * @param lockKey   key
      * @param waitTime  等待时间
      * @param leaseTime 释放时间
-     * @param unit  时间单位
+     * @param unit      时间单位
      * @return boolean
-     * @throws InterruptedException
+     * @throws InterruptedException 异常
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42
@@ -94,7 +85,6 @@ public interface Locker {
      *
      * @param lockKey key
      * @return boolean
-     * @throws
      * @author XYL
      * @className cn.widdo.configure.redisson.Locker
      * @date 2022/07/05 17:42

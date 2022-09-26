@@ -122,7 +122,9 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
     public JsonResult delete() {
         try (ODatabaseSession session = pool.acquire()) {
             //执行删除
-//            OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);
+            /**
+             * <p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);</p>
+             */
             OResultSet deleteEdgeRs = session.command("delete Edge where 1 = 1");
 
             OResultSet deleteNodeRs = session.command("delete Vertex from v  where 1 = 1");

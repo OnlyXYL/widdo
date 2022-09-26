@@ -13,6 +13,7 @@ public class Neo4jType {
     public static final String RELATIONSHIP = "RELATIONSHIP";
     public static final String LIST = "LIST";
     public static final String LISTOFANY = "LIST OF ANY?";
+    public static final String POINT = "POINT";
     public static final String POINT2D = "POINT2D";
     public static final String POINT3D = "POINT3D";
     public static final String BYTEARRAY = "BYTEARRAY";

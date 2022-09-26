@@ -20,6 +20,7 @@ import javax.annotation.Resource;
  * @version 1.0
  * @date 2022/08/15 15:28
  */
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 @ConditionalOnOrientdbEnabled
 public class OrientdbConfiguration {
 
@@ -28,10 +29,7 @@ public class OrientdbConfiguration {
 
     @Bean
     public OrientGraphFactory orientGraphFactory() {
-
-        OrientGraphFactory orientGraphFactory = new OrientGraphFactory(graphProperties.getOrientdb().getUri(), graphProperties.getOrientdb().getUrl(), graphProperties.getOrientdb().getPassword()).setupPool(1, 50);
-
-        return orientGraphFactory;
+        return new OrientGraphFactory(graphProperties.getOrientdb().getUri(), graphProperties.getOrientdb().getUrl(), graphProperties.getOrientdb().getPassword()).setupPool(1, 50);
     }
 
     @Bean

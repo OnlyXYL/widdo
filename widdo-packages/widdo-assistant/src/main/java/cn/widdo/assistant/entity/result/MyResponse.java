@@ -3,11 +3,11 @@ package cn.widdo.assistant.entity.result;
 import java.util.HashMap;
 
 /**
- * @ProjectName MyResponse
- * @author Administrator
- * @version 1.0.0
- * @Description TODO
- * @createTime 2021/4/3 0003 19:27
+ * widdo相应结果
+ *
+ * @author XYL
+ * @version 2.6.3.1
+ * @since 2021/4/20 0020 17:28
  */
 public class MyResponse extends HashMap<String, Object> {
 

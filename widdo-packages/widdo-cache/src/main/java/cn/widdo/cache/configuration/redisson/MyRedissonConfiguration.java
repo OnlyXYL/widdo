@@ -8,6 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import javax.annotation.PostConstruct;
+
 /**
  * redisson配置
  *
@@ -21,5 +23,10 @@ import org.springframework.context.annotation.Import;
 @Import({MyRedissonClusterConfiguration.class, MyRedissonSingleConfiguration.class})
 public class MyRedissonConfiguration {
 
-    private Logger log = LoggerFactory.getLogger(MyRedissonConfiguration.class);
+    private final Logger log = LoggerFactory.getLogger(MyRedissonConfiguration.class);
+
+    @PostConstruct
+    public void postConstruct() {
+        log.info("[Widdo] |- Components [Widdo Redisson] Auto Configure.");
+    }
 }
