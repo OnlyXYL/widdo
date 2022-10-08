@@ -35,6 +35,9 @@ import java.util.Map;
  */
 @Component
 public class Neo4jServiceHelper {
+
+    public static final String CYPHER_QUERY = "query";
+
     /**
      * 设置List值的长度
      *
@@ -71,7 +74,7 @@ public class Neo4jServiceHelper {
         Session session = null;
         try {
             session = driver.session(SessionConfig.builder().withDefaultAccessMode(AccessMode.WRITE).build());
-            if ("query".equals(model)) {
+            if (CYPHER_QUERY.equals(model)) {
                 return session.readTransaction(tx -> cqlFun.execute(cql, map, tx));
             }
             return session.writeTransaction(tx -> cqlFun.execute(cql, map, tx));
@@ -114,88 +117,27 @@ public class Neo4jServiceHelper {
                     value.setKeys(Lists.newArrayList(valueOrigin.keys()));
                     //设置path
                     switch (typeName) {
-                        case Neo4jType.NODE -> {
-                            value.setType(Neo4jType.NODE);
-                            value.setValue(Neo4jConvertor.build().convertNeo4jNodeToNode(valueOrigin.asNode()));
-                        }
-                        case Neo4jType.RELATIONSHIP -> {
-                            value.setType(Neo4jType.RELATIONSHIP);
-                            value.setValue(Neo4jConvertor.build().convertNeo4jRelationshipToRelationship(valueOrigin.asRelationship()));
-                        }
-                        case Neo4jType.PATH -> {
-                            pathResult(valueOrigin, convertor, value);
-                        }
-                        case Neo4jType.LISTOFANY -> {
-                            listResult(valueOrigin, convertor, value);
-                        }
-                        case Neo4jType.POINT -> {
-                            pointResult(valueOrigin, convertor, value);
-                        }
-                        case Neo4jType.BYTEARRAY -> {
-                            value.setType(Neo4jType.BYTEARRAY);
-                            value.setValue(valueOrigin.asByteArray());
-                        }
-                        case Neo4jType.MAP -> {
-                            value.setType(Neo4jType.MAP);
-                            value.setValue(valueOrigin.asMap());
-                        }
-                        case Neo4jType.LIST -> {
-                            value.setType(Neo4jType.LIST);
-                            value.setValue(valueOrigin.asList());
-                        }
-                        case Neo4jType.ISODURATION -> {
-                            value.setType(Neo4jType.ISODURATION);
-                            value.setValue(convertor.convertNeo4jDurationToDuration(valueOrigin.asIsoDuration()));
-                        }
-                        case Neo4jType.DOUBLE -> {
-                            value.setType(Neo4jType.DOUBLE);
-                            value.setValue(valueOrigin.asDouble());
-                        }
-                        case Neo4jType.FLOAT -> {
-                            value.setType(Neo4jType.FLOAT);
-                            value.setValue(valueOrigin.asFloat());
-                        }
-                        case Neo4jType.INTEGER -> {
-                            value.setType(Neo4jType.INTEGER);
-                            value.setValue(valueOrigin.asInt());
-                        }
-                        case Neo4jType.BOOLEAN -> {
-                            value.setType(Neo4jType.BOOLEAN);
-                            value.setValue(valueOrigin.asBoolean());
-                        }
-                        case Neo4jType.LONG -> {
-                            value.setType(Neo4jType.LONG);
-                            value.setValue(valueOrigin.asLong());
-                        }
-                        case Neo4jType.NUMBER -> {
-                            value.setType(Neo4jType.NUMBER);
-                            value.setValue(valueOrigin.asNumber());
-                        }
-                        case Neo4jType.LOCALDATE -> {
-                            value.setType(Neo4jType.LOCALDATE);
-                            value.setValue(valueOrigin.asLocalDate());
-                        }
-                        case Neo4jType.LOCALTIME -> {
-                            value.setType(Neo4jType.LOCALTIME);
-                            value.setValue(valueOrigin.asLocalTime());
-                            map1.put(key, value);
-                        }
-                        case Neo4jType.LOCALDATETIME -> {
-                            value.setType(Neo4jType.LOCALDATETIME);
-                            value.setValue(valueOrigin.asLocalDateTime());
-                        }
-                        case Neo4jType.OFFSETTIME -> {
-                            value.setType(Neo4jType.OFFSETTIME);
-                            value.setValue(valueOrigin.asOffsetTime());
-                        }
-                        case Neo4jType.OFFSETDATETIME -> {
-                            value.setType(Neo4jType.OFFSETDATETIME);
-                            value.setValue(valueOrigin.asOffsetDateTime());
-                        }
-                        default -> {
-                            value.setType(Neo4jType.STRING);
-                            value.setValue(resultL.get(key).toString());
-                        }
+                        case Neo4jType.NODE -> setValue(value, Neo4jType.NODE, Neo4jConvertor.build().convertNeo4jNodeToNode(valueOrigin.asNode()));
+                        case Neo4jType.RELATIONSHIP -> setValue(value, Neo4jType.RELATIONSHIP, Neo4jConvertor.build().convertNeo4jRelationshipToRelationship(valueOrigin.asRelationship()));
+                        case Neo4jType.PATH -> pathResult(valueOrigin, convertor, value);
+                        case Neo4jType.LISTOFANY -> listResult(valueOrigin, convertor, value);
+                        case Neo4jType.POINT -> pointResult(valueOrigin, convertor, value);
+                        case Neo4jType.BYTEARRAY -> setValue(value, Neo4jType.BYTEARRAY, valueOrigin.asByteArray());
+                        case Neo4jType.MAP -> setValue(value, Neo4jType.MAP, valueOrigin.asMap());
+                        case Neo4jType.LIST -> setValue(value, Neo4jType.LIST, valueOrigin.asList());
+                        case Neo4jType.ISODURATION -> setValue(value, Neo4jType.ISODURATION, convertor.convertNeo4jDurationToDuration(valueOrigin.asIsoDuration()));
+                        case Neo4jType.DOUBLE -> setValue(value, Neo4jType.DOUBLE, valueOrigin.asDouble());
+                        case Neo4jType.FLOAT -> setValue(value, Neo4jType.FLOAT, valueOrigin.asFloat());
+                        case Neo4jType.INTEGER -> setValue(value, Neo4jType.INTEGER, valueOrigin.asInt());
+                        case Neo4jType.BOOLEAN -> setValue(value, Neo4jType.BOOLEAN, valueOrigin.asBoolean());
+                        case Neo4jType.LONG -> setValue(value, Neo4jType.LONG, valueOrigin.asLong());
+                        case Neo4jType.NUMBER -> setValue(value, Neo4jType.NUMBER, valueOrigin.asNumber());
+                        case Neo4jType.LOCALDATE -> setValue(value, Neo4jType.LOCALDATE, valueOrigin.asLocalDate());
+                        case Neo4jType.LOCALTIME -> setValue(value, Neo4jType.LOCALTIME, valueOrigin.asLocalTime());
+                        case Neo4jType.LOCALDATETIME -> setValue(value, Neo4jType.LOCALDATETIME, valueOrigin.asLocalDateTime());
+                        case Neo4jType.OFFSETTIME -> setValue(value, Neo4jType.OFFSETTIME, valueOrigin.asOffsetTime());
+                        case Neo4jType.OFFSETDATETIME -> setValue(value, Neo4jType.OFFSETDATETIME, valueOrigin.asOffsetDateTime());
+                        default -> setValue(value, Neo4jType.STRING, resultL.get(key).toString());
                     }
                     map1.put(key, value);
                 } catch (Exception e) {
@@ -208,11 +150,28 @@ public class Neo4jServiceHelper {
     }
 
     /**
+     * 设置值
+     *
+     * @param value
+     * @param neo4jType
+     * @param valueOrigin
+     * @return void
+     * @throws
+     * @author XYL
+     * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
+     * @date 2022/09/27 10:13
+     **/
+    private void setValue(Value value, String neo4jType, Object valueOrigin) {
+        value.setType(neo4jType);
+        value.setValue(valueOrigin);
+    }
+
+    /**
      * path result
      *
      * @param valueOrigin 原始结果
-     * @param convertor 结果转换器
-     * @param value widdo value
+     * @param convertor   结果转换器
+     * @param value       widdo value
      * @author XYL
      * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:06
@@ -232,8 +191,8 @@ public class Neo4jServiceHelper {
      * list result
      *
      * @param valueOrigin 原始结果
-     * @param convertor 结果转换器
-     * @param value widdo value
+     * @param convertor   结果转换器
+     * @param value       widdo value
      * @author XYL
      * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:07
@@ -258,8 +217,8 @@ public class Neo4jServiceHelper {
      * point result
      *
      * @param valueOrigin 原始结果
-     * @param convertor 结果转换器
-     * @param value widdo value
+     * @param convertor   结果转换器
+     * @param value       widdo value
      * @author XYL
      * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:08
