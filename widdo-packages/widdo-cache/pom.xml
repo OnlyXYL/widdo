@@ -5,11 +5,10 @@
     <parent>
         <artifactId>widdo-packages</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>2.6.3.1</version>
+        <version>263.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.widdo</groupId>
     <artifactId>widdo-cache</artifactId>
 
     <dependencies>
@@ -33,11 +32,6 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-context</artifactId>
         </dependency>
     </dependencies>
 

@@ -14,7 +14,7 @@
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-dependencies</artifactId>
-    <version>2.6.3.1</version>
+    <version>263.1.0.0</version>
     <packaging>pom</packaging>
 
     <name>widdo-dependencies</name>
@@ -197,6 +197,8 @@
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
+
+            <!--存在SQL注入漏洞。漏洞场景：like；in；order by。需要预编译-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
