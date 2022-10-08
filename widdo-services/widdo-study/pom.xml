@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>widdo-services</artifactId>
+        <groupId>cn.widdo</groupId>
+        <version>263.1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>widdo-study</artifactId>
+
+    <dependencies>
+
+        <!--核心包-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-kernel</artifactId>
+        </dependency>
+
+        <!--图谱包-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-graph</artifactId>
+        </dependency>
+
+        <!--缓存包-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-cache</artifactId>
+        </dependency>
+
+        <!--消息包-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-stream</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+          <!--      <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+</project>

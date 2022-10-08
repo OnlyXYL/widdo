@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!--升级 -->
+        <version>2.6.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>cn.widdo</groupId>
+    <artifactId>widdo-dependencies</artifactId>
+    <version>263.1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>widdo-dependencies</name>
+    <description>widdo dependencies</description>
+
+    <properties>
+
+        <!--spring相关依赖包-->
+        <spring-boot-dependencies.version>2.6.3</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.1</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2021.0.1.0</spring-cloud-alibaba-dependencies.version>
+        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>
+        <spring-framework-bom.version>5.3.21</spring-framework-bom.version>
+        <spring-security-bom.version>5.7.2</spring-security-bom.version>
+
+        <!--Maven Plugin 相关组件-->
+        <docker-maven-plugin.version>0.39.0</docker-maven-plugin.version>
+        <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
+        <mapstruct-processor.version>1.4.2.Final</mapstruct-processor.version>
+        <maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
+        <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
+
+        <!--通用开源工具依赖包-->
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+
+        <!--辅助工具依赖包-->
+        <lombok.version>1.18.22</lombok.version>
+        <p6spy.version>3.9.1</p6spy.version>
+
+        <!--阿里巴巴开源工具-->
+        <fastjson.version>1.2.83</fastjson.version>
+
+        <!--国内开源工具依赖包-->
+        <hutool.verion>5.7.20</hutool.verion>
+
+        <!--第三方工具依赖包-->
+        <!--缓存依赖包-->
+        <redisson.version>3.15.3</redisson.version>
+        <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
+        <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+
+        <!--图数据库相关工具依赖包-->
+        <neo4j-java-driver.version>4.1.1</neo4j-java-driver.version>
+        <orientdb-jdbc.version>3.0.29</orientdb-jdbc.version>
+        <orientdb-gremlin.version>3.0.29</orientdb-gremlin.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 升级，替换为 com.alibaba.cloud -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--spring-cloud-stream-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-stream-dependencies</artifactId>
+                <version>${spring-cloud-stream-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring-security-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <!--widdo依赖-->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-assistant</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-graph</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-kernel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-stream</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <!--通用开源工具-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+
+            <!--辅助工具-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+
+
+            <!--阿里巴巴开源工具-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--国内开源工具-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.verion}</version>
+            </dependency>
+
+            <!--第三方工具-->
+            <!-- redisson 分布式锁-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <!--存在SQL注入漏洞。漏洞场景：like；in；order by。需要预编译-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus-generator.version}</version>
+            </dependency>
+
+
+            <!--图数据库工具-->
+            <!--neo4j-->
+            <dependency>
+                <groupId>org.neo4j.driver</groupId>
+                <artifactId>neo4j-java-driver</artifactId>
+                <version>${neo4j-java-driver.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.orientechnologies</groupId>
+                <artifactId>orientdb-jdbc</artifactId>
+                <version>${orientdb-jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.orientechnologies</groupId>
+                <artifactId>orientdb-gremlin</artifactId>
+                <version>${orientdb-gremlin.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <!--id的名字可以任意取，但是在setting文件中的属性<server>的ID与这里一致-->
+            <id>releases</id>
+            <!--指向仓库类型为host(宿主仓库）的储存类型为Release的仓库-->
+            <url>http://localhost:8081/repository/semanticcube-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <!--指向仓库类型为host(宿主仓库）的储存类型为Snapshot的仓库-->
+            <url>http://localhost:8081/repository/semanticcube-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <!--打包跳过测试-->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                    <configuration>
+                        <attach>true</attach>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-dependencies.version}</version>
+                    <configuration>
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${git-commit-id-plugin.version}</version>
+                    <configuration>
+                        <!-- 检查的仓库根目录，${project.basedir}：项目根目录，即包含pom.xml文件的目录 -->
+                        <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                        <!-- git属性文件中各属性前缀，默认值git，可以不配置 -->
+                        <prefix>git</prefix>
+                        <!-- false：扫描路径时不打印更多信息，默认值false，可以不配置 -->
+                        <verbose>false</verbose>
+                        <!-- 生成git属性文件，默认false：不生成 -->
+                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                        <!-- 生成git属性文件路径及文件名，默认${project.build.outputDirectory}/git.properties -->
+                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
+                        </generateGitPropertiesFilename>
+                        <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                        <!-- 生成git属性文件格式，默认值properties -->
+                        <!--                        <format>json</format>-->
+                        <!-- 配置git-describe命令 -->
+                        <gitDescribe>
+                            <skip>false</skip>
+                            <always>false</always>
+                            <dirty>-dirty</dirty>
+                        </gitDescribe>
+                    </configuration>
+                </plugin>
+                <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-archetype-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>${maven-archetype-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

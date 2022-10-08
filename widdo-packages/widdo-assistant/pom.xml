@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>widdo-packages</artifactId>
+        <groupId>cn.widdo</groupId>
+        <version>263.1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>widdo-assistant</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <!--nacos client 通过该依赖nacos-confg，在配置中心(nacos-server)中实现配置的动态刷新-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!--nacos client 通过该依赖nacos-confg，在服务注册中心(nacos-server)中实现服务的注册与发现-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--健康检查-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--Spring Cloud 新版本默认将 Bootstrap 禁用，需要将 spring-cloud-starter-bootstrap 依赖引入到工程中：-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!--解决 @ConfigurationProperties加载配置信息时，当代码出现Spring Boot Configuration Annotation Processor not configured。
+
+        作用：给自定义添加了@ConfigurationProperties注解的配置类生成元数据信息。然后在yml中，就能自动提示了。
+
+        我们以来的jar中，包含的很多的元数据，这些元数据并不在项目运行中有什么作用，而是在开发期间能够通过ide的处理，给我们更多的便捷提示。
+
+        位置：spring-boot-autoconfigure中 的 spring-configuration-metadata.json spring配置的元数据。我们经常使用的 server.port 在这里就有配置。
+
+        当类上添加注解@ConfigurationProperties，同时启动配置（添加注解@EnableConfigurationProperties / @Component / @Configuration）。就会被处理到metadata中，
+        这样，在输入的时候，就会有提示
+    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
