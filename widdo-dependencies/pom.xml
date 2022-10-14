@@ -66,9 +66,11 @@
         <orientdb-jdbc.version>3.0.29</orientdb-jdbc.version>
         <orientdb-gremlin.version>3.0.29</orientdb-gremlin.version>
 
+        <!--系统信息-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>14</java.version>
+        <resource.delimiter>@</resource.delimiter>
     </properties>
 
     <dependencyManagement>
