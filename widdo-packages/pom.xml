@@ -14,11 +14,6 @@
     <modules>
         <module>widdo-cache</module>
         <module>widdo-assistant</module>
-        <module>widdo-kernel</module>
-        <module>widdo-graph</module>
         <module>widdo-data</module>
-        <module>widdo-stream</module>
     </modules>
-
-
 </project>

@@ -11,6 +11,7 @@
 ```
 widdo
 │
+├─widdo-autoconfigure                           ------ 自动配置模块
 ├─widdo-cloud                                   ------ 生活模块
 │   ├─widdo-cloud-gateway                       ------ 网关模块（9000）
 ├─widdo-packages                                ------ 公共包模块
@@ -22,8 +23,9 @@ widdo
 ├─widdo-services                                ------ 服务模块
 │   ├─widdo-life                                ------ 生活服务（9100）
 │   ├─widdo-study                               ------ 学习服务（9101）
-└─widdo-others                                  ------ 其他模块
-    ├─widdo-others                              ------ 其他模块
+└─widdo-starters                                ------ 引用模块
+    ├─widdo-starter-neo4j                       ------ neo4j模块
+    ├─widdo-starter-orientdb                    ------ orientdb模块
 
 ```
 ---
@@ -31,7 +33,7 @@ widdo
 #### [2. 项目介绍]()
 
 widdo 是一个名称有内涵（^_^）。目前，用来记录日常的工作，学习，生活中的点点滴滴。同时，会记录对应的操作日志，用来收集信息。
-同时，还会提供图谱展示，用来直观的看关系。目前提供一下功能：
+同时，还会提供图谱可视化，用来直观的看关系。目前提供一下功能：
 
 * ***java动态编译：***
 

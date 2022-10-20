@@ -1,8 +1,8 @@
 package cn.widdo.study.orientdb.service.impl;
 
-import cn.widdo.assistant.entity.result.JsonResult;
-import cn.widdo.graph.configuration.OrientdbConfiguration;
-import cn.widdo.graph.utils.orientdb.OrientdbUtils;
+import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
+import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import cn.widdo.study.orientdb.service.OrientdbJdbcService;
 import com.orientechnologies.orient.core.db.ODatabasePool;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
@@ -16,28 +16,28 @@ import java.util.Map;
 
 /**
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 2:05
  */
 @Service
-@ConditionalOnBean({OrientdbConfiguration.class})
+@ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
     @Resource
     private ODatabasePool pool;
 
     @Override
-    public JsonResult queryE(Map<String, Object> params) {
-        return JsonResult.success();
+    public WebResult queryE(Map<String, Object> params) {
+        return WebResult.success();
     }
 
     @Override
-    public JsonResult queryV(Map<String, Object> params) {
-        return JsonResult.success();
+    public WebResult queryV(Map<String, Object> params) {
+        return WebResult.success();
     }
 
     @Override
-    public JsonResult createV(Map<String, Object> params) {
+    public WebResult createV(Map<String, Object> params) {
 
         final String label = params.get("label").toString();
 
@@ -74,11 +74,11 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             }
         }
 
-        return JsonResult.success();
+        return WebResult.success();
     }
 
     @Override
-    public JsonResult createE(Map<String, Object> params) {
+    public WebResult createE(Map<String, Object> params) {
 
         final String vLabel = params.get("vLabel").toString();
         final String eLabel = params.get("eLabel").toString();
@@ -115,11 +115,11 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             }
         }
 
-        return JsonResult.success();
+        return WebResult.success();
     }
 
     @Override
-    public JsonResult delete() {
+    public WebResult delete() {
         try (ODatabaseSession session = pool.acquire()) {
             //执行删除
             /**
@@ -135,7 +135,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             OrientdbUtils.close(deleteEdgeRs, null, null);
         }
 
-        return JsonResult.success();
+        return WebResult.success();
     }
 }
 

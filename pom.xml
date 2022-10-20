@@ -24,6 +24,8 @@
         <module>widdo-services</module>
         <module>widdo-dependencies</module>
         <module>widdo-docs</module>
+        <module>widdo-autoconfigure</module>
+        <module>widdo-starters</module>
     </modules>
 
     <!-- ${basedir} 项目根目录 -->
@@ -32,15 +34,6 @@
     <!-- ${project.build.finalName} 产出物名称，缺省为${project.artifactId}-${project.version} -->
     <!-- ${project.packaging} 打包类型，缺省为jar -->
     <!-- ${project.xxx} 当前pom文件的任意节点的内容 如project.artifactId -->
-
-    <properties>
-        <java.version>14</java.version>
-        <resource.delimiter>@</resource.delimiter>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
 
     <!-- 环境 -->
     <profiles>
@@ -168,6 +161,7 @@
             </plugins>
         </pluginManagement>-->
         <plugins>
+            <!--maven的compiler插件，默认只支持jdk1.3，因此需要指定jdk版本-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -199,7 +193,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
-                    <delimiters>@</delimiters>
+                    <delimiters>${resource.delimiter}</delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
             </plugin>

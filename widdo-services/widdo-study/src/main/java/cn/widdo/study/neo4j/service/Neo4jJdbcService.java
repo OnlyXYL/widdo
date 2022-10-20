@@ -1,6 +1,6 @@
 package cn.widdo.study.neo4j.service;
 
-import cn.widdo.assistant.entity.result.JsonResult;
+import cn.widdo.assistant.entity.result.WebResult;
 
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import java.util.Map;
  * neo4j jdbc service
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 0:02
  */
 public interface Neo4jJdbcService {
@@ -23,5 +23,5 @@ public interface Neo4jJdbcService {
      * @className widdo.neo4j.service.Neo4jJdbcService
      * @date 2022/07/15 1:05
      **/
-    JsonResult query(Map<String, Object> params);
+    WebResult query(Map<String, Object> params);
 }

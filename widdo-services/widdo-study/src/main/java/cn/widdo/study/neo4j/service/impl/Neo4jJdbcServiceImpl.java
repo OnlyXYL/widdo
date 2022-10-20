@@ -1,10 +1,10 @@
 package cn.widdo.study.neo4j.service.impl;
 
-import cn.widdo.assistant.entity.result.JsonResult;
-import cn.widdo.graph.entity.neo4j.Value;
-import cn.widdo.graph.entity.neo4j.result.Result;
+import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator;
+import cn.widdo.starter.neo4j.entity.Value;
+import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.study.neo4j.service.Neo4jJdbcService;
-import cn.widdo.study.neo4j.utils.Neo4jUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,29 +16,30 @@ import java.util.Map;
  * neo4j jdbc service 实现类
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 0:02
  */
 @Service
 public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
     @Resource
-    private Neo4jUtils neo4jUtils;
+    private Neo4jActuator neo4jActuator;
 
     @Override
-    public JsonResult query(Map<String, Object> params) {
+    public WebResult query(Map<String, Object> params) {
 
         final String label = params.get("label").toString();
 
-        final String name = params.get("name").toString();
-
         final String cypher = String.format("match (s:%s{name:$name}) return s", label);
 
-        final HashMap<String, Object> cypherParam = new HashMap<>(1);
-        cypherParam.put("name", name);
+        Map<String, Object> cypherParam = new HashMap<>(2);
+        cypherParam.put("cypherQL", cypher);
 
-        final Result<List<Map<String, Value>>> query = neo4jUtils.query(cypher, params);
+        params.remove("label");
+        cypherParam.put("params", params);
 
-        return JsonResult.success(query);
+        final Result<List<Map<String, Value>>> result = neo4jActuator.read(cypherParam);
+
+        return WebResult.success(result);
     }
 }

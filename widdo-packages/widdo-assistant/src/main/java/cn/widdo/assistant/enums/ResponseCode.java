@@ -4,7 +4,7 @@ package cn.widdo.assistant.enums;
  * 响应状态码
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @since 2021/4/21 0021 15:25
  */
 public enum ResponseCode {

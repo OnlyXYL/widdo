@@ -50,17 +50,10 @@ spring:
       output-bindings:
 
 
-  data:
-    mongodb:
-      database:
-      username:
-
-
-
 #项目启动时，用来关闭自动配置的日志输出。如果存在logback.xml时，以logback.xml中的配置为准；反之，以此处的配置为准
 logging:
   level:
-    root: error
+    root: info
     com:
       alibaba:
         cloud:

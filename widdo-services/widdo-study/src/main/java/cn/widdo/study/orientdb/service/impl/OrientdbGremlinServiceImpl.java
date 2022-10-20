@@ -1,8 +1,8 @@
 package cn.widdo.study.orientdb.service.impl;
 
-import cn.widdo.assistant.entity.result.JsonResult;
-import cn.widdo.graph.configuration.OrientdbConfiguration;
-import cn.widdo.graph.utils.orientdb.OrientdbUtils;
+import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
+import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import cn.widdo.study.orientdb.service.OrientdbGremlinService;
 import org.apache.tinkerpop.gremlin.orientdb.OrientGraph;
 import org.apache.tinkerpop.gremlin.orientdb.OrientGraphFactory;
@@ -20,18 +20,18 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
 
 /**
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 2:08
  */
 @Service
-@ConditionalOnBean({OrientdbConfiguration.class})
+@ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
     @Resource
     private OrientGraphFactory orientGraphFactory;
 
     @Override
-    public JsonResult queryE(Map<String, Object> params) {
+    public WebResult queryE(Map<String, Object> params) {
 
         final String outLabel = params.get("outLabel").toString();
 
@@ -75,11 +75,11 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
         OrientdbUtils.close(orientGraph);
 
-        return JsonResult.success(objects);
+        return WebResult.success(objects);
     }
 
     @Override
-    public JsonResult queryV(Map<String, Object> params) {
+    public WebResult queryV(Map<String, Object> params) {
 
         final String key = params.get("key").toString();
 
@@ -131,9 +131,9 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
     }
 
     @Override
-    public JsonResult delete() {
+    public WebResult delete() {
 
-        return JsonResult.success();
+        return WebResult.success();
     }
 }
 
