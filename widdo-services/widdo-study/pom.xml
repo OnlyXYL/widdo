@@ -12,15 +12,8 @@
     <artifactId>widdo-study</artifactId>
 
     <dependencies>
-
-        <!--核心包-->
-        <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-kernel</artifactId>
-        </dependency>
-
         <!--图谱包-->
-        <dependency>
+   <!--     <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-graph</artifactId>
             <exclusions>
@@ -37,18 +30,27 @@
                     <groupId>com.google.errorprone</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>-->
+
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-starter-neo4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-starter-orientdb</artifactId>
         </dependency>
 
         <!--缓存包-->
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-cache</artifactId>
-        </dependency>
-
-        <!--消息包-->
-        <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-stream</artifactId>
         </dependency>
     </dependencies>
 

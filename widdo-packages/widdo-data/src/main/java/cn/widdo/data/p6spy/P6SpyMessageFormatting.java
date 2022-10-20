@@ -10,7 +10,7 @@ import java.util.Date;
  * 格式化日志
  *
  * @author XYL
- * @version 1.2
+ * @version 263.1.0.0
  * @date 2022/09/21 17:56
  */
 public class P6SpyMessageFormatting implements MessageFormattingStrategy {

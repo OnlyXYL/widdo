@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * 启动数据处理
  *
  * @author XYL
- * @version 1.2
+ * @version 263.1.0.0
  * @date 2022/09/21 16:35
  */
 @Target({ElementType.TYPE})

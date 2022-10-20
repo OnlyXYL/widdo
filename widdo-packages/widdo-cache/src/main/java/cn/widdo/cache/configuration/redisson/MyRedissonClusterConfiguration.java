@@ -22,7 +22,7 @@ import java.util.List;
  * 集群方式配置
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/06/22 10:00
  */
 @Data

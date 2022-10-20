@@ -1,12 +1,12 @@
 package cn.widdo.study.orientdb.service;
 
-import cn.widdo.assistant.entity.result.JsonResult;
+import cn.widdo.assistant.entity.result.WebResult;
 
 import java.util.Map;
 
 /**
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 2:05
  */
 public interface OrientdbJdbcService {
@@ -21,7 +21,7 @@ public interface OrientdbJdbcService {
      * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 9:53
      **/
-    JsonResult queryE(Map<String, Object> params);
+    WebResult queryE(Map<String, Object> params);
 
     /**
      * 查询点
@@ -33,7 +33,7 @@ public interface OrientdbJdbcService {
      * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:15
      **/
-    JsonResult queryV(Map<String, Object> params);
+    WebResult queryV(Map<String, Object> params);
 
     /**
      * 创建点
@@ -45,7 +45,7 @@ public interface OrientdbJdbcService {
      * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:38
      **/
-    JsonResult createV(Map<String, Object> params);
+    WebResult createV(Map<String, Object> params);
 
     /**
      * 创建关系
@@ -57,7 +57,7 @@ public interface OrientdbJdbcService {
      * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:39
      **/
-    JsonResult createE(Map<String, Object> params);
+    WebResult createE(Map<String, Object> params);
 
     /**
      * 删除数据
@@ -69,5 +69,5 @@ public interface OrientdbJdbcService {
      * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:39
      **/
-    JsonResult delete();
+    WebResult delete();
 }

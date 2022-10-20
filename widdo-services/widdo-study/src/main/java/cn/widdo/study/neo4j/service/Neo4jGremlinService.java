@@ -1,6 +1,6 @@
 package cn.widdo.study.neo4j.service;
 
-import cn.widdo.assistant.entity.result.JsonResult;
+import cn.widdo.assistant.entity.result.WebResult;
 
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import java.util.Map;
  * neo4j gremlin service
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/07/15 1:37
  */
 public interface Neo4jGremlinService {
@@ -24,5 +24,5 @@ public interface Neo4jGremlinService {
      * @throws
      * @date 2022/07/15 1:36
      **/
-    JsonResult query(Map<String, Object> params);
+    WebResult query(Map<String, Object> params);
 }

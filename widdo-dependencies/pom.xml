@@ -44,6 +44,7 @@
 
         <!--通用开源工具依赖包-->
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <google-guava.version>31.0.1-jre</google-guava.version>
 
         <!--辅助工具依赖包-->
         <lombok.version>1.18.22</lombok.version>
@@ -142,20 +143,24 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>widdo-graph</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>widdo-kernel</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>widdo-stream</artifactId>
+                <artifactId>widdo-autoconfigure</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-starter-neo4j</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>widdo-starter-orientdb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--通用开源工具-->
             <dependency>
@@ -163,7 +168,12 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google-guava.version}</version>
+                <scope>compile</scope>
+            </dependency>
 
             <!--辅助工具-->
             <dependency>

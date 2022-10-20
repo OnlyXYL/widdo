@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
  * 数据处理层配置
  *
  * @author XYL
- * @version 1.2
+ * @version 263.1.0.0
  * @date 2022/09/21 16:36
  */
 @Configuration

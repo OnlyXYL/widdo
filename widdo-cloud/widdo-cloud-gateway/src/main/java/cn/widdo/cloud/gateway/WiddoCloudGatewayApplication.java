@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/06/10 16:31
  */
 @SpringBootApplication

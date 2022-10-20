@@ -4,7 +4,7 @@ package cn.widdo.assistant.constant;
  * 常量
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/08/15 15:03
  */
 @SuppressWarnings("AlibabaConstantFieldShouldBeUpperCase")
@@ -92,6 +92,12 @@ public class PropertyConstant {
     public static final String PROPERTY_PAY_ALIPAY = PROPERTY_INTEGRATION_PAY + ".alipay";
     public static final String PROPERTY_PAY_WXIPAY = PROPERTY_INTEGRATION_PAY + ".wxpay";
 
+    /**
+     * graph
+     */
+    public static final String PROPERTY_GRAPH_NEO4J = PROPERTY_MANAGEMENT_GRAPH+ ".neo4j";
+    public static final String PROPERTY_GRAPH_ORIENTDB = PROPERTY_MANAGEMENT_GRAPH+ ".orientdb";
+
 
     /* ---------- Spring 相关基础配置属性（第一层） ---------- */
 
@@ -123,8 +129,9 @@ public class PropertyConstant {
     public static final String ITEM_KAFKA_ENABLED = PROPERTY_MANAGEMENT_QUEUE + ".kafka" + PROPERTY_ENABLED;
     public static final String ITEM_LOG_CENTER_ENABLED = PROPERTY_MANAGEMENT_LOG_CENTER + ".server-addr";
     public static final String ITEM_NACOS_ENABLED = PROPERTY_NACOS_CONFIG + ".server-addr";
-    public static final String ITEM_NEO4j_ENABLED = PROPERTY_MANAGEMENT_GRAPH + ".neo4j" + PROPERTY_ENABLED;
-    public static final String ITEM_ORIENTDB_ENABLED = PROPERTY_MANAGEMENT_GRAPH + ".orientdb" + PROPERTY_ENABLED;
+    public static final String ITEM_NEO4j_ENABLED = PROPERTY_GRAPH_NEO4J + PROPERTY_ENABLED;
+    public static final String ITEM_NEO4j_RW = PROPERTY_GRAPH_NEO4J + ".rw";
+    public static final String ITEM_ORIENTDB_ENABLED = PROPERTY_GRAPH_ORIENTDB + PROPERTY_ENABLED;
 
 
     /* ---------- Spring 详细配置属性路径 ---------- */

@@ -21,7 +21,7 @@ import java.util.Map;
  * 网关异常处理类
  *
  * @author XYL
- * @version 1.0
+ * @version 263.1.0.0
  * @date 2022/06/09 18:11
  */
 @Slf4j

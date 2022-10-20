@@ -24,6 +24,8 @@
         <module>widdo-services</module>
         <module>widdo-dependencies</module>
         <module>widdo-docs</module>
+        <module>widdo-autoconfigure</module>
+        <module>widdo-starters</module>
     </modules>
 
     <!-- ${basedir} 项目根目录 -->
