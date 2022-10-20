@@ -8,7 +8,7 @@ import cn.widdo.starter.neo4j.entity.result.ResultPageInfo;
  * 结果工具类
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class ResultUtil {

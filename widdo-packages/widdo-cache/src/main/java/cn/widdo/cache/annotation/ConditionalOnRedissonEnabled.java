@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * 是否开启redisson注解
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/08/16 18:47
  */
 @Target({ElementType.TYPE})

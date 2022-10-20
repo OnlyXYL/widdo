@@ -8,7 +8,7 @@ import java.util.Map;
  * neo4j gremlin service
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/07/15 1:37
  */
 public interface Neo4jGremlinService {

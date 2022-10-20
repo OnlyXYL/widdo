@@ -23,7 +23,7 @@ import java.util.Map;
  * 需要校验参数
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/14 16:33
  */
 public class DefaultNeo4jReader extends ParamsValidator implements Neo4jReader<Map<String, Object>, Result<List<Map<String, Value>>>> {

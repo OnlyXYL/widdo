@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * neo4j read writer actuator
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/18 0:50
  */
 @WiddoNeo4jActuator

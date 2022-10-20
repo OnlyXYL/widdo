@@ -25,7 +25,7 @@ import java.util.*;
  * neo4j util
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/18 10:07
  */
 public class Neo4jUtil {

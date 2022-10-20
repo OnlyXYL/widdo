@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
  * redisson配置
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/09/07 18:13
  */
 @Configuration

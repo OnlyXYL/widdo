@@ -9,7 +9,7 @@ import java.util.Map;
  * 默认的写方法
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/14 16:37
  */
 public class DefaultNeo4jWriter implements Neo4jWriter<Map<String, Object>, Result<?>> {

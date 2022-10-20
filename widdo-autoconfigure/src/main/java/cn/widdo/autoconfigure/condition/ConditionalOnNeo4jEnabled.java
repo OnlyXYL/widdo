@@ -25,7 +25,7 @@ import java.lang.annotation.*;
  * {@link Documented}   表明该注解标记的元素可以被javadoc 或类似的工具文档化
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/08/15 15:19
  */
 @Target({ElementType.TYPE})
