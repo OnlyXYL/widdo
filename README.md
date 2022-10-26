@@ -1,8 +1,17 @@
-::: info
-
-
-
 # widdo
+
+[![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
+
+[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.1.x/f8bf0bf)]()
+
+[![](https://img.shields.io/github/v/release/OnlyXYl/widdo?display_name=tag&include_prereleases)]()
+
+[![](https://img.shields.io/github/v/tag/OnlyXYL/widdo)]() 
+
+[![](https://img.shields.io/bitbucket/issues/OnlyXYL/widdo)]()
+
+[![](https://img.shields.io/github/issues-closed/OnlyXYL/widdo)]()
+
 #### [0. 项目背景]()
 ###### 个人网站。用来记录学习，工作，生活相关的信息
 
