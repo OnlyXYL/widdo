@@ -1,5 +1,7 @@
 # widdo
 
+[![](https://img.shields.io/github/languages/code-size/OnlyXYL/widdo)]()
+
 [![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
 
 [![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.1.x/f8bf0bf)]()
