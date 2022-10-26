@@ -4,7 +4,7 @@ package cn.widdo.assistant.constant;
  * 常量
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/08/15 15:03
  */
 @SuppressWarnings("AlibabaConstantFieldShouldBeUpperCase")

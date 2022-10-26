@@ -14,7 +14,7 @@
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-dependencies</artifactId>
-    <version>263.1.0.0</version>
+    <version>263.1.1.0</version>
     <packaging>pom</packaging>
 
     <name>widdo-dependencies</name>
@@ -139,11 +139,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>widdo-data</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>widdo-kernel</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -10,7 +10,7 @@ import java.util.Map;
  * Reader 装饰器，对传入的Reader进行装饰。当默认方法不足时，可以通过该方式对原方法进行增强
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/15 1:20
  */
 public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator {

@@ -4,7 +4,7 @@ package cn.widdo.autoconfigure.neo4j.writer;
  * neo4j writer
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/14 16:36
  */
 public interface Neo4jWriter<T, R> {

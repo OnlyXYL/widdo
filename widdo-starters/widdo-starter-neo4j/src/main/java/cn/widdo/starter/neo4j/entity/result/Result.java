@@ -4,7 +4,7 @@ package cn.widdo.starter.neo4j.entity.result;
  * 通用接口返回结果
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Result<T> {

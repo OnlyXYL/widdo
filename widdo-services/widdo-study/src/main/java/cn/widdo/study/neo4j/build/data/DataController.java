@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 数据controller
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/09/22 10:06
  */
 @RequestMapping(value = "/data")

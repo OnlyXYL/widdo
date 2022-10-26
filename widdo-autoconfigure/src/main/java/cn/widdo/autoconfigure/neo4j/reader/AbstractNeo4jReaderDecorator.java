@@ -9,7 +9,7 @@ import java.util.Map;
  * neo4j 读取数据装饰器
  *
  * @author XYL
- * @version 263.1.0.0
+ * @version 263.1.1.0
  * @date 2022/10/14 17:51
  */
 public abstract class AbstractNeo4jReaderDecorator extends ParamsValidator implements Neo4jReader<Map<String, Object>, Result<?>> {

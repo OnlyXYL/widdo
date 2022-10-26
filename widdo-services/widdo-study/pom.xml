@@ -5,43 +5,27 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.0.0</version>
+        <version>263.1.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-study</artifactId>
 
     <dependencies>
-        <!--图谱包-->
-   <!--     <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-graph</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>groovy</artifactId>
-                    <groupId>org.codehaus.groovy</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>checker-qual</artifactId>
-                    <groupId>org.checkerframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>error_prone_annotations</artifactId>
-                    <groupId>com.google.errorprone</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
 
+        <!--自动配置包-->
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-autoconfigure</artifactId>
         </dependency>
 
+        <!--neo4j starter-->
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-starter-neo4j</artifactId>
         </dependency>
 
+        <!--orientdb starter-->
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-starter-orientdb</artifactId>
