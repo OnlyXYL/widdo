@@ -18,8 +18,6 @@ widdo
 │   ├─widdo-assistant                           ------ 辅助包
 │   ├─widdo-cache                               ------ 缓存包
 │   ├─widdo-data                                ------ 数据包
-│   ├─widdo-graph                               ------ 图谱包
-│   ├─widdo-kernel                              ------ 核心包
 ├─widdo-services                                ------ 服务模块
 │   ├─widdo-life                                ------ 生活服务（9100）
 │   ├─widdo-study                               ------ 学习服务（9101）
