@@ -31,6 +31,7 @@
         <spring-security-bom.version>5.7.2</spring-security-bom.version>
 
         <!--Maven Plugin 相关组件-->
+        <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
         <docker-maven-plugin.version>0.39.0</docker-maven-plugin.version>
         <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
         <mapstruct-processor.version>1.4.2.Final</mapstruct-processor.version>
@@ -235,8 +236,6 @@
                 <artifactId>orientdb-gremlin</artifactId>
                 <version>${orientdb-gremlin.version}</version>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
