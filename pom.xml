@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -10,7 +11,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>cn.widdo</groupId>
     <artifactId>widdo</artifactId>
     <version>263.1.1.0</version>
     <packaging>pom</packaging>
@@ -34,6 +34,18 @@
     <!-- ${project.build.finalName} 产出物名称，缺省为${project.artifactId}-${project.version} -->
     <!-- ${project.packaging} 打包类型，缺省为jar -->
     <!-- ${project.xxx} 当前pom文件的任意节点的内容 如project.artifactId -->
+    <properties>
+        <!--配置参数-->
+        <!--为了便于Docker的构建，减少上下文影响，将所有Docker资源放置在同一个目录中进行构建-->
+        <!--docker信息改为自己的-->
+        <docker.build.directory>../../configurations/docker/context/target</docker.build.directory>
+        <docker.resource.name>${project.build.finalName}.${project.packaging}</docker.resource.name>
+        <docker.host>http://xxx:2375</docker.host>
+        <docker.namespace>xxx</docker.namespace>
+        <docker.registry>https://hub.docker.com</docker.registry>
+        <docker.username>xxx</docker.username>
+        <docker.password>xxx</docker.password>
+    </properties>
 
     <!-- 环境 -->
     <profiles>
@@ -79,7 +91,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-       <!-- <pluginManagement>
+        <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -106,7 +118,7 @@
                             </goals>
                             <configuration>
                                 <target>
-                                    &lt;!&ndash;jar包保存位置 &ndash;&gt;
+                                    <!--jar包保存位置 -->
                                     <copy todir="${docker.build.directory}">
                                         <fileset dir="${project.basedir}/target">
                                             <include name="${docker.resource.name}"/>
@@ -117,49 +129,143 @@
                         </execution>
                     </executions>
                 </plugin>
-                &lt;!&ndash; docker打包插件 &ndash;&gt;
+                <!-- docker打包插件 -->
+                <!--存在问题，target目录下，嵌套好多层。很慢-->
+               <!-- <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>1.2.2</version>
+                    <configuration>
+                        <serverId>docker-hub</serverId>
+                        <registryUrl>https://hub.docker.com/</registryUrl>
+                        <imageName>widdo-image</imageName>
+                        &lt;!&ndash; 指定 Dockerfile 路径  ${project.basedir}：项目根路径下&ndash;&gt;
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        &lt;!&ndash;指定远程 docker api地址&ndash;&gt;
+                        <dockerHost>${docker.host}</dockerHost>
+                        &lt;!&ndash; 这里是复制 war 包到 docker 容器指定目录配置 &ndash;&gt;
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                &lt;!&ndash;jar 包所在的路径  此处配置的 即对应 target 目录&ndash;&gt;
+                                <directory>${project.build.directory}</directory>
+                                &lt;!&ndash; 需要包含的 jar包 ，这里对应的是 Dockerfile中添加的文件名　&ndash;&gt;
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
+                    </configuration>
+                    &lt;!&ndash;将插件绑定在某个phase执行&ndash;&gt;
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>tag-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <image>widdo-image</image>
+                                <newName>https://hub.docker.com/widdo-image</newName>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-image</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <imageName>widdo-image</imageName>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>-->
+
+                <!--dockerfile-maven-plugin-->
+                <!--说明：此插件使用存在问题。由于镜像在构建时需要使用docker环境，但是本插件默认使用本地环境，package时报错：Caused by: java.io.FileNotFoundException: \\.\pipe\docker_engine (系统找不到指定的文件。)-->
+                <!--解决方案：1. 本地安装docker. 2. 远程服务器安装docker,同时安装git,进行远程操作 3. 换插件，此插件已经很久没有维护了！！！例如：JIB,fabric8-->
+                <!--<plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.4.13</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <contextDirectory>${project.basedir}</contextDirectory>
+                        <dockerfile>${project.basedir}</dockerfile>
+                        <repository>${docker.registry}/${project.artifactId}</repository>
+                        <tag>${project.version}</tag>
+                        <buildArgs>
+                            <JAR_FILE>${project.basedir}/${project.build.finalName}.${project.packaging}</JAR_FILE>
+                        </buildArgs>
+                    </configuration>
+                </plugin>-->
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker-maven-plugin.version}</version>
-                    &lt;!&ndash;全局配置&ndash;&gt;
+                    <version>0.39.0</version>
+                    <!--全局配置-->
                     <configuration>
-                        &lt;!&ndash;这一部分是为了实现对远程docker容器的控制&ndash;&gt;
-                        &lt;!&ndash;docker主机地址,用于完成docker各项功能,注意是tcp不是http!&ndash;&gt;
+                        <!--配置远程docker守护进程url-->
                         <dockerHost>${docker.host}</dockerHost>
-                        &lt;!&ndash;docker远程访问所需证书地址,如果docker远程主机没有启用TLS验证则不需要配证书&ndash;&gt;
-                        &lt;!&ndash;<certPath>${project.basedir}/docker/ssh</certPath>&ndash;&gt;
-
-                        &lt;!&ndash;这一部分是为了实现docker镜像的构建和推送&ndash;&gt;
-                        &lt;!&ndash;registry地址,用于推送,拉取镜像,我这里用的是阿里的registry&ndash;&gt;
-                        <registry>${docker.registry}</registry>
-                        &lt;!&ndash; 认证信息&ndash;&gt;
+                        <!--认证配置,用于私有registry认证-->
                         <authConfig>
-                            <push>
-                                <username>${docker.username}</username>
-                                <password>${docker.password}</password>
-                            </push>
+                            <username>${docker.username}</username>
+                            <password>${docker.password}</password>
                         </authConfig>
-                        &lt;!&ndash;镜像相关配置,支持多镜像&ndash;&gt;
+
+                        <!--用于在标准输出中打开详细输出的字符串属性，默认是false-->
+                        <verbose>true</verbose>
+
+                        <!--镜像相关配置,支持多镜像-->
                         <images>
-                            &lt;!&ndash; 单个镜像配置 &ndash;&gt;
+                            <!-- 单个镜像配置 -->
                             <image>
-                                &lt;!&ndash;镜像名(含版本号) 命名空间/仓库名称:镜像版本号&ndash;&gt;
-                                <name>命名空间/仓库名称:镜像版本号</name>
-                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
-                                &lt;!&ndash;别名:用于容器命名和在docker-compose.yml文件只能找到对应名字的配置&ndash;&gt;
-                                <alias>${project.name}</alias>
-                                &lt;!&ndash;镜像build相关配置&ndash;&gt;
+                                <!--镜像名(含版本号)-->
+                                <name>${docker.username}/${project.name}:${project.version}</name>
+                                <!--registry地址,用于推送,拉取镜像-->
+                                <registry>${docker.registry}</registry>
+                                <!--镜像build相关配置-->
                                 <build>
-                                    &lt;!&ndash;使用dockerFile文件&ndash;&gt;
+
+                                    <!--docker-assembly.xml 定义镜像中的文件-->
+                                    <!--       <assembly>
+
+                                           </assembly>-->
+
+                                    <!--使用dockerFile文件，定义构建镜像的流程-->
                                     <dockerFile>${project.basedir}/Dockerfile</dockerFile>
                                 </build>
                             </image>
                         </images>
                     </configuration>
+
+                    <executions>
+                        <!--绑定maven的生命周期-->
+                        <execution>
+                            <id>docker-exec</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
-        </pluginManagement>-->
+        </pluginManagement>
         <plugins>
             <!--maven的compiler插件，默认只支持jdk1.3，因此需要指定jdk版本-->
             <plugin>

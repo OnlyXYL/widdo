@@ -21,6 +21,7 @@ HELP.md
 *.txt
 *.gz
 log/
+configurations/docker/context/target
 
 ### NetBeans ###
 /nbproject/private/
