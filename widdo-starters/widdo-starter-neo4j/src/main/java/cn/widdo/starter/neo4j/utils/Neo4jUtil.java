@@ -257,4 +257,16 @@ public class Neo4jUtil {
             }
         }
     }
+
+    /**
+     * 打印信息
+     *
+     * @param cypherQL cypher
+     * @author XYL
+     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper
+     * @date 2022/10/19 1:29
+     **/
+    public static void printCypherQL(String cypherQL) {
+        System.out.println("---client ip:" + NetUtil.getRealIp() + " cql:" + cypherQL.substring(0, Math.min(cypherQL.length(), 100)) + " ...");
+    }
 }

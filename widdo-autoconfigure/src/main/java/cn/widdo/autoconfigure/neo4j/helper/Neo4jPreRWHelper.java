@@ -73,6 +73,10 @@ public class Neo4jPreRWHelper {
 
         Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
         log.debug("---client ip:" + NetUtil.getRealIp() + " cql:" + cqlStr.substring(0, Math.min(cqlStr.length(), 100)) + " ...");
+
+        //打印信息
+        Neo4jUtil.printCypherQL(cqlStr);
+
         //执行cql
         return (Result) Neo4jUtil.toExecute(driver, "query", cqlStr, map, (cql, mp, tx) -> {
 
@@ -95,7 +99,8 @@ public class Neo4jPreRWHelper {
         Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
 
         //打印信息
-        printCypherQL(cqlStr);
+        Neo4jUtil.printCypherQL(cqlStr);
+
         //执行cql
         return (Result) Neo4jUtil.toExecute(driver, "execute", cqlStr, map, (cql, mp, tx) -> {
 
@@ -103,18 +108,4 @@ public class Neo4jPreRWHelper {
             return Neo4jUtil.packResult(rs);
         });
     }
-
-    /**
-     * 打印信息
-     *
-     * @param cypherQL cypher
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper
-     * @date 2022/10/19 1:29
-     **/
-    private void printCypherQL(String cypherQL) {
-        System.out.println("---client ip:" + NetUtil.getRealIp() + " cql:" + cypherQL.substring(0, Math.min(cypherQL.length(), 100)) + " ...");
-
-    }
-
 }
