@@ -27,8 +27,8 @@ widdo
 │   ├─widdo-cloud-gateway                       ------ 网关模块（9000）
 ├─widdo-packages                                ------ 公共包模块
 │   ├─widdo-assistant                           ------ 辅助包
-│   ├─widdo-cache                               ------ 缓存包
-│   ├─widdo-data                                ------ 数据包
+│   ├─widdo-cache(@Deprecated)                  ------ 缓存包(后面移入autoconfigure)
+│   ├─widdo-data(@Deprecated)                   ------ 数据包(后面移入autoconfigure)
 ├─widdo-services                                ------ 服务模块
 │   ├─widdo-life                                ------ 生活服务（9100）
 │   ├─widdo-study                               ------ 学习服务（9101）
