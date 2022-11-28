@@ -5,7 +5,7 @@ import cn.widdo.cache.configuration.redisson.Locker;
 import java.util.concurrent.TimeUnit;
 
 /**
- * redis锁工具类
+ * redis锁工具类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -13,10 +13,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class LockerUtils {
 
+    protected LockerUtils() {
+        throw new UnsupportedOperationException(LockerUtils.class.getName() + " 不能被实例化");
+    }
+
+    /**
+     * 锁.
+     */
     private static Locker locker;
 
     /**
-     * 设置工具类使用的locker
+     * 设置工具类使用的locker.
      *
      * @param locker 锁对象
      * @author XYL
@@ -28,7 +35,7 @@ public class LockerUtils {
     }
 
     /**
-     * 获取锁
+     * 获取锁.
      *
      * @param lockKey lockKey
      * @author XYL
@@ -40,7 +47,7 @@ public class LockerUtils {
     }
 
     /**
-     * 释放锁
+     * 释放锁.
      *
      * @param lockKey lockKey
      * @author XYL
@@ -52,7 +59,7 @@ public class LockerUtils {
     }
 
     /**
-     * 获取锁，超时释放
+     * 获取锁，超时释放.
      *
      * @param lockKey lockKey
      * @param timeout 超时时间
@@ -65,11 +72,11 @@ public class LockerUtils {
     }
 
     /**
-     * 获取锁，超时释放，指定时间单位
+     * 获取锁，超时释放，指定时间单位.
      *
-     * @param lockKey   lockKey
-     * @param unit  时间单位
-     * @param timeout   超时时间
+     * @param lockKey lockKey
+     * @param unit    时间单位
+     * @param timeout 超时时间
      * @author XYL
      * @className cn.widdo.utils.redisson.LockerUtils
      * @date 2022/07/05 17:43
@@ -79,7 +86,7 @@ public class LockerUtils {
     }
 
     /**
-     * 尝试获取锁，获取到立即返回true,获取失败立即返回false
+     * 尝试获取锁，获取到立即返回true,获取失败立即返回false.
      * <p>
      * todo:该方法获取到锁之后，释放有问题。判断是否有锁，使用isLocked。后面调查
      *
@@ -94,12 +101,12 @@ public class LockerUtils {
     }
 
     /**
-     * 尝试获取锁，在给定的waitTime时间内尝试，获取到返回true,获取失败返回false,获取到后再给定的leaseTime时间超时释放
+     * 尝试获取锁，在给定的waitTime时间内尝试，获取到返回true,获取失败返回false,获取到后再给定的leaseTime时间超时释放.
      *
-     * @param lockKey lockKey
-     * @param waitTime 等待时间
+     * @param lockKey   lockKey
+     * @param waitTime  等待时间
      * @param leaseTime 施放时间
-     * @param unit  时间单位
+     * @param unit      时间单位
      * @return boolean
      * @throws InterruptedException 异常
      * @author XYL
@@ -112,7 +119,7 @@ public class LockerUtils {
     }
 
     /**
-     * 锁释放被任意一个线程持有
+     * 锁释放被任意一个线程持有.
      *
      * @param lockKey lockKey
      * @return boolean

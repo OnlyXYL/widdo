@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import java.lang.annotation.*;
 
 /**
- * 开启neo4j
+ * 开启neo4j.
  *
  * @author XYL
  * @version 263.1.1.0

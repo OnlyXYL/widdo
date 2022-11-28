@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
- * neo4j read writer actuator
+ * neo4j read writer actuator.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -23,6 +23,9 @@ public class WiddoNeo4jActuatorConfigure {
 
     private static final Logger log = LoggerFactory.getLogger(WiddoNeo4jActuatorConfigure.class);
 
+    /**
+     * properties.
+     */
     @Resource
     private WiddoNeo4jProperties widdoNeo4jProperties;
 
@@ -31,6 +34,11 @@ public class WiddoNeo4jActuatorConfigure {
         log.info("[Widdo] |- AutoConfigure [Widdo Neo4j] Actuator.");
     }
 
+    /**
+     * Neo4jActuator instance.
+     *
+     * @return a Neo4jActuator instance.
+     */
     @Bean
     public Neo4jActuator neo4jActuator() {
         return new DefaultNeo4jActuator(widdoNeo4jProperties);

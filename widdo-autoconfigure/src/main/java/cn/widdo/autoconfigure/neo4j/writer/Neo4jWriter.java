@@ -1,8 +1,10 @@
 package cn.widdo.autoconfigure.neo4j.writer;
 
 /**
- * neo4j writer
+ * neo4j writer.
  *
+ * @param <R>
+ * @param <T>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/10/14 16:36
@@ -10,7 +12,7 @@ package cn.widdo.autoconfigure.neo4j.writer;
 public interface Neo4jWriter<T, R> {
 
     /**
-     * 写方法
+     * 写方法.
      *
      * @param params
      * @return R

@@ -3,50 +3,108 @@ package cn.widdo.starter.neo4j.entity;
 import java.io.Serializable;
 
 /**
- * neo4j原生接口封装-地理位置
+ * neo4j原生接口封装-地理位置.
  *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Point2D implements Serializable {
-    double srid;
-    double x;
-    double y;
 
+    /**
+     * srid.
+     */
+    private double srid;
+
+    /**
+     * x.
+     */
+    private double x;
+    /**
+     * y.
+     */
+    private double y;
+
+    /**
+     * construct has no params.
+     */
     public Point2D() {
     }
 
-    public Point2D(int srid, double x, double y) {
+    /**
+     * Point2D.
+     *
+     * @param srid
+     * @param x
+     * @param y
+     * @author XYL
+     * @date 2022/11/28 14:39:36
+     **/
+    public Point2D(final int srid, final double x, final double y) {
         this.x = x;
         this.y = y;
         this.srid = srid;
     }
 
+    /**
+     * get srid.
+     *
+     * @return a result type of double
+     */
     public double getSrid() {
         return srid;
     }
 
+    /**
+     * set srid.
+     *
+     * @param srid
+     */
     public void setSrid(double srid) {
         this.srid = srid;
     }
 
+    /**
+     * get x.
+     *
+     * @return a result type of double
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * set x.
+     *
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     * get y.
+     *
+     * @return a result typ of double
+     */
     public double getY() {
         return y;
     }
 
+    /**
+     * set y.
+     *
+     * @param y
+     */
     public void setY(double y) {
         this.y = y;
     }
 
+    /**
+     * get Z.
+     *
+     * @return a result type of double
+     */
     public double getZ() {
         return Double.NaN;
     }
@@ -61,6 +119,11 @@ public class Point2D implements Serializable {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

@@ -5,15 +5,15 @@ import cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.study.neo4j.service.Neo4jJdbcService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * neo4j jdbc service 实现类
+ * neo4j jdbc service 实现类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -22,8 +22,17 @@ import java.util.Map;
 @Service
 public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
-    @Resource
+    /**
+     * neo4j执行器.
+     * 使用构造方法注入，如果只有一个构造方法，那么 @Autowired注解可以省略；如果有多个构造方法，
+     * 需要添加@Autowired注解来明确指定到底使用哪个构造方法
+     */
     private Neo4jActuator neo4jActuator;
+
+    @Autowired
+    public Neo4jJdbcServiceImpl(final Neo4jActuator neo4jActuator) {
+        this.neo4jActuator = neo4jActuator;
+    }
 
     @Override
     public WebResult query(Map<String, Object> params) {

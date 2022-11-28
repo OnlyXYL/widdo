@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import java.lang.annotation.*;
 
 /**
- * 开启orientdb注解
+ * 开启orientdb注解.
  *
  * @author XYL
  * @version 263.1.1.0

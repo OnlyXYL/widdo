@@ -5,6 +5,8 @@ import cn.widdo.assistant.entity.result.WebResult;
 import java.util.Map;
 
 /**
+ * Orientdb Jdbc Service.
+ *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 2:05
@@ -12,7 +14,7 @@ import java.util.Map;
 public interface OrientdbJdbcService {
 
     /**
-     * 查询线
+     * 查询线.
      *
      * @param params
      * @return void
@@ -24,7 +26,7 @@ public interface OrientdbJdbcService {
     WebResult queryE(Map<String, Object> params);
 
     /**
-     * 查询点
+     * 查询点.
      *
      * @param params
      * @return cn.widdo.entity.JsonResult
@@ -36,7 +38,7 @@ public interface OrientdbJdbcService {
     WebResult queryV(Map<String, Object> params);
 
     /**
-     * 创建点
+     * 创建点.
      *
      * @param params
      * @return cn.widdo.entity.JsonResult
@@ -48,7 +50,7 @@ public interface OrientdbJdbcService {
     WebResult createV(Map<String, Object> params);
 
     /**
-     * 创建关系
+     * 创建关系.
      *
      * @param params
      * @return cn.widdo.entity.JsonResult
@@ -60,7 +62,7 @@ public interface OrientdbJdbcService {
     WebResult createE(Map<String, Object> params);
 
     /**
-     * 删除数据
+     * 删除数据.
      *
      * @param
      * @return cn.widdo.entity.JsonResult

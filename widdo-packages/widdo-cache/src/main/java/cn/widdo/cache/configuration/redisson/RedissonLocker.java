@@ -2,12 +2,12 @@ package cn.widdo.cache.configuration.redisson;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 基于redis的分布式锁实现
+ * 基于redis的分布式锁实现.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -15,10 +15,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedissonLocker implements Locker {
 
-    @Resource
+    /**
+     * 客户端.
+     */
     private RedissonClient redissonClient;
 
-    public RedissonLocker(RedissonClient redissonClient) {
+    @Autowired
+    public RedissonLocker(final RedissonClient redissonClient) {
         this.redissonClient = redissonClient;
     }
 
@@ -46,7 +49,7 @@ public class RedissonLocker implements Locker {
         lock.lock(timeout, unit);
     }
 
-    public void setRedissonClient(RedissonClient redissonClient) {
+    public final void setRedissonClient(RedissonClient redissonClient) {
         this.redissonClient = redissonClient;
     }
 

@@ -1,7 +1,7 @@
 package cn.widdo.starter.neo4j.entity.result;
 
 /**
- * 结果转台枚举
+ * 结果转台枚举.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -9,12 +9,12 @@ package cn.widdo.starter.neo4j.entity.result;
  */
 public enum ResultEnum {
     /**
-     * 成功
+     * 成功.
      */
     SUCCESS,
 
     /**
-     * 失败
+     * 失败.
      */
     ERROR
 }

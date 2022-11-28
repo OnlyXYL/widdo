@@ -8,7 +8,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * 跨域配置
+ * 跨域配置.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -17,6 +17,16 @@ import org.springframework.web.util.pattern.PathPatternParser;
 @Configuration
 public class GatewayCorsConfigure {
 
+    /**
+     * CorsWebFilter.
+     *
+     * @param
+     * @author XYL
+     * @className cn.widdo.cloud.gateway.configure.GatewayCorsConfigure
+     * @return org.springframework.web.cors.reactive.CorsWebFilter
+     * @throws
+     * @date 2022/11/18 17:36
+     **/
     @Bean
     public CorsWebFilter corsWebFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());

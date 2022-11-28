@@ -7,7 +7,7 @@ import org.neo4j.driver.types.Point;
 import org.neo4j.driver.types.Relationship;
 
 /**
- * neo4j原生结果类型转换
+ * neo4j原生结果类型转换.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -15,12 +15,18 @@ import org.neo4j.driver.types.Relationship;
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 public class Neo4jConvertor {
+
+    /**
+     * public constructor.
+     *
+     * @return a object called {@link Neo4jConvertor}
+     */
     public static Neo4jConvertor build() {
         return new Neo4jConvertor();
     }
 
     /**
-     * 转换neo4j的node
+     * 转换neo4j的node.
      *
      * @param nodeOrigin 原始节点
      * @return cn.widdo.starter.neo4j.entity.Node
@@ -37,7 +43,7 @@ public class Neo4jConvertor {
     }
 
     /**
-     * 转换neo4j的relationship
+     * 转换neo4j的relationship.
      *
      * @param relationshipOrigin 原始关系
      * @return cn.widdo.starter.neo4j.entity.Relationship
@@ -56,7 +62,7 @@ public class Neo4jConvertor {
     }
 
     /**
-     * 转换neo4j的Point2D
+     * 转换neo4j的Point2D.
      *
      * @param pointOrigin 原始 point
      * @return cn.widdo.starter.neo4j.entity.Point2D
@@ -73,7 +79,7 @@ public class Neo4jConvertor {
     }
 
     /**
-     * 转换neo4j的Point3D
+     * 转换neo4j的Point3D.
      *
      * @param pointOrigin 原始 point
      * @return cn.widdo.starter.neo4j.entity.Point3D
@@ -91,7 +97,7 @@ public class Neo4jConvertor {
     }
 
     /**
-     * 转换neo4j的Duration
+     * 转换neo4j的Duration.
      *
      * @param durationOrigin 原始 pint
      * @return cn.widdo.starter.neo4j.entity.IsoDuration

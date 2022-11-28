@@ -257,7 +257,7 @@
                         <!--绑定maven的生命周期-->
                         <execution>
                             <id>docker-exec</id>
-                            <phase>package</phase>
+                            <phase>deploy</phase>
                             <goals>
                                 <goal>build</goal>
                             </goals>
@@ -272,8 +272,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <!--jdk8和更早版本，编译器指定jdk版本方式-->
+                    <!--<source>${java.version}</source>
+                    <target>${java.version}</target>-->
+                    <release>14</release>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
                     <annotationProcessorPaths>
@@ -330,6 +332,38 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-archetype-plugin</artifactId>
             </plugin>
+            <!--checkstyle：校验代码规范-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.vesion}</version>
+                <configuration>
+                    <configLocation>configurations/style/sun_checks.xml</configLocation>
+                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+<!--                <version>${maven.jxr.version}</version>-->
+                <version>2.5</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

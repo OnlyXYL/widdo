@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * orientdb gremlin controller
+ * orientdb gremlin controller.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -25,11 +25,14 @@ import java.util.Map;
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbGremlinController extends BaseController {
 
+    /**
+     * orientdbGremlinService.
+     */
     @Resource
     private OrientdbGremlinService orientdbGremlinService;
 
     /**
-     * 查询点
+     * 查询点.
      * <p>
      * params.put("key")
      * params.put("value")

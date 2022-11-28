@@ -10,6 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class WiddoCloudGatewayApplication {
+    protected WiddoCloudGatewayApplication() {
+        throw new UnsupportedOperationException("");
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(WiddoCloudGatewayApplication.class, args);
     }

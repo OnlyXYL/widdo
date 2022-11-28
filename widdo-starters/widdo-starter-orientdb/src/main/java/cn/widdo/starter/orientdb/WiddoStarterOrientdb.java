@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 
 /**
- * widdo starter orientdb
+ * widdo starter orientdb.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -17,7 +17,7 @@ public class WiddoStarterOrientdb {
     private final Logger log = LoggerFactory.getLogger(WiddoStarterOrientdb.class);
 
     @PostConstruct
-    public void postConstruct() {
+    public final void postConstruct() {
         log.info("[Widdo] |- Starters [Widdo Starter Orientdb].");
     }
 }

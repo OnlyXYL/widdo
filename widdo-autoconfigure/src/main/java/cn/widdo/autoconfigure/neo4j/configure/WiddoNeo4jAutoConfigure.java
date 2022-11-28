@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
- * neo4j 自动配置类
+ * neo4j 自动配置类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -33,6 +33,12 @@ public class WiddoNeo4jAutoConfigure {
         log.info("[Widdo] |- AutoConfigure [Widdo Neo4j] Auto Configure.");
     }
 
+    /**
+     * driver instance.
+     *
+     * @param widdoNeo4jProperties
+     * @return a driver instance
+     */
     @Bean
     @ConditionalOnMissingBean(Driver.class)
     public Driver driver(WiddoNeo4jProperties widdoNeo4jProperties) {
@@ -46,7 +52,8 @@ public class WiddoNeo4jAutoConfigure {
                 .withConnectionAcquisitionTimeout(2, TimeUnit.MINUTES)
 
                 /*
-                  During a TLS handshake, the server provides a certificate to the client application. The application can choose to accept or reject this certificate based on one of the following trust strategies:
+                  During a TLS handshake, the server provides a certificate to the client application.
+                  The application can choose to accept or reject this certificate based on one of the following trust strategies:
 
                   {@link https://neo4j.com/docs/driver-manual/current/client-applications/#driver-connection-uris}
 

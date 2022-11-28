@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import javax.annotation.PostConstruct;
 
 /**
- * 数据处理层配置
+ * 数据处理层配置.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -21,7 +21,7 @@ public class DataConfiguration {
     private static final Logger log = LoggerFactory.getLogger(DataConfiguration.class);
 
     @PostConstruct
-    public void postConstruct() {
+    public final void postConstruct() {
         log.info("[Widdo] |- Components [Widdo Data] Auto Configure.");
     }
 }

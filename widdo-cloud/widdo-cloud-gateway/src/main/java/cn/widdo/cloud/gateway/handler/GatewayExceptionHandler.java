@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 网关异常处理类
+ * 网关异常处理类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -27,12 +27,23 @@ import java.util.Map;
 @Slf4j
 public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
 
+    /**
+     * 连接拒绝 message.
+     */
     public static final String CONNECT_REFUSED = "connection refused";
 
-    public GatewayExceptionHandler(ErrorAttributes errorAttributes,
-                                   WebProperties.Resources resources,
-                                   ErrorProperties errorProperties,
-                                   ApplicationContext applicationContext) {
+    /**
+     * 构造方法.
+     *
+     * @param errorAttributes
+     * @param resources
+     * @param errorProperties
+     * @param applicationContext
+     */
+    public GatewayExceptionHandler(final ErrorAttributes errorAttributes,
+                                   final WebProperties.Resources resources,
+                                   final ErrorProperties errorProperties,
+                                   final ApplicationContext applicationContext) {
         super(errorAttributes, resources, errorProperties, applicationContext);
     }
 

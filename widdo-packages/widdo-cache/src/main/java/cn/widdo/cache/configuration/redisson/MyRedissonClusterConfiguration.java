@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 集群方式配置
+ * 集群方式配置.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -31,11 +31,24 @@ import java.util.List;
 @ConditionalOnProperty(name = "spring.redis.redisson.config.mode", havingValue = "cluster")
 public class MyRedissonClusterConfiguration {
 
+    /**
+     * 属性配置.
+     */
     @Resource
     private MyRedissonProperties myRedissonProperties;
 
+    /**
+     * 客户端.
+     */
     private RedissonClient redissonClient;
 
+    /**
+     * 客户端.
+     *
+     * @return org.redisson.api.RedissonClient
+     * @author XYL
+     * @date 2022/11/28 11:08:31
+     **/
     @Bean
     public RedissonClient redissonClient() {
 
@@ -60,8 +73,15 @@ public class MyRedissonClusterConfiguration {
         return redisson;
     }
 
+    /**
+     * 锁实例.
+     *
+     * @return cn.widdo.cache.configuration.redisson.RedissonLocker
+     * @author XYL
+     * @date 2022/11/28 11:08:46
+     **/
     @Bean
-    public RedissonLocker redissonLocker(){
+    public RedissonLocker redissonLocker() {
         RedissonLocker redissonLocker = new RedissonLocker(redissonClient);
         LockerUtils.setLocker(redissonLocker);
         return redissonLocker;

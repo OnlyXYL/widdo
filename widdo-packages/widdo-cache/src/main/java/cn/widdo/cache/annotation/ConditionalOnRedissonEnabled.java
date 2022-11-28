@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import java.lang.annotation.*;
 
 /**
- * 是否开启redisson注解
+ * 是否开启redisson注解.
  *
  * @author XYL
  * @version 263.1.1.0

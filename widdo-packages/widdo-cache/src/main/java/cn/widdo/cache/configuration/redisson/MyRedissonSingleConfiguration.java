@@ -14,10 +14,8 @@ import org.redisson.config.TransportMode;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
-import javax.annotation.Resource;
-
 /**
- * 单机配置
+ * 单机配置.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -28,11 +26,23 @@ import javax.annotation.Resource;
 @ConditionalOnProperty(name = "spring.redis.redisson.config.mode", havingValue = "single")
 public class MyRedissonSingleConfiguration {
 
-    @Resource
+    /**
+     * 属性配置.
+     */
     private MyRedissonProperties myRedissonProperties;
 
+    /**
+     * 客户端.
+     */
     private RedissonClient redissonClient;
 
+    /**
+     * 客户端实例.
+     *
+     * @return org.redisson.api.RedissonClient
+     * @author XYL
+     * @date 2022/11/28 10:42:48
+     **/
     @Bean
     public RedissonClient redissonClient() {
 
@@ -56,8 +66,15 @@ public class MyRedissonSingleConfiguration {
         return redisson;
     }
 
+    /**
+     * 锁实例.
+     *
+     * @return cn.widdo.cache.configuration.redisson.RedissonLocker
+     * @author XYL
+     * @date 2022/11/28 10:42:54
+     **/
     @Bean
-    public RedissonLocker redissonLocker(){
+    public RedissonLocker redissonLocker() {
         RedissonLocker redissonLocker = new RedissonLocker(redissonClient);
         LockerUtils.setLocker(redissonLocker);
         return redissonLocker;

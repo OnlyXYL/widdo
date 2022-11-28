@@ -9,16 +9,18 @@ import org.apache.tinkerpop.gremlin.orientdb.OrientGraphFactory;
 import org.apache.tinkerpop.gremlin.process.traversal.Order;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
 
 /**
+ * OrientdbGremlinServiceImpl.
+ *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 2:08
@@ -27,8 +29,15 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
-    @Resource
+    /**
+     * orientdbFacotry.
+     */
     private OrientGraphFactory orientGraphFactory;
+
+    @Autowired
+    public OrientdbGremlinServiceImpl(final OrientGraphFactory orientGraphFactory) {
+        this.orientGraphFactory = orientGraphFactory;
+    }
 
     @Override
     public WebResult queryE(Map<String, Object> params) {
