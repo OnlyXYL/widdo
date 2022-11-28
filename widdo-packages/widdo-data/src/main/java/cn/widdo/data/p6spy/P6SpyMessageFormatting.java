@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 格式化日志
+ * 格式化日志.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -15,22 +15,22 @@ import java.util.Date;
  */
 public class P6SpyMessageFormatting implements MessageFormattingStrategy {
 
+    /**
+     * 格式化日期.
+     */
     private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     @Override
-    public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
+    public String formatMessage(int connectionId,
+                                String now,
+                                long elapsed,
+                                String category,
+                                String prepared,
+                                String sql,
+                                String url) {
 
-        String builder = this.format.format(new Date()) + " | took " +
-                elapsed +
-                "ms | " +
-                category +
-                " | connection " +
-                connectionId +
-                " | url " +
-                url +
-                "\n------------------------| " +
-                sql +
-                ";";
+        String builder = String.format("%s | took %dms | %s | connection %d | url %s\n------------------------| %s;",
+                this.format.format(new Date()), elapsed, category, connectionId, url, sql);
         return StringUtils.isNotEmpty(sql.trim()) ? builder : "";
     }
 }

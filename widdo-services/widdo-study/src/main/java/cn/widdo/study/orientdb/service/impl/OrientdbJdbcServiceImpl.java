@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
+ * OrientdbJdbcServiceImpl.
+ *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 2:05
@@ -23,6 +25,9 @@ import java.util.Map;
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
+    /**
+     * pool.
+     */
     @Resource
     private ODatabasePool pool;
 
@@ -45,7 +50,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
         OResultSet oResultSet = null;
 
-        try (final ODatabaseSession session = pool.acquire();) {
+        try (ODatabaseSession session = pool.acquire();) {
 
             //1. 判断class是否存在
             final OClass oClass = session.getClass(label);
@@ -87,7 +92,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
         OResultSet oResultSet = null;
 
-        try (final ODatabaseSession session = pool.acquire();) {
+        try (ODatabaseSession session = pool.acquire();) {
 
             //1. 判断class是否存在
             final OClass oClass = session.getClass(eLabel);
@@ -122,9 +127,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
     public WebResult delete() {
         try (ODatabaseSession session = pool.acquire()) {
             //执行删除
-            /**
-             * <p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);</p>
-             */
+            //<p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);</p>
             OResultSet deleteEdgeRs = session.command("delete Edge where 1 = 1");
 
             OResultSet deleteNodeRs = session.command("delete Vertex from v  where 1 = 1");

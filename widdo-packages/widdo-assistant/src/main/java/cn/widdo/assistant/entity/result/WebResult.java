@@ -1,7 +1,6 @@
 package cn.widdo.assistant.entity.result;
 
 import cn.widdo.assistant.enums.ResponseCode;
-import cn.widdo.assistant.exception.MyException;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * widdo返回结果
+ * widdo返回结果.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -22,32 +21,40 @@ public class WebResult implements Serializable {
     private static final long serialVersionUID = -7167592578210460779L;
 
     /**
-     * 状态码
+     * 状态码.
      * <p>
      * {@link ResponseCode}
      */
     private int code;
 
     /**
-     * 提示信息
+     * 提示信息.
      */
     private String message;
 
     /**
-     * 返回数据
+     * 返回数据.
      */
     private Object data;
 
 
+    /**
+     * 无参构造.
+     */
     public WebResult() {
     }
 
-    public WebResult(int code) {
+    /**
+     * 有参构造.
+     *
+     * @param code 编码 {@link ResponseCode}
+     */
+    public WebResult(final int code) {
         this.code = code;
     }
 
     /**
-     * 成功，默认返回结果
+     * 成功，默认返回结果.
      *
      * @return cn.widdo.assistant.entity.result.JsonResult
      * @author XYL
@@ -64,7 +71,7 @@ public class WebResult implements Serializable {
     }
 
     /**
-     * 成功，有数据
+     * 成功，有数据.
      *
      * @param data 数据
      * @return cn.widdo.assistant.entity.result.JsonResult
@@ -72,7 +79,7 @@ public class WebResult implements Serializable {
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:30
      **/
-    public static WebResult success(Object data) {
+    public static WebResult success(final Object data) {
         WebResult kgResult = new WebResult();
         kgResult.setMessage(ResponseCode.SUCCESS.getMessage());
         kgResult.setCode(ResponseCode.SUCCESS.getCode());
@@ -82,7 +89,7 @@ public class WebResult implements Serializable {
     }
 
     /**
-     * 构建返回结果
+     * 构建返回结果.
      *
      * @param code    编码
      * @param data    数据
@@ -92,7 +99,9 @@ public class WebResult implements Serializable {
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:30
      **/
-    public static WebResult build(ResponseCode code, Object data, String message) {
+    public static WebResult build(final ResponseCode code,
+                                  final Object data,
+                                  final String message) {
         WebResult kgResult = new WebResult();
         kgResult.setMessage(message);
         kgResult.setCode(code.getCode());
@@ -101,7 +110,7 @@ public class WebResult implements Serializable {
     }
 
     /**
-     * 构建返回结果
+     * 构建返回结果.
      *
      * @param code 编码
      * @return cn.widdo.assistant.entity.result.JsonResult
@@ -109,7 +118,7 @@ public class WebResult implements Serializable {
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:28
      **/
-    public static WebResult build(ResponseCode code) {
+    public static WebResult build(final ResponseCode code) {
         WebResult kgResult = new WebResult();
         kgResult.setMessage(code.getMessage());
         kgResult.setCode(code.getCode());
@@ -118,34 +127,36 @@ public class WebResult implements Serializable {
     }
 
     /**
-     * 构建返回结果
+     * 构建返回结果.
      *
-     * @param e    异常
-     * @param code 编码
+     * @param e 异常
      * @return cn.widdo.assistant.entity.result.JsonResult
      * @author XYL
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:28
      **/
-    public static WebResult build(Exception e, ResponseCode code) {
-
-        if (e instanceof MyException) {
-            final MyException myException = (MyException) e;
-
-            if (myException.getCode() != 0) {
-                code = ResponseCode.getEnumByCode(myException.getCode());
-            }
-        }
-
+    public static WebResult build(final Exception e) {
+        ResponseCode code = ResponseCode.valueOf(e.getMessage());
         WebResult kgResult = new WebResult();
-        assert code != null;
+
         kgResult.setMessage(code.getMessage());
         kgResult.setCode(code.getCode());
         kgResult.setData(null);
         return kgResult;
     }
 
-    public static WebResult build(ResponseCode code, String message) {
+    /**
+     * 构建返回结果.
+     *
+     * @param code    code
+     * @param message message
+     * @return cn.widdo.assistant.entity.result.WebResult
+     * @throws
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.WebResult
+     * @date 2022/11/18 11:35
+     **/
+    public static WebResult build(final ResponseCode code, final String message) {
         WebResult kgResult = new WebResult();
         kgResult.setMessage(message);
         kgResult.setCode(code.getCode());
@@ -153,7 +164,17 @@ public class WebResult implements Serializable {
         return kgResult;
     }
 
-    public static WebResult build(ResponseCode code, Object data) {
+    /**
+     * 构建返回结果.
+     *
+     * @param code
+     * @param data
+     * @return cn.widdo.assistant.entity.result.WebResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.WebResult
+     * @date 2022/11/18 11:35
+     **/
+    public static WebResult build(final ResponseCode code, final Object data) {
         WebResult kgResult = new WebResult();
         kgResult.setMessage(code.getMessage());
         kgResult.setCode(code.getCode());
@@ -162,7 +183,7 @@ public class WebResult implements Serializable {
     }
 
     /**
-     * 构建返回结果 远程调用返回code码不为200，返回指定结果
+     * 构建返回结果 远程调用返回code码不为200，返回指定结果.
      *
      * @param code         编码
      * @param responseCode 编码对象
@@ -171,34 +192,43 @@ public class WebResult implements Serializable {
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:31
      **/
-    public static WebResult build(String code, ResponseCode responseCode) {
+    public static WebResult build(final String code, final ResponseCode responseCode) {
         if (String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
             return success();
         }
         WebResult kgResult = new WebResult();
-        if (!String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
-            kgResult.setMessage(responseCode.getMessage());
-            kgResult.setCode(responseCode.getCode());
-            kgResult.setData(null);
-        }
-        return kgResult;
-    }
-
-    public static WebResult build(String code, ResponseCode responseCode, Object data) {
-        if (String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
-            return success(data);
-        }
-        WebResult kgResult = new WebResult();
-        if (!String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
-            kgResult.setMessage(responseCode.getMessage());
-            kgResult.setCode(responseCode.getCode());
-            kgResult.setData(null);
-        }
+        kgResult.setMessage(responseCode.getMessage());
+        kgResult.setCode(responseCode.getCode());
+        kgResult.setData(null);
         return kgResult;
     }
 
     /**
-     * 根据组件接口返回的数据构建返回数据
+     * 构建返回结果.
+     *
+     * @param code         code
+     * @param responseCode {@link ResponseCode}
+     * @param data
+     * @return cn.widdo.assistant.entity.result.WebResult
+     * @author XYL
+     * @className cn.widdo.assistant.entity.result.WebResult
+     * @date 2022/11/18 11:57
+     **/
+    public static WebResult build(final String code,
+                                  final ResponseCode responseCode,
+                                  final Object data) {
+        if (String.valueOf(ResponseCode.SUCCESS.getCode()).equals(code)) {
+            return success(data);
+        }
+        WebResult kgResult = new WebResult();
+        kgResult.setMessage(responseCode.getMessage());
+        kgResult.setCode(responseCode.getCode());
+        kgResult.setData(null);
+        return kgResult;
+    }
+
+    /**
+     * 根据组件接口返回的数据构建返回数据.
      *
      * @param map          前端组件接口返回的数据
      * @param responseCode 编码对象
@@ -207,7 +237,8 @@ public class WebResult implements Serializable {
      * @className cn.widdo.assistant.entity.result.JsonResult
      * @date 2022/09/26 18:31
      **/
-    public static WebResult build(Map<String, Object> map, ResponseCode responseCode) {
+    public static WebResult build(final Map<String, Object> map,
+                                  final ResponseCode responseCode) {
         WebResult kgResult = new WebResult();
         int status = Integer.parseInt(String.valueOf(map.get("status")));
         String message = Optional.ofNullable(map.get("message")).map(Objects::toString).orElse("");

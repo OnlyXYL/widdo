@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * neo4j pre read write helper
+ * neo4j pre read write helper.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -32,20 +32,36 @@ public class Neo4jPreRWHelper {
 
     private static final Logger log = LoggerFactory.getLogger(Neo4jPreRWHelper.class);
 
+    /**
+     * driver.
+     */
     @Resource
     private Driver driver;
 
     @PostConstruct
-    public void postNeo4jPreRWHelper() {
+    public final void postNeo4jPreRWHelper() {
         log.debug("[Widdo] |- Starter [Neo4j Starter] |- Neo4jPreRWHelper.");
     }
 
+    /**
+     * 执行neo4j writer.
+     *
+     * @param cypherQL
+     * @return a result type of {@link Result}
+     */
     public Result<List<Map<String, Value>>> query(String cypherQL) {
         Map<String, Object> paras = new HashMap<>(2);
         paras.put("cypherQL", cypherQL);
         return this.query(paras);
     }
 
+    /**
+     * 执行neo4j reader.
+     *
+     * @param cypherQL
+     * @param params
+     * @return a result type of {@link Result}
+     */
     public Result<List<Map<String, Value>>> query(String cypherQL, Map<String, Object> params) {
         Map<String, Object> paras = new HashMap<>(3);
         paras.put("cypherQL", cypherQL);
@@ -53,6 +69,13 @@ public class Neo4jPreRWHelper {
         return this.query(paras);
     }
 
+    /**
+     * 执行neo4j writer.
+     *
+     * @param cypherQL
+     * @param params
+     * @return a result type of {@link Result}
+     */
     public Result<List<Map<String, Value>>> execute(String cypherQL, Map<String, Object> params) {
         Map<String, Object> paras = new HashMap<>(3);
         paras.put("cypherQL", cypherQL);
@@ -61,7 +84,7 @@ public class Neo4jPreRWHelper {
     }
 
     /**
-     * query cypher
+     * query cypher.
      *
      * @param param 参数
      * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
@@ -75,7 +98,7 @@ public class Neo4jPreRWHelper {
         log.debug("---client ip:" + NetUtil.getRealIp() + " cql:" + cqlStr.substring(0, Math.min(cqlStr.length(), 100)) + " ...");
 
         //打印信息
-        Neo4jUtil.printCypherQL(cqlStr);
+        Neo4jUtil.printCQL(cqlStr);
 
         //执行cql
         return (Result) Neo4jUtil.toExecute(driver, "query", cqlStr, map, (cql, mp, tx) -> {
@@ -86,7 +109,7 @@ public class Neo4jPreRWHelper {
     }
 
     /**
-     * execute cypher
+     * execute cypher.
      *
      * @param param 参数
      * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
@@ -99,7 +122,7 @@ public class Neo4jPreRWHelper {
         Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
 
         //打印信息
-        Neo4jUtil.printCypherQL(cqlStr);
+        Neo4jUtil.printCQL(cqlStr);
 
         //执行cql
         return (Result) Neo4jUtil.toExecute(driver, "execute", cqlStr, map, (cql, mp, tx) -> {

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
- * 启动数据处理
+ * 启动数据处理.
  *
  * @author XYL
  * @version 263.1.1.0

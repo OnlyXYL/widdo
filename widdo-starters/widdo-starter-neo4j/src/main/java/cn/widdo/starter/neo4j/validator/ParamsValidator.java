@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * 参数校验器
+ * 参数校验器.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -22,7 +22,7 @@ public class ParamsValidator {
     private static final Logger log = LoggerFactory.getLogger(ParamsValidator.class);
 
     /**
-     * 校验参数
+     * 校验参数.
      *
      * @param params    参数
      * @param function  函数
@@ -42,7 +42,8 @@ public class ParamsValidator {
             return function.execute(params);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("[Widdo] |- Starter [Neo4j Starter] |- ParamsValidator Result [Error] |- Message {} |- Trace {}.", e.getMessage(), e.getStackTrace());
+            log.debug("[Widdo] |- Starter [Neo4j Starter] |- ParamsValidator Result [Error] |- Message {} |- Trace {}.",
+                    e.getMessage(), e.getStackTrace());
             return ResultUtil.error(ResultEnum.ERROR, e.getMessage());
         }
     }

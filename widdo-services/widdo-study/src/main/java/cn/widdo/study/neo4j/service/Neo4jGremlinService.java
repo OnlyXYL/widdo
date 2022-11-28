@@ -5,7 +5,7 @@ import cn.widdo.assistant.entity.result.WebResult;
 import java.util.Map;
 
 /**
- * neo4j gremlin service
+ * neo4j gremlin service.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -15,7 +15,7 @@ public interface Neo4jGremlinService {
 
 
     /**
-     * gremlin query
+     * gremlin query.
      *
      * @param params
      * @author XYL

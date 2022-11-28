@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 数据controller
+ * 数据controller.
  *
  * @author XYL
  * @version 263.1.1.0

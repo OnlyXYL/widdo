@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * orientdb controller
+ * orientdb controller.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -25,11 +25,14 @@ import java.util.Map;
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbJdbcController extends BaseController {
 
+    /**
+     * orientdbJdbcService.
+     */
     @Resource
     private OrientdbJdbcService orientdbJdbcService;
 
     /**
-     * 创建点
+     * 创建点.
      * <p>
      * params.put("name")
      * params.put("age")
@@ -48,7 +51,7 @@ public class OrientdbJdbcController extends BaseController {
     }
 
     /**
-     * 创建关系
+     * 创建关系.
      * <p>
      * params.put("label")
      * params.put("source")

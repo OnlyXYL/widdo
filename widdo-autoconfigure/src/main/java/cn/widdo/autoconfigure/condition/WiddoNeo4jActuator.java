@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import java.lang.annotation.*;
 
 /**
- * 开启neo4j读写
+ * 开启neo4j读写.
  *
  * @author XYL
  * @version 1.2

@@ -1,8 +1,10 @@
 package cn.widdo.autoconfigure.neo4j.reader;
 
 /**
- * read interface
+ * read interface.
  *
+ * @param <T>
+ * @param <R>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/10/14 16:07
@@ -10,7 +12,7 @@ package cn.widdo.autoconfigure.neo4j.reader;
 public interface Neo4jReader<T, R> {
 
     /**
-     * 读数据
+     * 读数据.
      *
      * @param params
      * @return R

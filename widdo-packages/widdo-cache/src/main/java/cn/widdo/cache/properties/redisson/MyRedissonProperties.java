@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
- * 配置文件
+ * 配置文件.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -20,5 +20,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @ConditionalOnClass(RedissonClient.class)
 public class MyRedissonProperties {
 
+    /**
+     * 配置信息.
+     */
     private MyRedissonConfigProperties config = new MyRedissonConfigProperties();
 }

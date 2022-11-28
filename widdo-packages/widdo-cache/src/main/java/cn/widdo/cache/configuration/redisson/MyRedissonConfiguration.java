@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 import javax.annotation.PostConstruct;
 
 /**
- * redisson配置
+ * redisson配置.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -26,7 +26,7 @@ public class MyRedissonConfiguration {
     private final Logger log = LoggerFactory.getLogger(MyRedissonConfiguration.class);
 
     @PostConstruct
-    public void postConstruct() {
+    public final void postConstruct() {
         log.info("[Widdo] |- Components [Widdo Redisson] Auto Configure.");
     }
 }

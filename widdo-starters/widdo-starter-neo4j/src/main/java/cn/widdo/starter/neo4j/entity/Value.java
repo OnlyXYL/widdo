@@ -11,67 +11,123 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Value
+ * Value.
  *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 0:02
  */
 public class Value implements Serializable {
-    int size;
-    boolean isEmpty;
-    Object value;
-    String type;
-    List<String> keys;
+    /**
+     * size.
+     */
+    private int size;
+    /**
+     * isEmpty.
+     */
+    private boolean isEmpty;
+    /**
+     * value.
+     */
+    private Object value;
+    /**
+     * type.
+     */
+    private String type;
+    /**
+     * keys.
+     */
+    private List<String> keys;
 
+    /**
+     * get size.
+     *
+     * @return a integer result
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * set size.
+     * @param size
+     */
     public void setSize(int size) {
         this.size = size;
     }
 
+    /**
+     * check empty.
+     * @return a boolean result
+     */
     public boolean isEmpty() {
         return isEmpty;
     }
 
+    /**
+     * set empty.
+     * @param empty
+     */
     public void setEmpty(boolean empty) {
         isEmpty = empty;
     }
 
+    /**
+     * get value.
+     * @return return Object result
+     */
     public Object getValue() {
         return value;
     }
 
+    /**
+     * set value.
+     * @param value
+     */
     public void setValue(Object value) {
         this.value = value;
     }
 
+    /**
+     * get type.
+     * @return a String result
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * set type.
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * get keys.
+     * @return a list of key
+     */
     public List<String> getKeys() {
         return keys;
     }
 
+    /**
+     * set keys.
+     * @param keys
+     */
     public void setKeys(List<String> keys) {
         this.keys = keys;
     }
 
     /**
-     * 转换节点
+     * 转换节点.
      *
      * @param
-     * @author XYL
-     * @className cn.widdo.graph.entity.neo4j.Value
      * @return cn.widdo.graph.entity.neo4j.Node
      * @throws
+     * @author XYL
+     * @className cn.widdo.graph.entity.neo4j.Value
      * @date 2022/09/14 16:41
      **/
     public Node asNode() {
@@ -83,6 +139,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * 转化路径.
+     *
+     * @return cn.widdo.starter.neo4j.entity.Path
+     * @author XYL
+     * @date 2022/11/28 14:27:30
+     **/
     public Path asPath() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -92,6 +155,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * 转换关系.
+     *
+     * @return cn.widdo.starter.neo4j.entity.Relationship
+     * @author XYL
+     * @date 2022/11/28 14:27:47
+     **/
     public Relationship asRelationship() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -101,6 +171,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * 转换list.
+     *
+     * @return java.util.List
+     * @author XYL
+     * @date 2022/11/28 14:28:01
+     **/
     public List asList() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (type.equals(Neo4jType.LISTOFANY) || type.equals(Neo4jType.LIST)) {
@@ -127,6 +204,13 @@ public class Value implements Serializable {
         }
     }
 
+    /**
+     * asPoint2D.
+     *
+     * @return cn.widdo.starter.neo4j.entity.Point2D
+     * @author XYL
+     * @date 2022/11/28 14:28:22
+     **/
     public Point2D asPoint2D() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -136,6 +220,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asPoint3D.
+     *
+     * @return cn.widdo.starter.neo4j.entity.Point3D
+     * @author XYL
+     * @date 2022/11/28 14:28:35
+     **/
     public Point3D asPoint3D() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -145,6 +236,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asByteArray.
+     *
+     * @return byte[]
+     * @author XYL
+     * @date 2022/11/28 14:28:44
+     **/
     public byte[] asByteArray() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -154,6 +252,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asMap.
+     *
+     * @return java.util.Map
+     * @author XYL
+     * @date 2022/11/28 14:29:00
+     **/
     public Map asMap() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -163,6 +268,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asIsoDuration.
+     *
+     * @return cn.widdo.starter.neo4j.entity.IsoDuration
+     * @author XYL
+     * @date 2022/11/28 14:29:08
+     **/
     public IsoDuration asIsoDuration() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -172,6 +284,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asDouble.
+     *
+     * @return double
+     * @author XYL
+     * @date 2022/11/28 14:29:28
+     **/
     public double asDouble() {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -181,6 +300,13 @@ public class Value implements Serializable {
         return 0;
     }
 
+    /**
+     * asFloat.
+     *
+     * @return float
+     * @author XYL
+     * @date 2022/11/28 14:29:39
+     **/
     public float asFloat() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.FLOAT.equals(type)) {
@@ -189,6 +315,13 @@ public class Value implements Serializable {
         return 0;
     }
 
+    /**
+     * asInt.
+     *
+     * @return int
+     * @author XYL
+     * @date 2022/11/28 14:29:48
+     **/
     public int asInt() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.INTEGER.equals(type)) {
@@ -197,6 +330,13 @@ public class Value implements Serializable {
         return 0;
     }
 
+    /**
+     * asBoolean.
+     *
+     * @return boolean
+     * @author XYL
+     * @date 2022/11/28 14:29:57
+     **/
     public boolean asBoolean() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.BOOLEAN.equals(type)) {
@@ -205,6 +345,13 @@ public class Value implements Serializable {
         return false;
     }
 
+    /**
+     * asLong.
+     *
+     * @return long
+     * @author XYL
+     * @date 2022/11/28 14:30:06
+     **/
     public long asLong() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.LONG.equals(type)) {
@@ -213,6 +360,13 @@ public class Value implements Serializable {
         return 0;
     }
 
+    /**
+     * asNumber.
+     *
+     * @return java.lang.Number
+     * @author XYL
+     * @date 2022/11/28 14:30:14
+     **/
     public Number asNumber() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.NUMBER.equals(type)) {
@@ -221,6 +375,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asLocalDate.
+     *
+     * @return java.time.LocalDate
+     * @author XYL
+     * @date 2022/11/28 14:30:24
+     **/
     public LocalDate asLocalDate() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.LOCALDATE.equals(type)) {
@@ -229,6 +390,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asLocalTime.
+     *
+     * @return java.time.LocalTime
+     * @author XYL
+     * @date 2022/11/28 14:30:31
+     **/
     public LocalTime asLocalTime() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.LOCALTIME.equals(type)) {
@@ -237,6 +405,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asLocalDateTime.
+     *
+     * @return java.time.LocalDateTime
+     * @author XYL
+     * @date 2022/11/28 14:30:46
+     **/
     public LocalDateTime asLocalDateTime() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.LOCALDATETIME.equals(type)) {
@@ -245,6 +420,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asOffsetTime.
+     *
+     * @return java.time.OffsetTime
+     * @author XYL
+     * @date 2022/11/28 14:30:55
+     **/
     public OffsetTime asOffsetTime() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.OFFSETTIME.equals(type)) {
@@ -253,6 +435,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asOffsetDateTime.
+     *
+     * @return java.time.OffsetDateTime
+     * @author XYL
+     * @date 2022/11/28 14:31:03
+     **/
     public OffsetDateTime asOffsetDateTime() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.OFFSETDATETIME.equals(type)) {
@@ -261,6 +450,13 @@ public class Value implements Serializable {
         return null;
     }
 
+    /**
+     * asString.
+     *
+     * @return java.lang.String
+     * @author XYL
+     * @date 2022/11/28 14:31:11
+     **/
     public String asString() {
         ObjectMapper objectMapper = new ObjectMapper();
         if (Neo4jType.STRING.equals(type)) {

@@ -17,12 +17,14 @@ import org.neo4j.driver.types.Node;
 import org.neo4j.driver.types.Path;
 import org.neo4j.driver.types.Point;
 import org.neo4j.driver.types.Relationship;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
 
 /**
- * neo4j util
+ * neo4j util.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -30,10 +32,19 @@ import java.util.*;
  */
 public class Neo4jUtil {
 
+    /**
+     * query.
+     */
     public static final String CYPHER_QUERY = "query";
 
+    private static final Logger LOG = LoggerFactory.getLogger(Neo4jUtil.class);
+
+    protected Neo4jUtil() {
+        throw new UnsupportedOperationException(Neo4jUtil.class.getName() + "不能被实例化");
+    }
+
     /**
-     * 校验参数
+     * 校验参数.
      *
      * @param params    参数map
      * @param checkKeys 需要校验的非空可变参数
@@ -64,10 +75,10 @@ public class Neo4jUtil {
     }
 
     /**
-     * neo4j 结果转换
+     * neo4j 结果转换.
      *
      * @param result 原始结果
-     * @return cn.widdo.graph.entity.neo4j.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.graph.entity.neo4j.Value>>>
+     * @return cn.widdo.starter.neo4j.entity.result.Result<?>
      * @author XYL
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:12
@@ -123,11 +134,11 @@ public class Neo4jUtil {
     }
 
     /**
-     * 设置值
+     * 设置值.
      *
-     * @param value widdo value
-     * @param neo4jType neo4j 类型
-     * @param valueOrigin   neo4j value
+     * @param value       widdo value
+     * @param neo4jType   neo4j 类型
+     * @param valueOrigin neo4j value
      * @author XYL
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/27 10:13
@@ -139,7 +150,7 @@ public class Neo4jUtil {
 
 
     /**
-     * 设置List值的长度
+     * 设置List值的长度.
      *
      * @param valueOrigin 原始值
      * @param value       widdo 值
@@ -154,7 +165,7 @@ public class Neo4jUtil {
     }
 
     /**
-     * path result
+     * path result.
      *
      * @param valueOrigin 原始结果
      * @param convertor   结果转换器
@@ -163,7 +174,9 @@ public class Neo4jUtil {
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:06
      **/
-    private static void pathResult(org.neo4j.driver.Value valueOrigin, Neo4jConvertor convertor, cn.widdo.starter.neo4j.entity.Value value) {
+    private static void pathResult(org.neo4j.driver.Value valueOrigin,
+                                   Neo4jConvertor convertor,
+                                   cn.widdo.starter.neo4j.entity.Value value) {
         Path pathOrigin = valueOrigin.asPath();
         cn.widdo.starter.neo4j.entity.Path path = new cn.widdo.starter.neo4j.entity.Path();
         pathOrigin.nodes().forEach(n -> path.addNode(convertor.convertNeo4jNodeToNode(n)));
@@ -175,7 +188,7 @@ public class Neo4jUtil {
     }
 
     /**
-     * list result
+     * list result.
      *
      * @param valueOrigin 原始结果
      * @param convertor   结果转换器
@@ -184,7 +197,9 @@ public class Neo4jUtil {
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:07
      **/
-    private static void listResult(org.neo4j.driver.Value valueOrigin, Neo4jConvertor convertor, cn.widdo.starter.neo4j.entity.Value value) {
+    private static void listResult(org.neo4j.driver.Value valueOrigin,
+                                   Neo4jConvertor convertor,
+                                   cn.widdo.starter.neo4j.entity.Value value) {
         List<Object> list = new ArrayList<>();
         valueOrigin.asList().forEach(l -> {
             if (l instanceof Node) {
@@ -201,7 +216,7 @@ public class Neo4jUtil {
     }
 
     /**
-     * point result
+     * point result.
      *
      * @param valueOrigin 原始结果
      * @param convertor   结果转换器
@@ -210,7 +225,9 @@ public class Neo4jUtil {
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:08
      **/
-    private static void pointResult(org.neo4j.driver.Value valueOrigin, Neo4jConvertor convertor, cn.widdo.starter.neo4j.entity.Value value) {
+    private static void pointResult(org.neo4j.driver.Value valueOrigin,
+                                    Neo4jConvertor convertor,
+                                    cn.widdo.starter.neo4j.entity.Value value) {
         Point pointOrigin = valueOrigin.asPoint();
         if (pointOrigin instanceof InternalPoint2D) {
             value.setType(Neo4jType.POINT2D);
@@ -222,23 +239,23 @@ public class Neo4jUtil {
     }
 
     /**
-     * 执行查询
+     * 执行查询.
      *
      * @param driver 驱动
      * @param model  模式
      * @param cql    cql
      * @param map    参数
      * @param cqlFun 函数式接口
-     * @return cn.widdo.graph.entity.neo4j.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.graph.entity.neo4j.Value>>>
+     * @return cn.widdo.starter.neo4j.entity.result.Result<?>
      * @author XYL
      * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:10
      **/
     public static Result<?> toExecute(Driver driver,
-                               String model,
-                               String cql,
-                               Map<String, Object> map,
-                               CQLFunction cqlFun) {
+                                      String model,
+                                      String cql,
+                                      Map<String, Object> map,
+                                      CQLFunction cqlFun) {
         Session session = null;
         try {
             session = driver.session(SessionConfig.builder().withDefaultAccessMode(AccessMode.WRITE).build());
@@ -259,14 +276,17 @@ public class Neo4jUtil {
     }
 
     /**
-     * 打印信息
+     * 打印信息.
      *
-     * @param cypherQL cypher
+     * @param cql cypher
      * @author XYL
      * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper
      * @date 2022/10/19 1:29
      **/
-    public static void printCypherQL(String cypherQL) {
-        System.out.println("---client ip:" + NetUtil.getRealIp() + " cql:" + cypherQL.substring(0, Math.min(cypherQL.length(), 100)) + " ...");
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public static void printCQL(String cql) {
+        final String format = String.format("---client ip:%s  cql: %s ...",
+                NetUtil.getRealIp(), cql.substring(0, Math.min(cql.length(), 100)));
+        LOG.info(format);
     }
 }

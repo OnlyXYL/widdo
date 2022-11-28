@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * neo4j 默认执行器
+ * neo4j 默认执行器.
  * <p>
  * 需要实例化，操作neo4j的 reader 和 writer
  *
@@ -21,9 +21,16 @@ import java.util.Map;
  */
 public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>> {
 
+    /**
+     * properties.
+     */
     private WiddoNeo4jProperties widdoNeo4jProperties;
 
-    public DefaultNeo4jActuator(WiddoNeo4jProperties widdoNeo4jProperties) {
+    /**
+     * constructor has one params called {@link WiddoNeo4jProperties}.
+     * @param widdoNeo4jProperties
+     */
+    public DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties) {
         this.widdoNeo4jProperties = widdoNeo4jProperties;
     }
 
@@ -38,10 +45,11 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>> 
     }
 
     /**
-     * 实例化 neo4j reader
+     * 实例化 neo4j reader.
      * <p>
      * 根据配置文件中指定的reader实现类全路径，反射生成实例，并调用方法
      *
+     * @param params
      * @return cn.widdo.autoconfigure.neo4j.reader.Neo4jReader
      * @author XYL
      * @className cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator

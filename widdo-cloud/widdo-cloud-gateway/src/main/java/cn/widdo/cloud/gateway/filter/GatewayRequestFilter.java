@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -20,7 +21,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Resource;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
@@ -28,7 +28,7 @@ import java.util.LinkedHashSet;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 /**
- * 网关请求拦截器
+ * 网关请求拦截器.
  * <p>
  * 用来控制资源请求要不要经过网关
  *
@@ -40,9 +40,19 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*
 @Component
 public class GatewayRequestFilter implements GlobalFilter {
 
-    @Resource
+    /**
+     * properties.
+     */
     private WiddoGatewayProperties widdoGatewayProperties;
 
+    @Autowired
+    public GatewayRequestFilter(final WiddoGatewayProperties widdoGatewayProperties) {
+        this.widdoGatewayProperties = widdoGatewayProperties;
+    }
+
+    /**
+     * pathMatcher.
+     */
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
@@ -64,7 +74,7 @@ public class GatewayRequestFilter implements GlobalFilter {
 
 
     /**
-     * 校验禁止访问的资源
+     * 校验禁止访问的资源.
      *
      * @param request
      * @param response
@@ -94,7 +104,7 @@ public class GatewayRequestFilter implements GlobalFilter {
     }
 
     /**
-     * 封装返回结果
+     * 封装返回结果.
      *
      * @param response
      * @param myResponse
@@ -112,11 +122,9 @@ public class GatewayRequestFilter implements GlobalFilter {
     }
 
     /**
-     * 打印日志
+     * 打印日志.
      *
      * @param exchange
-     * @return void
-     * @throws
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:42

@@ -6,7 +6,7 @@ import org.neo4j.driver.Transaction;
 import java.util.Map;
 
 /**
- * cql回调执行
+ * cql回调执行.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -17,7 +17,7 @@ import java.util.Map;
 public interface CQLFunction {
 
     /**
-     * sql执行
+     * sql执行.
      *
      * @param cql cql
      * @param map 参数

@@ -1,6 +1,10 @@
 package cn.widdo.autoconfigure.orientdb.reader;
 
 /**
+ * default implementation of orientdbReader.
+ *
+ * @param <R>
+ * @param <T>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/10/14 16:43

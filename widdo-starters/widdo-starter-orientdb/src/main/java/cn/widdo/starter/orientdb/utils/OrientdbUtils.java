@@ -10,6 +10,8 @@ import org.apache.tinkerpop.gremlin.orientdb.OrientGraphFactory;
 import java.util.Objects;
 
 /**
+ * orientdb utils.
+ *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 2:10
@@ -17,11 +19,15 @@ import java.util.Objects;
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 public class OrientdbUtils {
 
+    protected OrientdbUtils() {
+        throw new UnsupportedOperationException(OrientdbUtils.class.getName() + "不能被实例化");
+    }
+
     /**
-     * orientdb 创建客户端
+     * orientdb 创建客户端.
      *
      * @param url like--->remote:10.0.47.51
-     * @return
+     * @return an orientdb instance
      */
     public static OrientDB createClient(String url) {
         OrientDB orient = new OrientDB(url, OrientDBConfig.defaultConfig());
@@ -29,6 +35,13 @@ public class OrientdbUtils {
         return orient;
     }
 
+    /**
+     * an OrientDB instance.
+     *
+     * @param url
+     * @param defaultConfig
+     * @return an OrientDB instance
+     */
     public static OrientDB createClient(String url, OrientDBConfig defaultConfig) {
 
         if (Objects.isNull(defaultConfig)) {
@@ -41,23 +54,22 @@ public class OrientdbUtils {
     }
 
     /**
-     * orientdb，建立连接
+     * orientdb，建立连接.
      *
-     * @param database
-     * @param userName
-     * @param passWord
-     * @return
+     * @param orient   orient
+     * @param database database
+     * @param userName username
+     * @param passWord password
+     * @return an ODatabasePool instance
      */
     public static ODatabasePool connect(OrientDB orient, String database, String userName, String passWord) {
-
         ODatabasePool pool = new ODatabasePool(orient, database, userName, passWord);
-
         return pool;
     }
 
 
     /**
-     * 数据库资源关闭操作
+     * 数据库资源关闭操作.
      *
      * @param oResultSet
      * @param pool
@@ -80,17 +92,21 @@ public class OrientdbUtils {
 
     }
 
+    /**
+     * close OrientGraph.
+     *
+     * @param orientGraph
+     */
     public static void close(OrientGraph orientGraph) {
-
         orientGraph.close();
     }
 
 
     /**
-     * 打开数据库连接，有事务
+     * 打开数据库连接，有事务.
      *
      * @param orientGraphFactory
-     * @return
+     * @return a OrientGraph instance
      */
     public static OrientGraph openTx(OrientGraphFactory orientGraphFactory) {
 
@@ -101,10 +117,10 @@ public class OrientdbUtils {
 
 
     /**
-     * 打开数据库连接，没有事务
+     * 打开数据库连接，没有事务.
      *
      * @param orientGraphFactory
-     * @return
+     * @return a OrientGraph instance
      */
     public static OrientGraph openNoTx(OrientGraphFactory orientGraphFactory) {
 

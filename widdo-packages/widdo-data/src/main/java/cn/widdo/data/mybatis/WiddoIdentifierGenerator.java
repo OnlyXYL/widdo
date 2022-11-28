@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import org.springframework.stereotype.Component;
 
 /**
- * mybatis id 生成器
+ * mybatis id 生成器.
  *
  * @author XYL
  * @version 263.1.1.0

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.function.Consumer;
 
 /**
- * 启动类
+ * 启动类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -16,9 +16,14 @@ import java.util.function.Consumer;
 @SpringBootApplication
 public class WiddoStudyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(WiddoStudyApplication.class,args);
+        SpringApplication.run(WiddoStudyApplication.class, args);
     }
 
+    /**
+     * log.
+     *
+     * @return return log.
+     */
     @Bean
     public Consumer<Person> log() {
         return person -> {
@@ -27,10 +32,26 @@ public class WiddoStudyApplication {
     }
 
     public static class Person {
+
+        /**
+         * name.
+         */
         private String name;
+
+        /**
+         * get name.
+         *
+         * @return a result type of String
+         */
         public String getName() {
             return name;
         }
+
+        /**
+         * set name.
+         *
+         * @param name
+         */
         public void setName(String name) {
             this.name = name;
         }

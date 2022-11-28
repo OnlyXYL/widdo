@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.PostConstruct;
 
 /**
- * widdo orientdb configure
+ * widdo orientdb configure.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -38,12 +38,24 @@ public class WiddoOrientdbConfigure {
         log.info("[Widdo] |- AutoConfigure [Widdo Orientdb] Auto Configure.");
     }
 
+    /**
+     * OrientGraphFactory instance.
+     *
+     * @param widdoOrientdbProperties
+     * @return an OrientGraphFactory instance
+     */
     @Bean
     @ConditionalOnMissingBean(OrientGraphFactory.class)
     public OrientGraphFactory orientGraphFactory(WiddoOrientdbProperties widdoOrientdbProperties) {
         return new OrientGraphFactory(widdoOrientdbProperties.getUri(), widdoOrientdbProperties.getUrl(), widdoOrientdbProperties.getPassword()).setupPool(1, 50);
     }
 
+    /**
+     * ODatabasePool instance.
+     *
+     * @param widdoOrientdbProperties
+     * @return an ODatabasePool instance
+     */
     @Bean
     @ConditionalOnMissingBean(ODatabasePool.class)
     public ODatabasePool oDatabasePool(WiddoOrientdbProperties widdoOrientdbProperties) {

@@ -22,11 +22,14 @@ import java.util.Map;
 @RestController
 public class Neo4jController extends BaseController {
 
+    /**
+     * service.
+     */
     @Resource
     private Neo4jJdbcService neo4jJdbcService;
 
     /**
-     * 執行查詢
+     * 執行查詢.
      * <p>
      * params.put("label")
      * params.put("name")

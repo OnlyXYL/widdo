@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
+ * Neo4jGremlinController.
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/07/15 1:35
@@ -20,10 +21,15 @@ import java.util.Map;
 @RestController
 public class Neo4jGremlinController extends BaseController {
 
+    /**
+     * neo4jGremlinService.
+     */
     @Resource
     private Neo4jGremlinService neo4jGremlinService;
 
     /**
+     * query.
+     *
      * @param params
      * @return cn.widdo.entity.JsonResult
      * @throws

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 回调controller
+ * 回调controller.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -18,11 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FallbackController {
 
+
+    /**
+     * 测试.
+     *
+     * @param name
+     * @return cn.widdo.assistant.entity.result.MyResponse
+     * @throws
+     * @author XYL
+     * @date 2022/11/18 0018 18:34
+     **/
     @RequestMapping("/fallback/{name}")
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public MyResponse systemFallback(@PathVariable String name) {
+    public MyResponse systemFallback(@PathVariable String name) throws Exception {
         String response = String.format("访问%s超时或者服务不可用", name);
         return new MyResponse().message(response);
     }
-
 }

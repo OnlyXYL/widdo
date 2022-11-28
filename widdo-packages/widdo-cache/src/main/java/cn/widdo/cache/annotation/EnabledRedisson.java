@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
- * redisson注解
+ * redisson注解.
  *
  * @author XYL
  * @version 263.1.1.0

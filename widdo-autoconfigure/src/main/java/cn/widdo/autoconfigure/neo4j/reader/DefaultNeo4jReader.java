@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 默认的 neo4j 读取器
+ * 默认的 neo4j 读取器.
  * <p>
  * 默认的实现方式是 cypher
  * <p>
@@ -28,6 +28,9 @@ import java.util.Map;
  */
 public class DefaultNeo4jReader extends ParamsValidator implements Neo4jReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
+    /**
+     * {@link Neo4jPreRWHelper}.
+     */
     @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Resource
     private Neo4jPreRWHelper neo4jPreRWHelper;

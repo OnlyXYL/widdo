@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 集群配置参数
+ * 集群配置参数.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -14,7 +14,13 @@ import java.util.List;
 @Data
 public class MyRedissonClusterServerConfigProperties {
 
+    /**
+     * nodeAddresses.
+     */
     private List<String> nodeAddresses;
 
+    /**
+     * scanInterval.
+     */
     private int scanInterval;
 }

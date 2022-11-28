@@ -3,56 +3,122 @@ package cn.widdo.starter.neo4j.entity;
 import java.io.Serializable;
 
 /**
- * neo4j原生接口封装-空间位置
+ * neo4j原生接口封装-空间位置.
  *
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Point3D implements Serializable {
-    double srid;
-    double x;
-    double y;
-    double z;
 
+    /**
+     * srid.
+     */
+    private double srid;
+
+    /**
+     * x.
+     */
+    private double x;
+
+    /**
+     * y.
+     */
+    private double y;
+
+    /**
+     * z.
+     */
+    private double z;
+
+    /**
+     * construct has no params.
+     */
     public Point3D() {
     }
 
-    public Point3D(int srid, double x, double y, double z) {
+    /**
+     * constructor has three params.
+     *
+     * @param srid
+     * @param x
+     * @param y
+     * @param z
+     */
+    public Point3D(final int srid, final double x, final double y, final double z) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.srid = srid;
     }
 
+    /**
+     * get srid.
+     *
+     * @return a result type of double
+     */
     public double getSrid() {
         return srid;
     }
 
+    /**
+     * set srid.
+     *
+     * @param srid
+     */
     public void setSrid(double srid) {
         this.srid = srid;
     }
 
+    /**
+     * get x.
+     *
+     * @return a result type of double
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * set x.
+     *
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     * get y.
+     *
+     * @return a result type of double
+     */
     public double getY() {
         return y;
     }
 
+    /**
+     * set y.
+     *
+     * @param y
+     */
     public void setY(double y) {
         this.y = y;
     }
 
+    /**
+     * get z.
+     *
+     * @return a result type of double
+     */
     public double getZ() {
         return z;
     }
 
+    /**
+     * set z.
+     * @param z
+     */
     public void setZ(double z) {
         this.z = z;
     }
@@ -70,7 +136,12 @@ public class Point3D implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
-        return "Point{srid=" + this.srid + ", x=" + this.x + ", y=" + this.y + ", z=" + this.z + '}';
+        return String.format("Point{srid=%s, x=%s, y=%s, z=%s}", this.srid, this.x, this.y, this.z);
     }
 }

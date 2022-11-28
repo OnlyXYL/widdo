@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 /**
- * redisson controller
+ * redisson controller.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -20,10 +20,13 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class RedissonController {
 
+    /**
+     * key.
+     */
     static final String KEY = "LOCK_KEY";
 
     /**
-     * 测试加锁
+     * 测试加锁.
      *
      * @param
      * @return java.lang.Object
@@ -50,7 +53,7 @@ public class RedissonController {
     }
 
     /**
-     * 加锁之前，判断是否已经有锁
+     * 加锁之前，判断是否已经有锁.
      *
      * @param
      * @return java.lang.Object

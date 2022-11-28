@@ -5,7 +5,7 @@ import cn.widdo.assistant.entity.result.WebResult;
 import java.util.Map;
 
 /**
- * neo4j jdbc service
+ * neo4j jdbc service.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -14,7 +14,7 @@ import java.util.Map;
 public interface Neo4jJdbcService {
 
     /**
-     * 查詢
+     * 查詢.
      *
      * @param params
      * @return cn.widdo.entity.JsonResult

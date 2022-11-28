@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * 工具类
+ * 工具类.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -19,13 +19,17 @@ import java.util.stream.IntStream;
 @Slf4j
 public class MyUtil {
 
+    protected MyUtil() {
+        throw new UnsupportedOperationException("静态工具类不能被实例化");
+    }
+
     /**
-     * 驼峰转下划线
+     * 驼峰转下划线.
      *
      * @param value 待转换值
      * @return 结果
      */
-    public static String camelToUnderscore(String value) {
+    public static String camelToUnderscore(final String value) {
         if (StringUtils.isBlank(value)) {
             return value;
         }
@@ -45,17 +49,17 @@ public class MyUtil {
     }
 
     /**
-     * 获取异常信息
+     * 获取异常信息.
      *
      * @param bindingResult 异常绑定结果
      * @return java.lang.String
      * @author XYL
      * @since 15:28 2021/4/28 0028
      **/
-    public static String errorMessage(BindingResult bindingResult) {
+    public static String errorMessage(final BindingResult bindingResult) {
         List<String> jsonList = new ArrayList<>();
-        bindingResult.getFieldErrors().forEach(fieldError -> jsonList.add(fieldError.getDefaultMessage()));
-
+        bindingResult.getFieldErrors()
+                .forEach(e -> jsonList.add(e.getDefaultMessage()));
         return JSON.toJSONString(jsonList);
     }
 

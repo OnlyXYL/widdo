@@ -6,7 +6,7 @@ import org.neo4j.driver.Driver;
 import java.util.Map;
 
 /**
- * 默认的写方法
+ * 默认的写方法.
  *
  * @author XYL
  * @version 263.1.1.0
@@ -14,9 +14,16 @@ import java.util.Map;
  */
 public class DefaultNeo4jWriter implements Neo4jWriter<Map<String, Object>, Result<?>> {
 
+    /**
+     * driver.
+     */
     private Driver driver;
 
-    public DefaultNeo4jWriter(Driver driver) {
+    /**
+     * constructor has one params called {@link Driver}.
+     * @param driver
+     */
+    public DefaultNeo4jWriter(final Driver driver) {
         this.driver = driver;
     }
 

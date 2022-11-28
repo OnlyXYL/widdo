@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * neo4j 执行器
+ * neo4j 执行器.
  *
+ * @param <T>
  * @author XYL
  * @version 1.2
  * @date 2022/10/18 11:37
@@ -16,7 +17,7 @@ import java.util.Map;
 public interface Neo4jActuator<T> {
 
     /**
-     * neo4j 执行器 读方法
+     * neo4j 执行器 读方法.
      *
      * @param params 参数
      * @return R
@@ -27,7 +28,7 @@ public interface Neo4jActuator<T> {
     Result<List<Map<String, Value>>> read(T params);
 
     /**
-     * neo4j 执行器 写方法
+     * neo4j 执行器 写方法.
      *
      * @param params 参数
      * @return R
