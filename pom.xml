@@ -8,7 +8,7 @@
         <artifactId>widdo-dependencies</artifactId>
         <!--升级 -->
         <version>263.1.1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>widdo-dependencies/pom.xml</relativePath>
     </parent>
 
     <artifactId>widdo</artifactId>
@@ -273,9 +273,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <!--jdk8和更早版本，编译器指定jdk版本方式-->
-                    <!--<source>${java.version}</source>
-                    <target>${java.version}</target>-->
-                    <release>14</release>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+<!--                    <release>14</release>-->
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
                     <annotationProcessorPaths>
@@ -336,7 +336,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.vesion}</version>
+                <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
                     <configLocation>configurations/style/sun_checks.xml</configLocation>
                     <includeTestSourceDirectory>false</includeTestSourceDirectory>

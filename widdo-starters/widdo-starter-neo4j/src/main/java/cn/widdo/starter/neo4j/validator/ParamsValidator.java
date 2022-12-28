@@ -19,7 +19,12 @@ import java.util.Map;
  */
 public class ParamsValidator {
 
+
     private static final Logger log = LoggerFactory.getLogger(ParamsValidator.class);
+
+//    protected ParamsValidator() {
+//        throw new UnsupportedOperationException(ParamsValidator.class.getName() + " can`t be instance");
+//    }
 
     /**
      * 校验参数.
@@ -33,8 +38,8 @@ public class ParamsValidator {
      * @date 2022/10/18 10:26
      **/
     protected Result validateAndRun(Map<String, Object> params,
-                             MapParamsFunction function,
-                             String... checkKeys) {
+                                    MapParamsFunction function,
+                                    String... checkKeys) {
         try {
             //校验是否为空
             Neo4jUtil.throwExceptionIfNull(params, checkKeys);

@@ -21,7 +21,7 @@ public class WiddoNeo4jProperties {
     /**
      * host相关配置.
      */
-    private Host host = new Host();
+    private final Host host = new Host();
 
     /**
      * 开启读写开关.
@@ -31,12 +31,12 @@ public class WiddoNeo4jProperties {
     /**
      * reader.
      */
-    private Reader reader = new Reader();
+    private final Reader reader = new Reader();
 
     /**
      * writer.
      */
-    private Writer writer = new Writer();
+    private final Writer writer = new Writer();
 
     /**
      * get enabled.
@@ -48,7 +48,7 @@ public class WiddoNeo4jProperties {
 
     /**
      * set enabled.
-     * @param enabled
+     * @param enabled   the switch of neo4j
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -72,7 +72,7 @@ public class WiddoNeo4jProperties {
 
     /**
      * set rw.
-     * @param rw
+     * @param rw    the switch of neo4j rw
      */
     public void setRw(boolean rw) {
         this.rw = rw;
@@ -94,7 +94,7 @@ public class WiddoNeo4jProperties {
         return writer;
     }
 
-    public class Host {
+    public static class Host {
 
         /**
          * url.
@@ -121,7 +121,7 @@ public class WiddoNeo4jProperties {
 
         /**
          * set url.
-         * @param url
+         * @param url   the url of neo4j server
          */
         public void setUrl(String url) {
             this.url = url;
@@ -137,7 +137,7 @@ public class WiddoNeo4jProperties {
 
         /**
          * set username.
-         * @param username
+         * @param username  the username of neo4j server
          */
         public void setUsername(String username) {
             this.username = username;
@@ -153,14 +153,14 @@ public class WiddoNeo4jProperties {
 
         /**
          * set password.
-         * @param password
+         * @param password  the password of neo4j server
          */
         public void setPassword(String password) {
             this.password = password;
         }
     }
 
-    public class Reader {
+    public static class Reader {
 
         /**
          * className.
@@ -177,14 +177,14 @@ public class WiddoNeo4jProperties {
 
         /**
          * set className.
-         * @param className
+         * @param className the className of neo4j Reader
          */
         public void setClassName(String className) {
             this.className = className;
         }
     }
 
-    public class Writer {
+    public static class Writer {
 
         /**
          * className.
@@ -201,7 +201,7 @@ public class WiddoNeo4jProperties {
 
         /**
          * set className.
-         * @param className
+         * @param className the className of Neo4j Writer
          */
         public void setClassName(String className) {
             this.className = className;

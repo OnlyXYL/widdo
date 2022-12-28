@@ -40,10 +40,10 @@ public class Point3D implements Serializable {
     /**
      * constructor has three params.
      *
-     * @param srid
-     * @param x
-     * @param y
-     * @param z
+     * @param srid  srid
+     * @param x x
+     * @param y y
+     * @param z z
      */
     public Point3D(final int srid, final double x, final double y, final double z) {
         this.x = x;
@@ -64,7 +64,7 @@ public class Point3D implements Serializable {
     /**
      * set srid.
      *
-     * @param srid
+     * @param srid  srid
      */
     public void setSrid(double srid) {
         this.srid = srid;
@@ -82,7 +82,7 @@ public class Point3D implements Serializable {
     /**
      * set x.
      *
-     * @param x
+     * @param x x
      */
     public void setX(double x) {
         this.x = x;
@@ -100,7 +100,7 @@ public class Point3D implements Serializable {
     /**
      * set y.
      *
-     * @param y
+     * @param y y
      */
     public void setY(double y) {
         this.y = y;
@@ -117,7 +117,7 @@ public class Point3D implements Serializable {
 
     /**
      * set z.
-     * @param z
+     * @param z z
      */
     public void setZ(double z) {
         this.z = z;

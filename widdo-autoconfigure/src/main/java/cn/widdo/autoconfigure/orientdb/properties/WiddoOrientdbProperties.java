@@ -53,7 +53,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set enabled.
-     * @param enabled
+     * @param enabled   the switch of orientdb
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -69,7 +69,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set uri.
-     * @param uri
+     * @param uri   the uri of orientdb server
      */
     public void setUri(String uri) {
         this.uri = uri;
@@ -85,7 +85,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set url.
-     * @param url
+     * @param url   the url of orientdb server
      */
     public void setUrl(String url) {
         this.url = url;
@@ -101,7 +101,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set username.
-     * @param username
+     * @param username  the username of orientdb server
      */
     public void setUsername(String username) {
         this.username = username;
@@ -117,7 +117,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set password.
-     * @param password
+     * @param password  the password of orientdb server
      */
     public void setPassword(String password) {
         this.password = password;
@@ -133,7 +133,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * set database.
-     * @param database
+     * @param database  the database of orientdb server
      */
     public void setDatabase(String database) {
         this.database = database;

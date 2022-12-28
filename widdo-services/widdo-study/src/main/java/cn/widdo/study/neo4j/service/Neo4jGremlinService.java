@@ -17,11 +17,10 @@ public interface Neo4jGremlinService {
     /**
      * gremlin query.
      *
-     * @param params
+     * @param params params
      * @author XYL
      * @className widdo.neo4j.service.Neo4jJdbcService
      * @return cn.widdo.entity.JsonResult
-     * @throws
      * @date 2022/07/15 1:36
      **/
     WebResult query(Map<String, Object> params);

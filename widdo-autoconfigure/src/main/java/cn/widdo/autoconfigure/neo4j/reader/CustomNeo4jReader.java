@@ -13,29 +13,32 @@ import java.util.Map;
  * @version 263.1.1.0
  * @date 2022/10/15 1:20
  */
-public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator {
+public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<?>> {
 
-    private Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);
+    private final Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);
 
     /**
      * constructor has one params called {@link Neo4jReader}.
      *
-     * @param neo4jReader
+     * @param neo4jReader neo4jReader
      */
     public CustomNeo4jReader(final Neo4jReader neo4jReader) {
-        super(neo4jReader);
+        this.neo4jReader = neo4jReader;
     }
 
     @Override
     public Result<?> query(Map<String, Object> params) {
-        return super.getNeoReader().query(params);
+
+        //you can do something right here.
+        print();
+
+        return neo4jReader.query(params);
     }
 
     /**
      * test.
      */
-    private void test() {
-        //todo: 可以添加新的方法
+    private void print() {
         logger.info("[Widdo] |- Autoconfigure [Custom Neo4j Reader].");
     }
 }

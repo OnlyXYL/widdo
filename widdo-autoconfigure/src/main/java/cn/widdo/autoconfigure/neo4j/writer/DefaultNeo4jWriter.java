@@ -1,8 +1,11 @@
 package cn.widdo.autoconfigure.neo4j.writer;
 
+import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
+import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
-import org.neo4j.driver.Driver;
+import cn.widdo.starter.neo4j.validator.ParamsValidator;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,23 +15,25 @@ import java.util.Map;
  * @version 263.1.1.0
  * @date 2022/10/14 16:37
  */
-public class DefaultNeo4jWriter implements Neo4jWriter<Map<String, Object>, Result<?>> {
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+public class DefaultNeo4jWriter extends ParamsValidator implements Neo4jWriter<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**
-     * driver.
+     * {@link Neo4jPreRWHelper}.
      */
-    private Driver driver;
+    private final Neo4jPreRWHelper neo4jPreRWHelper;
 
     /**
-     * constructor has one params called {@link Driver}.
-     * @param driver
+     * constructor has one param called {@link Neo4jPreRWHelper}.
+     *
+     * @param neo4jPreRWHelper  {@link Neo4jPreRWHelper}
      */
-    public DefaultNeo4jWriter(final Driver driver) {
-        this.driver = driver;
+    public DefaultNeo4jWriter(final Neo4jPreRWHelper neo4jPreRWHelper) {
+        this.neo4jPreRWHelper = neo4jPreRWHelper;
     }
 
     @Override
-    public Result<?> write(Map<String, Object> params) {
-        return null;
+    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jPreRWHelper::execute, "cypherQL");
     }
 }

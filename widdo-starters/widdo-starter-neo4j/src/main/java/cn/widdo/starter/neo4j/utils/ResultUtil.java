@@ -29,7 +29,7 @@ public class ResultUtil {
      * 封装结果信息.
      *
      * @param <T> 泛型
-     * @param t
+     * @param t t
      * @return cn.widdo.starter.neo4j.entity.result.Result<T>
      * @author XYL
      * @date 2022/11/28 14:08:40
@@ -42,8 +42,8 @@ public class ResultUtil {
      * 封装结果信息.
      *
      * @param <T>            泛型
-     * @param t
-     * @param resultPageInfo
+     * @param t t
+     * @param resultPageInfo    resultPageInfo
      * @return cn.widdo.starter.neo4j.entity.result.Result<T>
      * @author XYL
      * @date 2022/11/28 14:08:29
