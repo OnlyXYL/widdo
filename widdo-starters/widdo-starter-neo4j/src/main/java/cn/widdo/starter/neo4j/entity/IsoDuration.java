@@ -39,7 +39,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param months
+     * @param months    months
      */
     public void setMonths(long months) {
         this.months = months;
@@ -57,7 +57,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param days
+     * @param days  days
      */
     public void setDays(long days) {
         this.days = days;
@@ -75,7 +75,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param seconds
+     * @param seconds   seconds
      */
     public void setSeconds(long seconds) {
         this.seconds = seconds;
@@ -93,7 +93,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param nanoseconds
+     * @param nanoseconds   nanoseconds
      */
     public void setNanoseconds(int nanoseconds) {
         this.nanoseconds = nanoseconds;

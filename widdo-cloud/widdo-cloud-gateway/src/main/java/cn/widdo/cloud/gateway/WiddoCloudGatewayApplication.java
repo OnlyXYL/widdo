@@ -1,7 +1,11 @@
 package cn.widdo.cloud.gateway;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author XYL
@@ -10,9 +14,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class WiddoCloudGatewayApplication {
-    protected WiddoCloudGatewayApplication() {
-        throw new UnsupportedOperationException("");
+
+    private static final Logger LOG = LoggerFactory.getLogger(WiddoCloudGatewayApplication.class);
+
+    @PostConstruct
+    private void postConstruct() {
+        LOG.info("[Widdo] |- Cloud [Widdo Gateway] Application.");
     }
+
 
     public static void main(String[] args) {
         SpringApplication.run(WiddoCloudGatewayApplication.class, args);

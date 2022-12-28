@@ -1,20 +1,15 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
-import cn.widdo.starter.neo4j.entity.Value;
-import cn.widdo.starter.neo4j.entity.result.Result;
-
-import java.util.List;
-import java.util.Map;
-
 /**
  * neo4j 执行器.
  *
  * @param <T>
+ * @param <R>
  * @author XYL
- * @version 1.2
+ * @version 263.1.1.0
  * @date 2022/10/18 11:37
  */
-public interface Neo4jActuator<T> {
+public interface Neo4jActuator<T, R> {
 
     /**
      * neo4j 执行器 读方法.
@@ -25,7 +20,7 @@ public interface Neo4jActuator<T> {
      * @className cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator
      * @date 2022/10/19 0:28
      **/
-    Result<List<Map<String, Value>>> read(T params);
+    R read(T params);
 
     /**
      * neo4j 执行器 写方法.
@@ -36,6 +31,6 @@ public interface Neo4jActuator<T> {
      * @className cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator
      * @date 2022/10/19 0:29
      **/
-    Result<List<Map<String, Value>>> write(T params);
+    R write(T params);
 
 }

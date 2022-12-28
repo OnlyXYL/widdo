@@ -1,5 +1,8 @@
 package cn.widdo.assistant.enums;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * 响应状态码.
  *
@@ -84,7 +87,12 @@ public enum ResponseCode {
     /**
      * 文件获取异常.
      */
-    NOT_FIND_FILE_ERROR(908, "文件获取异常");
+    NOT_FIND_FILE_ERROR(908, "文件获取异常"),
+
+    /**
+     * 不支持的操作.
+     */
+    WIDDO_UNSUPPORTED_OPERATION_ERROR(1, "不支持的类型");
 
     /**
      * code.
@@ -161,11 +169,7 @@ public enum ResponseCode {
      * @date 2022/11/17 0:12
      **/
     public static ResponseCode getEnumByCode(final int code) {
-        for (ResponseCode enumType : ResponseCode.values()) {
-            if (enumType.getCode() == code) {
-                return enumType;
-            }
-        }
-        return null;
+        return Optional.ofNullable(Arrays.stream(values()).filter(s -> s.getCode() == code).findAny().get())
+                .orElse(ResponseCode.WIDDO_UNSUPPORTED_OPERATION_ERROR);
     }
 }

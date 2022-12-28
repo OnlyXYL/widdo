@@ -36,7 +36,7 @@ public class WiddoNeo4jAutoConfigure {
     /**
      * driver instance.
      *
-     * @param widdoNeo4jProperties
+     * @param widdoNeo4jProperties  widdoNeo4jProperties
      * @return a driver instance
      */
     @Bean

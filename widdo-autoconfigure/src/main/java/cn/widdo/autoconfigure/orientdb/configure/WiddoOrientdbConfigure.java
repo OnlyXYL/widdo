@@ -41,7 +41,7 @@ public class WiddoOrientdbConfigure {
     /**
      * OrientGraphFactory instance.
      *
-     * @param widdoOrientdbProperties
+     * @param widdoOrientdbProperties   widdoOrientdbProperties
      * @return an OrientGraphFactory instance
      */
     @Bean
@@ -53,7 +53,7 @@ public class WiddoOrientdbConfigure {
     /**
      * ODatabasePool instance.
      *
-     * @param widdoOrientdbProperties
+     * @param widdoOrientdbProperties   widdoOrientdbProperties
      * @return an ODatabasePool instance
      */
     @Bean

@@ -1,10 +1,11 @@
 package cn.widdo.study;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import java.util.function.Consumer;
+import javax.annotation.PostConstruct;
 
 /**
  * 启动类.
@@ -15,50 +16,17 @@ import java.util.function.Consumer;
  */
 @SpringBootApplication
 public class WiddoStudyApplication {
+
+    private static final Logger LOG = LoggerFactory.getLogger(WiddoStudyApplication.class);
+
+    @PostConstruct
+    private void postConstruct() {
+        LOG.info("#############################################");
+        LOG.info("[Widdo] |- Service [Widdo Study] Application.");
+        LOG.info("#############################################");
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(WiddoStudyApplication.class, args);
-    }
-
-    /**
-     * log.
-     *
-     * @return return log.
-     */
-    @Bean
-    public Consumer<Person> log() {
-        return person -> {
-            System.out.println("Received: " + person);
-        };
-    }
-
-    public static class Person {
-
-        /**
-         * name.
-         */
-        private String name;
-
-        /**
-         * get name.
-         *
-         * @return a result type of String
-         */
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * set name.
-         *
-         * @param name
-         */
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return this.name;
-        }
     }
 }

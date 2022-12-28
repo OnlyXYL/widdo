@@ -46,7 +46,7 @@ public class Path implements Serializable {
     /**
      * set startedNode.
      *
-     * @param startNode
+     * @param startNode startNode
      */
     public void setStartNode(Node startNode) {
         this.startNode = startNode;
@@ -64,7 +64,7 @@ public class Path implements Serializable {
     /**
      * set endedNode.
      *
-     * @param endNode
+     * @param endNode   endNode
      */
     public void setEndNode(Node endNode) {
         this.endNode = endNode;
@@ -82,7 +82,7 @@ public class Path implements Serializable {
     /**
      * set relationship collection.
      *
-     * @param relationships
+     * @param relationships relationships
      */
     public void setRelationships(List<Relationship> relationships) {
         this.relationships = relationships;
@@ -91,7 +91,7 @@ public class Path implements Serializable {
     /**
      * add relationship to collection.
      *
-     * @param relationship
+     * @param relationship  relationship
      */
     public void addRelationship(Relationship relationship) {
         this.relationships.add(relationship);
@@ -109,7 +109,7 @@ public class Path implements Serializable {
     /**
      * set node collection.
      *
-     * @param nodes
+     * @param nodes nodes
      */
     public void setNodes(Iterable<Node> nodes) {
         nodes.forEach(n -> this.nodes.add(n));
@@ -118,7 +118,7 @@ public class Path implements Serializable {
     /**
      * add {@link Node} to collection.
      *
-     * @param node
+     * @param node  node
      */
     public void addNode(Node node) {
         this.nodes.add(node);
@@ -136,7 +136,7 @@ public class Path implements Serializable {
     /**
      * check {@link Node}.
      *
-     * @param node
+     * @param node  node
      * @return a result type of boolean,which tell you if the node exists.
      */
     public boolean containsNode(Node node) {
@@ -146,7 +146,7 @@ public class Path implements Serializable {
     /**
      * check {@link Relationship}.
      *
-     * @param relationship
+     * @param relationship  relationship
      * @return a result type of boolean, which tell you if the relationship exists.
      */
     public boolean containsRelationship(Relationship relationship) {

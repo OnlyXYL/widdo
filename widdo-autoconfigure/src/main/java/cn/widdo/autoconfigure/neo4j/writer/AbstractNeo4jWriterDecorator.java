@@ -1,34 +1,20 @@
 package cn.widdo.autoconfigure.neo4j.writer;
 
-import cn.widdo.starter.neo4j.entity.result.Result;
-
-import java.util.Map;
-
 /**
- * 抽象neo4j装饰器---写.
+ * AbstractNeo4jWriterDecorator,you can have yourself Neo4jWriter by extends it.
+ * <p>
+ * like this:{@link CustomNeo4jWriter}
  *
+ * @param <T>
+ * @param <R>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/10/15 1:02
  */
-public abstract class AbstractNeo4jWriterDecorator implements Neo4jWriter<Map<String, Object>, Result<?>> {
+public abstract class AbstractNeo4jWriterDecorator<T, R> implements Neo4jWriter<T, R> {
 
     /**
      * {@link Neo4jWriter}.
      */
-    private Neo4jWriter<Map<String, Object>, Result<?>> neo4jWriter;
-
-    /**
-     * constructor has one params.
-     *
-     * @param neo4jWriter
-     */
-    public AbstractNeo4jWriterDecorator(final Neo4jWriter<Map<String, Object>, Result<?>> neo4jWriter) {
-        this.neo4jWriter = neo4jWriter;
-    }
-
-    @Override
-    public Result<?> write(Map<String, Object> params) {
-        return neo4jWriter.write(params);
-    }
+    protected Neo4jWriter<T, R> neo4jWriter;
 }

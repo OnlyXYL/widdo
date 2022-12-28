@@ -34,9 +34,9 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * 构造方法.
-     * @param totalRecord
-     * @param currentPage
-     * @param pageSize
+     * @param totalRecord   totalRecord
+     * @param currentPage   currentPage
+     * @param pageSize  pageSize
      */
     public ResultPageInfo(final String totalRecord,
                           final String currentPage,
@@ -56,7 +56,7 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set total record.
-     * @param totalRecord
+     * @param totalRecord   totalRecord
      */
     public void setTotalRecord(String totalRecord) {
         this.totalRecord = totalRecord;
@@ -73,7 +73,7 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set current page.
-     * @param currentPage
+     * @param currentPage   currentPage
      */
     public void setCurrentPage(String currentPage) {
         this.currentPage = currentPage;
@@ -89,7 +89,7 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set page size.
-     * @param pageSize
+     * @param pageSize  pageSize
      */
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;

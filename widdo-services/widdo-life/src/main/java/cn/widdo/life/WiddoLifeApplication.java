@@ -21,7 +21,7 @@ public class WiddoLifeApplication {
 
     @PostConstruct
     private void postConstruct() {
-        LOG.info("[Widdo] |- AutoConfigure [Widdo Neo4j] Actuator.");
+        LOG.info("[Widdo] |- Service [Widdo Life] Application.");
     }
 
     public static void main(String[] args) {

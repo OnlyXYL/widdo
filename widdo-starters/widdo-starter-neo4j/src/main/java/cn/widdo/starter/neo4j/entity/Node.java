@@ -41,7 +41,7 @@ public class Node implements Serializable {
     /**
      * set properties.
      *
-     * @param properties
+     * @param properties    properties
      */
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
@@ -59,7 +59,7 @@ public class Node implements Serializable {
     /**
      * set labels.
      *
-     * @param labels
+     * @param labels    labels
      */
     public void setLabels(Iterable<String> labels) {
         labels.forEach(l -> this.labels.add(l));
@@ -77,7 +77,7 @@ public class Node implements Serializable {
     /**
      * set id.
      *
-     * @param id
+     * @param id    id
      */
     public void setId(long id) {
         this.id = id;
@@ -86,7 +86,7 @@ public class Node implements Serializable {
     /**
      * check label.
      *
-     * @param label
+     * @param label label
      * @return a result type of boolean,which tell you if the label exists
      */
     public boolean hasLabel(String label) {
@@ -96,8 +96,8 @@ public class Node implements Serializable {
     /**
      * check key.
      *
-     * @param key
-     * @return a reuslt type of boolean,which tell you if the key exists
+     * @param key   key
+     * @return a result type of boolean,which tell you if the key exists
      */
     public boolean containsKey(String key) {
         return this.properties.containsKey(key);

@@ -14,6 +14,8 @@
     <modules>
         <module>widdo-starter-neo4j</module>
         <module>widdo-starter-orientdb</module>
+        <module>widdo-starter-jwi</module>
+        <module>widdo-starter-babelnet</module>
     </modules>
 
     <dependencies>

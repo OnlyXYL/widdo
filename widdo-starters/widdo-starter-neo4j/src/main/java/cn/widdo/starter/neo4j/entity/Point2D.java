@@ -34,9 +34,9 @@ public class Point2D implements Serializable {
     /**
      * Point2D.
      *
-     * @param srid
-     * @param x
-     * @param y
+     * @param srid  srid
+     * @param x x
+     * @param y y
      * @author XYL
      * @date 2022/11/28 14:39:36
      **/
@@ -58,7 +58,7 @@ public class Point2D implements Serializable {
     /**
      * set srid.
      *
-     * @param srid
+     * @param srid  srid
      */
     public void setSrid(double srid) {
         this.srid = srid;
@@ -76,7 +76,7 @@ public class Point2D implements Serializable {
     /**
      * set x.
      *
-     * @param x
+     * @param x x
      */
     public void setX(double x) {
         this.x = x;
@@ -94,7 +94,7 @@ public class Point2D implements Serializable {
     /**
      * set y.
      *
-     * @param y
+     * @param y y
      */
     public void setY(double y) {
         this.y = y;

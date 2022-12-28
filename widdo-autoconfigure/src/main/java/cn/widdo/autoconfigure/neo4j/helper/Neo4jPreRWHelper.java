@@ -1,6 +1,5 @@
 package cn.widdo.autoconfigure.neo4j.helper;
 
-import cn.widdo.starter.neo4j.WiddoStarterNeo4j;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.starter.neo4j.utils.Neo4jUtil;
@@ -8,11 +7,8 @@ import cn.widdo.starter.neo4j.utils.NetUtil;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +22,6 @@ import java.util.Optional;
  * @date 2022/10/17 17:48
  */
 @SuppressWarnings({"AlibabaClassNamingShouldBeCamel", "AlibabaLowerCamelCaseVariableNaming"})
-@Component
-@ConditionalOnClass(WiddoStarterNeo4j.class)
 public class Neo4jPreRWHelper {
 
     private static final Logger log = LoggerFactory.getLogger(Neo4jPreRWHelper.class);
@@ -35,8 +29,16 @@ public class Neo4jPreRWHelper {
     /**
      * driver.
      */
-    @Resource
     private Driver driver;
+
+    /**
+     * constructor has one params called {@link Driver}.
+     *
+     * @param driver    the driver instance of neo4j
+     */
+    public Neo4jPreRWHelper(final Driver driver) {
+        this.driver = driver;
+    }
 
     @PostConstruct
     public final void postNeo4jPreRWHelper() {
@@ -46,7 +48,7 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j writer.
      *
-     * @param cypherQL
+     * @param cypherQL  the neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> query(String cypherQL) {
@@ -58,8 +60,8 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j reader.
      *
-     * @param cypherQL
-     * @param params
+     * @param cypherQL  the cypher of neo4j
+     * @param params    the params of neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> query(String cypherQL, Map<String, Object> params) {
@@ -72,8 +74,8 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j writer.
      *
-     * @param cypherQL
-     * @param params
+     * @param cypherQL  the cypher of neo4j
+     * @param params    the params of neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> execute(String cypherQL, Map<String, Object> params) {
@@ -116,7 +118,7 @@ public class Neo4jPreRWHelper {
      * @author XYL
      * @since 22:26 2021/4/1 0001
      **/
-    private Result<List<Map<String, Value>>> execute(Map<String, Object> param) {
+    public Result<List<Map<String, Value>>> execute(Map<String, Object> param) {
         String cqlStr = param.get("cypherQL").toString();
 
         Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);

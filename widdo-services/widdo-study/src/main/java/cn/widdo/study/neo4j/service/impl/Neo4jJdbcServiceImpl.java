@@ -27,7 +27,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
      * 使用构造方法注入，如果只有一个构造方法，那么 @Autowired注解可以省略；如果有多个构造方法，
      * 需要添加@Autowired注解来明确指定到底使用哪个构造方法
      */
-    private Neo4jActuator neo4jActuator;
+    private Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> neo4jActuator;
 
     @Autowired
     public Neo4jJdbcServiceImpl(final Neo4jActuator neo4jActuator) {
@@ -45,10 +45,27 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
         cypherParam.put("cypherQL", cypher);
 
         params.remove("label");
-        cypherParam.put("params", params);
+        cypherParam.put("map", params);
 
         final Result<List<Map<String, Value>>> result = neo4jActuator.read(cypherParam);
 
         return WebResult.success(result);
+    }
+
+    @Override
+    public WebResult write(Map<String, Object> params) {
+        String cypher = "UNWIND $triples AS triple \n"
+                + "CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode\n"
+                + "CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode\n"
+                + "CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel\n"
+                + "RETURN collect(id(rel)) as relationshipIds";
+
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("cypherQL", cypher);
+        map.put("map", params);
+
+        final Result write = neo4jActuator.write(map);
+
+        return WebResult.success(write);
     }
 }

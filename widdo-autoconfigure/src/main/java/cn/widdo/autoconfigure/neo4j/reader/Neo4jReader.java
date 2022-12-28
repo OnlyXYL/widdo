@@ -14,7 +14,7 @@ public interface Neo4jReader<T, R> {
     /**
      * 读数据.
      *
-     * @param params
+     * @param params    参数
      * @return R
      * @author XYL
      * @className cn.widdo.autoconfigure.neo4j.read.ReadInterface

@@ -50,7 +50,7 @@ public class Value implements Serializable {
 
     /**
      * set size.
-     * @param size
+     * @param size  size
      */
     public void setSize(int size) {
         this.size = size;
@@ -66,7 +66,7 @@ public class Value implements Serializable {
 
     /**
      * set empty.
-     * @param empty
+     * @param empty empty
      */
     public void setEmpty(boolean empty) {
         isEmpty = empty;
@@ -82,7 +82,7 @@ public class Value implements Serializable {
 
     /**
      * set value.
-     * @param value
+     * @param value value
      */
     public void setValue(Object value) {
         this.value = value;
@@ -98,7 +98,7 @@ public class Value implements Serializable {
 
     /**
      * set type.
-     * @param type
+     * @param type  type
      */
     public void setType(String type) {
         this.type = type;
@@ -114,7 +114,7 @@ public class Value implements Serializable {
 
     /**
      * set keys.
-     * @param keys
+     * @param keys  keys
      */
     public void setKeys(List<String> keys) {
         this.keys = keys;
@@ -123,9 +123,7 @@ public class Value implements Serializable {
     /**
      * 转换节点.
      *
-     * @param
      * @return cn.widdo.graph.entity.neo4j.Node
-     * @throws
      * @author XYL
      * @className cn.widdo.graph.entity.neo4j.Value
      * @date 2022/09/14 16:41

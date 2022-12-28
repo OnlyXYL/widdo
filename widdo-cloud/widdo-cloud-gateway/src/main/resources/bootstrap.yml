@@ -1,12 +1,12 @@
 spring:
   application:
-    name: widdo-cloud-gateway
+    name: widdo-gateway
   cloud:
     gateway:
       discovery:
         locator:
           #Flag that enables DiscoveryClient gateway integration
-          enabled: false
+          enabled: true
       enabled: true
     nacos:
       discovery:

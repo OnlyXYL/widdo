@@ -48,7 +48,7 @@ public class Relationship {
     /**
      * set startNodeId.
      *
-     * @param startNodeId
+     * @param startNodeId   startNodeId
      */
     public void setStartNodeId(long startNodeId) {
         this.startNodeId = startNodeId;
@@ -66,7 +66,7 @@ public class Relationship {
     /**
      * set endNodeId.
      *
-     * @param endNodeId
+     * @param endNodeId endNodeId
      */
     public void setEndNodeId(long endNodeId) {
         this.endNodeId = endNodeId;
@@ -84,7 +84,7 @@ public class Relationship {
     /**
      * set id.
      *
-     * @param id
+     * @param id    id
      */
     public void setId(long id) {
         this.id = id;
@@ -102,7 +102,7 @@ public class Relationship {
     /**
      * set type.
      *
-     * @param type
+     * @param type  type
      */
     public void setType(String type) {
         this.type = type;
@@ -111,7 +111,7 @@ public class Relationship {
     /**
      * check if have type.
      *
-     * @param type
+     * @param type  type
      * @return a result type of boolean
      */
     public boolean hasType(String type) {
@@ -130,7 +130,7 @@ public class Relationship {
     /**
      * set properties.
      *
-     * @param properties
+     * @param properties    properties
      */
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;

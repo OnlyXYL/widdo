@@ -54,7 +54,7 @@ public class Result<T> {
     /**
      * set status.
      *
-     * @param code
+     * @param code  code
      */
     public void setStatus(ResultEnum code) {
         this.status = code;
@@ -72,7 +72,7 @@ public class Result<T> {
     /**
      * set msg.
      *
-     * @param msg
+     * @param msg   msg
      */
     public void setMsg(String msg) {
         this.msg = msg;
@@ -81,14 +81,14 @@ public class Result<T> {
     /**
      * set code.
      *
-     * @param code
+     * @param code  code
      */
     public void setCode(Integer code) {
         this.code = code;
     }
 
     /**
-     * getcode.
+     * getCode.
      *
      * @return a Integer code
      */
@@ -99,7 +99,7 @@ public class Result<T> {
     /**
      * set data type of anything.
      *
-     * @param data
+     * @param data  data
      */
     public void setData(T data) {
         this.data = data;
@@ -117,7 +117,7 @@ public class Result<T> {
     /**
      * set pageInfo.
      *
-     * @param pageInfo
+     * @param pageInfo  pageInfo
      */
     public void setPageInfo(ResultPageInfo pageInfo) {
         this.resultPageInfo = pageInfo;
