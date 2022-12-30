@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @AutoConfigureAfter(WiddoNeo4jAutoConfigure.class)
-@ConditionalOnNeo4jRw
+@ConditionalOnNeo4jActuatorEnabled
 @ConditionalOnBean(WiddoNeo4jAutoConfigure.class)
 public @interface WiddoNeo4jActuator {
 }

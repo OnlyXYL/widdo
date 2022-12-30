@@ -24,11 +24,19 @@ public class DefaultNeo4jWriter extends ParamsValidator implements Neo4jWriter<M
     private final Neo4jPreRWHelper neo4jPreRWHelper;
 
     /**
+     * constructor has no param,at the same time, if you create instance by this constructor,
+     * it will throw exception typed {@link UnsupportedOperationException}.
+     */
+    protected DefaultNeo4jWriter() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * constructor has one param called {@link Neo4jPreRWHelper}.
      *
      * @param neo4jPreRWHelper  {@link Neo4jPreRWHelper}
      */
-    public DefaultNeo4jWriter(final Neo4jPreRWHelper neo4jPreRWHelper) {
+    private DefaultNeo4jWriter(final Neo4jPreRWHelper neo4jPreRWHelper) {
         this.neo4jPreRWHelper = neo4jPreRWHelper;
     }
 

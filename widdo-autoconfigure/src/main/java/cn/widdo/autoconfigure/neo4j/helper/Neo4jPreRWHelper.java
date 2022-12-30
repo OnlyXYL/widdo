@@ -3,7 +3,6 @@ package cn.widdo.autoconfigure.neo4j.helper;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.starter.neo4j.utils.Neo4jUtil;
-import cn.widdo.starter.neo4j.utils.NetUtil;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +31,19 @@ public class Neo4jPreRWHelper {
     private Driver driver;
 
     /**
+     * constructor has no param,at the same time, if you create instance by this constructor,
+     * it will throw exception typed {@link UnsupportedOperationException}.
+     */
+    protected Neo4jPreRWHelper() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * constructor has one params called {@link Driver}.
      *
-     * @param driver    the driver instance of neo4j
+     * @param driver the driver instance of neo4j
      */
-    public Neo4jPreRWHelper(final Driver driver) {
+    private Neo4jPreRWHelper(final Driver driver) {
         this.driver = driver;
     }
 
@@ -48,7 +55,7 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j writer.
      *
-     * @param cypherQL  the neo4j cypher
+     * @param cypherQL the neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> query(String cypherQL) {
@@ -60,8 +67,8 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j reader.
      *
-     * @param cypherQL  the cypher of neo4j
-     * @param params    the params of neo4j cypher
+     * @param cypherQL the cypher of neo4j
+     * @param params   the params of neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> query(String cypherQL, Map<String, Object> params) {
@@ -74,8 +81,8 @@ public class Neo4jPreRWHelper {
     /**
      * 执行neo4j writer.
      *
-     * @param cypherQL  the cypher of neo4j
-     * @param params    the params of neo4j cypher
+     * @param cypherQL the cypher of neo4j
+     * @param params   the params of neo4j cypher
      * @return a result type of {@link Result}
      */
     public Result<List<Map<String, Value>>> execute(String cypherQL, Map<String, Object> params) {
@@ -97,7 +104,6 @@ public class Neo4jPreRWHelper {
         String cqlStr = param.get("cypherQL").toString();
 
         Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
-        log.debug("---client ip:" + NetUtil.getRealIp() + " cql:" + cqlStr.substring(0, Math.min(cqlStr.length(), 100)) + " ...");
 
         //打印信息
         Neo4jUtil.printCQL(cqlStr);

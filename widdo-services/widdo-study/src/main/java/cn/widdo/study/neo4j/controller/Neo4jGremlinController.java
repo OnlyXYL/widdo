@@ -1,7 +1,7 @@
 package cn.widdo.study.neo4j.controller;
 
-import cn.widdo.assistant.base.BaseController;
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.WiddoResult;
+import cn.widdo.autoconfigure.base.BaseController;
 import cn.widdo.study.neo4j.service.Neo4jGremlinService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +38,7 @@ public class Neo4jGremlinController extends BaseController {
      * @date 2022/07/15 2:04
      **/
     @PostMapping(value = "/query")
-    public WebResult query(@RequestBody Map<String, Object> params) {
+    public WiddoResult query(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, (p) -> neo4jGremlinService.query(p), "label", "name");
     }
 }

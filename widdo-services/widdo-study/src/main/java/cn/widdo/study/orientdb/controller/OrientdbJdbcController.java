@@ -1,7 +1,7 @@
 package cn.widdo.study.orientdb.controller;
 
 import cn.widdo.assistant.base.BaseController;
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
 import cn.widdo.study.orientdb.service.OrientdbJdbcService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -46,7 +46,7 @@ public class OrientdbJdbcController extends BaseController {
      * @date 2022/07/15 11:43
      **/
     @PostMapping(value = "/create/v")
-    public WebResult createV(@RequestBody Map<String, Object> params) {
+    public WiddoResult createV(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, p -> orientdbJdbcService.createV(p), "name", "age", "city");
     }
 
@@ -65,7 +65,7 @@ public class OrientdbJdbcController extends BaseController {
      * @date 2022/07/15 11:46
      **/
     @PostMapping(value = "/create/e")
-    public WebResult createE(@RequestBody Map<String, Object> params) {
+    public WiddoResult createE(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, p -> orientdbJdbcService.createE(p), "label", "source", "target");
     }
 }

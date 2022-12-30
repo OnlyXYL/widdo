@@ -1,4 +1,4 @@
-package cn.widdo.assistant.base;
+package cn.widdo.autoconfigure.base;
 
 import cn.widdo.assistant.function.MapInterfaceFunction;
 import cn.widdo.assistant.result.IResultInterface;

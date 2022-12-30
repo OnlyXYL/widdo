@@ -1,6 +1,6 @@
 package cn.widdo.study.orientdb.service;
 
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.WiddoResult;
 
 import java.util.Map;
 
@@ -17,35 +17,32 @@ public interface OrientdbGremlinService {
      * 查询线.
      *
      * @param params
-     * @return void
-     * @throws
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className cn.widdo.study.orientdb.service.OrientdbGremlinService
      * @date 2022/07/15 9:53
      **/
-    WebResult queryE(Map<String, Object> params);
+    WiddoResult queryE(Map<String, Object> params);
 
     /**
      * 查询点.
      *
      * @param params
-     * @return cn.widdo.assistant.entity.result.JsonResult
-     * @throws
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className cn.widdo.study.orientdb.service.OrientdbGremlinService
      * @date 2022/07/15 10:15
      **/
-    WebResult queryV(Map<String, Object> params);
+    WiddoResult queryV(Map<String, Object> params);
 
     /**
      * 删除.
      *
      * @param
-     * @return cn.widdo.assistant.entity.result.JsonResult
-     * @throws
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className cn.widdo.study.orientdb.service.OrientdbGremlinService
      * @date 2022/09/14 16:46
      **/
-    WebResult delete();
+    WiddoResult delete();
 }
