@@ -1,10 +1,18 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
+import cn.widdo.assistant.result.IResultInterface;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
+import cn.widdo.autoconfigure.neo4j.reader.DefaultNeo4jReader;
+import cn.widdo.autoconfigure.neo4j.writer.DefaultNeo4jWriter;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
-import org.springframework.util.Assert;
+import cn.widdo.starter.neo4j.entity.result.ResultEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +30,9 @@ import java.util.Map;
  * @date 2022/10/18 11:44
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
-public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>, WiddoResult> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
 
     /**
      * Type constant of neo4j query cypher.
@@ -45,12 +55,20 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
     private final Neo4jPreRWHelper neo4jPreRWHelper;
 
     /**
+     * constructor has no param,at the same time, if you create instance by this constructor,
+     * it will throw exception typed {@link UnsupportedOperationException}.
+     */
+    protected DefaultNeo4jActuator() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * constructor has two params one called {@link WiddoNeo4jProperties},and another called {@link Neo4jPreRWHelper}.
      *
      * @param widdoNeo4jProperties {@link WiddoNeo4jProperties}
      * @param neo4jPreRWHelper     {@link Neo4jPreRWHelper}
      */
-    public DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Neo4jPreRWHelper neo4jPreRWHelper) {
+    private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Neo4jPreRWHelper neo4jPreRWHelper) {
         this.widdoNeo4jProperties = widdoNeo4jProperties;
         this.neo4jPreRWHelper = neo4jPreRWHelper;
     }
@@ -65,8 +83,18 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
         return this.writeIfHave(params);
     }
 
+    @Override
+    public WiddoResult wrapper(Result<List<Map<String, Value>>> result) {
+        if (ResultEnum.SUCCESS.equals(result.getStatus())) {
+            return WiddoResult.response(IResultInterface.Neo4jResultEnum.SUCCESS, result.getData());
+        } else {
+            LOG.error("[Widdo] |- AutoConfigure [Widdo Neo4j Actuator] Convert. [Result] |- error, [Message] |- {}.", result.getMsg());
+            return WiddoResult.response(IResultInterface.Neo4jResultEnum.FAIL, null);
+        }
+    }
+
     /**
-     * 实例化 neo4j reader.
+     * create reader instance to execute neo4j reader.
      * <p>
      * 根据配置文件中指定的reader实现类全路径，反射生成实例，并调用方法
      *
@@ -78,15 +106,21 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
      **/
     private Result<List<Map<String, Value>>> readIfHave(Map<String, Object> params) {
 
-        final String className = widdoNeo4jProperties.getReader().getClassName();
+        String className = widdoNeo4jProperties.getActuator().getReader().getClassName();
 
-        Assert.notNull(className, "[Widdo] |- AutoConfigure [Widdo Neo4j] Reader. [Message] |- The class of Neo4jReader must not be null.");
+        if (StringUtils.hasLength(className)) {
+            //check whether it`s legitimate.
+            ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+        } else {
+            //set the default classname.
+            className = DefaultNeo4jReader.class.getName();
+        }
 
         return reflectObject(className, CYPHER_QUERY, params);
     }
 
     /**
-     * 写数据.
+     *  create writer instance to execute neo4j writer.
      *
      * @param params params
      * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
@@ -94,9 +128,15 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
      * @date 2022/12/03 17:13:12
      **/
     private Result<List<Map<String, Value>>> writeIfHave(Map<String, Object> params) {
-        final String className = widdoNeo4jProperties.getWriter().getClassName();
+        String className = widdoNeo4jProperties.getActuator().getWriter().getClassName();
 
-        Assert.notNull(className, "[Widdo] |- AutoConfigure [Widdo Neo4j] Writer. [Message] |- The class of Neo4jWriter must not be null.");
+        if (!StringUtils.hasLength(className)) {
+            //check whether it`s legitimate
+            ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+        } else {
+            //set the default classname.
+            className = DefaultNeo4jWriter.class.getName();
+        }
 
         return reflectObject(className, CYPHER_WRITE, params);
     }
@@ -116,7 +156,9 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
             final Class<?> aClass = Class.forName(className);
 
             //反射，通过构造方法创建对象，需要Neo4jPreRWHelper实例.注意getConstructor方法只能获取public构造，protected和private需要getDeclaredConstructor方法
-            final Constructor<?> constructor = aClass.getConstructor(Neo4jPreRWHelper.class);
+            final Constructor<?> constructor = aClass.getDeclaredConstructor(Neo4jPreRWHelper.class);
+            //allow to access private constructor
+            constructor.setAccessible(true);
             final Object classObj = constructor.newInstance(neo4jPreRWHelper);
 
             final Method query = aClass.getMethod(cypherType, Map.class);

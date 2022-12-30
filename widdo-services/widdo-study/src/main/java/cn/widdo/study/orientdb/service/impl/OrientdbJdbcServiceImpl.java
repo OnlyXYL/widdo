@@ -1,6 +1,7 @@
 package cn.widdo.study.orientdb.service.impl;
 
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.IResultInterface;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
 import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import cn.widdo.study.orientdb.service.OrientdbJdbcService;
@@ -32,17 +33,17 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
     private ODatabasePool pool;
 
     @Override
-    public WebResult queryE(Map<String, Object> params) {
-        return WebResult.success();
+    public WiddoResult queryE(Map<String, Object> params) {
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 
     @Override
-    public WebResult queryV(Map<String, Object> params) {
-        return WebResult.success();
+    public WiddoResult queryV(Map<String, Object> params) {
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 
     @Override
-    public WebResult createV(Map<String, Object> params) {
+    public WiddoResult createV(Map<String, Object> params) {
 
         final String label = params.get("label").toString();
 
@@ -79,11 +80,11 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             }
         }
 
-        return WebResult.success();
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 
     @Override
-    public WebResult createE(Map<String, Object> params) {
+    public WiddoResult createE(Map<String, Object> params) {
 
         final String vLabel = params.get("vLabel").toString();
         final String eLabel = params.get("eLabel").toString();
@@ -120,11 +121,11 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             }
         }
 
-        return WebResult.success();
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 
     @Override
-    public WebResult delete() {
+    public WiddoResult delete() {
         try (ODatabaseSession session = pool.acquire()) {
             //执行删除
             //<p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);</p>
@@ -138,7 +139,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
             OrientdbUtils.close(deleteEdgeRs, null, null);
         }
 
-        return WebResult.success();
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 }
 

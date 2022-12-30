@@ -15,6 +15,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@ConditionalOnProperty(value = PropertyConstant.ITEM_NEO4j_RW, havingValue = "true")
-public @interface ConditionalOnNeo4jRw {
+@ConditionalOnProperty(value = PropertyConstant.ITEM_NEO4j_ACTUATOR_ENABLED, havingValue = "true")
+public @interface ConditionalOnNeo4jActuatorEnabled {
 }

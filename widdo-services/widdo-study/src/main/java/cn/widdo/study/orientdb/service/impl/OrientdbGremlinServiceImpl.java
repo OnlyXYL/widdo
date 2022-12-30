@@ -1,6 +1,7 @@
 package cn.widdo.study.orientdb.service.impl;
 
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.IResultInterface;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
 import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import cn.widdo.study.orientdb.service.OrientdbGremlinService;
@@ -40,7 +41,7 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
     }
 
     @Override
-    public WebResult queryE(Map<String, Object> params) {
+    public WiddoResult queryE(Map<String, Object> params) {
 
         final String outLabel = params.get("outLabel").toString();
 
@@ -84,11 +85,11 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
         OrientdbUtils.close(orientGraph);
 
-        return WebResult.success(objects);
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, objects);
     }
 
     @Override
-    public WebResult queryV(Map<String, Object> params) {
+    public WiddoResult queryV(Map<String, Object> params) {
 
         final String key = params.get("key").toString();
 
@@ -140,9 +141,8 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
     }
 
     @Override
-    public WebResult delete() {
-
-        return WebResult.success();
+    public WiddoResult delete() {
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
 }
 

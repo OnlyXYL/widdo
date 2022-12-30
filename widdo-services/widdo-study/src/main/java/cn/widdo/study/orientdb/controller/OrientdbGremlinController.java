@@ -1,7 +1,7 @@
 package cn.widdo.study.orientdb.controller;
 
 import cn.widdo.assistant.base.BaseController;
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
 import cn.widdo.study.orientdb.service.OrientdbGremlinService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -47,7 +47,7 @@ public class OrientdbGremlinController extends BaseController {
      * @date 2022/07/15 11:49
      **/
     @PostMapping(value = "/query/v")
-    public WebResult queryV(@RequestBody Map<String, Object> params) {
+    public WiddoResult queryV(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, p -> orientdbGremlinService.queryV(p), "key", "value", "label");
     }
 }

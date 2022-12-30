@@ -1,7 +1,7 @@
 package cn.widdo.study.neo4j.controller;
 
-import cn.widdo.assistant.base.BaseController;
-import cn.widdo.assistant.entity.result.WebResult;
+import cn.widdo.assistant.result.WiddoResult;
+import cn.widdo.autoconfigure.base.BaseController;
 import cn.widdo.study.neo4j.service.Neo4jJdbcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,6 @@ public class Neo4jController extends BaseController {
         LOG.info("[Widdo] |- Service [Widdo Study] Neo4jController.");
     }
 
-
     /**
      * service.
      */
@@ -42,8 +41,8 @@ public class Neo4jController extends BaseController {
     /**
      * 執行查詢.
      * <p>
-     * params.put("label")
-     * params.put("name")
+     * params.put("cypher")
+     * params.put("params")
      *
      * @param params
      * @return cn.widdo.assistant.entity.result.WebResult
@@ -52,8 +51,8 @@ public class Neo4jController extends BaseController {
      * @date 2022/07/15 1:01
      **/
     @PostMapping(value = "/query")
-    public WebResult query(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, (p) -> neo4jJdbcService.query(p), "label", "name");
+    public WiddoResult query(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, (p) -> neo4jJdbcService.query(p), "cypher", "params");
     }
 
     /**
@@ -65,7 +64,7 @@ public class Neo4jController extends BaseController {
      * @date 2022/12/02 21:22:04
      **/
     @PostMapping(value = "/write")
-    public WebResult write(@RequestBody Map<String, Object> params) {
+    public WiddoResult write(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, (p) -> neo4jJdbcService.write(p), "triples");
     }
 

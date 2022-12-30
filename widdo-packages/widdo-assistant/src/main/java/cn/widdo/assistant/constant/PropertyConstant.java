@@ -339,9 +339,9 @@ public class PropertyConstant {
     public static final String ITEM_NEO4j_ENABLED = PROPERTY_GRAPH_NEO4J + PROPERTY_ENABLED;
 
     /**
-     * widdo.management.graph.neo4j.rw.
+     * widdo.management.graph.neo4j.actuator.
      */
-    public static final String ITEM_NEO4j_RW = PROPERTY_GRAPH_NEO4J + ".rw";
+    public static final String ITEM_NEO4j_ACTUATOR_ENABLED = PROPERTY_GRAPH_NEO4J + ".actuator" + PROPERTY_ENABLED;
 
     /**
      * widdo.management.graph.orientdb.enabled.

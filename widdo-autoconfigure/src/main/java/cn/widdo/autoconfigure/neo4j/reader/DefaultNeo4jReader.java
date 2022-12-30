@@ -34,11 +34,19 @@ public class DefaultNeo4jReader extends ParamsValidator implements Neo4jReader<M
     private final Neo4jPreRWHelper neo4jPreRWHelper;
 
     /**
+     * constructor has no param,at the same time, if you create instance by this constructor,
+     * it will throw exception typed {@link UnsupportedOperationException}.
+     */
+    protected DefaultNeo4jReader() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * constructor has one param called {@link Neo4jPreRWHelper}.
      *
      * @param neo4jPreRWHelper neo4jPreRWHelper
      */
-    public DefaultNeo4jReader(final Neo4jPreRWHelper neo4jPreRWHelper) {
+    private DefaultNeo4jReader(final Neo4jPreRWHelper neo4jPreRWHelper) {
         this.neo4jPreRWHelper = neo4jPreRWHelper;
     }
 
