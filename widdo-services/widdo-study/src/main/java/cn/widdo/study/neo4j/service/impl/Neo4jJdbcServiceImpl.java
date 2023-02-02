@@ -62,7 +62,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
         map.put("cypherQL", cypher);
         map.put("map", params);
 
-        final Result write = neo4jActuator.write(map);
+        final Result<List<Map<String, Value>>> write = neo4jActuator.write(map);
 
         return WiddoResultInterface.NEO4j.ALL.wrapper(write);
     }

@@ -110,7 +110,11 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
 
         if (StringUtils.hasLength(className)) {
             //check whether it`s legitimate.
-            ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+            final boolean present = ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+
+            if (!present) {
+                className = DefaultNeo4jReader.class.getName();
+            }
         } else {
             //set the default classname.
             className = DefaultNeo4jReader.class.getName();
@@ -132,7 +136,10 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
 
         if (!StringUtils.hasLength(className)) {
             //check whether it`s legitimate
-            ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+            final boolean present = ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+            if (!present) {
+                className = DefaultNeo4jWriter.class.getName();
+            }
         } else {
             //set the default classname.
             className = DefaultNeo4jWriter.class.getName();

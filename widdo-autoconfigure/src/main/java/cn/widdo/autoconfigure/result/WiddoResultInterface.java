@@ -10,7 +10,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.*;
 
 /**
- * WiddoResultInterface.
+ * WiddoResultInterface, convert result to {@link WiddoResult}.
  *
  * @param <T>
  * @param <R>

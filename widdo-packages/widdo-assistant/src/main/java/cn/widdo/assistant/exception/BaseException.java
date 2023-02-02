@@ -45,7 +45,7 @@ public class BaseException extends RuntimeException {
      *
      * @param iResultInterface the result type of interface called {@link IResultInterface}
      */
-    public BaseException(final IResultInterface<?, ?, ?> iResultInterface) {
+    public BaseException(final IResultInterface iResultInterface) {
         this(iResultInterface.getCode(), iResultInterface.getMsg());
     }
 

@@ -3,14 +3,11 @@ package cn.widdo.assistant.result;
 /**
  * widdo result interface.
  *
- * @param <C>
- * @param <T>
- * @param <R>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/12/29 17:39
  */
-public interface IResultInterface<C extends Enum, T, R> {
+public interface IResultInterface {
 
     /**
      * return code of current result.
@@ -24,21 +21,11 @@ public interface IResultInterface<C extends Enum, T, R> {
     /**
      * return the message of current result.
      *
-     * @param
      * @return java.lang.String
-     * @throws
      * @author XYL
      * @date 2022/12/29 17:40:41
      **/
     String getMsg();
-
-    /**
-     * wrapper result.
-     *
-     * @param t
-     * @return R
-     */
-    R wrapper(T t);
 
     enum SysResultEnum implements IResultInterface {
         /**
@@ -86,13 +73,6 @@ public interface IResultInterface<C extends Enum, T, R> {
         public String getMsg() {
             return msg;
         }
-
-        @Override
-        public Object wrapper(Object o) {
-            return null;
-        }
-
-
     }
 
     enum StudyResultEnum implements IResultInterface {
@@ -137,13 +117,6 @@ public interface IResultInterface<C extends Enum, T, R> {
         public String getMsg() {
             return msg;
         }
-
-        @Override
-        public Object wrapper(Object o) {
-            return null;
-        }
-
-
     }
 
     enum LifeResultEnum implements IResultInterface {
@@ -171,8 +144,8 @@ public interface IResultInterface<C extends Enum, T, R> {
         /**
          * constructor has two params,one called code,another called msg.
          *
-         * @param code
-         * @param msg
+         * @param code code
+         * @param msg   msg
          */
         LifeResultEnum(final Integer code, final String msg) {
             this.code = code;
@@ -188,13 +161,6 @@ public interface IResultInterface<C extends Enum, T, R> {
         public String getMsg() {
             return msg;
         }
-
-        @Override
-        public Object wrapper(Object o) {
-            return null;
-        }
-
-
     }
 
     enum Neo4jResultEnum implements IResultInterface {
@@ -202,22 +168,12 @@ public interface IResultInterface<C extends Enum, T, R> {
         /**
          * the result typed enum of neo4jResult.
          */
-        SUCCESS(0, "成功") {
-            @Override
-            public Object wrapper(Object o) {
-                return null;
-            }
-        },
+        SUCCESS(0, "成功"),
 
         /**
          * the result typed enum of neo4jResult.
          */
-        FAIL(-1, "失败") {
-            @Override
-            public Object wrapper(Object o) {
-                return null;
-            }
-        };
+        FAIL(-1, "失败");
 
         /**
          * code.
@@ -232,8 +188,8 @@ public interface IResultInterface<C extends Enum, T, R> {
         /**
          * constructor has two params,one called code,another called msg.
          *
-         * @param code
-         * @param msg
+         * @param code  code
+         * @param msg   msg
          */
         Neo4jResultEnum(final Integer code, final String msg) {
             this.code = code;
