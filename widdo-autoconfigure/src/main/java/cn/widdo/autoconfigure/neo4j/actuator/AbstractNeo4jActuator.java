@@ -5,15 +5,14 @@ package cn.widdo.autoconfigure.neo4j.actuator;
  *
  * @param <R>
  * @param <T>
- * @param <O>
  * @author XYL
  * @version 263.1.1.0
  * @date 2022/12/03 18:59
  */
-public abstract class AbstractNeo4jActuator<T, R, O> implements Neo4jActuator<T, R, O> {
+public abstract class AbstractNeo4jActuator<T, R> implements Neo4jActuator<T, R> {
 
     /**
      * {@link Neo4jActuator}.
      */
-    protected Neo4jActuator<T, R, O> neo4jActuator;
+    protected Neo4jActuator<T, R> neo4jActuator;
 }

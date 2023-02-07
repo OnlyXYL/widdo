@@ -1,14 +1,11 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
-import cn.widdo.assistant.result.IResultInterface;
-import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
 import cn.widdo.autoconfigure.neo4j.reader.DefaultNeo4jReader;
 import cn.widdo.autoconfigure.neo4j.writer.DefaultNeo4jWriter;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
-import cn.widdo.starter.neo4j.entity.result.ResultEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -30,7 +27,7 @@ import java.util.Map;
  * @date 2022/10/18 11:44
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
-public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>, WiddoResult> {
+public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
 
@@ -81,16 +78,6 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
     @Override
     public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
         return this.writeIfHave(params);
-    }
-
-    @Override
-    public WiddoResult wrapper(Result<List<Map<String, Value>>> result) {
-        if (ResultEnum.SUCCESS.equals(result.getStatus())) {
-            return WiddoResult.response(IResultInterface.Neo4jResultEnum.SUCCESS, result.getData());
-        } else {
-            LOG.error("[Widdo] |- AutoConfigure [Widdo Neo4j Actuator] Convert. [Result] |- error, [Message] |- {}.", result.getMsg());
-            return WiddoResult.response(IResultInterface.Neo4jResultEnum.FAIL, null);
-        }
     }
 
     /**

@@ -1,0 +1,18 @@
+spring:
+  datasource:
+      dynamic:
+        p6spy: true
+        hikari:
+          connection-timeout: 30000
+          max-lifetime: 1800000
+          max-pool-size: 15
+          min-idle: 5
+          connection-test-query: select 1
+          #pool-name: QingfengHikariCP
+        primary: base
+        datasource:
+          base:
+            username: ${widdo.environment.database.mysql.username}
+            password: ${widdo.environment.database.mysql.password}
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://${widdo.environment.database.mysql.host}:${widdo.environment.database.mysql.port}/${widdo.environment.database.mysql.database}?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8&allowMultiQueries=true

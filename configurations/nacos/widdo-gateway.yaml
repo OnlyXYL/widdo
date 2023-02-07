@@ -1,0 +1,55 @@
+server:
+  port: 9900
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #Flag that enables DiscoveryClient gateway integration
+          enabled: false
+      enabled: true
+      #配置连接和相应超时时间，可全局配置，也可以配置在每个指定的 route 的 metadata中
+      httpclient:
+        #The connect timeout in millis, the default is 45s.
+        connect-timeout: 45000
+        #The response timeout.
+        response-timeout: 60s
+        forbid-request-uri: xxx
+      routes:
+        - id: widdo-study
+          uri: lb://widdo-study
+          predicates:
+            - Path=/study/**
+          metadata:
+            #是否匹配末尾斜杠，false 时，/red/ 匹配不到；true时，能匹配 /red/
+            matchTrailingSlash: false
+            #The connect timeout in millis, the default is 45s.
+            connect-timeout: 45000
+            #The response timeout.
+            response-timeout: 60s
+        - id: widdo-life
+          uri: lb://widdo-life
+          predicates:
+            - Path=/life/**
+          metadata:
+            #是否匹配末尾斜杠，false 时，/red/ 匹配不到；true时，能匹配 /red/
+            matchTrailingSlash: false
+            #The connect timeout in millis, the default is 45s.
+            connect-timeout: 45000
+            #The response timeout.
+            response-timeout: 60s
+      default-filters:
+        - StripPrefix=1
+#暴露端点，监控应用程序
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    gateway:
+      #default value
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
