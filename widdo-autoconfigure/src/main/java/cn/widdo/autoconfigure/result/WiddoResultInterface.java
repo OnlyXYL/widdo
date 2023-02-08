@@ -15,7 +15,7 @@ import java.util.*;
  * @param <T>
  * @param <R>
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/30 16:22
  */
 public interface WiddoResultInterface<T, R> {

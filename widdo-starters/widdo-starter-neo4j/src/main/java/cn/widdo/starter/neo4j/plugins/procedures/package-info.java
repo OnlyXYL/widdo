@@ -8,7 +8,7 @@
  * the variable called 'node' is member variable of the constructor of {@link cn.widdo.starter.neo4j.plugins.procedures.EntityResultPlugin.EntityContainer}
  *
  * @author XYL
- * @version 263.1.1.1
+ * @since 263.1.1.1
  * @date 2023/02/07 17:39:39
  **/
 package cn.widdo.starter.neo4j.plugins.procedures;

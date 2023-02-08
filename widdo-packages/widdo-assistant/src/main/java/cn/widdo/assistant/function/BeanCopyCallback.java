@@ -6,7 +6,7 @@ package cn.widdo.assistant.function;
  * @param <S>
  * @param <T>
  * @author XYL
- * @version 1.2
+ * @since 263.1.1.0
  * @date 2022/11/10 19:23
  */
 @FunctionalInterface

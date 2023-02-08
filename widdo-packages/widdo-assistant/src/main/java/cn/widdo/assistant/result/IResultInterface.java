@@ -4,7 +4,7 @@ package cn.widdo.assistant.result;
  * widdo result interface.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/29 17:39
  */
 public interface IResultInterface {

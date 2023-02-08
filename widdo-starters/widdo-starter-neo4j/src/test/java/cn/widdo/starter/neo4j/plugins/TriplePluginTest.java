@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * TriplePluginTest.
  *
  * @author XYL
- * @version 263.1.1.1
+ * @since 263.1.1.1
  * @date 2023/02/07 18:13
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

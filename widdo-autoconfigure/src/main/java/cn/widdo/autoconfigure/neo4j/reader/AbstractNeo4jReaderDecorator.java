@@ -10,7 +10,7 @@ import cn.widdo.starter.neo4j.validator.ParamsValidator;
  * @param <T>
  * @param <R>
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/14 17:51
  */
 public abstract class AbstractNeo4jReaderDecorator<T, R> extends ParamsValidator implements Neo4jReader<T, R> {

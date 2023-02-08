@@ -9,7 +9,7 @@ import java.util.Map;
  * Map 相关的工具类.
  *
  * @author XYL
- * @version 1.2
+ * @since 263.1.1.0
  * @date 2022/10/20 10:43
  */
 public class MapUtil {

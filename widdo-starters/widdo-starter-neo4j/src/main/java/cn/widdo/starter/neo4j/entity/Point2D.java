@@ -6,7 +6,7 @@ import java.io.Serializable;
  * neo4j原生接口封装-地理位置.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Point2D implements Serializable {

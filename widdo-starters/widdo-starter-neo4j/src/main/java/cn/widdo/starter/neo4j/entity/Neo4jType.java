@@ -4,7 +4,7 @@ package cn.widdo.starter.neo4j.entity;
  * Neo4jType.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Neo4jType {

@@ -10,7 +10,7 @@ import java.util.Map;
  * CustomNeo4jActuator.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/23 11:29
  */
 public class CustomNeo4jActuator extends AbstractNeo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {

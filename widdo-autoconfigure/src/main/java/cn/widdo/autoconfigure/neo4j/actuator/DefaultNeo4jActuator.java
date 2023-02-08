@@ -23,7 +23,7 @@ import java.util.Map;
  * 需要实例化，操作neo4j的 reader 和 writer
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 11:44
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")

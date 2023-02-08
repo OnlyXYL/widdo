@@ -8,7 +8,7 @@ import java.util.Map;
  * a custom BabelNetReader by extends {@link AbstractBabelNetReaderDecorator}.
  *
  * @author XYL`
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/09 11:42
  */
 public class CustomBabelNetReader extends AbstractBabelNetReaderDecorator<Map<String, Object>, Result<?>> {

@@ -11,7 +11,7 @@ import java.util.List;
  * 自定义异常.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/06/29 15:59
  */
 public class BaseException extends RuntimeException {

@@ -4,7 +4,7 @@ package cn.widdo.study.babelnet;
  * babelNet controller.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/11/30 19:02
  */
 public class BabelNetController {

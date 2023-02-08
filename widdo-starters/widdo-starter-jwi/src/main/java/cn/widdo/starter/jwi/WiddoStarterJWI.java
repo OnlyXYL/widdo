@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
  * JWI.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/11/29 11:22
  */
 @SuppressWarnings("AlibabaClassNamingShouldBeCamel")

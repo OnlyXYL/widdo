@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * 开启neo4j.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 1:08
  */
 @Target({ElementType.TYPE})

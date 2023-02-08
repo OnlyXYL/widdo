@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
  * 启动类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 16:49
  */
 @SpringBootApplication

@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * neo4j 自动配置类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/14 14:57
  */
 @WiddoNeo4j

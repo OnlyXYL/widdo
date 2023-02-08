@@ -6,7 +6,7 @@ package cn.widdo.autoconfigure.neo4j.actuator;
  * @param <T> params of method
  * @param <R> output of neo4j
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 11:37
  */
 public interface Neo4jActuator<T, R> {
