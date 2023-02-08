@@ -4,7 +4,7 @@
 
 [![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
 
-[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.1.x/f8bf0bf)]()
+[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.2.x/f8bf0bf)]()
 
 [![](https://img.shields.io/github/v/release/OnlyXYl/widdo?display_name=tag&include_prereleases)]()
 
