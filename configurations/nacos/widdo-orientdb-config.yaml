@@ -1,0 +1,10 @@
+widdo:
+  management:
+    graph:
+      orientdb:
+        enabled: false
+        database: ${widdo.environment.database.orientdb.database}
+        uri: ${widdo.environment.database.orientdb.uri}
+        url: ${widdo.environment.database.orientdb.url}
+        username: ${widdo.environment.database.orientdb.username}
+        password: ${widdo.environment.database.orientdb.password}

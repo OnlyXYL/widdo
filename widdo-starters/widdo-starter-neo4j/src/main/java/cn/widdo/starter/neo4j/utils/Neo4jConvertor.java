@@ -10,7 +10,7 @@ import org.neo4j.driver.types.Relationship;
  * neo4j原生结果类型转换.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 15:09
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")

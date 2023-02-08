@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
  * babelNet.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/11/30 14:22
  */
 public class WiddoStarterBabelNet {

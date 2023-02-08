@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * redis锁工具类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/07/05 17:37
  */
 public class LockerUtils {

@@ -9,7 +9,7 @@ import java.util.List;
  * neo4j原生接口封装-路径.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Path implements Serializable {

@@ -1,0 +1,16 @@
+server:
+  port: 9902
+
+#暴露端点，监控应用程序
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    gateway:
+      #default value
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info

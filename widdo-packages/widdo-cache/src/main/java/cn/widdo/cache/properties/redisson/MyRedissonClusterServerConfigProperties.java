@@ -8,7 +8,7 @@ import java.util.List;
  * 集群配置参数.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/07/05 17:37
  */
 @Data

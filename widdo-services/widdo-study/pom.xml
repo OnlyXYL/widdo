@@ -5,12 +5,12 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.1.0</version>
+        <version>263.1.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-study</artifactId>
-    <version>263.1.1.0</version>
+    <version>263.1.2.0</version>
     <dependencies>
 
         <!--自动配置包-->
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-starter-neo4j</artifactId>
-            <version>263.1.1.0</version>
+            <version>263.1.2.0</version>
         </dependency>
 
         <!--orientdb starter-->

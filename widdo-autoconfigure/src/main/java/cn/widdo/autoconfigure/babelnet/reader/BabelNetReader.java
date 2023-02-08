@@ -6,7 +6,7 @@ package cn.widdo.autoconfigure.babelnet.reader;
  * @param <T>
  * @param <R>
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/02 18:49
  */
 public interface BabelNetReader<T, R> {

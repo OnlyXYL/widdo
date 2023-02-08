@@ -5,7 +5,7 @@
     <parent>
         <artifactId>widdo-starters</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.1.0</version>
+        <version>263.1.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,9 +16,27 @@
             <groupId>org.neo4j.driver</groupId>
             <artifactId>neo4j-java-driver</artifactId>
         </dependency>
+        <!--Add a dependency section that includes the procedure and function APIs, which procedures and functions use at runtime.-->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <!--Add dependencies that are necessary for testing the procedure.-->
+        <dependency>
+            <groupId>org.neo4j.test</groupId>
+            <artifactId>neo4j-harness</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>

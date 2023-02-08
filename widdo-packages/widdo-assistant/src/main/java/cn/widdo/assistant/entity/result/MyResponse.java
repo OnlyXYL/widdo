@@ -6,7 +6,7 @@ import java.util.HashMap;
  * widdo相应结果.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @since 2021/4/20 0020 17:28
  */
 public class MyResponse extends HashMap<String, Object> {

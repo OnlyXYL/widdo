@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
  * 回调controller.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/07/07 18:08
  */
 @RequestMapping(value = "/gateway")

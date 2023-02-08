@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
  * BabelNet 自动配置类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/02 18:39
  */
 @WiddoBabelNet

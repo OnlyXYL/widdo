@@ -223,6 +223,7 @@
         <module name="VisibilityModifier">
             <!--设置抽象类允许成员变量为protected-->
             <property name="protectedAllowed" value="true"/>
+            <property name="ignoreAnnotationCanonicalNames" value="cn.widdo.starter.neo4j.annotation.IgnoreNeo4jVisibility"/>
         </module>
 
         <!-- Miscellaneous other checks.                   -->

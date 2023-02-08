@@ -27,7 +27,7 @@ import java.util.*;
  * neo4j util.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 10:07
  */
 public class Neo4jUtil {
@@ -101,27 +101,69 @@ public class Neo4jUtil {
                     value.setKeys(Lists.newArrayList(valueOrigin.keys()));
                     //设置path
                     switch (typeName) {
-                        case Neo4jType.NODE -> setValue(value, Neo4jType.NODE, Neo4jConvertor.build().convertNeo4jNodeToNode(valueOrigin.asNode()));
-                        case Neo4jType.RELATIONSHIP -> setValue(value, Neo4jType.RELATIONSHIP, Neo4jConvertor.build().convertNeo4jRelationshipToRelationship(valueOrigin.asRelationship()));
-                        case Neo4jType.PATH -> pathResult(valueOrigin, convertor, value);
-                        case Neo4jType.LISTOFANY -> listResult(valueOrigin, convertor, value);
-                        case Neo4jType.POINT -> pointResult(valueOrigin, convertor, value);
-                        case Neo4jType.BYTEARRAY -> setValue(value, Neo4jType.BYTEARRAY, valueOrigin.asByteArray());
-                        case Neo4jType.MAP -> setValue(value, Neo4jType.MAP, valueOrigin.asMap());
-                        case Neo4jType.LIST -> setValue(value, Neo4jType.LIST, valueOrigin.asList());
-                        case Neo4jType.ISODURATION -> setValue(value, Neo4jType.ISODURATION, convertor.convertNeo4jDurationToDuration(valueOrigin.asIsoDuration()));
-                        case Neo4jType.DOUBLE -> setValue(value, Neo4jType.DOUBLE, valueOrigin.asDouble());
-                        case Neo4jType.FLOAT -> setValue(value, Neo4jType.FLOAT, valueOrigin.asFloat());
-                        case Neo4jType.INTEGER -> setValue(value, Neo4jType.INTEGER, valueOrigin.asInt());
-                        case Neo4jType.BOOLEAN -> setValue(value, Neo4jType.BOOLEAN, valueOrigin.asBoolean());
-                        case Neo4jType.LONG -> setValue(value, Neo4jType.LONG, valueOrigin.asLong());
-                        case Neo4jType.NUMBER -> setValue(value, Neo4jType.NUMBER, valueOrigin.asNumber());
-                        case Neo4jType.LOCALDATE -> setValue(value, Neo4jType.LOCALDATE, valueOrigin.asLocalDate());
-                        case Neo4jType.LOCALTIME -> setValue(value, Neo4jType.LOCALTIME, valueOrigin.asLocalTime());
-                        case Neo4jType.LOCALDATETIME -> setValue(value, Neo4jType.LOCALDATETIME, valueOrigin.asLocalDateTime());
-                        case Neo4jType.OFFSETTIME -> setValue(value, Neo4jType.OFFSETTIME, valueOrigin.asOffsetTime());
-                        case Neo4jType.OFFSETDATETIME -> setValue(value, Neo4jType.OFFSETDATETIME, valueOrigin.asOffsetDateTime());
-                        default -> setValue(value, Neo4jType.STRING, resultL.get(key).toString());
+                        case Neo4jType.NODE:
+                            setValue(value, Neo4jType.NODE, Neo4jConvertor.build().convertNeo4jNodeToNode(valueOrigin.asNode()));
+                            break;
+                        case Neo4jType.RELATIONSHIP:
+                            setValue(value, Neo4jType.RELATIONSHIP, Neo4jConvertor.build().convertNeo4jRelationshipToRelationship(valueOrigin.asRelationship()));
+                            break;
+                        case Neo4jType.PATH:
+                            pathResult(valueOrigin, convertor, value);
+                            break;
+                        case Neo4jType.LISTOFANY:
+                            listResult(valueOrigin, convertor, value);
+                            break;
+                        case Neo4jType.POINT:
+                            pointResult(valueOrigin, convertor, value);
+                            break;
+                        case Neo4jType.BYTEARRAY:
+                            setValue(value, Neo4jType.BYTEARRAY, valueOrigin.asByteArray());
+                            break;
+                        case Neo4jType.MAP:
+                            setValue(value, Neo4jType.MAP, valueOrigin.asMap());
+                            break;
+                        case Neo4jType.LIST:
+                            setValue(value, Neo4jType.LIST, valueOrigin.asList());
+                            break;
+                        case Neo4jType.ISODURATION:
+                            setValue(value, Neo4jType.ISODURATION, convertor.convertNeo4jDurationToDuration(valueOrigin.asIsoDuration()));
+                            break;
+                        case Neo4jType.DOUBLE:
+                            setValue(value, Neo4jType.DOUBLE, valueOrigin.asDouble());
+                            break;
+                        case Neo4jType.FLOAT:
+                            setValue(value, Neo4jType.FLOAT, valueOrigin.asFloat());
+                            break;
+                        case Neo4jType.INTEGER:
+                            setValue(value, Neo4jType.INTEGER, valueOrigin.asInt());
+                            break;
+                        case Neo4jType.BOOLEAN:
+                            setValue(value, Neo4jType.BOOLEAN, valueOrigin.asBoolean());
+                            break;
+                        case Neo4jType.LONG:
+                            setValue(value, Neo4jType.LONG, valueOrigin.asLong());
+                            break;
+                        case Neo4jType.NUMBER:
+                            setValue(value, Neo4jType.NUMBER, valueOrigin.asNumber());
+                            break;
+                        case Neo4jType.LOCALDATE:
+                            setValue(value, Neo4jType.LOCALDATE, valueOrigin.asLocalDate());
+                            break;
+                        case Neo4jType.LOCALTIME:
+                            setValue(value, Neo4jType.LOCALTIME, valueOrigin.asLocalTime());
+                            break;
+                        case Neo4jType.LOCALDATETIME:
+                            setValue(value, Neo4jType.LOCALDATETIME, valueOrigin.asLocalDateTime());
+                            break;
+                        case Neo4jType.OFFSETTIME:
+                            setValue(value, Neo4jType.OFFSETTIME, valueOrigin.asOffsetTime());
+                            break;
+                        case Neo4jType.OFFSETDATETIME:
+                            setValue(value, Neo4jType.OFFSETDATETIME, valueOrigin.asOffsetDateTime());
+                            break;
+                        default:
+                            setValue(value, Neo4jType.STRING, resultL.get(key).toString());
+                            break;
                     }
                     map1.put(key, value);
                 } catch (Exception e) {

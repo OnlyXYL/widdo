@@ -8,7 +8,7 @@ import java.util.Map;
  * map 类型参数处理的函数式接口.
  *
  * @author XYL
- * @version 1.2
+ * @since 263.1.1.0
  * @date 2022/10/20 10:37
  */
 @FunctionalInterface

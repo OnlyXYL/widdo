@@ -14,7 +14,7 @@
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-dependencies</artifactId>
-    <version>263.1.1.0</version>
+    <version>263.1.2.0</version>
     <packaging>pom</packaging>
 
     <name>widdo-dependencies</name>
@@ -63,16 +63,18 @@
         <redisson.version>3.15.3</redisson.version>
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+        <assertj.version>3.22.0</assertj.version>
 
         <!--图数据库相关工具依赖包-->
         <neo4j-java-driver.version>4.1.1</neo4j-java-driver.version>
+        <neo4j.version>4.1.1</neo4j.version>
         <orientdb-jdbc.version>3.0.29</orientdb-jdbc.version>
         <orientdb-gremlin.version>3.0.29</orientdb-gremlin.version>
 
         <!--系统信息-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>14</java.version>
+        <java.version>11</java.version>
         <resource.delimiter>@</resource.delimiter>
 
         <!--wordnet相关-->
@@ -232,6 +234,12 @@
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus-generator.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
 
 
             <!--图数据库工具-->
@@ -240,6 +248,19 @@
                 <groupId>org.neo4j.driver</groupId>
                 <artifactId>neo4j-java-driver</artifactId>
                 <version>${neo4j-java-driver.version}</version>
+            </dependency>
+            <!--Add a dependency section that includes the procedure and function APIs, which procedures and functions use at runtime.-->
+            <dependency>
+                <groupId>org.neo4j</groupId>
+                <artifactId>neo4j</artifactId>
+                <version>${neo4j.version}</version>
+            </dependency>
+            <!--Add dependencies that are necessary for testing the procedure.-->
+            <dependency>
+                <groupId>org.neo4j.test</groupId>
+                <artifactId>neo4j-harness</artifactId>
+                <version>${neo4j.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.orientechnologies</groupId>

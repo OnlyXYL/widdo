@@ -33,7 +33,7 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*
  * 用来控制资源请求要不要经过网关
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/06/10 14:42
  */
 @Slf4j

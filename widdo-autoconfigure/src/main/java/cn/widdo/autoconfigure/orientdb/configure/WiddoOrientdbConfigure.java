@@ -23,7 +23,7 @@ import javax.annotation.PostConstruct;
  * widdo orientdb configure.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/14 15:23
  */
 @ConditionalOnOrientdbEnabled

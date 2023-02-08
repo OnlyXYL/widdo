@@ -17,7 +17,7 @@ import java.util.Map;
  * neo4j jdbc service 实现类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/07/15 0:02
  */
 @Service
@@ -28,7 +28,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
      * 使用构造方法注入，如果只有一个构造方法，那么 @Autowired注解可以省略；如果有多个构造方法，
      * 需要添加@Autowired注解来明确指定到底使用哪个构造方法
      */
-    private Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>, WiddoResult> neo4jActuator;
+    private Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> neo4jActuator;
 
     @Autowired
     public Neo4jJdbcServiceImpl(final Neo4jActuator neo4jActuator) {
@@ -62,7 +62,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
         map.put("cypherQL", cypher);
         map.put("map", params);
 
-        final Result write = neo4jActuator.write(map);
+        final Result<List<Map<String, Value>>> write = neo4jActuator.write(map);
 
         return WiddoResultInterface.NEO4j.ALL.wrapper(write);
     }

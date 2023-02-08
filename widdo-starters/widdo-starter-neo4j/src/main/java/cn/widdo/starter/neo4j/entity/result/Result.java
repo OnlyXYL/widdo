@@ -5,7 +5,7 @@ package cn.widdo.starter.neo4j.entity.result;
  *
  * @param <T> 泛型
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/08/15 15:09
  */
 public class Result<T> {

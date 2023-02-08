@@ -8,7 +8,7 @@ import java.util.Map;
  * CustomNeo4jWriter.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/06 11:45
  */
 public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<?>> {

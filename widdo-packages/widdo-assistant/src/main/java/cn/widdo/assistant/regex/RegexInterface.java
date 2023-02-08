@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  * 正则接口. 使用接口对枚举进行分类.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/11/30 1:16
  */
 public interface RegexInterface {

@@ -1,0 +1,31 @@
+spring:
+  redis:
+    database: ${widdo.environment.database.redis.database}
+    host: ${widdo.environment.database.redis.host}
+    port: ${widdo.environment.database.redis.port}
+    password: ${widdo.environment.database.redis.password}
+    lettuce:
+      pool:
+        min-idle: 8
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+    timeout: 5000
+    redisson:
+      config:
+        #基于redis的分布式锁模式, 单机：single,集群：cluster
+        mode: single
+        #单机配置
+        single-server-config:
+          password: Bmzt2016_redis
+          address: redis://${widdo.environment.database.redis.host}:${widdo.environment.database.redis.port}
+          database: ${widdo.environment.database.redis.database}
+        #集群配置
+        cluster-server-config:
+          node-addresses:
+            - 10.0.46.130:7001
+            - 10.0.46.130:7002
+          scanInterval: 5000
+        threads: 16
+        nettyThreads: 32
+        transportMode: NIO

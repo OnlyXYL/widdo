@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * 基于redis的分布式锁实现.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/06/22 11:20
  */
 public class RedissonLocker implements Locker {

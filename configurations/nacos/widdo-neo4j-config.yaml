@@ -1,0 +1,22 @@
+widdo:
+  management:
+    graph:
+      neo4j:
+        #开启neo4j
+        enabled: true
+        host:
+          url: ${widdo.environment.database.neo4j.url}
+          username: ${widdo.environment.database.neo4j.user-name}
+          password: ${widdo.environment.database.neo4j.password}
+        #neo4j执行器
+        actuator:
+          #开启读写
+          enabled: true
+          #执行器实现类
+          class-name: cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator
+          #neo4j reader
+          reader:
+            class-name: cn.widdo.autoconfigure.neo4j.reader.DefaultNeo4jReader
+          #neo4j writer
+          writer:
+            class-name: cn.widdo.autoconfigure.neo4j.writer.DefaultNeo4jWriter

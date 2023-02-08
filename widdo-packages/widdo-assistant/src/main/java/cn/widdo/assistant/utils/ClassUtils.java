@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
  * ClassUtils.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/30 14:40
  */
 public class ClassUtils {

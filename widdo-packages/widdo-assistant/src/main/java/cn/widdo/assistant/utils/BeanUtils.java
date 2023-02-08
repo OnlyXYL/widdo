@@ -11,7 +11,7 @@ import java.util.function.Supplier;
  * bean 工具类.
  *
  * @author XYL
- * @version 1.2
+ * @since 263.1.1.0
  * @date 2022/11/10 18:47
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils {

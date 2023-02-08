@@ -22,7 +22,7 @@ import java.lang.reflect.InvocationTargetException;
  * neo4j read writer actuator.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 0:50
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")

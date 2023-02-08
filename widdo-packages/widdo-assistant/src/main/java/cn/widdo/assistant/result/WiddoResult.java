@@ -6,7 +6,7 @@ import java.util.HashMap;
  * widdo result wrapper.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/29 17:47
  */
 public class WiddoResult extends HashMap<String, Object> {

@@ -5,12 +5,11 @@ package cn.widdo.autoconfigure.neo4j.actuator;
  *
  * @param <T> params of method
  * @param <R> output of neo4j
- * @param <O> output of method
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/10/18 11:37
  */
-public interface Neo4jActuator<T, R, O> {
+public interface Neo4jActuator<T, R> {
 
     /**
      * neo4j 执行器 读方法.
@@ -33,14 +32,4 @@ public interface Neo4jActuator<T, R, O> {
      * @date 2022/10/19 0:29
      **/
     R write(T params);
-
-    /**
-     * wrapper result.
-     *
-     * @param r the result of neo4j
-     * @return O    the result of web
-     * @author XYL
-     * @date 2022/12/30 01:36:52
-     **/
-    O wrapper(R r);
 }

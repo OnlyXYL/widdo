@@ -1,0 +1,30 @@
+widdo:
+  #widdo公共配置，凡是IP，端口，用户名，密码，数据库的配置，都在此处
+  environment:
+    #数据库相关配置
+    database:
+      #redis相关配置
+      redis:
+        database: 6
+        host: localhost
+        port: 6379
+        password: password
+      #mysql相关配置
+      mysql:
+        host:
+        port:
+        database:
+        username:
+        password:
+      #neo4j相关配置
+      neo4j:
+        url: bolt://localhost:7687
+        username: neo4j
+        password: widdo_neo4j
+      #orientdb相关配置
+      orientdb:
+        uri: remote:localhost:2424
+        url: remote:localhost/orientdb
+        database: orientdb
+        username: root
+        password: password

@@ -10,12 +10,12 @@ import org.springframework.util.ObjectUtils;
 import java.util.*;
 
 /**
- * WiddoResultInterface.
+ * WiddoResultInterface, convert result to {@link WiddoResult}.
  *
  * @param <T>
  * @param <R>
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/12/30 16:22
  */
 public interface WiddoResultInterface<T, R> {
@@ -222,11 +222,20 @@ public interface WiddoResultInterface<T, R> {
                         listData.forEach(p -> p.forEach((k, v) -> {
                             final String type = v.getType();
                             switch (type) {
-                                case Neo4jType.PATH -> setPath(v, nodeList, relationShipList);
-                                case Neo4jType.NODE -> setNode(v, nodeList);
-                                case Neo4jType.RELATIONSHIP -> setRelationship(v, relationShipList);
-                                case Neo4jType.LISTOFANY -> setList(v, list);
-                                default -> throw new UnsupportedOperationException();
+                                case Neo4jType.PATH:
+                                    setPath(v, nodeList, relationShipList);
+                                    break;
+                                case Neo4jType.NODE:
+                                    setNode(v, nodeList);
+                                    break;
+                                case Neo4jType.RELATIONSHIP:
+                                    setRelationship(v, relationShipList);
+                                    break;
+                                case Neo4jType.LISTOFANY:
+                                    setList(v, list);
+                                    break;
+                                default:
+                                    throw new UnsupportedOperationException();
                             }
                         }));
                     }

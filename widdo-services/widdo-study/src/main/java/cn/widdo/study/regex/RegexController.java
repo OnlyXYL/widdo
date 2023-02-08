@@ -6,7 +6,7 @@ import cn.widdo.assistant.regex.RegexInterface;
  * regex controller.
  *
  * @author XYL
- * @version 263.1.1.0
+ * @since 263.1.1.0
  * @date 2022/11/29 17:46
  */
 public class RegexController {
