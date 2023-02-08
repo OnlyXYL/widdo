@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  *
  * @author XYL
  * @date 2023/02/07 18:09
- * @since 263.1.1.1
+ * @since 263.1.2.0
  */
 public class TriplePlugin {
 
