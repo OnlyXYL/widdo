@@ -56,7 +56,6 @@ public class Neo4jController extends BaseController {
      **/
     @PostMapping(value = "/query")
     public WiddoResult query(@RequestBody Map<String, Object> params) {
-//        return this.validateAndRun(params, (p) -> neo4jJdbcService.query(p), "cypher", "params");
         return this.validateAndRun(params, neo4jJdbcService::query, "cypher", "params");
     }
 

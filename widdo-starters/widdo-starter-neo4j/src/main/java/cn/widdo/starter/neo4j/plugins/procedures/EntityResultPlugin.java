@@ -13,8 +13,8 @@ import java.util.stream.Stream;
  * entity result plugin.
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 15:10
+ * @since 263.1.2.0
  */
 public class EntityResultPlugin {
 

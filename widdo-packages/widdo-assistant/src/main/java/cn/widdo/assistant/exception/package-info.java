@@ -4,5 +4,6 @@
  *
  * @author XYL
  * @date 2022/11/17 0:38
+ * @since 263.1.1.0
  **/
 package cn.widdo.assistant.exception;
