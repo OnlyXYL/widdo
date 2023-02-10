@@ -13,8 +13,8 @@ import java.util.stream.Stream;
  * TriplePlugin.
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 18:09
+ * @since 263.1.2.0
  */
 public class TriplePlugin {
 
@@ -48,6 +48,90 @@ public class TriplePlugin {
 
     /**
      * procedure named countNode.
+     * <p>
+     * usage:
+     * call widdo.triple.write({
+     * triples:[
+     * {
+     * start:{
+     * labels:["Person"],
+     * match:{
+     * name:"張三"
+     * },
+     * onCreate:{
+     * name:"張三",
+     * age:18
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * },
+     * relation:{
+     * relType:"STUDY",
+     * match:{
+     * name:"學習"
+     * },
+     * onCreate:{
+     * name:"學習"
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * },
+     * end:{
+     * labels:["Course"],
+     * match:{
+     * name:"歷史"
+     * },
+     * onCreate:{
+     * name:"歷史"
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * }
+     * },
+     * {
+     * start:{
+     * labels:["Person"],
+     * match:{
+     * name:"李四"
+     * },
+     * onCreate:{
+     * name:"李四",
+     * age:20
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * },
+     * relation:{
+     * relType:"STUDY",
+     * match:{
+     * name:"學習"
+     * },
+     * onCreate:{
+     * name:"學習"
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * },
+     * end:{
+     * labels:["Course"],
+     * match:{
+     * name:"生物"
+     * },
+     * onCreate:{
+     * name:"生物"
+     * },
+     * onMatch:{
+     * <p>
+     * }
+     * }
+     * }
+     * ]
+     * }) yield relIds
      *
      * @param triples triples
      * @return the count of node

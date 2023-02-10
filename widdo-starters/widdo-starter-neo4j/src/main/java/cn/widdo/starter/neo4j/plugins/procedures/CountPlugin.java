@@ -12,8 +12,8 @@ import java.util.stream.Stream;
  * Count plugin.
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 16:05
+ * @since 263.1.2.0
  */
 public class CountPlugin {
 
