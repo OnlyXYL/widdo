@@ -1,0 +1,74 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: widdo_env
+        group: DEFAULT_GROUP
+        enabled: true
+      config:
+        server-addr: localhost:8848
+        namespace: widdo_env
+        group: DEFAULT_GROUP
+        prefix: widdo-study
+        file-extension: yaml
+        enabled: true
+        extension-configs:
+          - data-id: widdo-ip-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: widdo-neo4j-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: widdo-orientdb-config.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+#          - data-id: widdo-redis-config.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
+      username: nacos
+      password: nacos
+    stream:
+      bindings:
+        process-in-0:
+          destination:
+          binder: rabbit
+        process-out-0:
+          destination:
+          binder: rabbit
+
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+
+
+      input-bindings:
+
+      output-bindings:
+
+
+#项目启动时，用来关闭自动配置的日志输出。如果存在logback.xml时，以logback.xml中的配置为准；反之，以此处的配置为准
+logging:
+  level:
+    root: info
+    com:
+      alibaba:
+        cloud:
+          nacos:
+            client:
+              NacosPropertySourceBuilder: info
+    org:
+      springframework:
+        web:
+          servlet:
+            mvc:
+              method:
+                annotation:
+                  #控制日志输出接口信息，从springboot2.1开始，这些日志的打印级别从INFO变为TRACE，因此想要打印接口信息，需要添加此配置，并设置日志级别为TRACE
+                  RequestMappingHandlerMapping: trace
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
