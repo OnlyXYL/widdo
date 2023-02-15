@@ -1,51 +1,28 @@
-#!/bin/bash
-
-# Java ENV（此处需要修改，需要预先安装JDK）,如果已经配置过环境变量，则此处可以省略
-#export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-5.b12.el7_4.x86_64
-#export JRE_HOME=${JAVA_HOME}/jre
-
+#! /bin/sh
+# 端口号
 # Apps Info
 # 应用存放地址（此处需要修改）
-APP_HOME=/usr/local/software/git_work/widdo/configurations/docker/context/target
-# 应用名称
-APP_NAME=$1
-# widdo日志文件名
-#WIDDO_LOG_FILE_NAME=/tmp/widdo-*
+WIDDO_JAR_PATH=/usr/local/software/git_work/widdo/configurations/docker/context/target
+
+# 版本信息
+WIDDO_VERSION=$1
 
 #widdo 日志
-WIDDO_LOG_FILE_NAME=/usr/local/software/git_work/widdo/log
+WIDDO_LOG_PATH=/usr/local/software/git_work/widdo/log
 
-#获取当前时间
-TIME=`date +"%Y%m%d%H%M%S"`
+#jar包数组
+JARS=(widdo-cloud-gateway-${WIDDO_VERSION}.jar widdo-study-${WIDDO_VERSION}.jar widdo-life-${WIDDO_VERSION}.jar)
 
-
-# Shell Info
-
-# 使用说明，用来提示输入参数
-usage() {
-    echo "Usage: sh boot [APP_NAME] [build|start|stop|restart|status]"
-    exit 1
-}
-
-# 检查程序是否在运行
-is_exist(){
-        # 获取PID
-        PID=$(ps -ef |grep ${APP_NAME} | grep -v $0 |grep -v grep |awk '{print $2}')
-        # -z "${pid}"判断pid是否存在，如果不存在返回1，存在返回0
-        if [ -z "${PID}" ]; then
-                # 如果进程不存在返回1
-                return 1
-        else
-                # 进程存在返回0
-                return 0
-        fi
-}
+# 模块 用于启动命令时单个启动，可以不用版本及后缀。
+MODULES=(widdo-cloud-gateway widdo-study widdo-life)
+# 模块名称 可以写中文也可以
+MODULE_NAMES=(widdo-cloud-gateway widdo-study widdo-life)
 
 #先删除原来的临时文件
 delete(){
        #先删除原来的临时文件
        echo "【WIDDO】开始删除widdo的日志文件..."
-       rm -rf ${WIDDO_LOG_FILE_NAME}
+       rm -rf ${WIDDO_LOG_PATH}
        echo " "
        echo "widdo delete log success"
        echo " "
@@ -55,7 +32,7 @@ delete(){
 # 打包函数会删除指定目录中已存在的jar包，然后把新的jar包复制进去
 build(){
         #先删除原来的临时文件
-        delete  
+        delete
 #        mvn clean install -DSkipTests | tee ${MAVEN_BUILD_LOG_FILE_NAME}${TIME}
         mvn clean install -DSkipTests
 
@@ -66,66 +43,108 @@ build(){
         fi
 }
 
-# 定义启动程序函数
-start(){
-        is_exist
-	if [ $? -eq "0" ]; then
-                echo "${APP_NAME} is already running, PID=${PID}"
-        else
-                #nohup ${JRE_HOME}/bin/java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
-                #nohup java -jar ${APP_HOME}/${APP_NAME} >/tmp/${APP_NAME}.log 2>&1 &
-                nohup java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
-	        PID=$(echo $!)
-                echo "${APP_NAME} start success, PID=$!"
-        fi
+start() {
+
+  echo  "-------- widdo start running --------"
+
+  local MODULE=
+  local MODULE_NAME=
+  local JAR_NAME=
+  local command="$1"
+  local commandOk=0
+  local count=0
+  local okCount=0
+  for((i=0;i<${#MODULES[@]};i++))
+  do
+    MODULE=${MODULES[$i]}
+    MODULE_NAME=${MODULE_NAMES[$i]}
+    JAR_NAME=${JARS[$i]}
+    if [ "$command" == "all" ] || [ "$command" == "$MODULE" ];then
+      commandOk=1
+      count=0
+      PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+      if [ -n "$PID" ];then
+        echo "$MODULE---$MODULE_NAME:已经运行,PID=$PID"
+      else
+        nohup java -Xms256m -Xmx512m -jar $WIDDO_JAR_PATH/$JAR_NAME >> /dev/null 2>&1 &
+        PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+        while [ -z "$PID" ]
+        do
+          if (($count == 30));then
+            echo "$MODULE---$MODULE_NAME:$(expr $count \* 10)秒内未启动,请检查!"
+            break
+          fi
+          count=$(($count+1))
+          echo "$MODULE_NAME启动中.................."
+          sleep 5s
+          PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+        done
+        okCount=$(($okCount+1))
+        echo "$MODULE---$MODULE_NAME:已经启动成功,PID=$PID"
+      fi
+    fi
+  done
+  if(($commandOk == 0));then
+    echo "第二个参数输入错误"
+  else
+    echo "............本次共启动:$okCount个服务..........."
+  fi
 }
 
-# 停止进程函数
-stop(){
-        is_exist
-        if [ $? -eq "0" ]; then
-                kill -9 ${PID}
-		delete
-                echo "${APP_NAME} process stop, PID=${PID}"
-        else
-                echo "There is not the process of ${APP_NAME}"
-        fi
-}
-# 重启进程函数
-restart(){
-        stop
-        start
+stop() {
+  local MODULE=
+  local MODULE_NAME=
+  local JAR_NAME=
+  local command="$1"
+  local commandOk=0
+  local okCount=0
+  for((i=0;i<${#MODULES[@]};i++))
+  do
+    MODULE=${MODULES[$i]}
+    MODULE_NAME=${MODULE_NAMES[$i]}
+    JAR_NAME=${JARS[$i]}
+    if [ "$command" = "all" ] || [ "$command" = "$MODULE" ];then
+      commandOk=1
+      PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+      if [ -n "$PID" ];then
+        echo "$MODULE---$MODULE_NAME:准备结束,PID=$PID"
+        kill -9 $PID
+	rm -rf "$WIDDO_LOG_PATH/$MODULE_NAME"
+	PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+        while [ -n "$PID" ]
+        do
+          sleep 3s
+          PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+        done
+        echo "$MODULE---$MODULE_NAME:成功结束"
+        okCount=$(($okCount+1))
+      else
+        echo "$MODULE---$MODULE_NAME:未运行"
+      fi
+    fi
+  done
+  if (($commandOk == 0));then
+    echo "第二个参数输入错误"
+  else
+    echo "............本次共停止:$okCount个服务............"
+  fi
 }
 
-# 查看进程状态
-status(){
-        is_exist
-        if [ $? -eq "0" ]; then
-                echo "${APP_NAME} is running, PID=${PID}"
-        else
-                echo "There is not the process of ${APP_NAME}"
-        fi
-}
 
-case $2 in
-
-"build")
-        build
-        ;;
-"start")
-        start
-        ;;
-"stop")
-        stop
-        ;;
-"restart")
-        restart
-        ;;
-"status")
-       status
-        ;;
-        *)
-        usage
-        ;;
+case "$2" in
+  start)
+    start "$3"
+  ;;
+  stop)
+    stop "$3"
+  ;;
+  restart)
+    stop "$3"
+    sleep 3s
+    start "$3"
+  ;;
+  *)
+    echo "第一个参数请输入:start|stop|restart"
+    exit 1
+  ;;
 esac
-exit 0
