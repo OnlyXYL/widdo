@@ -44,7 +44,8 @@ build(){
         #先删除原来的临时文件
         rm -rf ${MAVEN_BUILD_LOG_FILE_NAME}
 
-        mvn clean install -DSkipTests | tee ${MAVEN_BUILD_LOG_FILE_NAME}${TIME}
+#        mvn clean install -DSkipTests | tee ${MAVEN_BUILD_LOG_FILE_NAME}${TIME}
+        mvn clean install -DSkipTests
 
         if [ $? -eq "0" ]; then
                 echo "widdo build success."
@@ -60,7 +61,7 @@ start(){
                 echo "${APP_NAME} is already running, PID=${PID}"
         else
                 #nohup ${JRE_HOME}/bin/java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
-                nohup java -jar ${APP_HOME}/${APP_NAME} >./logs/$_JAR_NAME.log 2>&1 &
+                nohup java -jar ${APP_HOME}/${APP_NAME} >./logs/${APP_NAME}.log 2>&1 &
                 PID=$(echo $!)
                 echo "${APP_NAME} start success, PID=$!"
         fi
