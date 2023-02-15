@@ -9,8 +9,8 @@
 APP_HOME=/usr/local/software/git_work/widdo/configurations/docker/context/target
 # 应用名称
 APP_NAME=$1
-# maven build日志文件名
-MAVEN_BUILD_LOG_FILE_NAME=/tmp/maven_build_log
+# widdo日志文件名
+WIDDO_LOG_FILE_NAME=/tmp/widdo-*
 
 #获取当前时间
 TIME=`date +"%Y%m%d%H%M%S"`
@@ -38,12 +38,21 @@ is_exist(){
         fi
 }
 
+#先删除原来的临时文件
+delete(){
+       #先删除原来的临时文件
+       echo "【WIDDO】开始删除widdo的日志文件..."
+       rm -rf ${MAVEN_BUILD_LOG_FILE_NAME}
+       echo " "
+       echo "widdo delete log success"
+       echo " "
+}
+
 # 定义打包程序函数
 # 打包函数会删除指定目录中已存在的jar包，然后把新的jar包复制进去
 build(){
         #先删除原来的临时文件
-        rm -rf ${MAVEN_BUILD_LOG_FILE_NAME}
-
+        delete  
 #        mvn clean install -DSkipTests | tee ${MAVEN_BUILD_LOG_FILE_NAME}${TIME}
         mvn clean install -DSkipTests
 
@@ -57,7 +66,8 @@ build(){
 # 定义启动程序函数
 start(){
         is_exist
-        if [ $? -eq "0" ]; then
+	delete        
+	if [ $? -eq "0" ]; then
                 echo "${APP_NAME} is already running, PID=${PID}"
         else
                 #nohup ${JRE_HOME}/bin/java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
