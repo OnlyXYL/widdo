@@ -9,6 +9,12 @@
 APP_HOME=./configurations/docker/target
 # 应用名称
 APP_NAME=$1
+# maven build日志文件名
+MAVEN_BUILD_LOG_FILE_NAME=/tmp/maven_build_log
+
+#获取当前时间
+TIME=`date +"%Y%m%d%H%M%S"`
+
 
 # Shell Info
 
@@ -35,7 +41,11 @@ is_exist(){
 # 定义打包程序函数
 # 打包函数会删除指定目录中已存在的jar包，然后把新的jar包复制进去
 build(){
-        mvn clean install -DSkipTests
+        #先删除原来的临时文件
+        rm -rf ${MAVEN_BUILD_LOG_FILE_NAME}
+
+        mvn clean install -DSkipTests | tee ${MAVEN_BUILD_LOG_FILE_NAME}${TIME}
+
         if [ $? -eq "0" ]; then
                 echo "widdo build success."
         else
