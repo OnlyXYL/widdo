@@ -62,25 +62,25 @@ start() {
     if [ "$command" == "all" ] || [ "$command" == "$MODULE" ];then
       commandOk=1
       count=0
-      PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+      PID=$(ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}')
       if [ -n "$PID" ];then
-        echo "$MODULE---$MODULE_NAME:已经运行,PID=$PID"
+        echo "$MODULE_NAME:已经运行,PID=$PID"
       else
         nohup java -Xms256m -Xmx512m -jar $WIDDO_JAR_PATH/$JAR_NAME >> /dev/null 2>&1 &
-        PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+        PID=$(ps -ef |grep  $JAR_NAME | grep -v grep | awk '{print $2}')
         while [ -z "$PID" ]
         do
           if (($count == 30));then
-            echo "$MODULE---$MODULE_NAME:$(expr $count \* 10)秒内未启动,请检查!"
+            echo "$MODULE_NAME:$(expr $count \* 10)秒内未启动,请检查!"
             break
           fi
           count=$(($count+1))
           echo "$MODULE_NAME启动中.................."
           sleep 5s
-          PID=`ps -ef |grep $(echo $JAR_NAME | awk -F/ '{print $NF}') | grep -v grep | awk '{print $2}'`
+          PID=$(ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}')
         done
         okCount=$(($okCount+1))
-        echo "$MODULE---$MODULE_NAME:已经启动成功,PID=$PID"
+        echo "$MODULE_NAME:已经启动成功,PID=$PID"
       fi
     fi
   done
@@ -92,6 +92,9 @@ start() {
 }
 
 stop() {
+
+   echo  "-------- widdo stop running --------"
+
   local MODULE=
   local MODULE_NAME=
   local JAR_NAME=
@@ -105,21 +108,21 @@ stop() {
     JAR_NAME=${JARS[$i]}
     if [ "$command" = "all" ] || [ "$command" = "$MODULE" ];then
       commandOk=1
-      PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+      PID=$(ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}')
       if [ -n "$PID" ];then
-        echo "$MODULE---$MODULE_NAME:准备结束,PID=$PID"
+        echo "$MODULE_NAME:准备结束,PID=$PID"
         kill -9 $PID
-	rm -rf "$WIDDO_LOG_PATH/$MODULE_NAME"
-	PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+        rm -rf "$WIDDO_LOG_PATH/$MODULE_NAME"
+        PID=$(ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}')
         while [ -n "$PID" ]
         do
           sleep 3s
-          PID=`ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}'`
+          PID=$(ps -ef |grep $JAR_NAME | grep -v grep | awk '{print $2}')
         done
-        echo "$MODULE---$MODULE_NAME:成功结束"
+        echo "$MODULE_NAME:成功结束"
         okCount=$(($okCount+1))
       else
-        echo "$MODULE---$MODULE_NAME:未运行"
+        echo "$MODULE_NAME:未运行"
       fi
     fi
   done
@@ -132,6 +135,9 @@ stop() {
 
 
 case "$2" in
+  build)
+    build "$3"
+  ;;
   start)
     start "$3"
   ;;
@@ -144,7 +150,7 @@ case "$2" in
     start "$3"
   ;;
   *)
-    echo "第一个参数请输入:start|stop|restart"
+    echo "第一个参数请输入:build|start|stop|restart"
     exit 1
   ;;
 esac

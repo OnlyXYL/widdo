@@ -9,7 +9,7 @@
     <springProperty scope="context" name="logHistory" source="log.history" defaultValue="7"/>
 -->
 
-    <property  name="log.path" value="log/${springAppName}"/>
+    <property  name="log.path" value="log/widdo-life"/>
     <property name="log.maxHistory" value="15" />
 
     <property name="log.colorPattern" value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %boldCyan([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]) %yellow(%thread) %green(%logger) %msg%n"/>
