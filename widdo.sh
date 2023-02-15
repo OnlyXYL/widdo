@@ -10,7 +10,10 @@ APP_HOME=/usr/local/software/git_work/widdo/configurations/docker/context/target
 # 应用名称
 APP_NAME=$1
 # widdo日志文件名
-WIDDO_LOG_FILE_NAME=/tmp/widdo-*
+#WIDDO_LOG_FILE_NAME=/tmp/widdo-*
+
+#widdo 日志
+WIDDO_LOG_FILE_NAME=/usr/local/software/git_work/widdo/log
 
 #获取当前时间
 TIME=`date +"%Y%m%d%H%M%S"`
@@ -42,7 +45,7 @@ is_exist(){
 delete(){
        #先删除原来的临时文件
        echo "【WIDDO】开始删除widdo的日志文件..."
-       rm -rf ${MAVEN_BUILD_LOG_FILE_NAME}
+       rm -rf ${WIDDO_LOG_FILE_NAME}
        echo " "
        echo "widdo delete log success"
        echo " "
@@ -66,13 +69,13 @@ build(){
 # 定义启动程序函数
 start(){
         is_exist
-	delete        
 	if [ $? -eq "0" ]; then
                 echo "${APP_NAME} is already running, PID=${PID}"
         else
                 #nohup ${JRE_HOME}/bin/java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
-                nohup java -jar ${APP_HOME}/${APP_NAME} >/tmp/${APP_NAME}.log 2>&1 &
-                PID=$(echo $!)
+                #nohup java -jar ${APP_HOME}/${APP_NAME} >/tmp/${APP_NAME}.log 2>&1 &
+                nohup java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
+	        PID=$(echo $!)
                 echo "${APP_NAME} start success, PID=$!"
         fi
 }
@@ -82,6 +85,7 @@ stop(){
         is_exist
         if [ $? -eq "0" ]; then
                 kill -9 ${PID}
+		delete
                 echo "${APP_NAME} process stop, PID=${PID}"
         else
                 echo "There is not the process of ${APP_NAME}"
