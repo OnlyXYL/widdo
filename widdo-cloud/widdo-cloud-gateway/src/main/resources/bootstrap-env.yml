@@ -8,12 +8,12 @@ spring:
       enabled: true
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 101.42.10.77:8848
         namespace: widdo_env
         group: DEFAULT_GROUP
         enabled: true
       config:
-        server-addr: localhost:8848
+        server-addr: 101.42.10.77:8848
         namespace: widdo_env
         group: DEFAULT_GROUP
         prefix: widdo-gateway
