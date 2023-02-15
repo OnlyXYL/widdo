@@ -6,7 +6,7 @@
 
 # Apps Info
 # 应用存放地址（此处需要修改）
-APP_HOME=./configurations/docker/target
+APP_HOME=/usr/local/software/git_work/widdo/configurations/docker/context/target
 # 应用名称
 APP_NAME=$1
 # maven build日志文件名
@@ -61,7 +61,7 @@ start(){
                 echo "${APP_NAME} is already running, PID=${PID}"
         else
                 #nohup ${JRE_HOME}/bin/java -jar ${APP_HOME}/${APP_NAME} >/dev/null 2>&1 &
-                nohup java -jar ${APP_HOME}/${APP_NAME} >./logs/${APP_NAME}.log 2>&1 &
+                nohup java -jar ${APP_HOME}/${APP_NAME} >/tmp/${APP_NAME}.log 2>&1 &
                 PID=$(echo $!)
                 echo "${APP_NAME} start success, PID=$!"
         fi
