@@ -1,10 +1,10 @@
 /**
  * widdo-autoconfigure中neo4j的reader包,包含抽象类和默认的实现类.
- *
+ * <p>
  * thr abstract class is {@link cn.widdo.autoconfigure.neo4j.reader.AbstractNeo4jReaderDecorator}.
- *
+ * <p>
  * the default implementation is {@link cn.widdo.autoconfigure.neo4j.reader.DefaultNeo4jReader}.
- *
+ * <p>
  * And you can have implementation of yourself by extends  {@link cn.widdo.autoconfigure.neo4j.reader.AbstractNeo4jReaderDecorator},
  * like {@link cn.widdo.autoconfigure.neo4j.reader.CustomNeo4jReader}
  *

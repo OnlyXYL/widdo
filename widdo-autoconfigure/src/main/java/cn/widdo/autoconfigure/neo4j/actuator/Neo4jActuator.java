@@ -1,35 +1,16 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
+import cn.widdo.autoconfigure.neo4j.reader.Neo4jReader;
+import cn.widdo.autoconfigure.neo4j.writer.Neo4jWriter;
+
 /**
  * neo4j Actuator.
  *
  * @param <T> params of method
  * @param <R> output of neo4j
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 11:37
+ * @since 263.1.1.0
  */
-public interface Neo4jActuator<T, R> {
-
-    /**
-     * neo4j 执行器 读方法.
-     *
-     * @param params 参数
-     * @return R
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator
-     * @date 2022/10/19 0:28
-     **/
-    R read(T params);
-
-    /**
-     * neo4j 执行器 写方法.
-     *
-     * @param params 参数
-     * @return R
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator
-     * @date 2022/10/19 0:29
-     **/
-    R write(T params);
+public interface Neo4jActuator<T, R> extends Neo4jReader<T, R>, Neo4jWriter<T, R> {
 }

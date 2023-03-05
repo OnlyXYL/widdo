@@ -1,5 +1,6 @@
 package cn.widdo.autoconfigure.neo4j.helper;
 
+import cn.widdo.assistant.utils.BeanUtils;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.starter.neo4j.utils.Neo4jUtil;
@@ -17,8 +18,8 @@ import java.util.Optional;
  * neo4j pre read write helper.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/17 17:48
+ * @since 263.1.1.0
  */
 @SuppressWarnings({"AlibabaClassNamingShouldBeCamel", "AlibabaLowerCamelCaseVariableNaming"})
 public class Neo4jPreRWHelper {
@@ -103,7 +104,7 @@ public class Neo4jPreRWHelper {
     public Result<List<Map<String, Value>>> query(Map<String, Object> param) {
         String cqlStr = param.get("cypherQL").toString();
 
-        Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
+        Map<String, Object> map = Optional.ofNullable(param.get("map")).map(BeanUtils::<Map<String, Object>>cast).orElse(null);
 
         //打印信息
         Neo4jUtil.printCQL(cqlStr);

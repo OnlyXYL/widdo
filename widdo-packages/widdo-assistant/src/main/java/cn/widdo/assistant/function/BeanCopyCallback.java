@@ -15,9 +15,8 @@ public interface BeanCopyCallback<S, T> {
     /**
      * 回调方法.
      *
-     * @param s
-     * @param t
-     * @throws
+     * @param s s
+     * @param t t
      * @author XYL
      * @className cn.widdo.assistant.function.BeanCopyCallback
      * @date 2022/11/10 19:24

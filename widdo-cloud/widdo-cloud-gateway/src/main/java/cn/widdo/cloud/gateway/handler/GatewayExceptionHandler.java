@@ -35,10 +35,10 @@ public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
     /**
      * 构造方法.
      *
-     * @param errorAttributes
-     * @param resources
-     * @param errorProperties
-     * @param applicationContext
+     * @param errorAttributes   errorAttributes{@link ErrorAttributes}
+     * @param resources resources{@link WebProperties.Resources}
+     * @param errorProperties   errorProperties{@link ErrorProperties}
+     * @param applicationContext    applicationContext{@link ApplicationContext}
      */
     public GatewayExceptionHandler(final ErrorAttributes errorAttributes,
                                    final WebProperties.Resources resources,

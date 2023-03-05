@@ -1,15 +1,17 @@
 package cn.widdo.autoconfigure.neo4j.writer;
 
+import cn.widdo.autoconfigure.neo4j.Neo4jHelper;
+
 /**
  * neo4j writer.
  *
  * @param <R>
  * @param <T>
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 16:36
+ * @since 263.1.1.0
  */
-public interface Neo4jWriter<T, R> {
+public interface Neo4jWriter<T, R> extends Writer, Neo4jHelper, EnhanceWriter {
 
     /**
      * 写方法.

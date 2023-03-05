@@ -72,7 +72,7 @@
                 <config.server-addr>localhost:8848</config.server-addr>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
                 <!-- develop-base-platform-dev-wxj-->
-                <config.namespace>502d9fe0-6893-41e7-8fc5-0afe6f197d17</config.namespace>
+                <config.namespace>widdo_dev</config.namespace>
                 <!--Nacos服务发现地址-->
                 <discovery.server-addr>localhost:8848</discovery.server-addr>
                 <sentinel.server-addr>localhost:8848</sentinel.server-addr>
@@ -216,16 +216,18 @@
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.39.0</version>
+                    <version>${docker-maven-plugin.version}</version>
                     <!--全局配置-->
                     <configuration>
                         <!--配置远程docker守护进程url-->
                         <dockerHost>${docker.host}</dockerHost>
-                        <!--认证配置,用于私有registry认证-->
-                        <authConfig>
+                        <!--认证配置,用于私有registry认证.maven.setting中配置的话，此处不需要了-->
+                       <!-- <authConfig>
                             <username>${docker.username}</username>
                             <password>${docker.password}</password>
-                        </authConfig>
+                        </authConfig>-->
+                        <!--registry地址,用于推送,拉取镜像-->
+                        <registry>${docker.registry}</registry>
 
                         <!--用于在标准输出中打开详细输出的字符串属性，默认是false-->
                         <verbose>true</verbose>
@@ -235,9 +237,8 @@
                             <!-- 单个镜像配置 -->
                             <image>
                                 <!--镜像名(含版本号)-->
-                                <name>${docker.username}/${project.name}:${project.version}</name>
-                                <!--registry地址,用于推送,拉取镜像-->
-                                <registry>${docker.registry}</registry>
+<!--                                <name>${docker.username}/${project.name}:${project.version}</name>-->
+                                <name>${docker.namespace}/${project.name}:${project.version}</name>
                                 <!--镜像build相关配置-->
                                 <build>
 
@@ -256,10 +257,18 @@
                     <executions>
                         <!--绑定maven的生命周期-->
                         <execution>
-                            <id>docker-exec</id>
-                            <phase>deploy</phase>
+                            <id>docker-build</id>
+                            <phase>install</phase>
                             <goals>
                                 <goal>build</goal>
+                            </goals>
+                        </execution>
+
+                        <execution>
+                            <id>docker-push</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
                             </goals>
                         </execution>
                     </executions>

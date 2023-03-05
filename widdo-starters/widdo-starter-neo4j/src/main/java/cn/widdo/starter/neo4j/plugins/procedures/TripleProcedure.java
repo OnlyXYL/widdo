@@ -11,12 +11,14 @@ import java.util.stream.Stream;
 
 /**
  * TriplePlugin.
+ * <p>
+ * rename from CountPlugin to CountProcedure since 263.1.3.0
  *
  * @author XYL
  * @date 2023/02/07 18:09
  * @since 263.1.2.0
  */
-public class TriplePlugin {
+public class TripleProcedure {
 
     /**
      * tx.
@@ -39,7 +41,7 @@ public class TriplePlugin {
         /**
          * constructor has one param called count.
          *
-         * @param relIds
+         * @param relIds relIds
          */
         public TripleContainer(final List<Long> relIds) {
             this.relIds = relIds;
@@ -136,9 +138,9 @@ public class TriplePlugin {
      * @param triples triples
      * @return the count of node
      */
-    @Procedure(name = "widdo.triple.write", mode = Mode.READ)
+    @Procedure(name = "widdo.triple.write", mode = Mode.WRITE)
     @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
-    public Stream<TriplePlugin.TripleContainer> writeTriple(@Name("triples") Map<String, Object> triples) {
+    public Stream<TripleProcedure.TripleContainer> writeTriple(@Name("triples") Map<String, Object> triples) {
 
         String cypher = "UNWIND $triples AS triple \n"
                 + "CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode\n"
@@ -147,7 +149,7 @@ public class TriplePlugin {
                 + "RETURN collect(id(rel)) AS relationshipIds";
 
         ResourceIterator<List<Long>> nodes = tx.execute(cypher, triples).columnAs("relationshipIds");
-        return nodes.stream().map(TriplePlugin.TripleContainer::new);
+        return nodes.stream().map(TripleProcedure.TripleContainer::new);
     }
 
 }

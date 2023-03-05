@@ -18,8 +18,8 @@ import java.util.Map;
  * neo4j controller.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/14 18:00
+ * @since 263.1.1.0
  */
 @RequestMapping(value = "/neo4j")
 @RestController
@@ -54,13 +54,26 @@ public class Neo4jController extends BaseController {
      * @className widdo.neo4j.controller.Neo4jController
      * @date 2022/07/15 1:01
      **/
-    @PostMapping(value = "/query")
-    public WiddoResult query(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, neo4jJdbcService::query, "cypher", "params");
+    @PostMapping(value = "/read")
+    public WiddoResult read(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jJdbcService::read, "cypher", "params");
     }
 
     /**
-     * 執行寫操作.
+     * 執行寫操作，可以傳入cypher語句.
+     *
+     * @param params params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2023/03/01 13:28:44
+     */
+    @PostMapping(value = "/write")
+    public WiddoResult write(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jJdbcService::write, "cypher", "params");
+    }
+
+    /**
+     * 執行三元組寫操作.
      * <p>
      * params.put("triples")
      *
@@ -69,9 +82,22 @@ public class Neo4jController extends BaseController {
      * @author XYL
      * @date 2022/12/02 21:22:04
      **/
-    @PostMapping(value = "/write")
-    public WiddoResult write(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, neo4jJdbcService::write, "triples");
+    @PostMapping(value = "/write/triples")
+    public WiddoResult writeTriples(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jJdbcService::writeTriples, "triples");
+    }
+
+    /**
+     * 刪除操作.
+     *
+     * @param params  params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2023/03/01 15:09:31
+     */
+    @PostMapping(value = "/delete")
+    public WiddoResult delete(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jJdbcService::delete);
     }
 
 }

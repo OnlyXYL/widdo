@@ -1,11 +1,14 @@
 package cn.widdo.cloud.gateway.filter;
 
-import cn.widdo.assistant.entity.result.MyResponse;
+import cn.widdo.assistant.result.IResultInterface;
+import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.cloud.gateway.properties.WiddoGatewayProperties;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -39,6 +42,8 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*
 @Slf4j
 @Component
 public class GatewayRequestFilter implements GlobalFilter {
+
+    private static final Logger LOG = LoggerFactory.getLogger(GatewayRequestFilter.class);
 
     /**
      * properties.
@@ -76,8 +81,8 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * 校验禁止访问的资源.
      *
-     * @param request
-     * @param response
+     * @param request   request {@link ServerHttpRequest}
+     * @param response  response {@link ServerHttpResponse}
      * @return reactor.core.publisher.Mono<java.lang.Void>
      * @throws
      * @author XYL
@@ -97,8 +102,8 @@ public class GatewayRequestFilter implements GlobalFilter {
             }
         }
         if (!shouldForward) {
-            MyResponse myResponse = new MyResponse().message("该URI不允许外部访问");
-            return makeResponse(response, myResponse);
+            final WiddoResult widdoResult = WiddoResult.response(IResultInterface.SysResultEnum.NO_ACCESS);
+            return makeResponse(response, widdoResult);
         }
         return null;
     }
@@ -106,25 +111,25 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * 封装返回结果.
      *
-     * @param response
-     * @param myResponse
+     * @param response  response {@link ServerHttpResponse}
+     * @param widdoResult    myResponse {@link WiddoResult}
      * @return reactor.core.publisher.Mono<java.lang.Void>
      * @throws
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:41
      **/
-    private Mono<Void> makeResponse(ServerHttpResponse response, MyResponse myResponse) {
+    private Mono<Void> makeResponse(ServerHttpResponse response, WiddoResult widdoResult) {
         response.setStatusCode(HttpStatus.FORBIDDEN);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        DataBuffer dataBuffer = response.bufferFactory().wrap(JSONObject.toJSONString(myResponse).getBytes());
+        DataBuffer dataBuffer = response.bufferFactory().wrap(JSONObject.toJSONString(widdoResult).getBytes());
         return response.writeWith(Mono.just(dataBuffer));
     }
 
     /**
      * 打印日志.
      *
-     * @param exchange
+     * @param exchange  exchange {@link ServerWebExchange}
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:42

@@ -14,7 +14,7 @@ public interface BabelNetReader<T, R> {
     /**
      * query.
      *
-     * @param params
+     * @param params    params
      * @return R
      * @author XYL
      * @date 2022/12/02 18:49:50

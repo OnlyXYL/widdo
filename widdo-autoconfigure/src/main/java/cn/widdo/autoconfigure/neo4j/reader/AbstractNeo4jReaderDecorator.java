@@ -1,7 +1,5 @@
 package cn.widdo.autoconfigure.neo4j.reader;
 
-import cn.widdo.starter.neo4j.validator.ParamsValidator;
-
 /**
  * a abstract Neo4jReader Decorator. you can have yourself implement by extends it.
  * <p>
@@ -13,7 +11,7 @@ import cn.widdo.starter.neo4j.validator.ParamsValidator;
  * @since 263.1.1.0
  * @date 2022/10/14 17:51
  */
-public abstract class AbstractNeo4jReaderDecorator<T, R> extends ParamsValidator implements Neo4jReader<T, R> {
+public abstract class AbstractNeo4jReaderDecorator<T, R> extends AbstractNeo4jReader<T, R> {
 
     /**
      * {@link Neo4jReader}.

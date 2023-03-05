@@ -1,18 +1,25 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
+import org.neo4j.driver.Driver;
+
 /**
- * AbstractNeo4jActuator.
+ * Neo4j AbstractNeo4jActuator.
  *
- * @param <R>
- * @param <T>
+ * @param <T> t
+ * @param <R> r
  * @author XYL
- * @since 263.1.1.0
- * @date 2022/12/03 18:59
+ * @date 2023/03/03 11:17
+ * @since 263.1.3.0
  */
 public abstract class AbstractNeo4jActuator<T, R> implements Neo4jActuator<T, R> {
 
     /**
-     * {@link Neo4jActuator}.
+     * driver.
      */
-    protected Neo4jActuator<T, R> neo4jActuator;
+    protected Driver driver;
+
+    @Override
+    public Driver driver() {
+        return driver;
+    }
 }

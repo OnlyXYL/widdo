@@ -1,5 +1,6 @@
 package cn.widdo.starter.neo4j.utils;
 
+import cn.widdo.starter.neo4j.constant.Neo4jConstants;
 import cn.widdo.starter.neo4j.entity.Neo4jType;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
@@ -27,15 +28,10 @@ import java.util.*;
  * neo4j util.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 10:07
+ * @since 263.1.1.0
  */
 public class Neo4jUtil {
-
-    /**
-     * query.
-     */
-    public static final String CYPHER_QUERY = "query";
 
     private static final Logger LOG = LoggerFactory.getLogger(Neo4jUtil.class);
 
@@ -301,10 +297,11 @@ public class Neo4jUtil {
         Session session = null;
         try {
             session = driver.session(SessionConfig.builder().withDefaultAccessMode(AccessMode.WRITE).build());
-            if (CYPHER_QUERY.equals(model)) {
+            if (Neo4jConstants.RUNNER_READ.equals(model)) {
                 return session.readTransaction(tx -> cqlFun.execute(cql, map, tx));
             }
             return session.writeTransaction(tx -> cqlFun.execute(cql, map, tx));
+
         } catch (ServiceUnavailableException exception) {
             return ResultUtil.error(ResultEnum.ERROR, 10010, exception.getMessage());
         } catch (org.neo4j.driver.exceptions.ClientException exception) {
