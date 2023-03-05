@@ -9,8 +9,8 @@ import java.util.Map;
  * Map 相关的工具类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/20 10:43
+ * @since 263.1.1.0
  */
 public class MapUtil {
 
@@ -24,7 +24,7 @@ public class MapUtil {
      *
      * @param params    参数map
      * @param checkKeys 需要校验的非空可变参数
-     * @throws
+     * @throws Exception
      * @author XYL
      * @className cn.widdo.starter.neo4j.utils.Neo4jUtil
      * @date 2022/10/18 10:08
@@ -39,14 +39,6 @@ public class MapUtil {
                 if (value == null
                         || !StringUtils.hasLength(value.toString())) {
                     throw new Exception("参数" + checkKeys[i] + "不能为空");
-                }
-            }
-        } else {
-            while (keys.hasNext()) {
-                String k = keys.next();
-                value = params.get(k);
-                if (value == null || !StringUtils.hasLength(value.toString().trim())) {
-                    throw new Exception("参数" + k + "不能为空");
                 }
             }
         }

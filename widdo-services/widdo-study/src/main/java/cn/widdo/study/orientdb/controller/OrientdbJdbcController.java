@@ -57,7 +57,7 @@ public class OrientdbJdbcController extends BaseController {
      * params.put("source")
      * params.put("target")
      *
-     * @param params
+     * @param params    params typed map {@link Map}
      * @return cn.widdo.entity.JsonResult
      * @throws
      * @author XYL

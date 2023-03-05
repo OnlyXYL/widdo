@@ -3,7 +3,6 @@ package cn.widdo.autoconfigure.neo4j.configure;
 import cn.widdo.autoconfigure.condition.WiddoNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator;
-import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
@@ -22,8 +21,8 @@ import java.lang.reflect.InvocationTargetException;
  * neo4j read writer actuator.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 0:50
+ * @since 263.1.1.0
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 @WiddoNeo4jActuator
@@ -34,7 +33,6 @@ public class WiddoNeo4jActuatorConfigure {
     /**
      * properties.
      */
-    @Resource
     private WiddoNeo4jProperties widdoNeo4jProperties;
 
     /**
@@ -43,50 +41,21 @@ public class WiddoNeo4jActuatorConfigure {
     @Resource
     private Driver driver;
 
-    /**
-     * {@link Neo4jPreRWHelper}.
-     */
-    private Neo4jPreRWHelper neo4jPreRWHelper;
-
-    /**
-     * {@link Neo4jActuator}.
-     */
-    private Neo4jActuator neo4jActuator;
-
     @PostConstruct
     private void postConstruct() {
         log.info("[Widdo] |- AutoConfigure [Widdo Neo4j] Actuator.");
-        createNeo4jPreRWHelper();
-    }
-
-    /**
-     * get instance called {@link Neo4jPreRWHelper}.
-     */
-    private synchronized void createNeo4jPreRWHelper() {
-
-        try {
-
-            if (neo4jPreRWHelper == null) {
-                final Class<?> aClass = Class.forName(Neo4jPreRWHelper.class.getName());
-                final Constructor<?> constructor = aClass.getDeclaredConstructor(Driver.class);
-                //allow to access private constructor
-                constructor.setAccessible(true);
-                neo4jPreRWHelper = (Neo4jPreRWHelper) constructor.newInstance(driver);
-            }
-
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
      * create instance type of {@link Neo4jActuator}.
      *
+     * @param widdoNeo4jProperties widdoNeo4jProperties
      * @return return an instance type of {@link Neo4jActuator}
      */
     @Bean
     @ConditionalOnMissingBean(Neo4jActuator.class)
-    public Neo4jActuator neo4jActuator() {
+    public Neo4jActuator neo4jActuator(WiddoNeo4jProperties widdoNeo4jProperties) {
+        this.widdoNeo4jProperties = widdoNeo4jProperties;
         final String className = widdoNeo4jProperties.getActuator().getClassName();
         return createNeo4jActuator(className);
     }
@@ -100,13 +69,9 @@ public class WiddoNeo4jActuatorConfigure {
     private Neo4jActuator createNeo4jActuator(String className) {
         try {
 
-            if (neo4jActuator != null) {
-                return neo4jActuator;
-            }
-
             if (StringUtils.hasLength(className)) {
                 //check whether it`s legitimate
-                ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+                ClassUtils.isPresent(className, Neo4jActuator.class.getClassLoader());
             } else {
                 //set the default classname.
                 className = DefaultNeo4jActuator.class.getName();
@@ -115,10 +80,11 @@ public class WiddoNeo4jActuatorConfigure {
             final Class<?> aClass = Class.forName(className);
 
             //反射，通过构造方法创建对象，需要Neo4jPreRWHelper实例.注意getConstructor方法只能获取public构造，protected和private需要getDeclaredConstructor方法
-            final Constructor<?> constructor = aClass.getDeclaredConstructor(WiddoNeo4jProperties.class, Neo4jPreRWHelper.class);
+            final Constructor<?> constructor = aClass.getDeclaredConstructor(WiddoNeo4jProperties.class, Driver.class);
             //allow to access private constructor
             constructor.setAccessible(true);
-            return (Neo4jActuator) constructor.newInstance(widdoNeo4jProperties, neo4jPreRWHelper);
+
+            return (Neo4jActuator) constructor.newInstance(widdoNeo4jProperties, driver);
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();

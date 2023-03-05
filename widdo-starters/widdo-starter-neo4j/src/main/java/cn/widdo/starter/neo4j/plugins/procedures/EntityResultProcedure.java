@@ -11,12 +11,14 @@ import java.util.stream.Stream;
 
 /**
  * entity result plugin.
+ * <p>
+ * rename from CountPlugin to CountProcedure since 263.1.3.0
  *
  * @author XYL
  * @date 2023/02/07 15:10
  * @since 263.1.2.0
  */
-public class EntityResultPlugin {
+public class EntityResultProcedure {
 
     /**
      * tx.
@@ -39,7 +41,7 @@ public class EntityResultPlugin {
         /**
          * constructor has one param called {@link Node}.
          *
-         * @param node
+         * @param node node
          */
         public EntityContainer(final Node node) {
             this.node = node;
@@ -56,7 +58,7 @@ public class EntityResultPlugin {
     @Description("get allNodes with the label, return allNodes of labels if param named label is null.")
     public Stream<EntityContainer> allNodes(@Name("label") String label) {
 
-        String cypher = "";
+        String cypher;
 
         if (StringUtils.isNotBlank(label)) {
             cypher = String.format("MATCH (n:%s) RETURN n", label);

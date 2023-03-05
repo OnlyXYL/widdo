@@ -1,8 +1,7 @@
 package cn.widdo.autoconfigure.orientdb.configure;
 
-import cn.widdo.autoconfigure.condition.ConditionalOnOrientdbEnabled;
+import cn.widdo.autoconfigure.condition.WiddoOrientdb;
 import cn.widdo.autoconfigure.orientdb.properties.WiddoOrientdbProperties;
-import cn.widdo.starter.orientdb.WiddoStarterOrientdb;
 import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import com.orientechnologies.orient.client.remote.OStorageRemote;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -12,7 +11,6 @@ import com.orientechnologies.orient.core.db.OrientDBConfig;
 import org.apache.tinkerpop.gremlin.orientdb.OrientGraphFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +24,7 @@ import javax.annotation.PostConstruct;
  * @since 263.1.1.0
  * @date 2022/10/14 15:23
  */
-@ConditionalOnOrientdbEnabled
-@ConditionalOnClass(WiddoStarterOrientdb.class)
+@WiddoOrientdb
 @EnableConfigurationProperties(WiddoOrientdbProperties.class)
 public class WiddoOrientdbConfigure {
 

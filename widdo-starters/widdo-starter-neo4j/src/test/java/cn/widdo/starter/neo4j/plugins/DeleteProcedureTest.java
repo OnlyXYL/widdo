@@ -1,6 +1,6 @@
 package cn.widdo.starter.neo4j.plugins;
 
-import cn.widdo.starter.neo4j.plugins.procedures.EntityResultPlugin;
+import cn.widdo.starter.neo4j.plugins.procedures.DeleteProcedure;
 import org.junit.jupiter.api.*;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
@@ -13,26 +13,26 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * test
+ * CountPluginTest.
  *
  * @author XYL
  * @since 263.1.1.1
- * @date 2023/02/07 15:12
+ * @date 2023/02/07 17:20
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class EntityResultPluginTest {
+public class DeleteProcedureTest {
 
-    private Neo4j neo4j;
+
     private Driver driver;
 
     @BeforeAll
     void initializeNeo4j() {
 
-        this.neo4j = Neo4jBuilders.newInProcessBuilder()
+        Neo4j neo4j = Neo4jBuilders.newInProcessBuilder()
                 .withDisabledServer()
                 .withFixture("\t    UNWIND range(1, 5) AS i\n" +
                         "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
-                .withProcedure(EntityResultPlugin.class)
+                .withProcedure(DeleteProcedure.class)
                 .build();
 
         driver = GraphDatabase.driver(neo4j.boltURI());
@@ -52,10 +52,10 @@ public class EntityResultPluginTest {
 
     @Test
     void allNodesShouldWork() {
-        try (final Session session = driver.session();) {
-            final Stream<Integer> stream = session.run("CALL widdo.allNodes('') YIELD node")
-                    .stream().map(r -> r.get("node").asNode().get("idx").asInt());
-            assertThat(stream).hasSize(5).containsExactly(1,2,3,4,5);
+        try (final Session session = driver.session()) {
+            final Stream<Integer> stream = session.run("CALL widdo.node.delete('SomeNode',[1,2,3,4],{}) YIELD count")
+                    .stream().map(r -> r.get("count").asInt());
+            assertThat(stream).hasSize(1).containsExactly(4);
         }
     }
 }

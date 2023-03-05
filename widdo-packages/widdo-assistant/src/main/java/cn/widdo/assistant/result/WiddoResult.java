@@ -6,8 +6,8 @@ import java.util.HashMap;
  * widdo result wrapper.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/29 17:47
+ * @since 263.1.1.0
  */
 public class WiddoResult extends HashMap<String, Object> {
 
@@ -26,6 +26,16 @@ public class WiddoResult extends HashMap<String, Object> {
      */
     public static final String DATA = "data";
 
+
+    /**
+     * constructor has one param called msg.
+     *
+     * @param msg
+     */
+    public WiddoResult(final String msg) {
+        this.put(MSG, msg);
+    }
+
     /**
      * constructor has two params,one called code,another called msg.
      *
@@ -33,8 +43,8 @@ public class WiddoResult extends HashMap<String, Object> {
      * @param msg  msg
      */
     public WiddoResult(final int code, final String msg) {
-        super.put(CODE, code);
-        super.put(MSG, msg);
+        this.put(CODE, code);
+        this.put(MSG, msg);
     }
 
     /**
@@ -45,9 +55,9 @@ public class WiddoResult extends HashMap<String, Object> {
      * @param data data
      */
     public WiddoResult(final int code, final String msg, final Object data) {
-        super.put(CODE, code);
-        super.put(MSG, msg);
-        super.put(DATA, data);
+        this.put(CODE, code);
+        this.put(MSG, msg);
+        this.put(DATA, data);
     }
 
     /**
@@ -65,7 +75,7 @@ public class WiddoResult extends HashMap<String, Object> {
      *
      * @param iResultInterface iResultInterface
      * @param data             data
-     * @return  an instance type of widdoResult
+     * @return an instance type of widdoResult
      */
     public static WiddoResult response(IResultInterface iResultInterface, Object data) {
         return new WiddoResult(iResultInterface.getCode(), iResultInterface.getMsg(), data);

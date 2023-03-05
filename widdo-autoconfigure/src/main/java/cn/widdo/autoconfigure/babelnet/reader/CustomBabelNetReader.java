@@ -15,7 +15,7 @@ public class CustomBabelNetReader extends AbstractBabelNetReaderDecorator<Map<St
 
     /**
      * constructor has one param called {@link BabelNetReader}.
-     * @param babelNetReader
+     * @param babelNetReader    {@link BabelNetReader}
      */
     public CustomBabelNetReader(final BabelNetReader babelNetReader) {
         this.babelNetReader = babelNetReader;

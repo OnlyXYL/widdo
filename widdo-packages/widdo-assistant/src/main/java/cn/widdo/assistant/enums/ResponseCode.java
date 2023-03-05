@@ -130,7 +130,7 @@ public enum ResponseCode {
     /**
      * 设置code.
      *
-     * @param code
+     * @param code  code typed int
      * @author XYL
      * @date 2022/11/18 11:34
      **/
@@ -152,7 +152,7 @@ public enum ResponseCode {
     /**
      * 设置message.
      *
-     * @param message
+     * @param message   message typed String {@link String}
      * @author XYL
      * @date 2022/11/18 11:34
      **/

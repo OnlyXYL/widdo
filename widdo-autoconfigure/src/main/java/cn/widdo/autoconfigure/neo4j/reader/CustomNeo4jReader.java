@@ -1,9 +1,11 @@
 package cn.widdo.autoconfigure.neo4j.reader;
 
+import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +15,7 @@ import java.util.Map;
  * @since 263.1.1.0
  * @date 2022/10/15 1:20
  */
-public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<?>> {
+public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     private final Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);
 
@@ -27,11 +29,7 @@ public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, 
     }
 
     @Override
-    public Result<?> query(Map<String, Object> params) {
-
-        //you can do something right here.
-        print();
-
+    public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
         return neo4jReader.query(params);
     }
 

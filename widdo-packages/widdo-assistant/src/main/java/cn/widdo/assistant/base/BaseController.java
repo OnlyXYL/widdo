@@ -13,8 +13,8 @@ import java.util.Map;
  * controller基础层.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/20 10:39
+ * @since 263.1.1.0
  */
 public class BaseController {
 
@@ -23,11 +23,10 @@ public class BaseController {
     /**
      * 校验参数并执行.
      *
-     * @param params
-     * @param function
-     * @param checkKeys
+     * @param params    param typed {@link Map}
+     * @param function  param typed {@link MapInterfaceFunction}
+     * @param checkKeys param typed {@link String...}
      * @return cn.widdo.assistant.entity.result.WebResult
-     * @throws
      * @author XYL
      * @className cn.widdo.assistant.base.BaseController
      * @date 2022/10/20 11:13

@@ -4,8 +4,8 @@ package cn.widdo.assistant.result;
  * widdo result interface.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/29 17:39
+ * @since 263.1.1.0
  */
 public interface IResultInterface {
 
@@ -41,7 +41,12 @@ public interface IResultInterface {
         /**
          * params error.
          */
-        PARAMS_ERROR(-2, "参数异常");
+        PARAMS_ERROR(-2, "参数异常"),
+
+        /**
+         * no access.
+         */
+        NO_ACCESS(-3, "禁止访问");
 
         /**
          * code.
@@ -145,7 +150,7 @@ public interface IResultInterface {
          * constructor has two params,one called code,another called msg.
          *
          * @param code code
-         * @param msg   msg
+         * @param msg  msg
          */
         LifeResultEnum(final Integer code, final String msg) {
             this.code = code;
@@ -188,8 +193,8 @@ public interface IResultInterface {
         /**
          * constructor has two params,one called code,another called msg.
          *
-         * @param code  code
-         * @param msg   msg
+         * @param code code
+         * @param msg  msg
          */
         Neo4jResultEnum(final Integer code, final String msg) {
             this.code = code;

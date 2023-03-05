@@ -16,7 +16,7 @@ public interface OrientdbJdbcService {
     /**
      * 查询线.
      *
-     * @param params
+     * @param params    param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className widdo.orientdb.service.OrientdbJdbcService
@@ -27,7 +27,7 @@ public interface OrientdbJdbcService {
     /**
      * 查询点.
      *
-     * @param params
+     * @param params    param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className widdo.orientdb.service.OrientdbJdbcService
@@ -38,7 +38,7 @@ public interface OrientdbJdbcService {
     /**
      * 创建点.
      *
-     * @param params
+     * @param params    param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className widdo.orientdb.service.OrientdbJdbcService
@@ -49,7 +49,7 @@ public interface OrientdbJdbcService {
     /**
      * 创建关系.
      *
-     * @param params
+     * @param params    params typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className widdo.orientdb.service.OrientdbJdbcService

@@ -10,10 +10,10 @@ import java.util.Map;
  * CustomNeo4jActuator.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/23 11:29
+ * @since 263.1.1.0
  */
-public class CustomNeo4jActuator extends AbstractNeo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public class CustomNeo4jActuator extends AbstractNeo4jActuatorDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**
      * constructor has one param called {@link Neo4jActuator}.

@@ -1,6 +1,6 @@
 package cn.widdo.cloud.gateway.controller;
 
-import cn.widdo.assistant.entity.result.MyResponse;
+import cn.widdo.assistant.result.WiddoResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +27,8 @@ public class FallbackController {
      **/
     @GetMapping("/fallback/{name}")
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public MyResponse systemFallback(@PathVariable String name) throws Exception {
+    public WiddoResult systemFallback(@PathVariable String name) throws Exception {
         String response = String.format("访问%s超时或者服务不可用", name);
-        return new MyResponse().message(response);
+        return new WiddoResult(response);
     }
 }

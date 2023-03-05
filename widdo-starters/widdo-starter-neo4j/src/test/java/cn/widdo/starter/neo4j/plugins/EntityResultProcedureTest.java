@@ -1,6 +1,6 @@
 package cn.widdo.starter.neo4j.plugins;
 
-import cn.widdo.starter.neo4j.plugins.procedures.CountPlugin;
+import cn.widdo.starter.neo4j.plugins.procedures.EntityResultProcedure;
 import org.junit.jupiter.api.*;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
@@ -13,15 +13,14 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * CountPluginTest.
+ * test
  *
  * @author XYL
  * @since 263.1.1.1
- * @date 2023/02/07 17:20
+ * @date 2023/02/07 15:12
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CountPluginTest {
-
+public class EntityResultProcedureTest {
 
     private Neo4j neo4j;
     private Driver driver;
@@ -33,7 +32,7 @@ public class CountPluginTest {
                 .withDisabledServer()
                 .withFixture("\t    UNWIND range(1, 5) AS i\n" +
                         "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
-                .withProcedure(CountPlugin.class)
+                .withProcedure(EntityResultProcedure.class)
                 .build();
 
         driver = GraphDatabase.driver(neo4j.boltURI());
@@ -54,9 +53,9 @@ public class CountPluginTest {
     @Test
     void allNodesShouldWork() {
         try (final Session session = driver.session();) {
-            final Stream<Integer> stream = session.run("CALL widdo.node.count('') YIELD count")
-                    .stream().map(r -> r.get("count").asInt());
-            assertThat(stream).hasSize(1).containsExactly(5);
+            final Stream<Integer> stream = session.run("CALL widdo.allNodes('') YIELD node")
+                    .stream().map(r -> r.get("node").asNode().get("idx").asInt());
+            assertThat(stream).hasSize(5).containsExactly(1,2,3,4,5);
         }
     }
 }

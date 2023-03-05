@@ -9,13 +9,15 @@ import org.neo4j.procedure.*;
 import java.util.stream.Stream;
 
 /**
- * Count plugin.
+ * Count procedure.
+ * <p>
+ * rename from CountPlugin to CountProcedure since 263.1.3.0
  *
  * @author XYL
  * @date 2023/02/07 16:05
  * @since 263.1.2.0
  */
-public class CountPlugin {
+public class CountProcedure {
 
     /**
      * tx.
@@ -27,7 +29,7 @@ public class CountPlugin {
     /**
      * count container.
      */
-    public class CountContainer {
+    public static class CountContainer {
 
         /**
          * count.
@@ -38,7 +40,7 @@ public class CountPlugin {
         /**
          * constructor has one param called count.
          *
-         * @param count
+         * @param count count
          */
         public CountContainer(final Long count) {
             this.count = count;
@@ -55,7 +57,7 @@ public class CountPlugin {
     @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
     public Stream<CountContainer> countNode(@Name("label") String label) {
 
-        String cypher = "";
+        String cypher;
 
         if (StringUtils.isNotBlank(label)) {
             cypher = String.format("MATCH (n:%s) RETURN count(n) AS count", label);

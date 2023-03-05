@@ -1,9 +1,9 @@
 package cn.widdo.autoconfigure.neo4j.writer;
 
-import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
+import cn.widdo.starter.neo4j.constant.Neo4jConstants;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
-import cn.widdo.starter.neo4j.validator.ParamsValidator;
+import org.neo4j.driver.Driver;
 
 import java.util.List;
 import java.util.Map;
@@ -12,16 +12,11 @@ import java.util.Map;
  * 默认的写方法.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 16:37
+ * @since 263.1.1.0
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
-public class DefaultNeo4jWriter extends ParamsValidator implements Neo4jWriter<Map<String, Object>, Result<List<Map<String, Value>>>> {
-
-    /**
-     * {@link Neo4jPreRWHelper}.
-     */
-    private final Neo4jPreRWHelper neo4jPreRWHelper;
+public class DefaultNeo4jWriter extends AbstractNeo4jWriter<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**
      * constructor has no param,at the same time, if you create instance by this constructor,
@@ -32,16 +27,17 @@ public class DefaultNeo4jWriter extends ParamsValidator implements Neo4jWriter<M
     }
 
     /**
-     * constructor has one param called {@link Neo4jPreRWHelper}.
+     * constructor has one param called {@link Driver}.
      *
-     * @param neo4jPreRWHelper  {@link Neo4jPreRWHelper}
+     * @param driver {@link Driver}
      */
-    private DefaultNeo4jWriter(final Neo4jPreRWHelper neo4jPreRWHelper) {
-        this.neo4jPreRWHelper = neo4jPreRWHelper;
+    private DefaultNeo4jWriter(final Driver driver) {
+        this.driver = driver;
     }
 
     @Override
     public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-        return this.validateAndRun(params, neo4jPreRWHelper::execute, "cypherQL");
+        return this.validateAndRun(params, this::execute, Neo4jConstants.PARAM_CYPHER_QL);
     }
+
 }

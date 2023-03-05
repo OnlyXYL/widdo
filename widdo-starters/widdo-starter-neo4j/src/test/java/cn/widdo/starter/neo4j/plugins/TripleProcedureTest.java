@@ -1,6 +1,6 @@
 package cn.widdo.starter.neo4j.plugins;
 
-import cn.widdo.starter.neo4j.plugins.procedures.TriplePlugin;
+import cn.widdo.starter.neo4j.plugins.procedures.TripleProcedure;
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.*;
 import org.neo4j.driver.Driver;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @date 2023/02/07 18:13
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TriplePluginTest {
+public class TripleProcedureTest {
 
     private Neo4j neo4j;
     private Driver driver;
@@ -34,7 +34,7 @@ public class TriplePluginTest {
 
         this.neo4j = Neo4jBuilders.newInProcessBuilder()
                 .withDisabledServer()
-                .withProcedure(TriplePlugin.class)
+                .withProcedure(TripleProcedure.class)
                 .build();
 
         driver = GraphDatabase.driver(neo4j.boltURI());

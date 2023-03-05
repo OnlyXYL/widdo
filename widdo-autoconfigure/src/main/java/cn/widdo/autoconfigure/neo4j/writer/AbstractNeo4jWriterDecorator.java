@@ -8,10 +8,10 @@ package cn.widdo.autoconfigure.neo4j.writer;
  * @param <T>
  * @param <R>
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/15 1:02
+ * @since 263.1.1.0
  */
-public abstract class AbstractNeo4jWriterDecorator<T, R> implements Neo4jWriter<T, R> {
+public abstract class AbstractNeo4jWriterDecorator<T, R> extends AbstractNeo4jWriter<T, R> {
 
     /**
      * {@link Neo4jWriter}.

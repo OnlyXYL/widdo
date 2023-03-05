@@ -1,11 +1,13 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
-import cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
 import cn.widdo.autoconfigure.neo4j.reader.DefaultNeo4jReader;
+import cn.widdo.autoconfigure.neo4j.reader.Neo4jReader;
 import cn.widdo.autoconfigure.neo4j.writer.DefaultNeo4jWriter;
+import cn.widdo.autoconfigure.neo4j.writer.Neo4jWriter;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
+import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -27,7 +29,7 @@ import java.util.Map;
  * @date 2022/10/18 11:44
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
-public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
 
@@ -47,11 +49,6 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
     private final WiddoNeo4jProperties widdoNeo4jProperties;
 
     /**
-     * Neo4jPreWHelper.
-     */
-    private final Neo4jPreRWHelper neo4jPreRWHelper;
-
-    /**
      * constructor has no param,at the same time, if you create instance by this constructor,
      * it will throw exception typed {@link UnsupportedOperationException}.
      */
@@ -60,14 +57,14 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
     }
 
     /**
-     * constructor has two params one called {@link WiddoNeo4jProperties},and another called {@link Neo4jPreRWHelper}.
+     * constructor has two params one called {@link WiddoNeo4jProperties},and another called {@link Driver}.
      *
      * @param widdoNeo4jProperties {@link WiddoNeo4jProperties}
-     * @param neo4jPreRWHelper     {@link Neo4jPreRWHelper}
+     * @param driver     {@link Driver}
      */
-    private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Neo4jPreRWHelper neo4jPreRWHelper) {
+    private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Driver driver) {
         this.widdoNeo4jProperties = widdoNeo4jProperties;
-        this.neo4jPreRWHelper = neo4jPreRWHelper;
+        this.driver = driver;
     }
 
     @Override
@@ -97,7 +94,7 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
 
         if (StringUtils.hasLength(className)) {
             //check whether it`s legitimate.
-            final boolean present = ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+            final boolean present = ClassUtils.isPresent(className, Neo4jReader.class.getClassLoader());
 
             if (!present) {
                 className = DefaultNeo4jReader.class.getName();
@@ -121,9 +118,9 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
     private Result<List<Map<String, Value>>> writeIfHave(Map<String, Object> params) {
         String className = widdoNeo4jProperties.getActuator().getWriter().getClassName();
 
-        if (!StringUtils.hasLength(className)) {
+        if (StringUtils.hasLength(className)) {
             //check whether it`s legitimate
-            final boolean present = ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
+            final boolean present = ClassUtils.isPresent(className, Neo4jWriter.class.getClassLoader());
             if (!present) {
                 className = DefaultNeo4jWriter.class.getName();
             }
@@ -150,10 +147,10 @@ public class DefaultNeo4jActuator implements Neo4jActuator<Map<String, Object>, 
             final Class<?> aClass = Class.forName(className);
 
             //反射，通过构造方法创建对象，需要Neo4jPreRWHelper实例.注意getConstructor方法只能获取public构造，protected和private需要getDeclaredConstructor方法
-            final Constructor<?> constructor = aClass.getDeclaredConstructor(Neo4jPreRWHelper.class);
+            final Constructor<?> constructor = aClass.getDeclaredConstructor(Driver.class);
             //allow to access private constructor
             constructor.setAccessible(true);
-            final Object classObj = constructor.newInstance(neo4jPreRWHelper);
+            final Object classObj = constructor.newInstance(driver);
 
             final Method query = aClass.getMethod(cypherType, Map.class);
 

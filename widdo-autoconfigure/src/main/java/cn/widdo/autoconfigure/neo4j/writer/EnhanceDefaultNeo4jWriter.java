@@ -7,20 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * CustomNeo4jWriter.
+ * EnhanceDefaultNeo4jWriter. enhance {@link DefaultNeo4jWriter} which is the  default writer of neo4j
  *
  * @author XYL
- * @date 2022/12/06 11:45
- * @since 263.1.1.0
+ * @date 2023/03/01 17:38
+ * @since 263.1.3.0
  */
-public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>>  {
+public class EnhanceDefaultNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**
-     * constructor has one param called {@link Neo4jWriter}.
+     * constructor has one param typed {@link Neo4jWriter}.
      *
      * @param neo4jWriter neo4jWriter
      */
-    public CustomNeo4jWriter(final Neo4jWriter neo4jWriter) {
+    public EnhanceDefaultNeo4jWriter(final Neo4jWriter neo4jWriter) {
+        this.driver = neo4jWriter.driver();
         this.neo4jWriter = neo4jWriter;
     }
 
