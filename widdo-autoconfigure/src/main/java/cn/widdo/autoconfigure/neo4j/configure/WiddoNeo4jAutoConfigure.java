@@ -2,6 +2,7 @@ package cn.widdo.autoconfigure.neo4j.configure;
 
 import cn.widdo.autoconfigure.condition.WiddoNeo4j;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
+import jakarta.annotation.PostConstruct;
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Config;
 import org.neo4j.driver.Driver;
@@ -12,16 +13,16 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
  * neo4j 自动配置类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 14:57
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @WiddoNeo4j
 @EnableConfigurationProperties(WiddoNeo4jProperties.class)
 public class WiddoNeo4jAutoConfigure {
@@ -36,7 +37,7 @@ public class WiddoNeo4jAutoConfigure {
     /**
      * driver instance.
      *
-     * @param widdoNeo4jProperties  widdoNeo4jProperties
+     * @param widdoNeo4jProperties widdoNeo4jProperties
      * @return a driver instance
      */
     @Bean

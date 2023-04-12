@@ -12,12 +12,13 @@ import java.util.stream.Stream;
 /**
  * TriplePlugin.
  * <p>
- * rename from CountPlugin to CountProcedure since 263.1.3.0
+ * rename from CountPlugin to CountProcedure since 302.1.0.0
  *
  * @author XYL
  * @date 2023/02/07 18:09
- * @since 263.1.2.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class TripleProcedure {
 
     /**
@@ -30,7 +31,7 @@ public class TripleProcedure {
     /**
      * count container.
      */
-    public class TripleContainer {
+    public static class TripleContainer {
 
         /**
          * count.
@@ -142,11 +143,12 @@ public class TripleProcedure {
     @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
     public Stream<TripleProcedure.TripleContainer> writeTriple(@Name("triples") Map<String, Object> triples) {
 
-        String cypher = "UNWIND $triples AS triple \n"
-                + "CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode\n"
-                + "CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode\n"
-                + "CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel\n"
-                + "RETURN collect(id(rel)) AS relationshipIds";
+        String cypher = """
+                UNWIND $triples AS triple\s
+                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode
+                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
+                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel
+                RETURN collect(id(rel)) AS relationshipIds""";
 
         ResourceIterator<List<Long>> nodes = tx.execute(cypher, triples).columnAs("relationshipIds");
         return nodes.stream().map(TripleProcedure.TripleContainer::new);

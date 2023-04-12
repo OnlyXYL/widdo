@@ -10,8 +10,8 @@ import java.util.Date;
  * 格式化日志.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/09/21 17:56
+ * @since 302.1.0.0
  */
 public class P6SpyMessageFormatting implements MessageFormattingStrategy {
 

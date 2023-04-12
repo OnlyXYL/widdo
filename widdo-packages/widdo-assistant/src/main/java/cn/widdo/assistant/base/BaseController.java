@@ -14,8 +14,9 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/10/20 10:39
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class BaseController {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseController.class);

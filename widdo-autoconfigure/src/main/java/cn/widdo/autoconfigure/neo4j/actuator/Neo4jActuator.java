@@ -10,7 +10,7 @@ import cn.widdo.autoconfigure.neo4j.writer.Neo4jWriter;
  * @param <R> output of neo4j
  * @author XYL
  * @date 2022/10/18 11:37
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
 public interface Neo4jActuator<T, R> extends Neo4jReader<T, R>, Neo4jWriter<T, R> {
 }

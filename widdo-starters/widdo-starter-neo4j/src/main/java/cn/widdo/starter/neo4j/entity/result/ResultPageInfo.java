@@ -6,9 +6,10 @@ import java.io.Serializable;
  * 结果分页.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class ResultPageInfo implements Serializable {
 
     /**
@@ -34,9 +35,10 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * 构造方法.
-     * @param totalRecord   totalRecord
-     * @param currentPage   currentPage
-     * @param pageSize  pageSize
+     *
+     * @param totalRecord totalRecord
+     * @param currentPage currentPage
+     * @param pageSize    pageSize
      */
     public ResultPageInfo(final String totalRecord,
                           final String currentPage,
@@ -48,6 +50,7 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * get totalRecord.
+     *
      * @return a String result
      */
     public String getTotalRecord() {
@@ -56,7 +59,8 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set total record.
-     * @param totalRecord   totalRecord
+     *
+     * @param totalRecord totalRecord
      */
     public void setTotalRecord(String totalRecord) {
         this.totalRecord = totalRecord;
@@ -73,7 +77,8 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set current page.
-     * @param currentPage   currentPage
+     *
+     * @param currentPage currentPage
      */
     public void setCurrentPage(String currentPage) {
         this.currentPage = currentPage;
@@ -81,6 +86,7 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * get page size.
+     *
      * @return a String result
      */
     public String getPageSize() {
@@ -89,7 +95,8 @@ public class ResultPageInfo implements Serializable {
 
     /**
      * set page size.
-     * @param pageSize  pageSize
+     *
+     * @param pageSize pageSize
      */
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;

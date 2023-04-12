@@ -7,9 +7,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * widdo neo4j properties.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 15:10
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_GRAPH_NEO4J)
 public class WiddoNeo4jProperties {
 

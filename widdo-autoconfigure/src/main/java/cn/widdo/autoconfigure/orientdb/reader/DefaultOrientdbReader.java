@@ -11,10 +11,11 @@ import java.util.Map;
  * default implementation of orientdbReader.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 16:43
+ * @since 302.1.0.0
  */
-public class DefaultOrientdbReader  extends ParamsValidator implements OrientdbReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
+@SuppressWarnings("ALL")
+public class DefaultOrientdbReader extends ParamsValidator implements OrientdbReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     @Override
     public Result<List<Map<String, Value>>> query(Map<String, Object> map) {

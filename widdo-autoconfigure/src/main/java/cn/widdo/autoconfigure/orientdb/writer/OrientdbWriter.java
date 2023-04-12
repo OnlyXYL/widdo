@@ -3,11 +3,12 @@ package cn.widdo.autoconfigure.orientdb.writer;
 /**
  * OrientDBWriter.
  *
- * @param <T>
- * @param <R>
+ * @param <T> t
+ * @param <R> r
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 16:42
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface OrientdbWriter<T, R> {
 }

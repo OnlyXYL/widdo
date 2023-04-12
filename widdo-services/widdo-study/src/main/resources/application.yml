@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: widdo-study
+  profiles:
+    active: dev
+
+#banner中打印的模板信息
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"

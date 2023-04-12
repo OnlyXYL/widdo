@@ -6,25 +6,26 @@ import java.util.Map;
  * neo4j原生接口封装-关系.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Relationship {
 
     /**
-     * startNodeId.
+     * startNodeElementId.
      */
-    private long startNodeId;
+    private String startNodeElementId;
 
     /**
-     * endNodeId.
+     * endNodeElementId.
      */
-    private long endNodeId;
+    private String endNodeElementId;
 
     /**
      * id.
      */
-    private long id;
+    private String id;
 
     /**
      * type.
@@ -37,56 +38,56 @@ public class Relationship {
     private Map<String, Object> properties;
 
     /**
-     * get startNodeId.
+     * get startNodeElementId.
      *
-     * @return a result type of long
+     * @return a result type of String
      */
-    public long getStartNodeId() {
-        return startNodeId;
+    public String getStartNodeElementId() {
+        return startNodeElementId;
     }
 
     /**
-     * set startNodeId.
+     * set startNodeElementId.
      *
-     * @param startNodeId   startNodeId
+     * @param startNodeElementId startNodeElementId
      */
-    public void setStartNodeId(long startNodeId) {
-        this.startNodeId = startNodeId;
+    public void setStartNodeElementId(String startNodeElementId) {
+        this.startNodeElementId = startNodeElementId;
     }
 
     /**
-     * get endNodeId.
+     * get endNodeElementId.
      *
-     * @return a result type of long
+     * @return a result type of String
      */
-    public long getEndNodeId() {
-        return endNodeId;
+    public String getEndNodeElementId() {
+        return endNodeElementId;
     }
 
     /**
-     * set endNodeId.
+     * set endNodeElementId.
      *
-     * @param endNodeId endNodeId
+     * @param endNodeElementId endNodeElementId
      */
-    public void setEndNodeId(long endNodeId) {
-        this.endNodeId = endNodeId;
+    public void setEndNodeElementId(String endNodeElementId) {
+        this.endNodeElementId = endNodeElementId;
     }
 
     /**
      * get id.
      *
-     * @return a result type of long
+     * @return a result type of String
      */
-    public long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * set id.
      *
-     * @param id    id
+     * @param id id
      */
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -102,16 +103,16 @@ public class Relationship {
     /**
      * set type.
      *
-     * @param type  type
+     * @param type type
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * check if have type.
+     * check if you have type.
      *
-     * @param type  type
+     * @param type type
      * @return a result type of boolean
      */
     public boolean hasType(String type) {
@@ -130,7 +131,7 @@ public class Relationship {
     /**
      * set properties.
      *
-     * @param properties    properties
+     * @param properties properties
      */
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;

@@ -7,9 +7,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * widdo orientdb properties.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 15:26
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_GRAPH_ORIENTDB)
 public class WiddoOrientdbProperties {
 
@@ -45,6 +46,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get enabled.
+     *
      * @return a result type of boolean
      */
     public Boolean getEnabled() {
@@ -53,7 +55,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set enabled.
-     * @param enabled   the switch of orientdb
+     *
+     * @param enabled the switch of orientdb
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -61,6 +64,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get uri.
+     *
      * @return a result type of String
      */
     public String getUri() {
@@ -69,7 +73,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set uri.
-     * @param uri   the uri of orientdb server
+     *
+     * @param uri the uri of orientdb server
      */
     public void setUri(String uri) {
         this.uri = uri;
@@ -77,6 +82,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get url.
+     *
      * @return a result type of String
      */
     public String getUrl() {
@@ -85,7 +91,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set url.
-     * @param url   the url of orientdb server
+     *
+     * @param url the url of orientdb server
      */
     public void setUrl(String url) {
         this.url = url;
@@ -93,6 +100,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get username.
+     *
      * @return a result type of String
      */
     public String getUsername() {
@@ -101,7 +109,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set username.
-     * @param username  the username of orientdb server
+     *
+     * @param username the username of orientdb server
      */
     public void setUsername(String username) {
         this.username = username;
@@ -109,6 +118,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get password.
+     *
      * @return a result type of String
      */
     public String getPassword() {
@@ -117,7 +127,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set password.
-     * @param password  the password of orientdb server
+     *
+     * @param password the password of orientdb server
      */
     public void setPassword(String password) {
         this.password = password;
@@ -125,6 +136,7 @@ public class WiddoOrientdbProperties {
 
     /**
      * get database.
+     *
      * @return a result type of String
      */
     public String getDatabase() {
@@ -133,7 +145,8 @@ public class WiddoOrientdbProperties {
 
     /**
      * set database.
-     * @param database  the database of orientdb server
+     *
+     * @param database the database of orientdb server
      */
     public void setDatabase(String database) {
         this.database = database;

@@ -36,9 +36,10 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*
  * 用来控制资源请求要不要经过网关
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/10 14:42
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Slf4j
 @Component
 public class GatewayRequestFilter implements GlobalFilter {
@@ -58,7 +59,7 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * pathMatcher.
      */
-    private AntPathMatcher pathMatcher = new AntPathMatcher();
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -81,10 +82,9 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * 校验禁止访问的资源.
      *
-     * @param request   request {@link ServerHttpRequest}
-     * @param response  response {@link ServerHttpResponse}
+     * @param request  request {@link ServerHttpRequest}
+     * @param response response {@link ServerHttpResponse}
      * @return reactor.core.publisher.Mono<java.lang.Void>
-     * @throws
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:41
@@ -111,10 +111,9 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * 封装返回结果.
      *
-     * @param response  response {@link ServerHttpResponse}
-     * @param widdoResult    myResponse {@link WiddoResult}
+     * @param response    response {@link ServerHttpResponse}
+     * @param widdoResult myResponse {@link WiddoResult}
      * @return reactor.core.publisher.Mono<java.lang.Void>
-     * @throws
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:41
@@ -129,7 +128,7 @@ public class GatewayRequestFilter implements GlobalFilter {
     /**
      * 打印日志.
      *
-     * @param exchange  exchange {@link ServerWebExchange}
+     * @param exchange exchange {@link ServerWebExchange}
      * @author XYL
      * @className cn.widdo.filter.GatewayRequestFilter
      * @date 2022/06/10 15:42

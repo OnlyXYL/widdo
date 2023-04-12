@@ -4,11 +4,11 @@ import cn.widdo.assistant.utils.BeanUtils;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.starter.neo4j.utils.Neo4jUtil;
+import jakarta.annotation.PostConstruct;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +19,9 @@ import java.util.Optional;
  *
  * @author XYL
  * @date 2022/10/17 17:48
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
-@SuppressWarnings({"AlibabaClassNamingShouldBeCamel", "AlibabaLowerCamelCaseVariableNaming"})
+@SuppressWarnings("ALL")
 public class Neo4jPreRWHelper {
 
     private static final Logger log = LoggerFactory.getLogger(Neo4jPreRWHelper.class);
@@ -128,7 +128,7 @@ public class Neo4jPreRWHelper {
     public Result<List<Map<String, Value>>> execute(Map<String, Object> param) {
         String cqlStr = param.get("cypherQL").toString();
 
-        Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(null);
+        Map<String, Object> map = Optional.ofNullable(param.get("map")).map(o -> (Map<String, Object>) o).orElse(new HashMap<>());
 
         //打印信息
         Neo4jUtil.printCQL(cqlStr);

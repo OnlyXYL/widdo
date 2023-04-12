@@ -9,9 +9,10 @@ import java.lang.annotation.*;
  * 开启neo4j.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 1:08
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

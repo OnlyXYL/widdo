@@ -8,6 +8,7 @@ import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabasePool;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
+import jakarta.annotation.PostConstruct;
 import org.apache.tinkerpop.gremlin.orientdb.OrientGraphFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +16,15 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import javax.annotation.PostConstruct;
 
 /**
  * widdo orientdb configure.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 15:23
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @WiddoOrientdb
 @EnableConfigurationProperties(WiddoOrientdbProperties.class)
 public class WiddoOrientdbConfigure {
@@ -38,7 +39,7 @@ public class WiddoOrientdbConfigure {
     /**
      * OrientGraphFactory instance.
      *
-     * @param widdoOrientdbProperties   widdoOrientdbProperties
+     * @param widdoOrientdbProperties widdoOrientdbProperties
      * @return an OrientGraphFactory instance
      */
     @Bean
@@ -50,7 +51,7 @@ public class WiddoOrientdbConfigure {
     /**
      * ODatabasePool instance.
      *
-     * @param widdoOrientdbProperties   widdoOrientdbProperties
+     * @param widdoOrientdbProperties widdoOrientdbProperties
      * @return an ODatabasePool instance
      */
     @Bean

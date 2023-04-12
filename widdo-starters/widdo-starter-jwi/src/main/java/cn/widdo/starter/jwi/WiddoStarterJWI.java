@@ -1,18 +1,18 @@
 package cn.widdo.starter.jwi;
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 
 /**
  * JWI.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/11/29 11:22
+ * @since 302.1.0.0
  */
-@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
+@SuppressWarnings("ALL")
 public class WiddoStarterJWI {
 
     private final Logger log = LoggerFactory.getLogger(WiddoStarterJWI.class);

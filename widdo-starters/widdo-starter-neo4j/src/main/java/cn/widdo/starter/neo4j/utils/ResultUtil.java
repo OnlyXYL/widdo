@@ -8,9 +8,10 @@ import cn.widdo.starter.neo4j.entity.result.ResultPageInfo;
  * 结果工具类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class ResultUtil {
     /**
      * 分页大小.
@@ -29,7 +30,7 @@ public class ResultUtil {
      * 封装结果信息.
      *
      * @param <T> 泛型
-     * @param t t
+     * @param t   t
      * @return cn.widdo.starter.neo4j.entity.result.Result<T>
      * @author XYL
      * @date 2022/11/28 14:08:40
@@ -42,8 +43,8 @@ public class ResultUtil {
      * 封装结果信息.
      *
      * @param <T>            泛型
-     * @param t t
-     * @param resultPageInfo    resultPageInfo
+     * @param t              t
+     * @param resultPageInfo resultPageInfo
      * @return cn.widdo.starter.neo4j.entity.result.Result<T>
      * @author XYL
      * @date 2022/11/28 14:08:29

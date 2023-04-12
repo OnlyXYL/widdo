@@ -8,9 +8,10 @@ import java.util.Map;
  * neo4j gremlin service.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 1:37
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Neo4jGremlinService {
 
 
@@ -18,9 +19,9 @@ public interface Neo4jGremlinService {
      * gremlin query.
      *
      * @param params params
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @className widdo.neo4j.service.Neo4jJdbcService
-     * @return cn.widdo.assistant.result.WiddoResult
      * @date 2022/07/15 1:36
      **/
     WiddoResult query(Map<String, Object> params);

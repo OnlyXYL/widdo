@@ -11,12 +11,13 @@ import java.util.stream.Stream;
 /**
  * Count procedure.
  * <p>
- * rename from CountPlugin to CountProcedure since 263.1.3.0
+ * rename from CountPlugin to CountProcedure since 302.1.0.0
  *
  * @author XYL
  * @date 2023/02/07 16:05
- * @since 263.1.2.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class CountProcedure {
 
     /**

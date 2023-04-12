@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * CountPluginTest.
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 17:20
+ * @since 302.1.0.0
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DeleteProcedureTest {
@@ -44,8 +44,8 @@ public class DeleteProcedureTest {
     }
 
     @AfterEach
-    void cleanDb(){
-        try(Session session = driver.session()) {
+    void cleanDb() {
+        try (Session session = driver.session()) {
             session.run("MATCH (n) DETACH DELETE n");
         }
     }

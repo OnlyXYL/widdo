@@ -11,9 +11,10 @@ import java.util.List;
  * 自定义异常.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/29 15:59
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class BaseException extends RuntimeException {
 
     /**

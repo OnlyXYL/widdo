@@ -1,17 +1,16 @@
 package cn.widdo.autoconfigure.babelnet.reader;
 
-import cn.widdo.starter.neo4j.validator.ParamsValidator;
-
 /**
  * BabelNet 读取数据装饰器.
  *
  * @param <T> params
  * @param <R> return something
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/02 18:50
+ * @since 302.1.0.0
  */
-public abstract class AbstractBabelNetReaderDecorator<T, R> extends ParamsValidator implements BabelNetReader<T, R> {
+@SuppressWarnings("ALL")
+public abstract class AbstractBabelNetReaderDecorator<T, R> extends AbstractBabelNetReader<T, R> {
 
     /**
      * {@link BabelNetReader}.

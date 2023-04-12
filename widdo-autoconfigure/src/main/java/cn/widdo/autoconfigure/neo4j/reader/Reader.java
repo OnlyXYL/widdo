@@ -7,7 +7,7 @@ import cn.widdo.autoconfigure.neo4j.Runner;
  *
  * @author XYL
  * @date 2023/03/02 19:10
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
 public interface Reader extends Runner {
 }

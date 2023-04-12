@@ -9,8 +9,8 @@ import java.lang.annotation.*;
  * neo4j rw 开启.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 0:58
+ * @since 302.1.0.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

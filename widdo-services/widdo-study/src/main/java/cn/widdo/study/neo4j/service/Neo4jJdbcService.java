@@ -10,8 +10,9 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/07/15 0:02
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Neo4jJdbcService {
 
     /**

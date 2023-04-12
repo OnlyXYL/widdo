@@ -6,9 +6,10 @@ import java.io.Serializable;
  * neo4j原生接口封装-地理位置.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Point2D implements Serializable {
 
     /**
@@ -34,9 +35,9 @@ public class Point2D implements Serializable {
     /**
      * Point2D.
      *
-     * @param srid  srid
-     * @param x x
-     * @param y y
+     * @param srid srid
+     * @param x    x
+     * @param y    y
      * @author XYL
      * @date 2022/11/28 14:39:36
      **/
@@ -58,7 +59,7 @@ public class Point2D implements Serializable {
     /**
      * set srid.
      *
-     * @param srid  srid
+     * @param srid srid
      */
     public void setSrid(double srid) {
         this.srid = srid;

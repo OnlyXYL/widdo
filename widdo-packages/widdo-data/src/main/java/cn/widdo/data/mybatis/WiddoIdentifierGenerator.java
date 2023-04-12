@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * mybatis id 生成器.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/09/21 17:56
+ * @since 302.1.0.0
  */
 @Component
 public class WiddoIdentifierGenerator implements IdentifierGenerator {

@@ -14,17 +14,13 @@ import java.util.Map;
  * 参数校验器.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 10:19
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class ParamsValidator {
 
-
     private static final Logger log = LoggerFactory.getLogger(ParamsValidator.class);
-
-//    protected ParamsValidator() {
-//        throw new UnsupportedOperationException(ParamsValidator.class.getName() + " can`t be instance");
-//    }
 
     /**
      * 校验参数.

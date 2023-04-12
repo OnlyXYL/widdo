@@ -4,22 +4,23 @@ import cn.widdo.assistant.base.BaseController;
 import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.autoconfigure.orientdb.configure.WiddoOrientdbConfigure;
 import cn.widdo.study.orientdb.service.OrientdbJdbcService;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
  * orientdb controller.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/14 18:01
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @RequestMapping(value = "/orientdb/jdbc")
 @RestController
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
@@ -38,11 +39,9 @@ public class OrientdbJdbcController extends BaseController {
      * params.put("age")
      * params.put("city")
      *
-     * @param params
+     * @param params params
      * @return java.util.Map<java.lang.String, java.lang.Object>
-     * @throws
      * @author XYL
-     * @className widdo.orientdb.controller.OrientdbJdbcController
      * @date 2022/07/15 11:43
      **/
     @PostMapping(value = "/create/v")
@@ -57,11 +56,9 @@ public class OrientdbJdbcController extends BaseController {
      * params.put("source")
      * params.put("target")
      *
-     * @param params    params typed map {@link Map}
+     * @param params params typed map {@link Map}
      * @return cn.widdo.entity.JsonResult
-     * @throws
      * @author XYL
-     * @className widdo.orientdb.controller.OrientdbJdbcController
      * @date 2022/07/15 11:46
      **/
     @PostMapping(value = "/create/e")

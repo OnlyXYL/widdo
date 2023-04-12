@@ -12,8 +12,9 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2023/03/02 18:14
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface EnhanceWriter extends Neo4jHelper {
 
     /**

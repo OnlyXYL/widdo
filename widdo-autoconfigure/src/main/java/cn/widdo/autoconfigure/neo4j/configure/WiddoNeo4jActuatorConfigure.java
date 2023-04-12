@@ -4,6 +4,8 @@ import cn.widdo.autoconfigure.condition.WiddoNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -22,9 +22,9 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @author XYL
  * @date 2022/10/18 0:50
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
-@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+@SuppressWarnings("ALL")
 @WiddoNeo4jActuator
 public class WiddoNeo4jActuatorConfigure {
 
@@ -86,7 +86,8 @@ public class WiddoNeo4jActuatorConfigure {
 
             return (Neo4jActuator) constructor.newInstance(widdoNeo4jProperties, driver);
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
             e.printStackTrace();
         }
 

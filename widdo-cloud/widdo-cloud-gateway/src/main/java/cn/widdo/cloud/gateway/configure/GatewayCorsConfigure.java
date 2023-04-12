@@ -11,20 +11,19 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * 跨域配置.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/10 15:50
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Configuration
 public class GatewayCorsConfigure {
 
     /**
      * CorsWebFilter.
      *
-     * @param
+     * @return org.springframework.web.cors.reactive.CorsWebFilter
      * @author XYL
      * @className cn.widdo.cloud.gateway.configure.GatewayCorsConfigure
-     * @return org.springframework.web.cors.reactive.CorsWebFilter
-     * @throws
      * @date 2022/11/18 17:36
      **/
     @Bean

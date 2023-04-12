@@ -4,10 +4,10 @@ package cn.widdo.assistant.constant;
  * 常量.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:03
+ * @since 302.1.0.0
  */
-@SuppressWarnings("AlibabaConstantFieldShouldBeUpperCase")
+@SuppressWarnings("ALL")
 public class PropertyConstant {
     protected PropertyConstant() {
         throw new UnsupportedOperationException("静态类不能被实例化");
@@ -122,6 +122,12 @@ public class PropertyConstant {
      * widdo.management.graph.
      */
     public static final String PROPERTY_MANAGEMENT_GRAPH = PROPERTY_SMART_MANAGEMENT + ".graph";
+
+    /**
+     * widdo.management.babelnet.
+     */
+    public static final String PROPERTY_MANAGEMENT_BABELNET = PROPERTY_SMART_MANAGEMENT + ".babelnet";
+
     /**
      * widdo.social.justauth.
      */
@@ -339,9 +345,19 @@ public class PropertyConstant {
     public static final String ITEM_NEO4j_ENABLED = PROPERTY_GRAPH_NEO4J + PROPERTY_ENABLED;
 
     /**
+     * widdo.management.babelnet.enabled.
+     */
+    public static final String ITEM_BABELNET_ENABLED = PROPERTY_MANAGEMENT_BABELNET + PROPERTY_ENABLED;
+
+    /**
      * widdo.management.graph.neo4j.actuator.
      */
     public static final String ITEM_NEO4j_ACTUATOR_ENABLED = PROPERTY_GRAPH_NEO4J + ".actuator" + PROPERTY_ENABLED;
+
+    /**
+     * widdo.management.babelnet.actuator.
+     */
+    public static final String ITEM_BABELNET_ACTUATOR_ENABLED = PROPERTY_MANAGEMENT_BABELNET + ".actuator" + PROPERTY_ENABLED;
 
     /**
      * widdo.management.graph.orientdb.enabled.

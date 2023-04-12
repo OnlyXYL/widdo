@@ -15,9 +15,10 @@ import java.util.*;
  * @param <T>
  * @param <R>
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/30 16:22
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface WiddoResultInterface<T, R> {
 
     /**
@@ -40,7 +41,7 @@ public interface WiddoResultInterface<T, R> {
 
         final Collection<String> labels = node.getLabels();
 
-        final long id = node.getId();
+        final String id = node.getId();
         map.put("id", id);
         map.put("labels", labels);
         map.put("properties", properties);
@@ -57,8 +58,8 @@ public interface WiddoResultInterface<T, R> {
         final HashMap<String, Object> map = new HashMap<>(5);
         map.put("id", relationship.getId());
         map.put("type", relationship.getType());
-        map.put("startNodeId", relationship.getStartNodeId());
-        map.put("endNodeId", relationship.getEndNodeId());
+        map.put("startNodeElementId", relationship.getStartNodeElementId());
+        map.put("endNodeElementId", relationship.getEndNodeElementId());
         map.put("properties", relationship.getProperties());
 
         return map;
@@ -91,7 +92,7 @@ public interface WiddoResultInterface<T, R> {
     /**
      * wrapper list result.
      *
-     * @param value      the the value of neo4j result
+     * @param value      the value of neo4j result
      * @param listResult listResult
      */
     default void setList(Value value, List<Object> listResult) {
@@ -222,20 +223,11 @@ public interface WiddoResultInterface<T, R> {
                         listData.forEach(p -> p.forEach((k, v) -> {
                             final String type = v.getType();
                             switch (type) {
-                                case Neo4jType.PATH:
-                                    setPath(v, nodeList, relationShipList);
-                                    break;
-                                case Neo4jType.NODE:
-                                    setNode(v, nodeList);
-                                    break;
-                                case Neo4jType.RELATIONSHIP:
-                                    setRelationship(v, relationShipList);
-                                    break;
-                                case Neo4jType.LISTOFANY:
-                                    setList(v, list);
-                                    break;
-                                default:
-                                    throw new UnsupportedOperationException();
+                                case Neo4jType.PATH -> setPath(v, nodeList, relationShipList);
+                                case Neo4jType.NODE -> setNode(v, nodeList);
+                                case Neo4jType.RELATIONSHIP -> setRelationship(v, relationShipList);
+                                case Neo4jType.LISTOFANY -> setList(v, list);
+                                default -> throw new UnsupportedOperationException();
                             }
                         }));
                     }

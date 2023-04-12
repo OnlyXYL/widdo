@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.widdo.autoconfigure.neo4j.configure.WiddoNeo4jAutoConfigure,\
-  cn.widdo.autoconfigure.neo4j.configure.WiddoNeo4jActuatorConfigure

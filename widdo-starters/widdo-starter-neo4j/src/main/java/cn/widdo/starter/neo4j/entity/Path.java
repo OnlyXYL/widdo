@@ -9,9 +9,10 @@ import java.util.List;
  * neo4j原生接口封装-路径.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Path implements Serializable {
 
     /**
@@ -64,7 +65,7 @@ public class Path implements Serializable {
     /**
      * set endedNode.
      *
-     * @param endNode   endNode
+     * @param endNode endNode
      */
     public void setEndNode(Node endNode) {
         this.endNode = endNode;
@@ -91,7 +92,7 @@ public class Path implements Serializable {
     /**
      * add relationship to collection.
      *
-     * @param relationship  relationship
+     * @param relationship relationship
      */
     public void addRelationship(Relationship relationship) {
         this.relationships.add(relationship);
@@ -118,7 +119,7 @@ public class Path implements Serializable {
     /**
      * add {@link Node} to collection.
      *
-     * @param node  node
+     * @param node node
      */
     public void addNode(Node node) {
         this.nodes.add(node);
@@ -136,7 +137,7 @@ public class Path implements Serializable {
     /**
      * check {@link Node}.
      *
-     * @param node  node
+     * @param node node
      * @return a result type of boolean,which tell you if the node exists.
      */
     public boolean containsNode(Node node) {
@@ -146,7 +147,7 @@ public class Path implements Serializable {
     /**
      * check {@link Relationship}.
      *
-     * @param relationship  relationship
+     * @param relationship relationship
      * @return a result type of boolean, which tell you if the relationship exists.
      */
     public boolean containsRelationship(Relationship relationship) {

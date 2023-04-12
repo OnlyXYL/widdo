@@ -5,8 +5,9 @@ package cn.widdo.assistant.result;
  *
  * @author XYL
  * @date 2022/12/29 17:39
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface IResultInterface {
 
     /**
@@ -59,7 +60,7 @@ public interface IResultInterface {
         private final String msg;
 
         /**
-         * constructor of has two params.one called:code,another called:msg.
+         * constructor of has two params.One called:code,another called:msg.
          *
          * @param code code
          * @param msg  msg
@@ -103,7 +104,7 @@ public interface IResultInterface {
         private final String msg;
 
         /**
-         * constructor of has two params.one called:code,another called:msg.
+         * constructor of has two params.One called:code,another called:msg.
          *
          * @param code code
          * @param msg  msg

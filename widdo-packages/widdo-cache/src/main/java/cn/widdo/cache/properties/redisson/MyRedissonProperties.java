@@ -11,8 +11,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * 配置文件.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/05 17:37
+ * @since 302.1.0.0
  */
 @Data
 @RefreshScope

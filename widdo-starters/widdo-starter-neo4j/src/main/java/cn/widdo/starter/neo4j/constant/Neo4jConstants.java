@@ -5,7 +5,7 @@ package cn.widdo.starter.neo4j.constant;
  *
  * @author XYL
  * @date 2023/03/02 17:35
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
 public class Neo4jConstants {
 

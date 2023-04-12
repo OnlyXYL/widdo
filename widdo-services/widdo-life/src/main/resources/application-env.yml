@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.42.10.77:8848
+        namespace: widdo_env
+        group: DEFAULT_GROUP
+        register-enabled: true
+      config:
+        server-addr: 101.42.10.77:8848
+        namespace: widdo_env
+        group: DEFAULT_GROUP
+      username: nacos
+      password: widdo_nacos
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - optional:nacos:widdo-environment.yaml
+      - optional:nacos:widdo-life.yaml

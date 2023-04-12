@@ -1,0 +1,41 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.42.10.77:8848
+        namespace: widdo-env
+        group: DEFAULT_GROUP
+        register-enabled: true
+      config:
+        server-addr: 101.42.10.77:8848
+        namespace: widdo-env
+        group: DEFAULT_GROUP
+      username: nacos
+      password: widdo_nacos
+    stream:
+      bindings:
+        process-in-0:
+          destination:
+          binder: rabbit
+        process-out-0:
+          destination:
+          binder: rabbit
+
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+
+
+      input-bindings:
+
+      output-bindings:
+  config:
+    activate:
+      on-profile: env
+    import:
+      - optional:nacos:widdo-environment.yaml
+      - optional:nacos:widdo-study.yaml
+      - optional:nacos:widdo-neo4j.yaml
+      - optional:nacos:widdo-orientdb.yaml
+      - optional:nacos:widdo-babelnet.yaml

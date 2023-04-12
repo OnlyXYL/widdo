@@ -14,9 +14,10 @@ import java.util.Map;
  * Value.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 0:02
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Value implements Serializable {
     /**
      * size.
@@ -50,7 +51,8 @@ public class Value implements Serializable {
 
     /**
      * set size.
-     * @param size  size
+     *
+     * @param size size
      */
     public void setSize(int size) {
         this.size = size;
@@ -58,6 +60,7 @@ public class Value implements Serializable {
 
     /**
      * check empty.
+     *
      * @return a boolean result
      */
     public boolean isEmpty() {
@@ -66,6 +69,7 @@ public class Value implements Serializable {
 
     /**
      * set empty.
+     *
      * @param empty empty
      */
     public void setEmpty(boolean empty) {
@@ -74,6 +78,7 @@ public class Value implements Serializable {
 
     /**
      * get value.
+     *
      * @return return Object result
      */
     public Object getValue() {
@@ -82,6 +87,7 @@ public class Value implements Serializable {
 
     /**
      * set value.
+     *
      * @param value value
      */
     public void setValue(Object value) {
@@ -90,6 +96,7 @@ public class Value implements Serializable {
 
     /**
      * get type.
+     *
      * @return a String result
      */
     public String getType() {
@@ -98,7 +105,8 @@ public class Value implements Serializable {
 
     /**
      * set type.
-     * @param type  type
+     *
+     * @param type type
      */
     public void setType(String type) {
         this.type = type;
@@ -106,6 +114,7 @@ public class Value implements Serializable {
 
     /**
      * get keys.
+     *
      * @return a list of key
      */
     public List<String> getKeys() {
@@ -114,7 +123,8 @@ public class Value implements Serializable {
 
     /**
      * set keys.
-     * @param keys  keys
+     *
+     * @param keys keys
      */
     public void setKeys(List<String> keys) {
         this.keys = keys;

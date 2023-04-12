@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * GlobalExceptionHandler.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/29 18:50
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

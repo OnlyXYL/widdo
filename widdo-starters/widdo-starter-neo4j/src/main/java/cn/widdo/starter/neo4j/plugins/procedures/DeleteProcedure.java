@@ -11,12 +11,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * delete procedure. using this, you can batch delete nodes and it`s relation ,which nodes has relation.
+ * delete procedure. using this, you can batch delete nodes and it`s relation ,which nodes have relation.
  *
  * @author XYL
  * @date 2023/02/27 18:44
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class DeleteProcedure {
 
     /**
@@ -51,7 +52,7 @@ public class DeleteProcedure {
      * you don`t pass in your parameters as params parameter to the apoc call . and with 3.x forward using apoc in this way.
      * <p>
      * but with 4.4 and newer versions you can utilize the <code>call {} in transactions </code>,like this:
-     *
+     * <p>
      * <code>
      * MATCH (n:Foo) where n.foo = 'bar'
      * <p>
@@ -62,8 +63,8 @@ public class DeleteProcedure {
      * </code>
      * <p>
      * however, if node deleted hava a large of number relationships, it may still lead to out of heap errors.
-     * In this case it`s better to delete the relationships first and then the nodes in batches.like this:
-     *
+     * In this case it`s better to delete the relationships first and then the nodes in batches. Like this:
+     * <p>
      * <code>
      * <p>
      * MATCH (n:Foo)-[r]-() where n.foo='bar'
@@ -81,9 +82,9 @@ public class DeleteProcedure {
      * } IN TRANSACTIONS OF 10000 ROWS;
      * </code>
      * <p>
-     * you can get more from this {@link "https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/?_ga=2.113458306.465137194.1677635279-1264917599.1677635279"}
+     * you can get more from this {@link "<a href="https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/?_ga=2.113458306.465137194.1677635279-1264917599.1677635279"/>"}
      *
-     * @param label  label of which node will be delete
+     * @param label  label of which node will be deleted
      * @param ids    ids which node will be deleted
      * @param config config of this procedure
      * @return java.util.stream.Stream<cn.widdo.starter.neo4j.plugins.procedures.DeleteProcedure.DeleteContainer>
@@ -116,9 +117,10 @@ public class DeleteProcedure {
             labelCypher = String.format("n:%s", label);
         }
 
-        final String cypher = String.format("call apoc.periodic.iterate(\"MATCH (%s) %s return id(n) as ids\",\n"
-                        + "\"MATCH (%s) where id(n) = ids detach delete n \",\n"
-                        + "{batchSize:%s,parallel:%s,iterateList:%s}) YIELD operations return operations", labelCypher, matchWhere,
+        final String cypher = String.format("""
+                        call apoc.periodic.iterate("MATCH (%s) %s return id(n) as ids",
+                        "MATCH (%s) where id(n) = ids detach delete n ",
+                        {batchSize:%s,parallel:%s,iterateList:%s}) YIELD operations return operations""", labelCypher, matchWhere,
                 labelCypher,
                 batchSize, parallel, iterateList);
 

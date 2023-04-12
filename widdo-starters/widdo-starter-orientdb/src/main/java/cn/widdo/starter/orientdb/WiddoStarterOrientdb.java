@@ -1,17 +1,17 @@
 package cn.widdo.starter.orientdb;
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
 
 /**
  * widdo starter orientdb.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 15:24
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class WiddoStarterOrientdb {
 
     private final Logger log = LoggerFactory.getLogger(WiddoStarterOrientdb.class);

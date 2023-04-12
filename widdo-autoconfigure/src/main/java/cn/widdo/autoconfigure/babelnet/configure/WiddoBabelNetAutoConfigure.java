@@ -1,19 +1,23 @@
 package cn.widdo.autoconfigure.babelnet.configure;
 
+import cn.widdo.autoconfigure.babelnet.properties.WiddoBabelNetProperties;
 import cn.widdo.autoconfigure.condition.WiddoBabelNet;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import javax.annotation.PostConstruct;
 
 /**
  * BabelNet 自动配置类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/12/02 18:39
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @WiddoBabelNet
+@EnableConfigurationProperties(WiddoBabelNetProperties.class)
 public class WiddoBabelNetAutoConfigure {
 
     private static final Logger log = LoggerFactory.getLogger(WiddoBabelNetAutoConfigure.class);

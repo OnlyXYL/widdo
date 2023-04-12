@@ -25,10 +25,10 @@ import java.util.Map;
  * 需要实例化，操作neo4j的 reader 和 writer
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/18 11:44
+ * @since 302.1.0.0
  */
-@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+@SuppressWarnings("ALL")
 public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
@@ -36,7 +36,7 @@ public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Obje
     /**
      * Type constant of neo4j query cypher.
      */
-    private static final String CYPHER_QUERY = "query";
+    private static final String CYPHER_READ = "read";
 
     /**
      * Type constant of neo4j write cypher.
@@ -60,7 +60,7 @@ public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Obje
      * constructor has two params one called {@link WiddoNeo4jProperties},and another called {@link Driver}.
      *
      * @param widdoNeo4jProperties {@link WiddoNeo4jProperties}
-     * @param driver     {@link Driver}
+     * @param driver               {@link Driver}
      */
     private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Driver driver) {
         this.widdoNeo4jProperties = widdoNeo4jProperties;
@@ -104,11 +104,11 @@ public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Obje
             className = DefaultNeo4jReader.class.getName();
         }
 
-        return reflectObject(className, CYPHER_QUERY, params);
+        return reflectObject(className, CYPHER_READ, params);
     }
 
     /**
-     *  create writer instance to execute neo4j writer.
+     * create writer instance to execute neo4j writer.
      *
      * @param params params
      * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
@@ -155,7 +155,8 @@ public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Obje
             final Method query = aClass.getMethod(cypherType, Map.class);
 
             return (Result<List<Map<String, Value>>>) query.invoke(classObj, params);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
             e.printStackTrace();
         }
 

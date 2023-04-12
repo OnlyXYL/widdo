@@ -6,9 +6,10 @@ import java.io.Serializable;
  * neo4j原生接口封装-空间位置.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Point3D implements Serializable {
 
     /**
@@ -40,10 +41,10 @@ public class Point3D implements Serializable {
     /**
      * constructor has three params.
      *
-     * @param srid  srid
-     * @param x x
-     * @param y y
-     * @param z z
+     * @param srid srid
+     * @param x    x
+     * @param y    y
+     * @param z    z
      */
     public Point3D(final int srid, final double x, final double y, final double z) {
         this.x = x;
@@ -64,7 +65,7 @@ public class Point3D implements Serializable {
     /**
      * set srid.
      *
-     * @param srid  srid
+     * @param srid srid
      */
     public void setSrid(double srid) {
         this.srid = srid;
@@ -117,6 +118,7 @@ public class Point3D implements Serializable {
 
     /**
      * set z.
+     *
      * @param z z
      */
     public void setZ(double z) {

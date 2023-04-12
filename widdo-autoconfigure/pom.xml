@@ -5,7 +5,7 @@
     <parent>
         <artifactId>widdo</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.2.0</version>
+        <version>302.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -39,6 +39,19 @@
                 </exclusion>
             </exclusions>
             <optional>true</optional>
+        </dependency>
+
+        <!--jena-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-starter-jena</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--babelNet-->
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-starter-babelnet</artifactId>
         </dependency>
     </dependencies>
 

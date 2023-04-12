@@ -1,19 +1,19 @@
 package cn.widdo.study;
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.PostConstruct;
-
 /**
  * 启动类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 16:49
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @SpringBootApplication
 public class WiddoStudyApplication {
 

@@ -5,9 +5,10 @@ package cn.widdo.starter.neo4j.entity.result;
  *
  * @param <T> 泛型
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Result<T> {
 
     /**
@@ -45,7 +46,7 @@ public class Result<T> {
     /**
      * get status.
      *
-     * @return a Object type of {@link ResultEnum}
+     * @return an Object type of {@link ResultEnum}
      */
     public ResultEnum getStatus() {
         return status;
@@ -54,7 +55,7 @@ public class Result<T> {
     /**
      * set status.
      *
-     * @param code  code
+     * @param code code
      */
     public void setStatus(ResultEnum code) {
         this.status = code;
@@ -72,7 +73,7 @@ public class Result<T> {
     /**
      * set msg.
      *
-     * @param msg   msg
+     * @param msg msg
      */
     public void setMsg(String msg) {
         this.msg = msg;
@@ -81,7 +82,7 @@ public class Result<T> {
     /**
      * set code.
      *
-     * @param code  code
+     * @param code code
      */
     public void setCode(Integer code) {
         this.code = code;
@@ -99,7 +100,7 @@ public class Result<T> {
     /**
      * set data type of anything.
      *
-     * @param data  data
+     * @param data data
      */
     public void setData(T data) {
         this.data = data;
@@ -108,7 +109,7 @@ public class Result<T> {
     /**
      * get pageInfo.
      *
-     * @return a Object type of {@link ResultPageInfo}
+     * @return an Object type of {@link ResultPageInfo}
      */
     public ResultPageInfo getPageInfo() {
         return resultPageInfo;
@@ -117,7 +118,7 @@ public class Result<T> {
     /**
      * set pageInfo.
      *
-     * @param pageInfo  pageInfo
+     * @param pageInfo pageInfo
      */
     public void setPageInfo(ResultPageInfo pageInfo) {
         this.resultPageInfo = pageInfo;

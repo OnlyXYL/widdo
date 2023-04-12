@@ -5,7 +5,7 @@ package cn.widdo.starter.neo4j.annotation;
  *
  * @author XYL
  * @date 2023/02/07 16:49
- * @since 263.1.2.0
+ * @since 302.1.0.0
  */
 public @interface IgnoreNeo4jVisibility {
 }

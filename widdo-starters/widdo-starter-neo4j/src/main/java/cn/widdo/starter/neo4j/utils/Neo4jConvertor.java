@@ -10,16 +10,16 @@ import org.neo4j.driver.types.Relationship;
  * neo4j原生结果类型转换.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
-@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+@SuppressWarnings("ALL")
 public class Neo4jConvertor {
 
     /**
      * public constructor.
      *
-     * @return a object called {@link Neo4jConvertor}
+     * @return an object called {@link Neo4jConvertor}
      */
     public static Neo4jConvertor build() {
         return new Neo4jConvertor();
@@ -37,7 +37,7 @@ public class Neo4jConvertor {
     public cn.widdo.starter.neo4j.entity.Node convertNeo4jNodeToNode(Node nodeOrigin) {
         cn.widdo.starter.neo4j.entity.Node node = new cn.widdo.starter.neo4j.entity.Node();
         node.setProperties(nodeOrigin.asMap());
-        node.setId(nodeOrigin.id());
+        node.setId(nodeOrigin.elementId());
         node.setLabels(nodeOrigin.labels());
         return node;
     }
@@ -53,10 +53,10 @@ public class Neo4jConvertor {
      **/
     public cn.widdo.starter.neo4j.entity.Relationship convertNeo4jRelationshipToRelationship(Relationship relationshipOrigin) {
         cn.widdo.starter.neo4j.entity.Relationship relationship = new cn.widdo.starter.neo4j.entity.Relationship();
-        relationship.setId(relationshipOrigin.id());
+        relationship.setId(relationshipOrigin.elementId());
         relationship.setProperties(relationshipOrigin.asMap());
-        relationship.setStartNodeId(relationshipOrigin.startNodeId());
-        relationship.setEndNodeId(relationshipOrigin.endNodeId());
+        relationship.setStartNodeElementId(relationshipOrigin.startNodeElementId());
+        relationship.setEndNodeElementId(relationshipOrigin.endNodeElementId());
         relationship.setType(relationshipOrigin.type());
         return relationship;
     }

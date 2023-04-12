@@ -12,9 +12,10 @@ import java.util.Map;
  * Reader 装饰器，对传入的Reader进行装饰。当默认方法不足时，可以通过该方式对原方法进行增强.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/15 1:20
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     private final Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);

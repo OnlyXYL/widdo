@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Bean;
  * 单机配置.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/21 19:29
+ * @since 302.1.0.0
  */
 @Data
 @ConditionalOnRedissonEnabled

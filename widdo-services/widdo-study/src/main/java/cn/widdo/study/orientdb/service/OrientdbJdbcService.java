@@ -8,18 +8,18 @@ import java.util.Map;
  * Orientdb Jdbc Service.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 2:05
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface OrientdbJdbcService {
 
     /**
      * 查询线.
      *
-     * @param params    param typed Map
+     * @param params param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
-     * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 9:53
      **/
     WiddoResult queryE(Map<String, Object> params);
@@ -27,10 +27,9 @@ public interface OrientdbJdbcService {
     /**
      * 查询点.
      *
-     * @param params    param typed Map
+     * @param params param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
-     * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:15
      **/
     WiddoResult queryV(Map<String, Object> params);
@@ -38,10 +37,9 @@ public interface OrientdbJdbcService {
     /**
      * 创建点.
      *
-     * @param params    param typed Map
+     * @param params param typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
-     * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:38
      **/
     WiddoResult createV(Map<String, Object> params);
@@ -49,10 +47,9 @@ public interface OrientdbJdbcService {
     /**
      * 创建关系.
      *
-     * @param params    params typed Map
+     * @param params params typed Map
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
-     * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:39
      **/
     WiddoResult createE(Map<String, Object> params);
@@ -63,7 +60,6 @@ public interface OrientdbJdbcService {
      * @param
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
-     * @className widdo.orientdb.service.OrientdbJdbcService
      * @date 2022/07/15 10:39
      **/
     WiddoResult delete();

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>widdo-packages</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.2.0</version>
+        <version>302.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -53,12 +53,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!--Spring Cloud 新版本默认将 Bootstrap 禁用，需要将 spring-cloud-starter-bootstrap 依赖引入到工程中：-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
         <!--解决 @ConfigurationProperties加载配置信息时，当代码出现Spring Boot Configuration Annotation Processor not configured。

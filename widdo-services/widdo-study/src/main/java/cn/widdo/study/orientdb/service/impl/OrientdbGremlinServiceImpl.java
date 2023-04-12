@@ -23,8 +23,8 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
  * OrientdbGremlinServiceImpl.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 2:08
+ * @since 302.1.0.0
  */
 @Service
 @ConditionalOnBean({WiddoOrientdbConfigure.class})

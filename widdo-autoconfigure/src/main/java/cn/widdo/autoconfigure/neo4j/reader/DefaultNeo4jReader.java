@@ -22,9 +22,10 @@ import java.util.Map;
  * 需要校验参数
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/14 16:33
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class DefaultNeo4jReader extends AbstractNeo4jReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**

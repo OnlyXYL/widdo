@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
  * 网关配置文件.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/10 14:51
+ * @since 302.1.0.0
  */
 @RefreshScope
 @Data

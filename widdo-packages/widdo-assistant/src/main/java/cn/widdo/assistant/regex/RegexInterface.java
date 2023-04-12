@@ -6,9 +6,10 @@ import java.util.regex.Pattern;
  * 正则接口. 使用接口对枚举进行分类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/11/30 1:16
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface RegexInterface {
 
     /**
@@ -91,7 +92,7 @@ public interface RegexInterface {
         /**
          * 正则内容.
          */
-        private String regex;
+        private final String regex;
 
         /**
          * constructor has one params.
@@ -124,7 +125,7 @@ public interface RegexInterface {
         /**
          * 正则.
          */
-        private String regex;
+        private final String regex;
 
         /**
          * constructor has one params.

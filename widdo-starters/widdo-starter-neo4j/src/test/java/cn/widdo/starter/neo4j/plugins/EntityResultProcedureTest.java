@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * test
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 15:12
+ * @since 302.1.0.0
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EntityResultProcedureTest {
@@ -44,8 +44,8 @@ public class EntityResultProcedureTest {
     }
 
     @AfterEach
-    void cleanDb(){
-        try(Session session = driver.session()) {
+    void cleanDb() {
+        try (Session session = driver.session()) {
             session.run("MATCH (n) DETACH DELETE n");
         }
     }
@@ -55,7 +55,7 @@ public class EntityResultProcedureTest {
         try (final Session session = driver.session();) {
             final Stream<Integer> stream = session.run("CALL widdo.allNodes('') YIELD node")
                     .stream().map(r -> r.get("node").asNode().get("idx").asInt());
-            assertThat(stream).hasSize(5).containsExactly(1,2,3,4,5);
+            assertThat(stream).hasSize(5).containsExactly(1, 2, 3, 4, 5);
         }
     }
 }

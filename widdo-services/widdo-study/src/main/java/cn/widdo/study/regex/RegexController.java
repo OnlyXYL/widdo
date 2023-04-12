@@ -6,9 +6,10 @@ import cn.widdo.assistant.regex.RegexInterface;
  * regex controller.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/11/29 17:46
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class RegexController {
 
     protected RegexController() {

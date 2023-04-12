@@ -15,8 +15,9 @@ import java.util.Optional;
  *
  * @author XYL
  * @date 2023/03/02 16:55
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Neo4jHelper extends Runner {
 
     /**

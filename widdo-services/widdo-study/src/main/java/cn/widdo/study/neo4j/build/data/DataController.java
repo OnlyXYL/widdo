@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 数据controller.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/09/22 10:06
+ * @since 302.1.0.0
  */
 @RequestMapping(value = "/data")
 @RestController

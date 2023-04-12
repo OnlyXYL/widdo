@@ -6,9 +6,10 @@ import java.io.Serializable;
  * neo4j原生接口封装-时间.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class IsoDuration implements Serializable {
     /**
      * 月.
@@ -39,7 +40,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param months    months
+     * @param months months
      */
     public void setMonths(long months) {
         this.months = months;
@@ -57,7 +58,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param days  days
+     * @param days days
      */
     public void setDays(long days) {
         this.days = days;
@@ -75,7 +76,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param seconds   seconds
+     * @param seconds seconds
      */
     public void setSeconds(long seconds) {
         this.seconds = seconds;
@@ -93,7 +94,7 @@ public class IsoDuration implements Serializable {
     /**
      * setter.
      *
-     * @param nanoseconds   nanoseconds
+     * @param nanoseconds nanoseconds
      */
     public void setNanoseconds(int nanoseconds) {
         this.nanoseconds = nanoseconds;

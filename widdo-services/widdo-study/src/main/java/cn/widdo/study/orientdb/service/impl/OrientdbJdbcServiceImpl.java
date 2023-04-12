@@ -9,19 +9,20 @@ import com.orientechnologies.orient.core.db.ODatabasePool;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
  * OrientdbJdbcServiceImpl.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 2:05
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Service
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
 public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
@@ -51,7 +52,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
         OResultSet oResultSet = null;
 
-        try (ODatabaseSession session = pool.acquire();) {
+        try (ODatabaseSession session = pool.acquire()) {
 
             //1. 判断class是否存在
             final OClass oClass = session.getClass(label);
@@ -93,7 +94,7 @@ public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
         OResultSet oResultSet = null;
 
-        try (ODatabaseSession session = pool.acquire();) {
+        try (ODatabaseSession session = pool.acquire()) {
 
             //1. 判断class是否存在
             final OClass oClass = session.getClass(eLabel);

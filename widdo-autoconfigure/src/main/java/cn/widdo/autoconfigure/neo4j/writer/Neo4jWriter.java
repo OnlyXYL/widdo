@@ -9,8 +9,9 @@ import cn.widdo.autoconfigure.neo4j.Neo4jHelper;
  * @param <T>
  * @author XYL
  * @date 2022/10/14 16:36
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Neo4jWriter<T, R> extends Writer, Neo4jHelper, EnhanceWriter {
 
     /**

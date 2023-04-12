@@ -1,8 +1,9 @@
 package cn.widdo.study.neo4j.controller;
 
+import cn.widdo.assistant.base.BaseController;
 import cn.widdo.assistant.result.WiddoResult;
-import cn.widdo.autoconfigure.base.BaseController;
 import cn.widdo.study.neo4j.service.Neo4jJdbcService;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 import java.util.Map;
 
 /**
@@ -19,8 +19,9 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/07/14 18:00
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @RequestMapping(value = "/neo4j")
 @RestController
 public class Neo4jController extends BaseController {
@@ -35,7 +36,7 @@ public class Neo4jController extends BaseController {
     /**
      * service.
      */
-    private Neo4jJdbcService neo4jJdbcService;
+    private final Neo4jJdbcService neo4jJdbcService;
 
     @Autowired
     public Neo4jController(final Neo4jJdbcService neo4jJdbcService) {
@@ -90,7 +91,7 @@ public class Neo4jController extends BaseController {
     /**
      * 刪除操作.
      *
-     * @param params  params
+     * @param params params
      * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @date 2023/03/01 15:09:31

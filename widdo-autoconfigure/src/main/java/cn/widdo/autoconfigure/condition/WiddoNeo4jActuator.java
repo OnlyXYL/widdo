@@ -10,9 +10,10 @@ import java.lang.annotation.*;
  * 开启neo4j读写.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/10/19 1:03
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

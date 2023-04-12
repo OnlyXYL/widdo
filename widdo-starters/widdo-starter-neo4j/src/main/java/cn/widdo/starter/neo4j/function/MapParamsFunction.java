@@ -8,9 +8,10 @@ import java.util.Map;
  * MapParamsFunction.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/15 0:05
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @FunctionalInterface
 public interface MapParamsFunction {
 

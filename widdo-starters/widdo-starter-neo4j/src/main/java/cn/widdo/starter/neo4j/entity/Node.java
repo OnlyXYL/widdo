@@ -9,9 +9,10 @@ import java.util.Map;
  * neo4j原生接口封装-节点.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:09
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class Node implements Serializable {
 
     /**
@@ -22,12 +23,12 @@ public class Node implements Serializable {
     /**
      * labels.
      */
-    private Collection<String> labels = new HashSet<>();
+    private final Collection<String> labels = new HashSet<>();
 
     /**
      * id.
      */
-    private long id;
+    private String id;
 
     /**
      * get properties.
@@ -41,7 +42,7 @@ public class Node implements Serializable {
     /**
      * set properties.
      *
-     * @param properties    properties
+     * @param properties properties
      */
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
@@ -59,7 +60,7 @@ public class Node implements Serializable {
     /**
      * set labels.
      *
-     * @param labels    labels
+     * @param labels labels
      */
     public void setLabels(Iterable<String> labels) {
         labels.forEach(l -> this.labels.add(l));
@@ -68,18 +69,18 @@ public class Node implements Serializable {
     /**
      * get id.
      *
-     * @return a result type of long
+     * @return a result type of String
      */
-    public long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * set id.
      *
-     * @param id    id
+     * @param id id
      */
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -96,7 +97,7 @@ public class Node implements Serializable {
     /**
      * check key.
      *
-     * @param key   key
+     * @param key key
      * @return a result type of boolean,which tell you if the key exists
      */
     public boolean containsKey(String key) {

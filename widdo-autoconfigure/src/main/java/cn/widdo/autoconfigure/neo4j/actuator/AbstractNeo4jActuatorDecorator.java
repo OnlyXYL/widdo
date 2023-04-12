@@ -17,8 +17,9 @@ import java.util.Map;
  * @param <T>
  * @author XYL
  * @date 2022/12/03 18:59
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4jActuator<T, R> {
 
     /**
@@ -30,13 +31,13 @@ public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4j
     /**
      * create object instance by reflect.
      *
-     * @param className
-     * @param cypherType
-     * @param params
+     * @param className  className
+     * @param cypherType cypherType
+     * @param params     params
      * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
      * @author XYL
      * @date 2023/03/01 18:42:31
-     * @since 263.1.3.0
+     * @since 302.1.0.0
      */
     protected Result<List<Map<String, Value>>> reflectObject(String className, String cypherType, Map<String, Object> params) {
         try {
@@ -51,7 +52,8 @@ public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4j
             final Method query = aClass.getMethod(cypherType, Map.class);
 
             return (Result<List<Map<String, Value>>>) query.invoke(classObj, params);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
             e.printStackTrace();
         }
 

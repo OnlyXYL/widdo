@@ -13,8 +13,9 @@ import java.util.function.Supplier;
  *
  * @author XYL
  * @date 2022/11/10 18:47
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class BeanUtils extends org.springframework.beans.BeanUtils {
 
     /**

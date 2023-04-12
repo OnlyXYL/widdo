@@ -11,9 +11,10 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/12/06 11:45
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
-public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>>  {
+@SuppressWarnings("ALL")
+public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
     /**
      * constructor has one param called {@link Neo4jWriter}.

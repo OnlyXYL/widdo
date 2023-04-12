@@ -7,8 +7,9 @@ import java.util.HashMap;
  *
  * @author XYL
  * @date 2022/12/29 17:47
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class WiddoResult extends HashMap<String, Object> {
 
     /**
@@ -30,7 +31,7 @@ public class WiddoResult extends HashMap<String, Object> {
     /**
      * constructor has one param called msg.
      *
-     * @param msg
+     * @param msg msg
      */
     public WiddoResult(final String msg) {
         this.put(MSG, msg);

@@ -20,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * TriplePluginTest.
  *
  * @author XYL
- * @since 263.1.1.1
  * @date 2023/02/07 18:13
+ * @since 302.1.0.0
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TripleProcedureTest {
@@ -46,8 +46,8 @@ public class TripleProcedureTest {
     }
 
     @AfterEach
-    void cleanDb(){
-        try(Session session = driver.session()) {
+    void cleanDb() {
+        try (Session session = driver.session()) {
             session.run("MATCH (n) DETACH DELETE n");
         }
     }
@@ -58,12 +58,13 @@ public class TripleProcedureTest {
 
             final Map params = params();
 
-            final Stream<List> stream = session.run("CALL widdo.triple.write($map) YIELD relIds",params)
+            final Stream<List> stream = session.run("CALL widdo.triple.write($map) YIELD relIds", params)
                     .stream().map(r -> r.get("relationshipIds").asList());
-            assertThat(stream).hasSize(2);        }
+            assertThat(stream).hasSize(2);
+        }
     }
 
-    public Map params(){
+    public Map params() {
 
         String paramsStr = "{\n" +
                 "\t\"triples\":[\n" +
@@ -151,7 +152,7 @@ public class TripleProcedureTest {
         final Map map = JSON.parseObject(paramsStr, Map.class);
 
         final HashMap hashMap = new HashMap();
-        hashMap.put("map",map);
+        hashMap.put("map", map);
 
         return hashMap;
     }

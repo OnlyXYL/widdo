@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #Flag that enables DiscoveryClient gateway integration
+          enabled: true
+      enabled: true
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 101.42.10.77:8848
+        namespace: widdo-dev
+        group: DEFAULT_GROUP
+        register-enabled: true
+      config:
+        server-addr: 101.42.10.77:8848
+        namespace: widdo-dev
+        group: DEFAULT_GROUP
+        enabled: true
+      username: nacos
+      password: widdo_nacos
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - optional:nacos:widdo-environment.yaml
+      - optional:nacos:widdo-gateway.yaml

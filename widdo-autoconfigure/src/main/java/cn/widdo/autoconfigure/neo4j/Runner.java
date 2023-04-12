@@ -20,8 +20,9 @@ import java.util.Optional;
  *
  * @author XYL
  * @date 2023/03/02 16:47
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Runner extends Session {
 
     /**
@@ -63,6 +64,7 @@ public interface Runner extends Session {
     /**
      * open the session.
      *
+     * @param accessMode accessMode
      * @return org.neo4j.driver.Session
      * @author XYL
      * @date 2023/03/02 17:14:24

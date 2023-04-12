@@ -5,12 +5,12 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>263.1.2.0</version>
+        <version>302.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-study</artifactId>
-    <version>263.1.2.0</version>
+    <version>302.1.0.0</version>
     <dependencies>
 
         <!--自动配置包-->
@@ -23,7 +23,6 @@
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-starter-neo4j</artifactId>
-            <version>263.1.2.0</version>
         </dependency>
 
         <!--orientdb starter-->
@@ -44,37 +43,50 @@
             <artifactId>widdo-starter-babelnet</artifactId>
         </dependency>
 
-        <!--neo4j-spark @since 263.1.2.1-->
+        <!--neo4j-spark @since 302.1.0.0-->
         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-connector-apache-spark_2.12</artifactId>
         </dependency>
 
-        <!--spark core @since 263.1.2.1-->
+        <!--spark core @since 302.1.0.0-->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.12</artifactId>
         </dependency>
-        <!--spark sql @since 263.1.2.1-->
+        <!--spark sql @since 302.1.0.0-->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.12</artifactId>
         </dependency>
-        <!--@since 263.1.2.1-->
+        <!--@since 302.1.0.0-->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
         </dependency>
 
+        <!--grpc-->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-all</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.6.1</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-          <!--      <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>-->
+                <!--      <configuration>
+                          <includeSystemScope>true</includeSystemScope>
+                      </configuration>-->
             </plugin>
 
             <plugin>
@@ -85,6 +97,26 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+
+            <!--proto-->
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version>
+                <configuration>
+                    <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}</pluginArtifact>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

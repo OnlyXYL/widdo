@@ -9,8 +9,9 @@ import cn.widdo.autoconfigure.neo4j.Neo4jHelper;
  * @param <R>
  * @author XYL
  * @date 2022/10/14 16:07
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public interface Neo4jReader<T, R> extends Reader, Neo4jHelper {
 
     /**

@@ -1,18 +1,18 @@
 package cn.widdo.data.configuration;
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import javax.annotation.PostConstruct;
 
 /**
  * 数据处理层配置.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/09/21 16:36
+ * @since 302.1.0.0
  */
 @Configuration
 @Import({MybatisPlusConfiguration.class})

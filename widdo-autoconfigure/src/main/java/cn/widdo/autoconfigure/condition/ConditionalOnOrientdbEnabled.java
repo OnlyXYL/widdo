@@ -9,8 +9,8 @@ import java.lang.annotation.*;
  * 开启orientdb注解.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/08/15 15:29
+ * @since 302.1.0.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

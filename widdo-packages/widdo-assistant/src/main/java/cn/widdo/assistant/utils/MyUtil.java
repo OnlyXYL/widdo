@@ -1,7 +1,6 @@
 package cn.widdo.assistant.utils;
 
 import com.alibaba.fastjson.JSON;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.BindingResult;
 
@@ -13,10 +12,10 @@ import java.util.stream.IntStream;
  * 工具类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/07/05 17:37
+ * @since 302.1.0.0
  */
-@Slf4j
+@SuppressWarnings("ALL")
 public class MyUtil {
 
     protected MyUtil() {

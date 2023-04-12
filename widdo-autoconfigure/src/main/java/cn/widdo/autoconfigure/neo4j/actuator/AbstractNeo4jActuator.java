@@ -9,7 +9,7 @@ import org.neo4j.driver.Driver;
  * @param <R> r
  * @author XYL
  * @date 2023/03/03 11:17
- * @since 263.1.3.0
+ * @since 302.1.0.0
  */
 public abstract class AbstractNeo4jActuator<T, R> implements Neo4jActuator<T, R> {
 

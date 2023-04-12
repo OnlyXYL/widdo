@@ -10,8 +10,9 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/10/20 10:43
- * @since 263.1.1.0
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 public class MapUtil {
 
     protected MapUtil() {
@@ -24,7 +25,7 @@ public class MapUtil {
      *
      * @param params    参数map
      * @param checkKeys 需要校验的非空可变参数
-     * @throws Exception
+     * @throws Exception exception
      * @author XYL
      * @className cn.widdo.starter.neo4j.utils.Neo4jUtil
      * @date 2022/10/18 10:08
@@ -34,11 +35,11 @@ public class MapUtil {
         Iterator<String> keys = params.keySet().iterator();
         Object value;
         if (checkKeys.length > 0) {
-            for (int i = 0; i < checkKeys.length; ++i) {
-                value = params.get(checkKeys[i]);
+            for (String checkKey : checkKeys) {
+                value = params.get(checkKey);
                 if (value == null
                         || !StringUtils.hasLength(value.toString())) {
-                    throw new Exception("参数" + checkKeys[i] + "不能为空");
+                    throw new Exception("参数" + checkKey + "不能为空");
                 }
             }
         }

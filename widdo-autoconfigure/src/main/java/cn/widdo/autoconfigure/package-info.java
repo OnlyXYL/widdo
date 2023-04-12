@@ -4,7 +4,7 @@
  * <p>
  * 创建时间：2022年11月17日 00点34分
  * <p>
- * 版本：263.1.1.0
+ * 版本：302.1.0.0
  * <p>
  * 同时package-info.java有以下作用：
  * <p>
@@ -19,7 +19,7 @@
  *
  * @author XYL
  * @date 2023/02/08 10:43:15
- * @since 263.1.1.0
+ * @since 302.1.0.0
  **/
 package cn.widdo.autoconfigure;
 

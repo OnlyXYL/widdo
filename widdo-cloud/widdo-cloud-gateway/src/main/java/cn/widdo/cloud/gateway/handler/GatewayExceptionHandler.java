@@ -21,9 +21,10 @@ import java.util.Map;
  * 网关异常处理类.
  *
  * @author XYL
- * @since 263.1.1.0
  * @date 2022/06/09 18:11
+ * @since 302.1.0.0
  */
+@SuppressWarnings("ALL")
 @Slf4j
 public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
 
@@ -35,10 +36,10 @@ public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
     /**
      * 构造方法.
      *
-     * @param errorAttributes   errorAttributes{@link ErrorAttributes}
-     * @param resources resources{@link WebProperties.Resources}
-     * @param errorProperties   errorProperties{@link ErrorProperties}
-     * @param applicationContext    applicationContext{@link ApplicationContext}
+     * @param errorAttributes    errorAttributes{@link ErrorAttributes}
+     * @param resources          resources{@link WebProperties.Resources}
+     * @param errorProperties    errorProperties{@link ErrorProperties}
+     * @param applicationContext applicationContext{@link ApplicationContext}
      */
     public GatewayExceptionHandler(final ErrorAttributes errorAttributes,
                                    final WebProperties.Resources resources,
@@ -52,7 +53,7 @@ public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
         Throwable error = super.getError(request);
         log.error(
                 "请求发生异常，请求URI：{}，请求方法：{}，异常信息：{}",
-                request.path(), request.methodName(), error.getMessage()
+                request.path(), request.method(), error.getMessage()
         );
         String errorMessage;
         if (error instanceof NotFoundException) {

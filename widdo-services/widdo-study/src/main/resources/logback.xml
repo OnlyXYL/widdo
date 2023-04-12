@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-<!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+    <!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
     <contextName>widdo</contextName>
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
-<!--
-    <springProperty scope="context" name="logPath" source="log.path" defaultValue="log/widdo-cloud-gateway"/>
-    <springProperty scope="context" name="logLevel" source="log.level" defaultValue="info"/>
-    <springProperty scope="context" name="logHistory" source="log.history" defaultValue="7"/>
--->
+    <!--
+        <springProperty scope="context" name="logPath" source="log.path" defaultValue="log/widdo-cloud-gateway"/>
+        <springProperty scope="context" name="logLevel" source="log.level" defaultValue="info"/>
+        <springProperty scope="context" name="logHistory" source="log.history" defaultValue="7"/>
+    -->
 
-    <property  name="log.path" value="log/widdo-study"/>
-    <property name="log.maxHistory" value="15" />
+    <property name="log.path" value="log/widdo-study"/>
+    <property name="log.maxHistory" value="15"/>
 
-    <property name="log.colorPattern" value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %boldCyan([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]) %yellow(%thread) %green(%logger) %msg%n"/>
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level [${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %thread %logger %msg%n"/>
+    <property name="log.colorPattern"
+              value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %boldCyan([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]) %yellow(%thread) %green(%logger) %msg%n"/>
+    <property name="log.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss} %-5level [${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %thread %logger %msg%n"/>
 
     <!-- 输出到控制台 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -55,17 +57,17 @@
     </appender>
 
     <!--项目启动时，用来关闭自动配置的日志输出。如果存在logback.xml时，以logback.xml中的配置为准；反之，以此处的配置为准-->
-<!--    <logger level="info" name="org.springframework.boot.autoconfigure.logging" additivity="false">
-        <appender-ref ref="console"/>
-        <appender-ref ref="file_info" />
-    </logger>-->
+    <!--    <logger level="info" name="org.springframework.boot.autoconfigure.logging" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file_info" />
+        </logger>-->
 
     <root level="debug">
-        <appender-ref ref="console" />
+        <appender-ref ref="console"/>
     </root>
 
     <root level="${logLevel}">
-        <appender-ref ref="file_info" />
-        <appender-ref ref="file_error" />
+        <appender-ref ref="file_info"/>
+        <appender-ref ref="file_error"/>
     </root>
 </configuration>
