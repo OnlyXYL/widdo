@@ -1,6 +1,26 @@
-::: info
 
 # widdo
+
+[![](https://img.shields.io/github/languages/code-size/OnlyXYL/widdo)]()
+
+[![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
+
+[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.2.x/f8bf0bf)]()
+
+[![](https://img.shields.io/github/v/release/OnlyXYl/widdo?display_name=tag&include_prereleases)]()
+
+[![](https://img.shields.io/github/v/tag/OnlyXYL/widdo)]() 
+
+[![](https://img.shields.io/github/release-date/onlyxyl/widdo)]() 
+
+[![](https://img.shields.io/github/issues/OnlyXYL/widdo)]()
+
+[![](https://img.shields.io/github/issues-closed/OnlyXYL/widdo)]()
+
+[![](https://img.shields.io/github/issues-pr-closed/onlyxyl/widdo)]()
+
+[![](https://img.shields.io/github/issues-pr/onlyxyl/widdo)]()
+
 
 #### [0. 项目背景]()
 
