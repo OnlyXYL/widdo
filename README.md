@@ -1,6 +1,9 @@
 
 # widdo
 
+[![OSCS Status](https://www.oscs1024.com/platform/badge/widdo.svg?size=small)](https://www.murphysec.com/accept?code=71a2ccea0bac400f61c54db5ac91c1eb&type=1&from=2)
+
+
 [![](https://img.shields.io/github/languages/code-size/OnlyXYL/widdo)]()
 
 [![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
