@@ -149,8 +149,8 @@ public final class DefaultBabelNetActuator extends AbstractBabelNetActuator<Map<
             final Method query = aClass.getMethod(type, Map.class);
 
             return (List<BabelSense>) query.invoke(classObj, params);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException
+                 | NoSuchMethodException e) {
             e.printStackTrace();
         }
 

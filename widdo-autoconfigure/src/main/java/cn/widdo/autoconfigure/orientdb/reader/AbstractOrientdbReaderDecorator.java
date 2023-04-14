@@ -24,7 +24,7 @@ import cn.widdo.starter.neo4j.validator.ParamsValidator;
  * @param <R> r
  * @author XYL
  * @date 2023/02/28 16:13
- * @since 302.1.0.0
+ * @since 263.1.3.0
  */
 @SuppressWarnings("ALL")
 public abstract class AbstractOrientdbReaderDecorator<T, R> extends ParamsValidator implements OrientdbReader<T, R> {

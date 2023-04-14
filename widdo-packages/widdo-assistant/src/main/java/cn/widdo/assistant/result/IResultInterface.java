@@ -5,7 +5,7 @@ package cn.widdo.assistant.result;
  *
  * @author XYL
  * @date 2022/12/29 17:39
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public interface IResultInterface {

@@ -24,7 +24,7 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
  *
  * @author XYL
  * @date 2022/07/15 2:08
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Service
 @ConditionalOnBean({WiddoOrientdbConfigure.class})
@@ -120,7 +120,7 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
                 .dedup()
                 .by("id")
                 .order()
-                .by("id", Order.decr)
+                .by("id", Order.desc)
                 .limit(5)
                 .toList();
 

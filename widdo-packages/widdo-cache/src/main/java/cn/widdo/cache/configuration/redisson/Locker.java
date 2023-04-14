@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author XYL
  * @date 2022/06/22 11:19
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 public interface Locker {
 

@@ -7,7 +7,7 @@ package cn.widdo.autoconfigure.orientdb.writer;
  * @param <R> r
  * @author XYL
  * @date 2022/10/14 16:42
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public interface OrientdbWriter<T, R> {

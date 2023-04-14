@@ -1,14 +1,13 @@
 package cn.widdo.assistant.enums;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * 响应状态码.
  *
  * @author XYL
- * @since 302.1.0.0
- * @since 2021/4/21 0021 15:25
+ * @date 2021/4/21 0021 15:25
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public enum ResponseCode {

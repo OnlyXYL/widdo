@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2023/03/01 18:26
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class EnhanceDefaultNeo4jActuator extends AbstractNeo4jActuatorDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {

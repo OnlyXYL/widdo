@@ -12,7 +12,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  *
  * @author XYL
  * @date 2022/07/05 17:37
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Data
 @RefreshScope

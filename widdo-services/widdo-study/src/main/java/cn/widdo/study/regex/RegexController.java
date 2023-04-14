@@ -7,7 +7,7 @@ import cn.widdo.assistant.regex.RegexInterface;
  *
  * @author XYL
  * @date 2022/11/29 17:46
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class RegexController {

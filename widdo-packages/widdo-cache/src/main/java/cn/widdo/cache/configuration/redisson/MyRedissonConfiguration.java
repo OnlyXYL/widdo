@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
  *
  * @author XYL
  * @date 2022/09/07 18:13
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Configuration
 @ConditionalOnRedissonEnabled

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author XYL
  * @date 2022/12/30 14:40
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class ClassUtils {

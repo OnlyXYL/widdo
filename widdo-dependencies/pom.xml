@@ -8,13 +8,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!--升级 -->
-        <version>3.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.0.5</version>
+        <!-- lookup parent from repository。为空时等于../pom.xml -->
+        <relativePath/>
     </parent>
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-dependencies</artifactId>
-    <version>302.1.0.0</version>
+    <version>305.1.0.0</version>
     <packaging>pom</packaging>
 
     <name>widdo-dependencies</name>
@@ -23,8 +24,8 @@
     <properties>
 
         <!--spring相关依赖包-->
-        <spring-boot-dependencies.version>3.0.2</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2022.0.1</spring-cloud-dependencies.version>
+        <spring-boot-dependencies.version>3.0.5</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
         <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
         <spring-framework-bom.version>5.3.21</spring-framework-bom.version>
@@ -56,7 +57,7 @@
         <fastjson.version>1.2.83</fastjson.version>
 
         <!--国内开源工具依赖包-->
-        <hutool.verion>5.7.20</hutool.verion>
+        <hutool.verion>5.8.12</hutool.verion>
 
         <!--第三方工具依赖包-->
         <!--缓存依赖包-->
@@ -87,7 +88,7 @@
 
         <!--spark相关 @since 302.1.0.0-->
         <!--        <spark.version>2.4.8</spark.version>-->
-        <spark.version>3.2.1</spark.version>
+        <spark.version>3.3.1</spark.version>
         <scala.version>2.12</scala.version>
         <janino.version>3.0.8</janino.version>
         <!--end -->
@@ -97,6 +98,16 @@
 
         <!--grpc-->
         <grpc.version>1.53.0</grpc.version>
+
+        <!--漏洞升级-->
+        <commons-text.version>1.10.0</commons-text.version>
+        <protobuf-java.version>3.21.7</protobuf-java.version>
+        <ivy.version>2.5.1</ivy.version>
+        <gremlin-core.version>3.5.2</gremlin-core.version>
+        <commons-configuration2.version>2.8.0</commons-configuration2.version>
+        <jettison.version>1.5.4</jettison.version>
+        <org.codehaus.groovy.version>3.0.9</org.codehaus.groovy.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
 
     </properties>
 
@@ -276,6 +287,13 @@
                 <groupId>org.neo4j</groupId>
                 <artifactId>neo4j</artifactId>
                 <version>${neo4j.version}</version>
+                <exclusions>
+                    <!--解决漏洞：排除1.5.2，升级为1.5.4-->
+                    <exclusion>
+                        <groupId>org.codehaus.jettison</groupId>
+                        <artifactId>jettison</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!--Add dependencies that are necessary for testing the procedure.-->
             <dependency>
@@ -293,6 +311,19 @@
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-gremlin</artifactId>
                 <version>${orientdb-gremlin.version}</version>
+                <exclusions>
+                    <!--解决漏洞：排除3.3.0依赖，升级为3.5.2-->
+                    <exclusion>
+                        <groupId>org.apache.tinkerpop</groupId>
+                        <artifactId>gremlin-core</artifactId>
+                    </exclusion>
+
+                    <!--解决漏洞：排除2.4.11，升级为3.0.9-->
+                    <exclusion>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.neo4j</groupId>
@@ -318,13 +349,32 @@
                         <artifactId>slf4j-log4j12</artifactId>
                         <groupId>org.slf4j</groupId>
                     </exclusion>
+                    <!--解决漏洞问题：排除spark-core中的1.9 commons-text，升级为1.10.0-->
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-text</artifactId>
+                    </exclusion>
+
+                    <!--解决漏洞：排除2.5.0，升级为2.5.1-->
+                    <exclusion>
+                        <groupId>org.apache.ivy</groupId>
+                        <artifactId>ivy</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-sql_2.12</artifactId>
                 <version>${spark.version}</version>
+                <!--解决漏洞：排除2.5.0，升级为3.21.7-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.protobuf</groupId>
+                        <artifactId>protobuf-java</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
+
             <dependency>
                 <groupId>org.codehaus.janino</groupId>
                 <artifactId>janino</artifactId>
@@ -346,6 +396,74 @@
                 <artifactId>grpc-all</artifactId>
                 <version>${grpc.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--漏洞升级-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ivy</groupId>
+                <artifactId>ivy</artifactId>
+                <version>${ivy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tinkerpop</groupId>
+                <artifactId>gremlin-core</artifactId>
+                <version>${gremlin-core.version}</version>
+                <exclusions>
+                    <!--解决漏洞：排除2.7，升级为2.8-->
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-configuration2</artifactId>
+                    </exclusion>
+                    <!--解决漏洞：排除1.33，升级为2.0-->
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-configuration2</artifactId>
+                <version>${commons-configuration2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jettison</groupId>
+                <artifactId>jettison</artifactId>
+                <version>${jettison.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>${org.codehaus.groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

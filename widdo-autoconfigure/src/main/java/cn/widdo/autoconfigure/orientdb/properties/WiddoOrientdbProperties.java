@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author XYL
  * @date 2022/10/14 15:26
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_GRAPH_ORIENTDB)

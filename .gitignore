@@ -33,3 +33,4 @@ configurations/docker/context/target
 
 ### VS Code ###
 .vscode/
+.murphy.yml

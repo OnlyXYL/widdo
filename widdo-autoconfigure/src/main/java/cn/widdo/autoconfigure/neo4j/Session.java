@@ -8,7 +8,7 @@ import org.neo4j.driver.Driver;
  *
  * @author XYL
  * @date 2023/03/02 16:50
- * @since 302.1.0.0
+ * @since 263.1.3.0
  */
 @SuppressWarnings("ALL")
 public interface Session {

@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/10/14 16:37
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class DefaultNeo4jWriter extends AbstractNeo4jWriter<Map<String, Object>, Result<List<Map<String, Value>>>> {

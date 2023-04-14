@@ -9,7 +9,7 @@ package cn.widdo.autoconfigure.neo4j.writer;
  * @param <R>
  * @author XYL
  * @date 2022/10/15 1:02
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 public abstract class AbstractNeo4jWriterDecorator<T, R> extends AbstractNeo4jWriter<T, R> {
 

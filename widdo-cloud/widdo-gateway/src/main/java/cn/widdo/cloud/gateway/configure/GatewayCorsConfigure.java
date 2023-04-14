@@ -12,7 +12,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  *
  * @author XYL
  * @date 2022/06/10 15:50
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @Configuration

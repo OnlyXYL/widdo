@@ -7,7 +7,7 @@ import java.util.HashMap;
  *
  * @author XYL
  * @date 2022/12/29 17:47
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class WiddoResult extends HashMap<String, Object> {

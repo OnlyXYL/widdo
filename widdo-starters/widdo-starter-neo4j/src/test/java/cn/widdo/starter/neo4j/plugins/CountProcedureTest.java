@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author XYL
  * @date 2023/02/07 17:20
- * @since 302.1.0.0
+ * @since 263.1.1.1
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CountProcedureTest {

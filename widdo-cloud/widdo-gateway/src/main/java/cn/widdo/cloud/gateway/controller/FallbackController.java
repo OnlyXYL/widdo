@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author XYL
  * @date 2022/07/07 18:08
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @RequestMapping(value = "/gateway")
