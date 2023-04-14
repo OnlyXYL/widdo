@@ -17,7 +17,7 @@ import java.util.Map;
  * @param <T>
  * @author XYL
  * @date 2022/12/03 18:59
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4jActuator<T, R> {
@@ -52,8 +52,8 @@ public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4j
             final Method query = aClass.getMethod(cypherType, Map.class);
 
             return (Result<List<Map<String, Value>>>) query.invoke(classObj, params);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException
+                 | NoSuchMethodException e) {
             e.printStackTrace();
         }
 

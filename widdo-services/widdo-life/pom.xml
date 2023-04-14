@@ -5,13 +5,13 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>302.1.0.0</version>
+        <version>305.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-life</artifactId>
-    <version>302.1.0.0</version>
+    <version>305.1.0.0</version>
 
     <dependencies>
         <dependency>

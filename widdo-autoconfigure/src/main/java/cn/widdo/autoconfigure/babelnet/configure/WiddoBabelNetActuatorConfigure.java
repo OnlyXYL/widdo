@@ -78,8 +78,8 @@ public class WiddoBabelNetActuatorConfigure {
 
             return (BabelNetActuator) constructor.newInstance(widdoBabelNetProperties);
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException
+                 | NoSuchMethodException e) {
             e.printStackTrace();
         }
 

@@ -16,7 +16,7 @@ import java.util.*;
  * @param <R>
  * @author XYL
  * @date 2022/12/30 16:22
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public interface WiddoResultInterface<T, R> {

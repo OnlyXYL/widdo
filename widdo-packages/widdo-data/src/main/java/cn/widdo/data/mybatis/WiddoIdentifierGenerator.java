@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  *
  * @author XYL
  * @date 2022/09/21 17:56
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Component
 public class WiddoIdentifierGenerator implements IdentifierGenerator {

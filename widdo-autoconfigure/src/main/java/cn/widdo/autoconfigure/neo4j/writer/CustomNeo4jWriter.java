@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author XYL
  * @date 2022/12/06 11:45
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {

@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author XYL
  * @date 2022/09/21 17:56
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 public class P6SpyMessageFormatting implements MessageFormattingStrategy {
 

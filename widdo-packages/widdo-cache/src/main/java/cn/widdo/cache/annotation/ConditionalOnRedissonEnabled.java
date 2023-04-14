@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  *
  * @author XYL
  * @date 2022/08/16 18:47
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

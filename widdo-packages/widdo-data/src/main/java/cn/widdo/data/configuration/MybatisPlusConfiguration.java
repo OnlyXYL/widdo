@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author XYL
  * @date 2022/09/21 16:37
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Configuration
 public class MybatisPlusConfiguration {

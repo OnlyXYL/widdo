@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  *
  * @author XYL
  * @date 2022/09/21 16:36
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @Configuration
 @Import({MybatisPlusConfiguration.class})

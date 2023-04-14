@@ -22,7 +22,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @author XYL
  * @date 2022/10/18 0:50
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @WiddoNeo4jActuator
@@ -86,8 +86,8 @@ public class WiddoNeo4jActuatorConfigure {
 
             return (Neo4jActuator) constructor.newInstance(widdoNeo4jProperties, driver);
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException
+                 | NoSuchMethodException e) {
             e.printStackTrace();
         }
 

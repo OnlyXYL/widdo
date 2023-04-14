@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author XYL
  * @date 2022/08/15 15:09
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class ResultPageInfo implements Serializable {

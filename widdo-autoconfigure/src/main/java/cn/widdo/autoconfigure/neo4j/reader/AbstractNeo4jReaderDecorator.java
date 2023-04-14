@@ -9,7 +9,7 @@ package cn.widdo.autoconfigure.neo4j.reader;
  * @param <R>
  * @author XYL
  * @date 2022/10/14 17:51
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public abstract class AbstractNeo4jReaderDecorator<T, R> extends AbstractNeo4jReader<T, R> {

@@ -7,7 +7,7 @@ package cn.widdo.assistant.function;
  * @param <T>
  * @author XYL
  * @date 2022/11/10 19:23
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @FunctionalInterface

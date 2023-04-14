@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author XYL
  * @date 2022/06/29 15:59
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 public class BaseException extends RuntimeException {

@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  *
  * @author XYL
  * @date 2022/12/02 18:39
- * @since 302.1.0.0
+ * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
 @WiddoBabelNet
