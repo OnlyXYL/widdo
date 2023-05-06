@@ -79,7 +79,7 @@ public class WiddoBabelNetProperties {
         /**
          * 开启读写开关.
          */
-        private Boolean enable = false;
+        private Boolean enabled = false;
 
         /**
          * the className of {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
@@ -101,17 +101,17 @@ public class WiddoBabelNetProperties {
          *
          * @return the result of switch
          */
-        public Boolean getEnable() {
-            return enable;
+        public Boolean getEnabled() {
+            return enabled;
         }
 
         /**
          * set the switch of neo4j actuator.
          *
-         * @param enable the result of switch
+         * @param enabled the result of switch
          */
-        public void setEnable(Boolean enable) {
-            this.enable = enable;
+        public void setEnabled(Boolean enabled) {
+            this.enabled = enabled;
         }
 
         /**

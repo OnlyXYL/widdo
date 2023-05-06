@@ -109,6 +109,9 @@
         <org.codehaus.groovy.version>3.0.9</org.codehaus.groovy.version>
         <snakeyaml.version>2.0</snakeyaml.version>
 
+        <!--自然语言处理-->
+        <hanlp.version>portable-1.8.4</hanlp.version>
+
     </properties>
 
     <dependencyManagement>
@@ -462,6 +465,12 @@
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
                 <version>${snakeyaml.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hankcs</groupId>
+                <artifactId>hanlp</artifactId>
+                <version>${hanlp.version}</version>
             </dependency>
 
         </dependencies>

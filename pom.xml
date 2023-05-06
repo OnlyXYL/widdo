@@ -59,7 +59,7 @@
             </activation>
             <properties>
                 <!--当前环境-->
-                <profile.name>development</profile.name>
+                <profiles.active>dev</profiles.active>
                 <!--                <database.type>postgresql</database.type>-->
                 <database.type>mysql8</database.type>
                 <!--代码构建控制-->
@@ -69,14 +69,11 @@
                 <skip.copy.docker.resource>false</skip.copy.docker.resource>
                 <!--不执行git commit 构建-->
                 <skip.build.git.commit.info>false</skip.build.git.commit.info>
-                <!--Nacos配置中心地址-->
-                <config.server-addr>101.42.10.77:8848</config.server-addr>
-                <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
-                <!-- develop-base-platform-dev-wxj-->
-                <config.namespace>widdo_dev</config.namespace>
-                <!--Nacos服务发现地址-->
-                <discovery.server-addr>101.42.10.77:8848</discovery.server-addr>
-                <sentinel.server-addr>101.42.10.77:8848</sentinel.server-addr>
+                <nacos.namespace>public</nacos.namespace>
+                <nacos.group>DEFAULT_GROUP</nacos.group>
+                <yaml.prefix>widdo</yaml.prefix>
+                <yaml.prefix.default>application</yaml.prefix.default>
+                <yaml.suffix>environment</yaml.suffix>
             </properties>
         </profile>
     </profiles>
