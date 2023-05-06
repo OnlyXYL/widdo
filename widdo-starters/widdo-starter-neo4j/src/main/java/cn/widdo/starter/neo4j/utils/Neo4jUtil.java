@@ -22,7 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import javax.lang.model.SourceVersion;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * neo4j util.
@@ -47,7 +49,6 @@ public class Neo4jUtil {
      * @param checkKeys 需要校验的非空可变参数
      * @throws Exception 异常
      * @author XYL
-     * @className cn.widdo.starter.neo4j.utils.Neo4jUtil
      * @date 2022/10/18 10:08
      **/
     public static void throwExceptionIfNull(Map<String, ?> params, String... checkKeys) throws Exception {
@@ -77,7 +78,6 @@ public class Neo4jUtil {
      * @param result 原始结果
      * @return cn.widdo.starter.neo4j.entity.result.Result<?>
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:12
      **/
     @SuppressWarnings("AlibabaSwitchStatement")
@@ -142,7 +142,6 @@ public class Neo4jUtil {
      * @param neo4jType   neo4j 类型
      * @param valueOrigin neo4j value
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/27 10:13
      **/
     private static void setValue(Value value, String neo4jType, Object valueOrigin) {
@@ -173,7 +172,6 @@ public class Neo4jUtil {
      * @param convertor   结果转换器
      * @param value       widdo value
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:06
      **/
     private static void pathResult(org.neo4j.driver.Value valueOrigin,
@@ -196,7 +194,6 @@ public class Neo4jUtil {
      * @param convertor   结果转换器
      * @param value       widdo value
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:07
      **/
     private static void listResult(org.neo4j.driver.Value valueOrigin,
@@ -224,7 +221,6 @@ public class Neo4jUtil {
      * @param convertor   结果转换器
      * @param value       widdo value
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:08
      **/
     private static void pointResult(org.neo4j.driver.Value valueOrigin,
@@ -250,7 +246,6 @@ public class Neo4jUtil {
      * @param cqlFun 函数式接口
      * @return cn.widdo.starter.neo4j.entity.result.Result<?>
      * @author XYL
-     * @className cn.widdo.study.neo4j.service.helper.Neo4jServiceHelper
      * @date 2022/09/26 18:10
      **/
     public static Result<?> toExecute(Driver driver,
@@ -283,7 +278,6 @@ public class Neo4jUtil {
      *
      * @param cql cypher
      * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.helper.Neo4jPreRWHelper
      * @date 2022/10/19 1:29
      **/
     @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
@@ -291,5 +285,47 @@ public class Neo4jUtil {
         final String format = String.format("---client ip:%s  cql: %s ...",
                 NetUtil.getRealIp(), cql.substring(0, Math.min(cql.length(), 100)));
         LOG.info(format);
+    }
+
+    /**
+     * @param var
+     * @return java.lang.String
+     * @author XYL
+     * @date 2023/05/06 10:34:04
+     */
+    public static String quote(String var) {
+        return SourceVersion.isIdentifier(var) && !var.contains("$") ? var : '`' + var + '`';
+    }
+
+    /**
+     * 格式转换.
+     *
+     * @param labelNames
+     * @return java.lang.String
+     * @author XYL
+     * @date 2023/05/06 10:35:57
+     */
+    public static String labelString(List<String> labelNames) {
+        return labelNames.stream().map(Neo4jUtil::quote).collect(Collectors.joining(":"));
+    }
+
+    /**
+     * 生成map.
+     *
+     * @param values values
+     * @param <T> t
+     * @return java.util.Map<java.lang.String, T>
+     * @author XYL
+     * @date 2023/05/06 10:35:42
+     */
+    public static <T> Map<String, T> map(T... values) {
+        Map<String, T> map = new LinkedHashMap<>();
+        for (int i = 0; i < values.length; i += 2) {
+            if (values[i] == null) {
+                continue;
+            }
+            map.put(values[i].toString(), values[i + 1]);
+        }
+        return map;
     }
 }
