@@ -22,7 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import javax.lang.model.SourceVersion;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * neo4j util.
@@ -327,5 +329,47 @@ public class Neo4jUtil {
         final String format = String.format("---client ip:%s  cql: %s ...",
                 NetUtil.getRealIp(), cql.substring(0, Math.min(cql.length(), 100)));
         LOG.info(format);
+    }
+
+    /**
+     * @param var
+     * @return java.lang.String
+     * @author XYL
+     * @date 2023/05/06 10:34:04
+     */
+    public static String quote(String var) {
+        return SourceVersion.isIdentifier(var) && !var.contains("$") ? var : '`' + var + '`';
+    }
+
+    /**
+     * 格式转换.
+     *
+     * @param labelNames
+     * @return java.lang.String
+     * @author XYL
+     * @date 2023/05/06 10:35:57
+     */
+    public static String labelString(List<String> labelNames) {
+        return labelNames.stream().map(Neo4jUtil::quote).collect(Collectors.joining(":"));
+    }
+
+    /**
+     * 生成map.
+     *
+     * @param values values
+     * @param <T> t
+     * @return java.util.Map<java.lang.String, T>
+     * @author XYL
+     * @date 2023/05/06 10:35:42
+     */
+    public static <T> Map<String, T> map(T... values) {
+        Map<String, T> map = new LinkedHashMap<>();
+        for (int i = 0; i < values.length; i += 2) {
+            if (values[i] == null) {
+                continue;
+            }
+            map.put(values[i].toString(), values[i + 1]);
+        }
+        return map;
     }
 }
