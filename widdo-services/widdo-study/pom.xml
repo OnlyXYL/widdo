@@ -5,18 +5,23 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.1.0.0</version>
+        <version>305.2.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-study</artifactId>
-    <version>305.1.0.0</version>
+    <version>305.2.1.0</version>
     <dependencies>
 
         <!--自动配置包-->
         <dependency>
             <groupId>cn.widdo</groupId>
             <artifactId>widdo-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-cache</artifactId>
         </dependency>
 
         <!--neo4j starter-->

@@ -31,7 +31,9 @@ widdo
 │
 ├─widdo-autoconfigure                           ------ 自动配置模块
 ├─widdo-cloud                                   ------ 生活模块
-│   ├─widdo-cloud-gateway                       ------ 网关模块（9900）
+│   ├─widdo-gateway                             ------ 网关模块（9900）
+├─widdo-dependencies                            ------ 公共pom
+├─widdo-docs                                    ------ 公共pom
 ├─widdo-packages                                ------ 公共包模块
 │   ├─widdo-assistant                           ------ 辅助包
 │   ├─widdo-cache(@Deprecated)                  ------ 缓存包(后面移入autoconfigure)
@@ -40,8 +42,11 @@ widdo
 │   ├─widdo-life                                ------ 生活服务（9901）
 │   ├─widdo-study                               ------ 学习服务（9902）
 └─widdo-starters                                ------ 引用模块
-    ├─widdo-starter-neo4j                       ------ neo4j模块
-    ├─widdo-starter-orientdb                    ------ orientdb模块
+    ├─widdo-starter-babelnet                    ------ BABELNET模块
+    ├─widdo-starter-jena                        ------ JENA模块
+    ├─widdo-starter-jwi                         ------ JWI模块
+    ├─widdo-starter-neo4j                       ------ NEO4J模块
+    ├─widdo-starter-orientdb                    ------ ORIENTDB模块
 
 ```
 

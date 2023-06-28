@@ -9,6 +9,7 @@ import cn.widdo.assistant.result.WiddoResult;
  * @date 2023/04/26 15:14
  * @since 305.1.1.0
  */
+@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 public interface HanLPservice {
 
     /**

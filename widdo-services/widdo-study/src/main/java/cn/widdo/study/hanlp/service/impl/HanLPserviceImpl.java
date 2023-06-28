@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @date 2023/04/26 15:15
  * @since 305.1.1.0
  */
+@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 @Service
 public class HanLPserviceImpl implements HanLPservice {
 
