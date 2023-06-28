@@ -53,6 +53,17 @@ public interface Neo4jJdbcService {
     WiddoResult write(Map<String, Object> params);
 
     /**
+     * 隐性事务.
+     *
+     * @param params
+     *
+     * @author XYL
+     * @date 2023/06/28 11:49:43
+     * @return cn.widdo.assistant.result.WiddoResult
+     */
+    WiddoResult run(Map<String, Object> params);
+
+    /**
      * 寫.
      *
      * @param params param typed map

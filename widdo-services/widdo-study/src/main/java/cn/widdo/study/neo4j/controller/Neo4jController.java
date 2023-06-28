@@ -74,6 +74,19 @@ public class Neo4jController extends BaseController {
     }
 
     /**
+     * 隐性事务，执行cypher语句.
+     *
+     * @param params params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2023/06/28 11:58:24
+     */
+    @PostMapping(value = "/run")
+    public WiddoResult run(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, neo4jJdbcService::run, "cypher", "params");
+    }
+
+    /**
      * 執行三元組寫操作.
      * <p>
      * params.put("triples")

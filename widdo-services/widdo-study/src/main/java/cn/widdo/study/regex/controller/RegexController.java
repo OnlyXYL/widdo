@@ -1,4 +1,4 @@
-package cn.widdo.study.regex;
+package cn.widdo.study.regex.controller;
 
 import cn.widdo.assistant.regex.RegexInterface;
 

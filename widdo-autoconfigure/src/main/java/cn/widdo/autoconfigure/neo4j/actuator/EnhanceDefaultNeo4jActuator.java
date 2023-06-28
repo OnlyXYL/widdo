@@ -1,13 +1,10 @@
 package cn.widdo.autoconfigure.neo4j.actuator;
 
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
-import cn.widdo.autoconfigure.neo4j.writer.DefaultNeo4jWriter;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -65,30 +62,6 @@ public class EnhanceDefaultNeo4jActuator extends AbstractNeo4jActuatorDecorator<
      * @since 302.1.0.0
      */
     public Result<List<Map<String, Value>>> none(Map<String, Object> params) {
-        return this.writeIfHave(params);
+       return  neo4jActuator.run(params);
     }
-
-    /**
-     * @param params params
-     * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
-     * @author XYL
-     * @date 2023/03/01 18:48:07
-     */
-    private Result<List<Map<String, Value>>> writeIfHave(Map<String, Object> params) {
-        String className = widdoNeo4jProperties.getActuator().getWriter().getClassName();
-
-        if (!StringUtils.hasLength(className)) {
-            //check whether it`s legitimate
-            final boolean present = ClassUtils.isPresent(className, DefaultNeo4jActuator.class.getClassLoader());
-            if (!present) {
-                className = DefaultNeo4jWriter.class.getName();
-            }
-        } else {
-            //set the default classname.
-            className = DefaultNeo4jWriter.class.getName();
-        }
-
-        return reflectObject(className, CYPHER_NONE, params);
-    }
-
 }

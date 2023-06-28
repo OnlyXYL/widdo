@@ -201,10 +201,10 @@ public class Neo4jUtil {
                                    cn.widdo.starter.neo4j.entity.Value value) {
         List<Object> list = new ArrayList<>();
         valueOrigin.asList().forEach(l -> {
-            if (l instanceof Node) {
-                list.add(convertor.convertNeo4jNodeToNode((Node) l));
-            } else if (l instanceof Relationship) {
-                list.add(convertor.convertNeo4jRelationshipToRelationship((Relationship) l));
+            if (l instanceof Node node) {
+                list.add(convertor.convertNeo4jNodeToNode(node));
+            } else if (l instanceof Relationship relationship) {
+                list.add(convertor.convertNeo4jRelationshipToRelationship(relationship));
             } else {
                 list.add(l.toString());
             }
@@ -313,7 +313,7 @@ public class Neo4jUtil {
      * 生成map.
      *
      * @param values values
-     * @param <T> t
+     * @param <T>    t
      * @return java.util.Map<java.lang.String, T>
      * @author XYL
      * @date 2023/05/06 10:35:42

@@ -1,11 +1,6 @@
 package cn.widdo.assistant.exception;
 
 import cn.widdo.assistant.result.IResultInterface;
-import com.alibaba.fastjson.JSON;
-import org.springframework.validation.BindingResult;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 自定义异常.
@@ -28,17 +23,51 @@ public class BaseException extends RuntimeException {
     private int code;
 
     /**
-     * constructor has two params,one called code,another called msg.
+     * constructor without params.
+     */
+    public BaseException() {
+    }
+
+    /**
+     * constructor has one params called message.
      *
-     * @param code code
-     * @param msg  msg
-     * @author XYL
-     * @className cn.widdo.assistant.exception.BaseException
-     * @date 2022/11/17 0:18
-     **/
-    public BaseException(final int code, final String msg) {
-        this.code = code;
-        this.msg = msg;
+     * @param message message
+     */
+    public BaseException(final String message) {
+        super(message);
+        this.msg = message;
+    }
+
+    /**
+     * constructor has two params.one typed of {@link  String},another typed {@link Throwable}.
+     *
+     * @param message message
+     * @param cause   cause
+     */
+    public BaseException(final String message, final Throwable cause) {
+        super(message, cause);
+        this.msg = message;
+    }
+
+    /**
+     * constructor has one param typed of {@link Throwable}.
+     *
+     * @param cause
+     */
+    public BaseException(final Throwable cause) {
+        super(cause);
+    }
+
+    /**
+     * constructor has four params.
+     *
+     * @param message            message
+     * @param cause              cause
+     * @param enableSuppression  enableSuppression
+     * @param writableStackTrace writableStackTrace
+     */
+    public BaseException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 
     /**
@@ -47,33 +76,22 @@ public class BaseException extends RuntimeException {
      * @param iResultInterface the result type of interface called {@link IResultInterface}
      */
     public BaseException(final IResultInterface iResultInterface) {
-        this(iResultInterface.getCode(), iResultInterface.getMsg());
+        super(iResultInterface.getMsg());
+        this.msg = iResultInterface.getMsg();
+        this.code = iResultInterface.getCode();
     }
 
     /**
-     * constructor has one param called {@link BindingResult}.
+     * return msg typed of {@link String}.
      *
-     * @param bindingResult bindingResult
-     */
-    public BaseException(final BindingResult bindingResult) {
-        List<String> jsonList = new ArrayList<>();
-        bindingResult.getFieldErrors()
-                .forEach(fieldError -> jsonList.add(fieldError.getDefaultMessage()));
-        String s = JSON.toJSONString(jsonList);
-        this.setMsg(s);
-    }
-
-    /**
-     * get msg.
-     *
-     * @return a msg type of String
+     * @return msg
      */
     public String getMsg() {
         return msg;
     }
 
     /**
-     * set msg.
+     * set msg typed of {@link String}.
      *
      * @param msg msg
      */
@@ -82,9 +100,9 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * get code.
+     * return code typed of {@link Integer}.
      *
-     * @return a code type of Integer
+     * @return a code
      */
     public int getCode() {
         return code;

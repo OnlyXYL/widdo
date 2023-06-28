@@ -7,12 +7,12 @@
         <groupId>cn.widdo</groupId>
         <artifactId>widdo-dependencies</artifactId>
         <!--升级 -->
-        <version>305.1.0.0</version>
+        <version>305.2.1.0</version>
         <relativePath>widdo-dependencies/pom.xml</relativePath>
     </parent>
 
     <artifactId>widdo</artifactId>
-    <version>305.1.0.0</version>
+    <version>305.2.1.0</version>
     <packaging>pom</packaging>
 
     <name>widdo</name>

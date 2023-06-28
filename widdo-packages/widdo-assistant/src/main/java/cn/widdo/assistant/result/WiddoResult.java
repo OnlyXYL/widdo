@@ -1,5 +1,7 @@
 package cn.widdo.assistant.result;
 
+import cn.widdo.assistant.exception.BaseException;
+
 import java.util.HashMap;
 
 /**
@@ -72,7 +74,7 @@ public class WiddoResult extends HashMap<String, Object> {
     }
 
     /**
-     * the method which has two param,one called {@link IResultInterface},another called data.
+     * the method which has two params,one called {@link IResultInterface},another called data.
      *
      * @param iResultInterface iResultInterface
      * @param data             data
@@ -80,5 +82,15 @@ public class WiddoResult extends HashMap<String, Object> {
      */
     public static WiddoResult response(IResultInterface iResultInterface, Object data) {
         return new WiddoResult(iResultInterface.getCode(), iResultInterface.getMsg(), data);
+    }
+
+    /**
+     * the method which has one param, called {@link BaseException}.
+     *
+     * @param baseException  baseException
+     * @return  an instance type of widdoResult
+     */
+    public static WiddoResult response(BaseException baseException) {
+        return new WiddoResult(baseException.getCode(), baseException.getMsg());
     }
 }

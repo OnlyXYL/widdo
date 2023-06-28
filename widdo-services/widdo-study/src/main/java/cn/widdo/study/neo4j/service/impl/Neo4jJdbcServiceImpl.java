@@ -70,6 +70,20 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
     }
 
     @Override
+    public WiddoResult run(Map<String, Object> params) {
+        final Map<String, Object> map = BeanUtils.cast(params.get("params"));
+
+        final String cypher = params.get("cypher").toString();
+
+        //封裝參數
+        Map<String, Object> cypherParam = cypherWithParams(cypher, map);
+
+        final Result<List<Map<String, Value>>> result = neo4jActuator.run(cypherParam);
+
+        return WiddoResultInterface.NEO4j.ALL.wrapper(result);
+    }
+
+    @Override
     public WiddoResult writeTriples(Map<String, Object> params) {
 
         /*
@@ -80,10 +94,10 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
           {@see cn.widdo.starter.neo4j.plugins.procedures.TripleProcedure}
          */
         String cypher = """
-                UNWIND $triples AS triple\s
-                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode
-                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
-                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel
+                UNWIND $triples AS triple \
+                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode \
+                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode \
+                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel \
                 RETURN collect(id(rel)) as relationshipIds""";
 
         //封裝參數
