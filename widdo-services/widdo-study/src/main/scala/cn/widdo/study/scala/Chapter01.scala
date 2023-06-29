@@ -1,37 +1,86 @@
 package cn.widdo.study.scala
 
-import scala.io.StdIn
-
 /**
- * ${title}
+ * scala标识符
  *
  * @author XYL
- * @date 2023/06/21 16:55
- * @since ${since}
+ * @date 2023/06/28 16:54
+ * @since 305.2.2.0
  */
 object Chapter01 {
 
-  def main(args: Array[String]): Unit = {
-
-    print("请输入：")
-
-    val input = StdIn.readLine()
-
-    helloScala(args = input)
-
-  }
-
   /**
-   *
-   * 打印输入信息并返回
+   * scala程序入口.
    *
    * @param args 参数
    * @author XYL
-   * @date 2023/06/27 17:00:56
-   * @return java.lang.String
+   * @date 2023/06/28 17:03:05
+   * @return void
    */
-  def helloScala(args: String): Unit = {
-    println(args)
+  def main(args: Array[String]): Unit = {
+
+    //字符数字
+    numberIdentifier()
+  }
+
+  /**
+   * 字符数字
+   *
+   * @param
+   * @author XYL
+   * @date 2023/06/28 17:03:54
+   * @return void
+   */
+  def numberIdentifier(): Unit = {
+
+    println("------【字母数字标识符】------")
+    println()
+
+    //val ab : Int = 1
+    println("ab -- 字母开头，后面跟字母")
+
+    //val a1 : Int = 1
+    println("a1 -- 字母开头，后面跟数字")
+
+    //val _a : Int = 1
+    println("_a -- 下划线开头，后面跟字母")
+
+    // val _1 : Int = 1
+    println("_1 -- 下划线开头，后面跟数字")
+
+    //$虽然也能用，但是"$"开头的标识符为保留scala编译器产生的标识符，应用程序中尽量避免使用"$"开始的标识符
+
+    //val $1 : Int = 1
+    println("$1 -- $开头，后面跟数字")
+
+    //val $a : Int = 1
+    println("$a -- 开头，后面跟字母")
+
+    println()
+    println("------【操作符标识符】------")
+    println()
+
+    //val ++ : Int = 1
+    println("++ -- ")
+
+    //val ? : Int = 1
+    println("?")
+
+    println()
+    println("------【混合标识符】------")
+    println()
+
+    //val 1a_+ : Int = 1
+    println("1a_+ ")
+
+    println()
+    println("------【文本标识符】------")
+    println()
+
+    //val `&` : Int = 1
+    println("`&`")
+
   }
 
 }
+

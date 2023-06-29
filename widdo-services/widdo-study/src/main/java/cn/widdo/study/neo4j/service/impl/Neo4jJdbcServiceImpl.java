@@ -93,12 +93,18 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
           </code>
           {@see cn.widdo.starter.neo4j.plugins.procedures.TripleProcedure}
          */
-        String cypher = """
+  /*      String cypher = """
                 UNWIND $triples AS triple \
                 CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode \
                 CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode \
                 CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel \
-                RETURN collect(id(rel)) as relationshipIds""";
+                RETURN collect(id(rel)) as relationshipIds""";*/
+
+        String cypher = "UNWIND $triples AS triple\n"
+                + "                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode\n"
+                + "                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode\n"
+                + "                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel\n"
+                + "                RETURN collect(id(rel)) as relationshipIds";
 
         //封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, params);
