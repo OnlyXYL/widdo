@@ -1,4 +1,4 @@
-package cn.widdo.study.scala
+package cn.widdo.study.scala.chapter01
 
 /**
  * Hello World

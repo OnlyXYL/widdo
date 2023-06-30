@@ -1,7 +1,8 @@
-package cn.widdo.study.scala
+package cn.widdo.study.scala.chapter01
 
 /**
- * scala标识符
+ * scala学习第一天
+ * 1. 标识符
  *
  * @author XYL
  * @date 2023/06/28 16:54
@@ -19,8 +20,8 @@ object Chapter01 {
    */
   def main(args: Array[String]): Unit = {
 
-    //字符数字
-    numberIdentifier()
+    //标识符
+    identifier()
   }
 
   /**
@@ -31,7 +32,7 @@ object Chapter01 {
    * @date 2023/06/28 17:03:54
    * @return void
    */
-  def numberIdentifier(): Unit = {
+  def identifier(): Unit = {
 
     println("------【字母数字标识符】------")
     println()
