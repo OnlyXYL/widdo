@@ -13,7 +13,13 @@ class GamePlayer(var name: String, var gameName: GameEnum) extends GameTrait {
   //路线，默认打野位置
   var feature: String = "打野"
 
-  //构造方法
+  /**
+   * 构造方法
+   *
+   * @param name
+   * @param gameName
+   * @param feature
+   */
   def this(name: String, gameName: GameEnum, feature: String) {
     this(name, gameName)
     this.feature = feature
@@ -28,8 +34,6 @@ class GamePlayer(var name: String, var gameName: GameEnum) extends GameTrait {
 
   /**
    * 事件
-   *
-   * @param gameEnum
    */
   override def event(): List[Event] = {
     GameEventFactory.get(gameName)

@@ -1,7 +1,5 @@
 package cn.widdo.study.scala.chapter04.games
 
-import cn.widdo.study.scala.chapter04.games.LPL.{event, name}
-
 /**
  * scala学习第四天-抽象类
  *
