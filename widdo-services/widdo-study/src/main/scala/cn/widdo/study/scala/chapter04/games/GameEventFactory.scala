@@ -97,8 +97,5 @@ object GameEventFactory {
 
     //梦三国
     factory.put(gameEnum = MSG, event = LPL)
-
   }
-
-
 }
