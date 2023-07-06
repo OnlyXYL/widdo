@@ -7,7 +7,7 @@ package cn.widdo.study.scala.chapter04
  *
  * @author XYL
  * @date 2023/07/03 15:27
- * @since ${since}
+ * @since 305.2.2.0
  */
 class Teacher(var name: String, var course: String) {
 

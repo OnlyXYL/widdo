@@ -9,7 +9,7 @@ package cn.widdo.study.scala.chapter04
  *
  * @author XYL
  * @date 2023/07/03 10:30
- * @since ${since}
+ * @since 305.2.2.0
  */
 class Person(var name: String, var age: Int = 18, var country: String = "北京") extends Action with Likes {
 

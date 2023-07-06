@@ -50,20 +50,22 @@ class GamePlayer(var name: String, var gameName: GameEnum) extends GameTrait {
   override def is(): GameEnum = gameName
 }
 
-
 object GamePlayer {
 
   def main(args: Array[String]): Unit = {
 
     //初始化
-    GameEventFactory.main(args)
+    try {
+      GameEventFactory.main(args)
 
-    //1. 创建player
-    val gamePlayer: GamePlayer = player("widdo", LOL, "ADC")
+      //1. 创建player
+      val gamePlayer: GamePlayer = player("widdo", LOL, "ADC")
 
-    //2. 根据游戏获取事件
-    print(player = gamePlayer)
-
+      //2. 根据游戏获取事件
+      print(player = gamePlayer)
+    } catch {
+      case e: Exception => println(e.getMessage)
+    }
   }
 
   /**
