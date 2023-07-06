@@ -7,7 +7,7 @@ package cn.widdo.study.scala.chapter04.games
  *
  * @author XYL
  * @date 2023/07/03 17:38
- * @since ${since}
+ * @since 305.2.2.0
  */
 object WORLDS extends AbstractEvent {
   /**
