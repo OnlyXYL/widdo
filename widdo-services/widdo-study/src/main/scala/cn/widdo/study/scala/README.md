@@ -13,3 +13,7 @@
 ### [类和对象](E:\work\GIT_Work\widdo\widdo-docs\src\main\java\cn\widdo\docs\serivces\study\scala\类和对象.md)
 
 ### [集合](E:\work\GIT_Work\widdo\widdo-docs\src\main\java\cn\widdo\docs\serivces\study\scala\集合.md)
+
+### [样例类](E:\work\GIT_Work\widdo\widdo-docs\src\main\java\cn\widdo\docs\serivces\study\scala\样例类.md)
+
+### [样例对象](E:\work\GIT_Work\widdo\widdo-docs\src\main\java\cn\widdo\docs\serivces\study\scala\样例对象.md)
