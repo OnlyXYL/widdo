@@ -1,14 +1,12 @@
 package cn.widdo.cloud.gateway.handler;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.codec.HttpMessageWriter;
@@ -37,7 +35,6 @@ import java.util.Map;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-@Slf4j
 @Order(-1)
 @RequiredArgsConstructor
 public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
@@ -101,10 +98,11 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
         if (ex instanceof NotFoundException) {
             httpStatus = HttpStatus.NOT_FOUND;
             body = "Service Not Found";
-        } else if (ex instanceof ResponseStatusException responseStatusException) {
-            final HttpStatusCode statusCode = responseStatusException.getStatusCode();
+        } else if (ex instanceof ResponseStatusException) {
+            final ResponseStatusException responseStatusException = (ResponseStatusException) ex;
+            final int rawStatusCode = responseStatusException.getRawStatusCode();
 
-            HttpStatus.valueOf(responseStatusException.getStatusCode().value());
+            HttpStatus.valueOf(rawStatusCode);
             body = responseStatusException.getMessage();
         } else {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

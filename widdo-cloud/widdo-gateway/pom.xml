@@ -5,7 +5,7 @@
     <parent>
         <artifactId>widdo-cloud</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>2613.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,7 +22,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-            <version>4.0.3</version>
         </dependency>
 
         <!--网关流量控制-->

@@ -1,7 +1,5 @@
 package cn.widdo.study.scala.chapter06
 
-import cn.widdo.study.scala.chapter04.Student
-
 /**
  * scala学习第六天-样例类
  *

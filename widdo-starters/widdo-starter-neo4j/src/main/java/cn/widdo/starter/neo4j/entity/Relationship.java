@@ -15,17 +15,17 @@ public class Relationship {
     /**
      * startNodeElementId.
      */
-    private String startNodeElementId;
+    private Long startNodeElementId;
 
     /**
      * endNodeElementId.
      */
-    private String endNodeElementId;
+    private Long endNodeElementId;
 
     /**
      * id.
      */
-    private String id;
+    private Long id;
 
     /**
      * type.
@@ -42,7 +42,7 @@ public class Relationship {
      *
      * @return a result type of String
      */
-    public String getStartNodeElementId() {
+    public Long getStartNodeElementId() {
         return startNodeElementId;
     }
 
@@ -51,7 +51,7 @@ public class Relationship {
      *
      * @param startNodeElementId startNodeElementId
      */
-    public void setStartNodeElementId(String startNodeElementId) {
+    public void setStartNodeElementId(Long startNodeElementId) {
         this.startNodeElementId = startNodeElementId;
     }
 
@@ -60,7 +60,7 @@ public class Relationship {
      *
      * @return a result type of String
      */
-    public String getEndNodeElementId() {
+    public Long getEndNodeElementId() {
         return endNodeElementId;
     }
 
@@ -69,7 +69,7 @@ public class Relationship {
      *
      * @param endNodeElementId endNodeElementId
      */
-    public void setEndNodeElementId(String endNodeElementId) {
+    public void setEndNodeElementId(Long endNodeElementId) {
         this.endNodeElementId = endNodeElementId;
     }
 
@@ -78,7 +78,7 @@ public class Relationship {
      *
      * @return a result type of String
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -87,7 +87,7 @@ public class Relationship {
      *
      * @param id id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

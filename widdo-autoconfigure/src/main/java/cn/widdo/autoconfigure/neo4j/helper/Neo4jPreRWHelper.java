@@ -4,11 +4,11 @@ import cn.widdo.assistant.utils.BeanUtils;
 import cn.widdo.starter.neo4j.entity.Value;
 import cn.widdo.starter.neo4j.entity.result.Result;
 import cn.widdo.starter.neo4j.utils.Neo4jUtil;
-import jakarta.annotation.PostConstruct;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

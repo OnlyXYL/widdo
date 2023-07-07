@@ -41,7 +41,7 @@ public interface WiddoResultInterface<T, R> {
 
         final Collection<String> labels = node.getLabels();
 
-        final String id = node.getId();
+        final Long id = node.getId();
         map.put("id", id);
         map.put("labels", labels);
         map.put("properties", properties);
@@ -223,11 +223,20 @@ public interface WiddoResultInterface<T, R> {
                         listData.forEach(p -> p.forEach((k, v) -> {
                             final String type = v.getType();
                             switch (type) {
-                                case Neo4jType.PATH -> setPath(v, nodeList, relationShipList);
-                                case Neo4jType.NODE -> setNode(v, nodeList);
-                                case Neo4jType.RELATIONSHIP -> setRelationship(v, relationShipList);
-                                case Neo4jType.LISTOFANY -> setList(v, list);
-                                default -> throw new UnsupportedOperationException();
+                                case Neo4jType.PATH:
+                                    setPath(v, nodeList, relationShipList);
+                                    break;
+                                case Neo4jType.NODE:
+                                    setNode(v, nodeList);
+                                    break;
+                                case Neo4jType.RELATIONSHIP:
+                                    setRelationship(v, relationShipList);
+                                    break;
+                                case Neo4jType.LISTOFANY:
+                                    setList(v, list);
+                                    break;
+                                default:
+                                    throw new UnsupportedOperationException();
                             }
                         }));
                     }

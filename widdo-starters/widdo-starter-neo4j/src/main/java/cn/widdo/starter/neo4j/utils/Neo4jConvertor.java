@@ -37,7 +37,7 @@ public class Neo4jConvertor {
     public cn.widdo.starter.neo4j.entity.Node convertNeo4jNodeToNode(Node nodeOrigin) {
         cn.widdo.starter.neo4j.entity.Node node = new cn.widdo.starter.neo4j.entity.Node();
         node.setProperties(nodeOrigin.asMap());
-        node.setId(nodeOrigin.elementId());
+        node.setId(nodeOrigin.id());
         node.setLabels(nodeOrigin.labels());
         return node;
     }
@@ -53,10 +53,10 @@ public class Neo4jConvertor {
      **/
     public cn.widdo.starter.neo4j.entity.Relationship convertNeo4jRelationshipToRelationship(Relationship relationshipOrigin) {
         cn.widdo.starter.neo4j.entity.Relationship relationship = new cn.widdo.starter.neo4j.entity.Relationship();
-        relationship.setId(relationshipOrigin.elementId());
+        relationship.setId(relationshipOrigin.id());
         relationship.setProperties(relationshipOrigin.asMap());
-        relationship.setStartNodeElementId(relationshipOrigin.startNodeElementId());
-        relationship.setEndNodeElementId(relationshipOrigin.endNodeElementId());
+        relationship.setStartNodeElementId(relationshipOrigin.startNodeId());
+        relationship.setEndNodeElementId(relationshipOrigin.endNodeId());
         relationship.setType(relationshipOrigin.type());
         return relationship;
     }

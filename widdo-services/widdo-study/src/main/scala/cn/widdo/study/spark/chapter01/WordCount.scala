@@ -1,7 +1,7 @@
 package cn.widdo.study.spark.chapter01
 
-import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.rdd.RDD
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * spark学习第一天
@@ -19,7 +19,7 @@ object WordCount {
     val sc = new SparkContext(config = sparkConf)
 
     //TODO 业务逻辑
-    val lines: RDD[String] = sc.textFile("configurations/data")
+    val lines: RDD[String] = sc.textFile("configurations/data/1.txt")
 
     val words: RDD[String] = lines.flatMap(line => line.split(" "))
 

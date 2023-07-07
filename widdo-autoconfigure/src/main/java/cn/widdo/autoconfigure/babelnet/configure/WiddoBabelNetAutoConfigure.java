@@ -2,10 +2,11 @@ package cn.widdo.autoconfigure.babelnet.configure;
 
 import cn.widdo.autoconfigure.babelnet.properties.WiddoBabelNetProperties;
 import cn.widdo.autoconfigure.condition.WiddoBabelNet;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import javax.annotation.PostConstruct;
 
 
 /**

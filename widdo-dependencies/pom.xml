@@ -8,14 +8,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!--升级 -->
-        <version>3.0.5</version>
+        <version>2.6.13</version>
         <!-- lookup parent from repository。为空时等于../pom.xml -->
         <relativePath/>
     </parent>
 
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-dependencies</artifactId>
-    <version>305.2.1.0</version>
+    <version>2613.1.0.0</version>
     <packaging>pom</packaging>
 
     <name>widdo-dependencies</name>
@@ -24,12 +24,12 @@
     <properties>
 
         <!--spring相关依赖包-->
-        <spring-boot-dependencies.version>3.0.5</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
-        <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
+        <spring-boot-dependencies.version>2.6.13</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.8</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2021.0.5.0</spring-cloud-alibaba-dependencies.version>
         <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
-        <spring-framework-bom.version>5.3.21</spring-framework-bom.version>
-        <spring-security-bom.version>5.7.2</spring-security-bom.version>
+        <spring-framework-bom.version>5.3.23</spring-framework-bom.version>
+        <spring-security-bom.version>5.6.8</spring-security-bom.version>
 
         <!--Maven Plugin 相关组件-->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -67,8 +67,8 @@
         <assertj.version>3.22.0</assertj.version>
 
         <!--图数据库相关工具依赖包-->
-        <neo4j-java-driver.version>5.4.0</neo4j-java-driver.version>
-        <neo4j.version>5.4.0</neo4j.version>
+        <neo4j-java-driver.version>4.4.9</neo4j-java-driver.version>
+        <neo4j.version>4.4.9</neo4j.version>
         <!--start @since 302.1.0.0-->
         <neo4j-spark.version>4.1.5_for_spark_3</neo4j-spark.version>
         <!--        <neo4j-spark.version>4.1.1_for_spark_2.4</neo4j-spark.version>-->
@@ -80,7 +80,7 @@
         <!--系统信息-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
         <resource.delimiter>@</resource.delimiter>
 
         <!--wordnet相关-->

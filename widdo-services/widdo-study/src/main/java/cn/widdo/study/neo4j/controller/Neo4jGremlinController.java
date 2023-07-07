@@ -3,12 +3,12 @@ package cn.widdo.study.neo4j.controller;
 import cn.widdo.assistant.base.BaseController;
 import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.study.neo4j.service.Neo4jGremlinService;
-import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**

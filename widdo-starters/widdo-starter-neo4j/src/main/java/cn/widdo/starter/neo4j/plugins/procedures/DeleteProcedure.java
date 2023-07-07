@@ -117,10 +117,9 @@ public class DeleteProcedure {
             labelCypher = String.format("n:%s", label);
         }
 
-        final String cypher = String.format("""
-                        call apoc.periodic.iterate("MATCH (%s) %s return id(n) as ids",
-                        "MATCH (%s) where id(n) = ids detach delete n ",
-                        {batchSize:%s,parallel:%s,iterateList:%s}) YIELD operations return operations""", labelCypher, matchWhere,
+        final String cypher = String.format("call apoc.periodic.iterate(\"MATCH (%s) %s return id(n) as ids\",\n"
+                        + "                        \"MATCH (%s) where id(n) = ids detach delete n \",\n"
+                        + "                        {batchSize:%s,parallel:%s,iterateList:%s}) YIELD operations return operations", labelCypher, matchWhere,
                 labelCypher,
                 batchSize, parallel, iterateList);
 

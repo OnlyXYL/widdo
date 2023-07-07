@@ -5,12 +5,12 @@
     <parent>
         <artifactId>widdo-services</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>2613.1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-study</artifactId>
-    <version>305.2.1.0</version>
+    <version>2613.1.0.0</version>
     <dependencies>
 
         <!--自动配置包-->
@@ -58,6 +58,12 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.12</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--spark sql @since 302.1.0.0-->

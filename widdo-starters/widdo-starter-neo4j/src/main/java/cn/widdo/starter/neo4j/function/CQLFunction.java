@@ -1,7 +1,7 @@
 package cn.widdo.starter.neo4j.function;
 
 import cn.widdo.starter.neo4j.entity.result.Result;
-import org.neo4j.driver.TransactionContext;
+import org.neo4j.driver.Transaction;
 
 import java.util.Map;
 
@@ -27,5 +27,5 @@ public interface CQLFunction {
      * @className cn.widdo.autoconfigure.neo4j.function.CQLFunction
      * @date 2022/07/15 0:27
      **/
-    Result<?> execute(String cql, Map<String, Object> map, TransactionContext tx);
+    Result<?> execute(String cql, Map<String, Object> map, Transaction tx);
 }

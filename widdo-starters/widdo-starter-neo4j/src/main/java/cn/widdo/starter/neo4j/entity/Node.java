@@ -28,7 +28,7 @@ public class Node implements Serializable {
     /**
      * id.
      */
-    private String id;
+    private Long id;
 
     /**
      * get properties.
@@ -71,7 +71,7 @@ public class Node implements Serializable {
      *
      * @return a result type of String
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public class Node implements Serializable {
      *
      * @param id id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

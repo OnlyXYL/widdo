@@ -2,12 +2,13 @@ package cn.widdo.cache.configuration.redisson;
 
 import cn.widdo.cache.annotation.ConditionalOnRedissonEnabled;
 import cn.widdo.cache.properties.redisson.MyRedissonProperties;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import javax.annotation.PostConstruct;
 
 /**
  * redisson配置.

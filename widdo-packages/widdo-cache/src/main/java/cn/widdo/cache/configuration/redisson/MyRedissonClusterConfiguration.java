@@ -5,7 +5,6 @@ import cn.widdo.cache.properties.redisson.MyRedissonClusterServerConfigPropertie
 import cn.widdo.cache.properties.redisson.MyRedissonConfigProperties;
 import cn.widdo.cache.properties.redisson.MyRedissonProperties;
 import cn.widdo.cache.utils.redisson.LockerUtils;
-import jakarta.annotation.Resource;
 import lombok.Data;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -16,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**

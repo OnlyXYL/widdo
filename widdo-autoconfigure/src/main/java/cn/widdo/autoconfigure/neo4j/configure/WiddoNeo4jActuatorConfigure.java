@@ -4,8 +4,6 @@ import cn.widdo.autoconfigure.condition.WiddoNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator;
 import cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator;
 import cn.widdo.autoconfigure.neo4j.properties.WiddoNeo4jProperties;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 import org.neo4j.driver.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 

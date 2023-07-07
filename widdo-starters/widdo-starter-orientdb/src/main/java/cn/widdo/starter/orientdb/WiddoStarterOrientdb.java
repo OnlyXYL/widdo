@@ -1,8 +1,9 @@
 package cn.widdo.starter.orientdb;
 
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
 
 /**
  * widdo starter orientdb.

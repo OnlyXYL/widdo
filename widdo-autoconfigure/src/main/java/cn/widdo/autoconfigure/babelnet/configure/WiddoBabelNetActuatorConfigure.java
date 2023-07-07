@@ -4,7 +4,6 @@ import cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator;
 import cn.widdo.autoconfigure.babelnet.actuator.DefaultBabelNetActuator;
 import cn.widdo.autoconfigure.babelnet.properties.WiddoBabelNetProperties;
 import cn.widdo.autoconfigure.condition.WiddoBabelNetActuator;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
