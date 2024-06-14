@@ -12,93 +12,85 @@ import java.io.Serializable;
 @SuppressWarnings("ALL")
 public class ResultPageInfo implements Serializable {
 
-    /**
-     * 总记录数.
-     */
-    private String totalRecord;
+	/**
+	 * 总记录数.
+	 */
+	private String totalRecord;
 
-    /**
-     * 当前页.
-     */
-    private String currentPage;
+	/**
+	 * 当前页.
+	 */
+	private String currentPage;
 
-    /**
-     * 页面最大记录数.
-     */
-    private String pageSize;
+	/**
+	 * 页面最大记录数.
+	 */
+	private String pageSize;
 
-    /**
-     * 无参构造.
-     */
-    public ResultPageInfo() {
-    }
+	/**
+	 * 无参构造.
+	 */
+	public ResultPageInfo() {
+	}
 
-    /**
-     * 构造方法.
-     *
-     * @param totalRecord totalRecord
-     * @param currentPage currentPage
-     * @param pageSize    pageSize
-     */
-    public ResultPageInfo(final String totalRecord,
-                          final String currentPage,
-                          final String pageSize) {
-        this.totalRecord = totalRecord;
-        this.currentPage = currentPage;
-        this.pageSize = pageSize;
-    }
+	/**
+	 * 构造方法.
+	 * @param totalRecord totalRecord
+	 * @param currentPage currentPage
+	 * @param pageSize pageSize
+	 */
+	public ResultPageInfo(final String totalRecord, final String currentPage, final String pageSize) {
+		this.totalRecord = totalRecord;
+		this.currentPage = currentPage;
+		this.pageSize = pageSize;
+	}
 
-    /**
-     * get totalRecord.
-     *
-     * @return a String result
-     */
-    public String getTotalRecord() {
-        return totalRecord;
-    }
+	/**
+	 * get totalRecord.
+	 * @return a String result
+	 */
+	public String getTotalRecord() {
+		return totalRecord;
+	}
 
-    /**
-     * set total record.
-     *
-     * @param totalRecord totalRecord
-     */
-    public void setTotalRecord(String totalRecord) {
-        this.totalRecord = totalRecord;
-    }
+	/**
+	 * set total record.
+	 * @param totalRecord totalRecord
+	 */
+	public void setTotalRecord(String totalRecord) {
+		this.totalRecord = totalRecord;
+	}
 
-    /**
-     * get current page.
-     *
-     * @return a String result
-     */
-    public String getCurrentPage() {
-        return currentPage;
-    }
+	/**
+	 * get current page.
+	 * @return a String result
+	 */
+	public String getCurrentPage() {
+		return currentPage;
+	}
 
-    /**
-     * set current page.
-     *
-     * @param currentPage currentPage
-     */
-    public void setCurrentPage(String currentPage) {
-        this.currentPage = currentPage;
-    }
+	/**
+	 * set current page.
+	 * @param currentPage currentPage
+	 */
+	public void setCurrentPage(String currentPage) {
+		this.currentPage = currentPage;
+	}
 
-    /**
-     * get page size.
-     *
-     * @return a String result
-     */
-    public String getPageSize() {
-        return pageSize;
-    }
+	/**
+	 * get page size.
+	 * @return a String result
+	 */
+	public String getPageSize() {
+		return pageSize;
+	}
 
-    /**
-     * set page size.
-     *
-     * @param pageSize pageSize
-     */
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
-    }
+	/**
+	 * set page size.
+	 * @param pageSize pageSize
+	 */
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
 }

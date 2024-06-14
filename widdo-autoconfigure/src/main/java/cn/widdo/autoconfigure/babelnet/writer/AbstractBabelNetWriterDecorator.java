@@ -1,7 +1,7 @@
 package cn.widdo.autoconfigure.babelnet.writer;
 
 /**
- * abstract babelNet  writer decorator.
+ * abstract babelNet writer decorator.
  *
  * @param <T> t
  * @param <R> r
@@ -12,8 +12,9 @@ package cn.widdo.autoconfigure.babelnet.writer;
 @SuppressWarnings("ALL")
 public abstract class AbstractBabelNetWriterDecorator<T, R> extends AbstractBabelNetWriter<T, R> {
 
-    /**
-     * BabelNetWriter.
-     */
-    protected BabelNetWriter<T, R> babelNetWriter;
+	/**
+	 * BabelNetWriter.
+	 */
+	protected BabelNetWriter<T, R> babelNetWriter;
+
 }

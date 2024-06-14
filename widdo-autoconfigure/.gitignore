@@ -10,8 +10,9 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
+`
+#
+## IntelliJ IDEA ###
 .idea
 .github
 *.iws

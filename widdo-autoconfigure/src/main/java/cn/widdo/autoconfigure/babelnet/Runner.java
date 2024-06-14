@@ -9,4 +9,5 @@ package cn.widdo.autoconfigure.babelnet;
  */
 @SuppressWarnings("ALL")
 public interface Runner {
+
 }

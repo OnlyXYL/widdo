@@ -17,29 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/exception")
 public class ExceptionController {
 
-    /**
-     * ExceptionService.
-     */
-    private ExceptionService exceptionService;
+	/**
+	 * ExceptionService.
+	 */
+	public final ExceptionService exceptionService;
 
-    /**
-     * constructor has one param typed {@link ExceptionService}.
-     *
-     * @param exceptionService
-     */
-    public ExceptionController(final ExceptionService exceptionService) {
-        this.exceptionService = exceptionService;
-    }
+	/**
+	 * constructor has one param typed {@link ExceptionService}.
+	 * @param exceptionService
+	 */
+	public ExceptionController(final ExceptionService exceptionService) {
+		this.exceptionService = exceptionService;
+	}
 
-    /**
-     * 异常测试方法.
-     *
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2023/06/27 17:25:09
-     */
-    @GetMapping(value = "/test")
-    public WiddoResult exception() {
-        return exceptionService.test();
-    }
+	/**
+	 * 异常测试方法.
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2023/06/27 17:25:09
+	 */
+	@GetMapping(value = "/test")
+	public WiddoResult exception() {
+		return exceptionService.test();
+	}
+
 }

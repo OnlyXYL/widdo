@@ -14,14 +14,14 @@ import cn.widdo.autoconfigure.neo4j.Neo4jHelper;
 @SuppressWarnings("ALL")
 public interface Neo4jReader<T, R> extends Reader, Neo4jHelper {
 
-    /**
-     * 读数据.
-     *
-     * @param params 参数
-     * @return R
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.read.ReadInterface
-     * @date 2022/10/14 16:11
-     **/
-    R read(T params);
+	/**
+	 * 读数据.
+	 * @param params 参数
+	 * @return R
+	 * @author XYL
+	 * @className cn.widdo.autoconfigure.neo4j.read.ReadInterface
+	 * @date 2022/10/14 16:11
+	 **/
+	R read(T params);
+
 }

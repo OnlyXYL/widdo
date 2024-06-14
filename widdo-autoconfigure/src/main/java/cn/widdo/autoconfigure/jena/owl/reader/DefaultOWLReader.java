@@ -12,8 +12,9 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultOWLReader extends AbstractOWLReader<Map<String, Object>, Map<String, Object>> {
 
-    @Override
-    public Map<String, Object> read(Map<String, Object> params) {
-        return null;
-    }
+	@Override
+	public Map<String, Object> read(Map<String, Object> params) {
+		return null;
+	}
+
 }

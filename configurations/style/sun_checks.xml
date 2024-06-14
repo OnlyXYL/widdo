@@ -76,7 +76,7 @@
         <!--设置单行120个字符-->
         <property name="max" value="200"/>
         <!--忽略检测规则，符合规则的不进行检测-->
-        <property name="ignorePattern" value="^package.*|^import.*|LOG.*|a href|href|http://|https://|ftp://"/>
+        <property name="ignorePattern" value="^package.*|^import.*|LOG.*|a href|href|https://|https://|ftp://"/>
     </module>
 
     <!-- Checks for whitespace                               -->

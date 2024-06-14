@@ -20,8 +20,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @ConditionalOnClass(RedissonClient.class)
 public class MyRedissonProperties {
 
-    /**
-     * 配置信息.
-     */
-    private MyRedissonConfigProperties config = new MyRedissonConfigProperties();
+	/**
+	 * 配置信息.
+	 */
+	private MyRedissonConfigProperties config = new MyRedissonConfigProperties();
+
 }

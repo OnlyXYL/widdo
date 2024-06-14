@@ -25,30 +25,29 @@ import java.util.Map;
 @Service
 public class BabelNetServiceImpl implements BabelNetService {
 
-    /**
-     * BabelNetActuator.
-     */
-    private final BabelNetActuator<Map<String, Object>, List<BabelSense>> babelNetActuator;
+	/**
+	 * BabelNetActuator.
+	 */
+	private final BabelNetActuator<Map<String, Object>, List<BabelSense>> babelNetActuator;
 
-    @Autowired
-    public BabelNetServiceImpl(final BabelNetActuator babelNetActuator) {
-        this.babelNetActuator = babelNetActuator;
-    }
+	@Autowired
+	public BabelNetServiceImpl(final BabelNetActuator babelNetActuator) {
+		this.babelNetActuator = babelNetActuator;
+	}
 
-    @Override
-    public WiddoResult query(Map<String, Object> params) {
+	@Override
+	public WiddoResult query(Map<String, Object> params) {
 
-        final String lemma = params.get("lemma").toString();
+		final String lemma = params.get("lemma").toString();
 
-        babelNetActuator.read(params);
+		babelNetActuator.read(params);
 
-        final BabelNet bt = BabelNet.getInstance();
-        BabelNetQuery query = new BabelNetQuery.Builder(lemma)
-                .from(Language.ZH)
-                .build();
+		final BabelNet bt = BabelNet.getInstance();
+		BabelNetQuery query = new BabelNetQuery.Builder(lemma).from(Language.ZH).build();
 
-        final List<BabelSense> sensesFrom = bt.getSensesFrom(query);
+		final List<BabelSense> sensesFrom = bt.getSensesFrom(query);
 
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, sensesFrom);
-    }
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, sensesFrom);
+	}
+
 }

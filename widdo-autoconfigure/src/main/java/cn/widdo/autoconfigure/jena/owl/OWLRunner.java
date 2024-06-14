@@ -11,4 +11,5 @@ import cn.widdo.autoconfigure.jena.JRunner;
  */
 @SuppressWarnings("ALL")
 public interface OWLRunner extends JRunner {
+
 }

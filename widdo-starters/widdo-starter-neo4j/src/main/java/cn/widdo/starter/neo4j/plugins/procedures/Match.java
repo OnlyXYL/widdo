@@ -20,88 +20,86 @@ import java.util.stream.Stream;
  * @since 305.1.1.0
  */
 public class Match {
-    /**
-     * tx.
-     */
-    @Context
-    @IgnoreNeo4jVisibility
-    public Transaction tx;
 
-    /**
-     * entity container.
-     */
-    public static class MatchContainer {
+	/**
+	 * tx.
+	 */
+	@Context
+	@IgnoreNeo4jVisibility
+	public Transaction tx;
 
-        /**
-         * node.
-         */
-        @IgnoreNeo4jVisibility
-        public Node node;
+	/**
+	 * entity container.
+	 */
+	public static class MatchContainer {
 
-        /**
-         * constructor has one param called {@link Node}.
-         *
-         * @param node node
-         */
-        public MatchContainer(final Node node) {
-            this.node = node;
-        }
-    }
+		/**
+		 * node.
+		 */
+		@IgnoreNeo4jVisibility
+		public Node node;
 
-    /**
-     * 动态标签，多条件查询节点.
-     *
-     * @param labelNames
-     * @param identProps
-     * @return java.util.stream.Stream<cn.widdo.starter.neo4j.plugins.procedures.Match.MatchContainer>
-     * @author XYL
-     * @date 2023/05/06 10:32:41
-     */
-    @Procedure(value = "widdo.match.node", mode = Mode.WRITE)
-    @Description("Match the given node(s) with the given dynamic labels.")
-    public Stream<MatchContainer> nodes(@Name("labels") List<String> labelNames,
-                                        @Name("identProps") Map<String, Object> identProps) {
-        final ResourceIterator<Node> nodeResult = getNodeResult(labelNames, identProps);
-        return nodeResult.stream().map(MatchContainer::new);
-    }
+		/**
+		 * constructor has one param called {@link Node}.
+		 * @param node node
+		 */
+		public MatchContainer(final Node node) {
+			this.node = node;
+		}
 
-    /**
-     * 获取查询结果.
-     *
-     * @param labelNames label集合
-     * @param identProps 查询条件
-     * @return org.neo4j.graphdb.ResourceIterator<org.neo4j.graphdb.Node>
-     * @author XYL
-     * @date 2023/05/06 10:31:07
-     */
-    private ResourceIterator<Node> getNodeResult(List<String> labelNames, Map<String, Object> identProps) {
-        if (identProps == null || identProps.isEmpty()) {
-            throw new IllegalArgumentException("you need to supply at least one identifying property for a merge");
-        }
+	}
 
-        String labels = Neo4jUtil.labelString(labelNames);
+	/**
+	 * 动态标签，多条件查询节点.
+	 * @param labelNames
+	 * @param identProps
+	 * @return java.util.stream.Stream<cn.widdo.starter.neo4j.plugins.procedures.Match.MatchContainer>
+	 * @author XYL
+	 * @date 2023/05/06 10:32:41
+	 */
+	@Procedure(value = "widdo.match.node", mode = Mode.WRITE)
+	@Description("Match the given node(s) with the given dynamic labels.")
+	public Stream<MatchContainer> nodes(@Name("labels") List<String> labelNames,
+			@Name("identProps") Map<String, Object> identProps) {
+		final ResourceIterator<Node> nodeResult = getNodeResult(labelNames, identProps);
+		return nodeResult.stream().map(MatchContainer::new);
+	}
 
-        Map<String, Object> params = Neo4jUtil.map("identProps", identProps);
-        String identPropsString = buildIdentPropsString(identProps);
+	/**
+	 * 获取查询结果.
+	 * @param labelNames label集合
+	 * @param identProps 查询条件
+	 * @return org.neo4j.graphdb.ResourceIterator<org.neo4j.graphdb.Node>
+	 * @author XYL
+	 * @date 2023/05/06 10:31:07
+	 */
+	private ResourceIterator<Node> getNodeResult(List<String> labelNames, Map<String, Object> identProps) {
+		if (identProps == null || identProps.isEmpty()) {
+			throw new IllegalArgumentException("you need to supply at least one identifying property for a merge");
+		}
 
-        final String cypher = "MATCH (n:" + labels + "{" + identPropsString + "}) RETURN n";
-        return tx.execute(cypher, params).columnAs("n");
-    }
+		String labels = Neo4jUtil.labelString(labelNames);
 
-    /**
-     * 格式转换.
-     *
-     * @param identProps 查询条件
-     * @return java.lang.String
-     * @author XYL
-     * @date 2023/05/06 10:37:53
-     */
-    private String buildIdentPropsString(Map<String, Object> identProps) {
-        if (identProps == null) {
-            return "";
-        }
-        return identProps.keySet().stream().map(Neo4jUtil::quote)
-                .map(s -> s + ":$identProps." + s)
-                .collect(Collectors.joining(","));
-    }
+		Map<String, Object> params = Neo4jUtil.map("identProps", identProps);
+		String identPropsString = buildIdentPropsString(identProps);
+
+		final String cypher = "MATCH (n:" + labels + "{" + identPropsString + "}) RETURN n";
+		return tx.execute(cypher, params).columnAs("n");
+	}
+
+	/**
+	 * 格式转换.
+	 * @param identProps 查询条件
+	 * @return java.lang.String
+	 * @author XYL
+	 * @date 2023/05/06 10:37:53
+	 */
+	private String buildIdentPropsString(Map<String, Object> identProps) {
+		if (identProps == null) {
+			return "";
+		}
+		return identProps.keySet().stream().map(Neo4jUtil::quote).map(s -> s + ":$identProps." + s)
+				.collect(Collectors.joining(","));
+	}
+
 }

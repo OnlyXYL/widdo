@@ -19,13 +19,14 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @ConditionalOnRedissonEnabled
 @EnableConfigurationProperties(MyRedissonProperties.class)
-@Import({MyRedissonClusterConfiguration.class, MyRedissonSingleConfiguration.class})
+@Import({ MyRedissonClusterConfiguration.class, MyRedissonSingleConfiguration.class })
 public class MyRedissonConfiguration {
 
-    private final Logger log = LoggerFactory.getLogger(MyRedissonConfiguration.class);
+	private final Logger log = LoggerFactory.getLogger(MyRedissonConfiguration.class);
 
-    @PostConstruct
-    public final void postConstruct() {
-        log.info("[Widdo] |- Components [Widdo Redisson] Auto Configure.");
-    }
+	@PostConstruct
+	public final void postConstruct() {
+		log.info("[Widdo] |- Components [Widdo Redisson] Auto Configure.");
+	}
+
 }

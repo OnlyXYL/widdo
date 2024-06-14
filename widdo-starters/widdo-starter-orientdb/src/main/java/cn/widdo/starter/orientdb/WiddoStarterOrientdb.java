@@ -14,10 +14,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterOrientdb {
 
-    private final Logger log = LoggerFactory.getLogger(WiddoStarterOrientdb.class);
+	private final Logger log = LoggerFactory.getLogger(WiddoStarterOrientdb.class);
 
-    @PostConstruct
-    public final void postConstruct() {
-        log.info("[Widdo] |- Starters [Widdo Starter Orientdb].");
-    }
+	@PostConstruct
+	public final void postConstruct() {
+		log.info("[Widdo] |- Starters [Widdo Starter Orientdb].");
+	}
+
 }

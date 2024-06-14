@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 /**
  * 主函数.
  *
@@ -18,14 +17,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WiddoLifeApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WiddoLifeApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(WiddoLifeApplication.class);
 
-    @PostConstruct
-    private void postConstruct() {
-        LOG.info("[Widdo] |- Service [Widdo Life] Application.");
-    }
+	@PostConstruct
+	private void postConstruct() {
+		LOG.info("[Widdo] |- Service [Widdo Life] Application.");
+	}
 
-    public static void main(String[] args) {
-        SpringApplication.run(WiddoLifeApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(WiddoLifeApplication.class, args);
+	}
+
 }

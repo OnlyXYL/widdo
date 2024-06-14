@@ -3,6 +3,8 @@ package cn.widdo.cache.configuration.redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +15,8 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/06/22 11:20
  * @since 263.1.1.0
  */
+@ConditionalOnBean(RedissonClient.class)
+@Component
 public class RedissonLocker implements Locker {
 
     /**
@@ -60,8 +64,7 @@ public class RedissonLocker implements Locker {
     }
 
     @Override
-    public boolean tryLock(String lockKey, long waitTime, long leaseTime,
-                           TimeUnit unit) throws InterruptedException {
+    public boolean tryLock(String lockKey, long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException {
         RLock lock = redissonClient.getLock(lockKey);
         return lock.tryLock(waitTime, leaseTime, unit);
     }
@@ -71,4 +74,5 @@ public class RedissonLocker implements Locker {
         RLock lock = redissonClient.getLock(lockKey);
         return lock.isLocked();
     }
+
 }

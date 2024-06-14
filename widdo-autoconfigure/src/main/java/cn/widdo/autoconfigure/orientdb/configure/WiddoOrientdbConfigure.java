@@ -1,6 +1,6 @@
 package cn.widdo.autoconfigure.orientdb.configure;
 
-import cn.widdo.autoconfigure.condition.WiddoOrientdb;
+import cn.widdo.autoconfigure.orientdb.annotation.WiddoOrientdb;
 import cn.widdo.autoconfigure.orientdb.properties.WiddoOrientdbProperties;
 import cn.widdo.starter.orientdb.utils.OrientdbUtils;
 import com.orientechnologies.orient.client.remote.OStorageRemote;
@@ -16,7 +16,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-
 /**
  * widdo orientdb configure.
  *
@@ -29,58 +28,60 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties(WiddoOrientdbProperties.class)
 public class WiddoOrientdbConfigure {
 
-    private static final Logger log = LoggerFactory.getLogger(WiddoOrientdbConfigure.class);
+	private static final Logger log = LoggerFactory.getLogger(WiddoOrientdbConfigure.class);
 
-    @PostConstruct
-    private void postConstruct() {
-        log.info("[Widdo] |- AutoConfigure [Widdo Orientdb] Auto Configure.");
-    }
+	@PostConstruct
+	private void postConstruct() {
+		log.info("[Widdo] |- AutoConfigure [Widdo Orientdb] Auto Configure.");
+	}
 
-    /**
-     * OrientGraphFactory instance.
-     *
-     * @param widdoOrientdbProperties widdoOrientdbProperties
-     * @return an OrientGraphFactory instance
-     */
-    @Bean
-    @ConditionalOnMissingBean(OrientGraphFactory.class)
-    public OrientGraphFactory orientGraphFactory(WiddoOrientdbProperties widdoOrientdbProperties) {
-        return new OrientGraphFactory(widdoOrientdbProperties.getUri(), widdoOrientdbProperties.getUrl(), widdoOrientdbProperties.getPassword()).setupPool(1, 50);
-    }
+	/**
+	 * OrientGraphFactory instance.
+	 * @param widdoOrientdbProperties widdoOrientdbProperties
+	 * @return an OrientGraphFactory instance
+	 */
+	@Bean
+	@ConditionalOnMissingBean(OrientGraphFactory.class)
+	public OrientGraphFactory orientGraphFactory(WiddoOrientdbProperties widdoOrientdbProperties) {
+		return new OrientGraphFactory(widdoOrientdbProperties.getUri(), widdoOrientdbProperties.getUrl(),
+				widdoOrientdbProperties.getPassword()).setupPool(1, 50);
+	}
 
-    /**
-     * ODatabasePool instance.
-     *
-     * @param widdoOrientdbProperties widdoOrientdbProperties
-     * @return an ODatabasePool instance
-     */
-    @Bean
-    @ConditionalOnMissingBean(ODatabasePool.class)
-    public ODatabasePool oDatabasePool(WiddoOrientdbProperties widdoOrientdbProperties) {
+	/**
+	 * ODatabasePool instance.
+	 * @param widdoOrientdbProperties widdoOrientdbProperties
+	 * @return an ODatabasePool instance
+	 */
+	@Bean
+	@ConditionalOnMissingBean(ODatabasePool.class)
+	public ODatabasePool oDatabasePool(WiddoOrientdbProperties widdoOrientdbProperties) {
 
-        OrientDBConfig config = OrientDBConfig.builder()
-                //设置负载均衡策略
-                .addConfig(OGlobalConfiguration.CLIENT_CONNECTION_STRATEGY, OStorageRemote.CONNECTION_STRATEGY.ROUND_ROBIN_REQUEST.toString())
-                //设置session超时时间
-                .addConfig(OGlobalConfiguration.NETWORK_TOKEN_EXPIRE_TIMEOUT, 30)
-//                .addConfig(OGlobalConfiguration.CLIENT_CHANNEL_MAX_POOL, 20)
-                .addConfig(OGlobalConfiguration.DB_POOL_MAX, 20)
-                .addConfig(OGlobalConfiguration.DB_POOL_MIN, 10)
-                .build();
+		OrientDBConfig config = OrientDBConfig.builder()
+				// 设置负载均衡策略
+				.addConfig(OGlobalConfiguration.CLIENT_CONNECTION_STRATEGY,
+						OStorageRemote.CONNECTION_STRATEGY.ROUND_ROBIN_REQUEST.toString())
+				// 设置session超时时间
+				.addConfig(OGlobalConfiguration.NETWORK_TOKEN_EXPIRE_TIMEOUT, 30)
+				// .addConfig(OGlobalConfiguration.CLIENT_CHANNEL_MAX_POOL, 20)
+				.addConfig(OGlobalConfiguration.DB_POOL_MAX, 20).addConfig(OGlobalConfiguration.DB_POOL_MIN, 10)
+				.build();
 
-        //1.创建客户端
-        //noinspection AlibabaLowerCamelCaseVariableNaming
-        @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming") OrientDB orientDB = OrientdbUtils.createClient(widdoOrientdbProperties.getUrl(), config);
+		// 1.创建客户端
+		// noinspection AlibabaLowerCamelCaseVariableNaming
+		@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+		OrientDB orientDB = OrientdbUtils.createClient(widdoOrientdbProperties.getUrl(), config);
 
-        //2. 建立连接
-        ODatabasePool pool = OrientdbUtils.connect(orientDB, widdoOrientdbProperties.getDatabase(), widdoOrientdbProperties.getUsername(), widdoOrientdbProperties.getPassword());
+		// 2. 建立连接
+		ODatabasePool pool = OrientdbUtils.connect(orientDB, widdoOrientdbProperties.getDatabase(),
+				widdoOrientdbProperties.getUsername(), widdoOrientdbProperties.getPassword());
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("关闭OrientDB连接");
-            pool.close();
-        }));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			System.out.println("关闭OrientDB连接");
+			pool.close();
+		}));
 
-        return pool;
+		return pool;
 
-    }
+	}
+
 }

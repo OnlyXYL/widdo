@@ -28,104 +28,106 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultNeo4jActuator extends AbstractNeo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DefaultNeo4jActuator.class);
 
-    /**
-     * Type constant of neo4j query cypher.
-     */
-    private static final String CYPHER_READ = "read";
+	/**
+	 * Type constant of neo4j query cypher.
+	 */
+	private static final String CYPHER_READ = "read";
 
-    /**
-     * Type constant of neo4j write cypher.
-     */
-    private static final String CYPHER_WRITE = "write";
+	/**
+	 * Type constant of neo4j write cypher.
+	 */
+	private static final String CYPHER_WRITE = "write";
 
-    /**
-     * properties.
-     */
-    private final WiddoNeo4jProperties widdoNeo4jProperties;
+	/**
+	 * properties.
+	 */
+	private final WiddoNeo4jProperties widdoNeo4jProperties;
 
-    /**
-     * constructor has no param,at the same time, if you create instance by this constructor,
-     * it will throw exception typed {@link UnsupportedOperationException}.
-     */
-    protected DefaultNeo4jActuator() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * constructor has no param,at the same time, if you create instance by this
+	 * constructor, it will throw exception typed {@link UnsupportedOperationException}.
+	 */
+	protected DefaultNeo4jActuator() {
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * constructor has two params one called {@link WiddoNeo4jProperties},and another called {@link Driver}.
-     *
-     * @param widdoNeo4jProperties {@link WiddoNeo4jProperties}
-     * @param driver               {@link Driver}
-     */
-    private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Driver driver) {
-        this.widdoNeo4jProperties = widdoNeo4jProperties;
-        this.driver = driver;
-    }
+	/**
+	 * constructor has two params one called {@link WiddoNeo4jProperties},and another
+	 * called {@link Driver}.
+	 * @param widdoNeo4jProperties {@link WiddoNeo4jProperties}
+	 * @param driver {@link Driver}
+	 */
+	private DefaultNeo4jActuator(final WiddoNeo4jProperties widdoNeo4jProperties, final Driver driver) {
+		this.widdoNeo4jProperties = widdoNeo4jProperties;
+		this.driver = driver;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
-        return this.readIfHave(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
+		return this.readIfHave(params);
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-        return this.writeIfHave(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+		return this.writeIfHave(params);
+	}
 
-    /**
-     * create reader instance to execute neo4j reader.
-     * <p>
-     * 根据配置文件中指定的reader实现类全路径，反射生成实例，并调用方法
-     *
-     * @param params params
-     * @return cn.widdo.autoconfigure.neo4j.reader.Neo4jReader
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator
-     * @date 2022/10/18 21:45
-     **/
-    private Result<List<Map<String, Value>>> readIfHave(Map<String, Object> params) {
+	/**
+	 * create reader instance to execute neo4j reader.
+	 * <p>
+	 * 根据配置文件中指定的reader实现类全路径，反射生成实例，并调用方法
+	 * @param params params
+	 * @return cn.widdo.autoconfigure.neo4j.reader.Neo4jReader
+	 * @author XYL
+	 * @className cn.widdo.autoconfigure.neo4j.actuator.DefaultNeo4jActuator
+	 * @date 2022/10/18 21:45
+	 **/
+	private Result<List<Map<String, Value>>> readIfHave(Map<String, Object> params) {
 
-        String className = widdoNeo4jProperties.getActuator().getReader().getClassName();
+		String className = widdoNeo4jProperties.getActuator().getReader().getClassName();
 
-        if (StringUtils.hasLength(className)) {
-            //check whether it`s legitimate.
-            final boolean present = ClassUtils.isPresent(className, Neo4jReader.class.getClassLoader());
+		if (StringUtils.hasLength(className)) {
+			// check whether it`s legitimate.
+			final boolean present = ClassUtils.isPresent(className, Neo4jReader.class.getClassLoader());
 
-            if (!present) {
-                className = DefaultNeo4jReader.class.getName();
-            }
-        } else {
-            //set the default classname.
-            className = DefaultNeo4jReader.class.getName();
-        }
+			if (!present) {
+				className = DefaultNeo4jReader.class.getName();
+			}
+		}
+		else {
+			// set the default classname.
+			className = DefaultNeo4jReader.class.getName();
+		}
 
-        return reflectObject(className, CYPHER_READ, params);
-    }
+		return reflectObject(className, CYPHER_READ, params);
+	}
 
-    /**
-     * create writer instance to execute neo4j writer.
-     *
-     * @param params params
-     * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
-     * @author XYL
-     * @date 2022/12/03 17:13:12
-     **/
-    private Result<List<Map<String, Value>>> writeIfHave(Map<String, Object> params) {
-        String className = widdoNeo4jProperties.getActuator().getWriter().getClassName();
+	/**
+	 * create writer instance to execute neo4j writer.
+	 * @param params params
+	 * @return cn.widdo.starter.neo4j.entity.result.Result<java.util.List < java.util.Map
+	 * < java.lang.String, cn.widdo.starter.neo4j.entity.Value>>>
+	 * @author XYL
+	 * @date 2022/12/03 17:13:12
+	 **/
+	private Result<List<Map<String, Value>>> writeIfHave(Map<String, Object> params) {
+		String className = widdoNeo4jProperties.getActuator().getWriter().getClassName();
 
-        if (StringUtils.hasLength(className)) {
-            //check whether it`s legitimate
-            final boolean present = ClassUtils.isPresent(className, Neo4jWriter.class.getClassLoader());
-            if (!present) {
-                className = DefaultNeo4jWriter.class.getName();
-            }
-        } else {
-            //set the default classname.
-            className = DefaultNeo4jWriter.class.getName();
-        }
+		if (StringUtils.hasLength(className)) {
+			// check whether it`s legitimate
+			final boolean present = ClassUtils.isPresent(className, Neo4jWriter.class.getClassLoader());
+			if (!present) {
+				className = DefaultNeo4jWriter.class.getName();
+			}
+		}
+		else {
+			// set the default classname.
+			className = DefaultNeo4jWriter.class.getName();
+		}
 
-        return reflectObject(className, CYPHER_WRITE, params);
-    }
+		return reflectObject(className, CYPHER_WRITE, params);
+	}
+
 }

@@ -31,61 +31,58 @@ import java.util.List;
 @ConditionalOnProperty(name = "spring.redis.redisson.config.mode", havingValue = "cluster")
 public class MyRedissonClusterConfiguration {
 
-    /**
-     * 属性配置.
-     */
-    @Resource
-    private MyRedissonProperties myRedissonProperties;
+	/**
+	 * 属性配置.
+	 */
+	@Resource
+	private MyRedissonProperties myRedissonProperties;
 
-    /**
-     * 客户端.
-     */
-    private RedissonClient redissonClient;
+	/**
+	 * 客户端.
+	 */
+	private RedissonClient redissonClient;
 
-    /**
-     * 客户端.
-     *
-     * @return org.redisson.api.RedissonClient
-     * @author XYL
-     * @date 2022/11/28 11:08:31
-     **/
-    @Bean
-    public RedissonClient redissonClient() {
+	/**
+	 * 客户端.
+	 * @return org.redisson.api.RedissonClient
+	 * @author XYL
+	 * @date 2022/11/28 11:08:31
+	 **/
+	@Bean
+	public RedissonClient redissonClient() {
 
-        final MyRedissonConfigProperties propertiesConfig = myRedissonProperties.getConfig();
+		final MyRedissonConfigProperties propertiesConfig = myRedissonProperties.getConfig();
 
-        final MyRedissonClusterServerConfigProperties clusterServerConfig = propertiesConfig.getClusterServerConfig();
+		final MyRedissonClusterServerConfigProperties clusterServerConfig = propertiesConfig.getClusterServerConfig();
 
-        Config config = new Config();
-        config.setTransportMode(TransportMode.NIO);
-        config.setThreads(propertiesConfig.getThreads());
-        config.setNettyThreads(propertiesConfig.getNettyThreads());
+		Config config = new Config();
+		config.setTransportMode(TransportMode.NIO);
+		config.setThreads(propertiesConfig.getThreads());
+		config.setNettyThreads(propertiesConfig.getNettyThreads());
 
-        final ClusterServersConfig clusterServersConfig = config.useClusterServers();
-        final List<String> nodeAddresses = clusterServerConfig.getNodeAddresses();
-        clusterServersConfig.setScanInterval(clusterServerConfig.getScanInterval());
-        clusterServerConfig.setNodeAddresses(nodeAddresses);
+		final ClusterServersConfig clusterServersConfig = config.useClusterServers();
+		final List<String> nodeAddresses = clusterServerConfig.getNodeAddresses();
+		clusterServersConfig.setScanInterval(clusterServerConfig.getScanInterval());
+		clusterServerConfig.setNodeAddresses(nodeAddresses);
 
-        RedissonClient redisson = Redisson.create(config);
+		RedissonClient redisson = Redisson.create(config);
 
-        redissonClient = redisson;
+		redissonClient = redisson;
 
-        return redisson;
-    }
+		return redisson;
+	}
 
-    /**
-     * 锁实例.
-     *
-     * @return cn.widdo.cache.configuration.redisson.RedissonLocker
-     * @author XYL
-     * @date 2022/11/28 11:08:46
-     **/
-    @Bean
-    public RedissonLocker redissonLocker() {
-        RedissonLocker redissonLocker = new RedissonLocker(redissonClient);
-        LockerUtils.setLocker(redissonLocker);
-        return redissonLocker;
-    }
+	/**
+	 * 锁实例.
+	 * @return cn.widdo.cache.configuration.redisson.RedissonLocker
+	 * @author XYL
+	 * @date 2022/11/28 11:08:46
+	 **/
+	@Bean
+	public RedissonLocker redissonLocker() {
+		RedissonLocker redissonLocker = new RedissonLocker(redissonClient);
+		LockerUtils.setLocker(redissonLocker);
+		return redissonLocker;
+	}
 
 }
-

@@ -14,8 +14,9 @@ import cn.widdo.autoconfigure.babelnet.reader.AbstractBabelNetReader;
 @SuppressWarnings("ALL")
 public abstract class AbstractBabelNetActuatorDecorator<T, R> extends AbstractBabelNetReader<T, R> {
 
-    /**
-     * BabelNetActuator.
-     */
-    protected BabelNetActuator<T, R> babelNetActuator;
+	/**
+	 * BabelNetActuator.
+	 */
+	protected BabelNetActuator<T, R> babelNetActuator;
+
 }

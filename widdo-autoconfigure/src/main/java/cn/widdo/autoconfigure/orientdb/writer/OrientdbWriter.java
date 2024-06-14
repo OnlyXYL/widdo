@@ -11,4 +11,5 @@ package cn.widdo.autoconfigure.orientdb.writer;
  */
 @SuppressWarnings("ALL")
 public interface OrientdbWriter<T, R> {
+
 }

@@ -14,8 +14,9 @@ package cn.widdo.autoconfigure.neo4j.reader;
 @SuppressWarnings("ALL")
 public abstract class AbstractNeo4jReaderDecorator<T, R> extends AbstractNeo4jReader<T, R> {
 
-    /**
-     * {@link Neo4jReader}.
-     */
-    protected Neo4jReader<T, R> neo4jReader;
+	/**
+	 * {@link Neo4jReader}.
+	 */
+	protected Neo4jReader<T, R> neo4jReader;
+
 }

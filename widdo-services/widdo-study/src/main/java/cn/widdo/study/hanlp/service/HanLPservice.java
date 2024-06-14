@@ -12,13 +12,13 @@ import cn.widdo.assistant.result.WiddoResult;
 @SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 public interface HanLPservice {
 
-    /**
-     * 依存句法分析.
-     *
-     * @param text
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2023/04/26 15:15:10
-     */
-    WiddoResult dependencyParser(String text);
+	/**
+	 * 依存句法分析.
+	 * @param text
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2023/04/26 15:15:10
+	 */
+	WiddoResult dependencyParser(String text);
+
 }

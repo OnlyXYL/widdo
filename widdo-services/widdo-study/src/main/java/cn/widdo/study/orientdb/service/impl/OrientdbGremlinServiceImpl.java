@@ -27,18 +27,18 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
  * @since 263.1.1.0
  */
 @Service
-@ConditionalOnBean({WiddoOrientdbConfigure.class})
+@ConditionalOnBean(WiddoOrientdbConfigure.class)
 public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
     /**
-     * orientdbFacotry.
+     * orientdbFactory.
      */
-    private OrientGraphFactory orientGraphFactory;
-
-    @Autowired
     public OrientdbGremlinServiceImpl(final OrientGraphFactory orientGraphFactory) {
         this.orientGraphFactory = orientGraphFactory;
     }
+    private final OrientGraphFactory orientGraphFactory;
+
+    @Autowired
 
     @Override
     public WiddoResult queryE(Map<String, Object> params) {
@@ -55,33 +55,28 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
         GraphTraversalSource g = orientGraph.traversal();
 
-/*        List<Edge> vertices = g.E() //查询关系
-                .where(outV()   //起点
-                        .hasLabel(outLabel) //过滤，获取具有给定条件的label
-                        .has("name", outName)   //过滤，获取具有给定条件的属性
-                        .and()
-                        .inV()  //终点
-                        .hasLabel(inLabel)  //过滤，获取具有给定条件的label
-                        .has("name", inName)    //过滤，获取具有给定条件的属性
-                )
-                .toList();*/
+        /*
+         * List<Edge> vertices = g.E() //查询关系 .where(outV() //起点 .hasLabel(outLabel)
+         * //过滤，获取具有给定条件的label .has("name", outName) //过滤，获取具有给定条件的属性 .and() .inV() //终点
+         * .hasLabel(inLabel) //过滤，获取具有给定条件的label .has("name", inName) //过滤，获取具有给定条件的属性 )
+         * .toList();
+         */
 
-        //查询关系
+        // 查询关系
         final List<Object> objects = g.E()
-                //起点
+                // 起点
                 .where(outV()
-                        //过滤，获取具有给定条件的label
+                        // 过滤，获取具有给定条件的label
                         .hasLabel(outLabel)
-                        //过滤，获取具有给定条件的属性
-                        .has("name", outName)
-                        .and()
-                        //终点
+                        // 过滤，获取具有给定条件的属性
+                        .has("name", outName).and()
+                        // 终点
                         .inV()
-                        //过滤，获取具有给定条件的label
+                        // 过滤，获取具有给定条件的label
                         .hasLabel(inLabel)
-                        //过滤，获取具有给定条件的属性
-                        .has("name", inName)
-                ).path().unfold().toList();
+                        // 过滤，获取具有给定条件的属性
+                        .has("name", inName))
+                .path().unfold().toList();
 
         OrientdbUtils.close(orientGraph);
 
@@ -101,41 +96,20 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
         GraphTraversalSource g = orientGraph.traversal();
 
-/*        List<Vertex> vertices = g.E()
-                .outV() //获取所有节点
-                .has(label, properKey, propertyValue) //根据属性过滤
-                .dedup()    //节点去重
-                .by("name"    //去重条件，根据id去重的含义是：例如允许存在名称相同，但是节点不同的节点
-                )
-                .toList();*/
-        List<Object> code = g.V()
-                .match(
-                        __.as("a")
-                                .hasLabel(label)
-                                .has(key, value)
-                                .out()
-                                .as("b")
-                )
-                .select("b")
-                .dedup()
-                .by("id")
-                .order()
-                .by("id", Order.desc)
-                .limit(5)
-                .toList();
+        /*
+         * List<Vertex> vertices = g.E() .outV() //获取所有节点 .has(label, properKey,
+         * propertyValue) //根据属性过滤 .dedup() //节点去重 .by("name"
+         * //去重条件，根据id去重的含义是：例如允许存在名称相同，但是节点不同的节点 ) .toList();
+         */
+        List<Object> code = g.V().match(__.as("a").hasLabel(label).has(key, value).out().as("b")).select("b").dedup()
+                .by("id").order().by("id", Order.desc).limit(5).toList();
 
-/*        List<Object> code = g.E()
-                .outV() //获取所有节点
-                .hasLabel(label)
-                .has(properKey, propertyValue) //根据属性过滤
-                .dedup()    //节点去重
-                .by("code"    //去重条件，根据id去重的含义是：例如允许存在名称相同，但是节点不同的节点
-                )
-                .limit(limit)
-                .path()
-                .unfold()
-                .toList();*/
-
+        /*
+         * List<Object> code = g.E() .outV() //获取所有节点 .hasLabel(label) .has(properKey,
+         * propertyValue) //根据属性过滤 .dedup() //节点去重 .by("code"
+         * //去重条件，根据id去重的含义是：例如允许存在名称相同，但是节点不同的节点 ) .limit(limit) .path() .unfold()
+         * .toList();
+         */
 
         return null;
     }
@@ -144,5 +118,5 @@ public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
     public WiddoResult delete() {
         return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
-}
 
+}

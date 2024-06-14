@@ -28,15 +28,16 @@ package cn.widdo.autoconfigure;
  */
 class AutoconfigureConst {
 
-    /**
-     * 包常量.
-     */
-    public static final String PACKAGE_INFO_TEST = "package-info.java";
+	/**
+	 * 包常量.
+	 */
+	public static final String PACKAGE_INFO_TEST = "package-info.java";
 
-    /**
-     * construct have no params.
-     */
-    protected AutoconfigureConst() {
-        throw new UnsupportedOperationException(AutoconfigureConst.class.getName() + " can`t have instance.");
-    }
+	/**
+	 * construct have no params.
+	 */
+	protected AutoconfigureConst() {
+		throw new UnsupportedOperationException(AutoconfigureConst.class.getName() + " can`t have instance.");
+	}
+
 }

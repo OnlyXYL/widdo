@@ -16,16 +16,16 @@ import java.util.Map;
 @FunctionalInterface
 public interface CQLFunction {
 
-    /**
-     * sql执行.
-     *
-     * @param cql cql
-     * @param map 参数
-     * @param tx  事务
-     * @return cn.widdo.starter.neo4j.entity.result.Result
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.function.CQLFunction
-     * @date 2022/07/15 0:27
-     **/
-    Result<?> execute(String cql, Map<String, Object> map, TransactionContext tx);
+	/**
+	 * sql执行.
+	 * @param cql cql
+	 * @param map 参数
+	 * @param tx 事务
+	 * @return cn.widdo.starter.neo4j.entity.result.Result
+	 * @author XYL
+	 * @className cn.widdo.autoconfigure.neo4j.function.CQLFunction
+	 * @date 2022/07/15 0:27
+	 **/
+	Result<?> execute(String cql, Map<String, Object> map, TransactionContext tx);
+
 }

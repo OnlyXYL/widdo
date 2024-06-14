@@ -12,9 +12,10 @@ import java.lang.annotation.*;
  * @date 2022/09/07 18:16
  * @since 263.1.1.0
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({MyRedissonConfiguration.class})
+@Import({ MyRedissonConfiguration.class })
 public @interface EnabledRedisson {
+
 }

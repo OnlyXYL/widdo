@@ -5,11 +5,10 @@
     <parent>
         <artifactId>widdo-packages</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>305.2.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.widdo</groupId>
     <artifactId>widdo-data</artifactId>
 
     <dependencies>

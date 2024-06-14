@@ -23,23 +23,23 @@ import java.util.Map;
 @RestController
 public class Neo4jGremlinController extends BaseController {
 
-    /**
-     * neo4jGremlinService.
-     */
-    @Resource
-    private Neo4jGremlinService neo4jGremlinService;
+	/**
+	 * neo4jGremlinService.
+	 */
+	@Resource
+	private Neo4jGremlinService neo4jGremlinService;
 
-    /**
-     * query.
-     *
-     * @param params params
-     * @return cn.widdo.entity.JsonResult
-     * @author XYL
-     * @className widdo.neo4j.controller.Neo4jGremlinController
-     * @date 2022/07/15 2:04
-     **/
-    @PostMapping(value = "/query")
-    public WiddoResult query(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, (p) -> neo4jGremlinService.query(p), "label", "name");
-    }
+	/**
+	 * query.
+	 * @param params params
+	 * @return cn.widdo.entity.JsonResult
+	 * @author XYL
+	 * @className widdo.neo4j.controller.Neo4jGremlinController
+	 * @date 2022/07/15 2:04
+	 **/
+	@PostMapping(value = "/query")
+	public WiddoResult query(@RequestBody Map<String, Object> params) {
+		return this.validateAndRun(params, (p) -> neo4jGremlinService.query(p), "label", "name");
+	}
+
 }

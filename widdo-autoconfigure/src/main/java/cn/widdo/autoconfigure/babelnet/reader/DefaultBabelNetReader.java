@@ -17,22 +17,21 @@ import java.util.Map;
  */
 public final class DefaultBabelNetReader extends AbstractBabelNetReader<Map<String, Object>, List<BabelSense>> {
 
-    /**
-     * constructor has none params.
-     */
-    private DefaultBabelNetReader() {
-    }
+	/**
+	 * constructor has none params.
+	 */
+	private DefaultBabelNetReader() {
+	}
 
-    @Override
-    public List<BabelSense> read(Map<String, Object> params) {
+	@Override
+	public List<BabelSense> read(Map<String, Object> params) {
 
-        final String lemma = params.get("lemma").toString();
+		final String lemma = params.get("lemma").toString();
 
-        final BabelNet bt = BabelNet.getInstance();
-        BabelNetQuery query = new BabelNetQuery.Builder(lemma)
-                .from(Language.ZH)
-                .build();
+		final BabelNet bt = BabelNet.getInstance();
+		BabelNetQuery query = new BabelNetQuery.Builder(lemma).from(Language.ZH).build();
 
-        return bt.getSensesFrom(query);
-    }
+		return bt.getSensesFrom(query);
+	}
+
 }

@@ -13,4 +13,5 @@ import cn.widdo.autoconfigure.babelnet.writer.BabelNetWriter;
  * @since 302.1.0.0
  */
 public interface BabelNetActuator<T, R> extends BabelNetReader<T, R>, BabelNetWriter<T, R> {
+
 }

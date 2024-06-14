@@ -22,40 +22,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EntityResultProcedureTest {
 
-    private Neo4j neo4j;
-    private Driver driver;
+	private Neo4j neo4j;
 
-    @BeforeAll
-    void initializeNeo4j() {
+	private Driver driver;
 
-        this.neo4j = Neo4jBuilders.newInProcessBuilder()
-                .withDisabledServer()
-                .withFixture("\t    UNWIND range(1, 5) AS i\n" +
-                        "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
-                .withProcedure(EntityResultProcedure.class)
-                .build();
+	@BeforeAll
+	void initializeNeo4j() {
 
-        driver = GraphDatabase.driver(neo4j.boltURI());
-    }
+		this.neo4j = Neo4jBuilders.newInProcessBuilder().withDisabledServer()
+				.withFixture("\t    UNWIND range(1, 5) AS i\n" + "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
+				.withProcedure(EntityResultProcedure.class).build();
 
-    @AfterAll
-    void closeDriver() {
-        this.driver.close();
-    }
+		driver = GraphDatabase.driver(neo4j.boltURI());
+	}
 
-    @AfterEach
-    void cleanDb() {
-        try (Session session = driver.session()) {
-            session.run("MATCH (n) DETACH DELETE n");
-        }
-    }
+	@AfterAll
+	void closeDriver() {
+		this.driver.close();
+	}
 
-    @Test
-    void allNodesShouldWork() {
-        try (final Session session = driver.session();) {
-            final Stream<Integer> stream = session.run("CALL widdo.allNodes('') YIELD node")
-                    .stream().map(r -> r.get("node").asNode().get("idx").asInt());
-            assertThat(stream).hasSize(5).containsExactly(1, 2, 3, 4, 5);
-        }
-    }
+	@AfterEach
+	void cleanDb() {
+		try (Session session = driver.session()) {
+			session.run("MATCH (n) DETACH DELETE n");
+		}
+	}
+
+	@Test
+	void allNodesShouldWork() {
+		try (final Session session = driver.session();) {
+			final Stream<Integer> stream = session.run("CALL widdo.allNodes('') YIELD node").stream()
+					.map(r -> r.get("node").asNode().get("idx").asInt());
+			assertThat(stream).hasSize(5).containsExactly(1, 2, 3, 4, 5);
+		}
+	}
+
 }

@@ -24,61 +24,59 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MybatisPlusConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(MybatisPlusConfiguration.class);
+	private static final Logger log = LoggerFactory.getLogger(MybatisPlusConfiguration.class);
 
-    /**
-     * platform.
-     */
-    @Value(PropertyConstant.ANNOTATION_SQL_INIT_PLATFORM)
-    private String platform;
+	/**
+	 * platform.
+	 */
+	@Value(PropertyConstant.ANNOTATION_SQL_INIT_PLATFORM)
+	private String platform;
 
-    @PostConstruct
-    public final void postConstruct() {
-        log.debug("[Widdo] |- Plugin [Widdo Mybatis Plus] Auto Configure.");
-    }
+	@PostConstruct
+	public final void postConstruct() {
+		log.debug("[Widdo] |- Plugin [Widdo Mybatis Plus] Auto Configure.");
+	}
 
-    /**
-     * DbType.
-     *
-     * @return com.baomidou.mybatisplus.annotation.DbType
-     * @author XYL
-     * @date 2022/11/28 11:30:33
-     **/
-    private DbType parseDbType() {
-        if (StringUtils.isNotBlank(platform)) {
-            DbType type = DbType.getDbType(platform);
-            if (ObjectUtils.isNotEmpty(type)) {
-                return type;
-            }
-        }
+	/**
+	 * DbType.
+	 * @return com.baomidou.mybatisplus.annotation.DbType
+	 * @author XYL
+	 * @date 2022/11/28 11:30:33
+	 **/
+	private DbType parseDbType() {
+		if (StringUtils.isNotBlank(platform)) {
+			DbType type = DbType.getDbType(platform);
+			if (ObjectUtils.isNotEmpty(type)) {
+				return type;
+			}
+		}
 
-        return DbType.POSTGRE_SQL;
-    }
+		return DbType.POSTGRE_SQL;
+	}
 
-    /**
-     * 防止 修改与删除时对全表进行操作.
-     *
-     * @return {@link MybatisPlusInterceptor}
-     */
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
-        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(parseDbType()));
-        log.trace("[Smart] |- Bean [Mybatis Plus Interceptor] Auto Configure.");
-        return mybatisPlusInterceptor;
-    }
+	/**
+	 * 防止 修改与删除时对全表进行操作.
+	 * @return {@link MybatisPlusInterceptor}
+	 */
+	@Bean
+	public MybatisPlusInterceptor mybatisPlusInterceptor() {
+		MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+		mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(parseDbType()));
+		log.trace("[Smart] |- Bean [Mybatis Plus Interceptor] Auto Configure.");
+		return mybatisPlusInterceptor;
+	}
 
-    /**
-     * 攻击 SQL 阻断解析器,防止全表更新与删除.
-     *
-     * @return com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor
-     * @author XYL
-     * @date 2022/11/28 11:28:44
-     **/
-    @Bean
-    public BlockAttackInnerInterceptor blockAttackInnerInterceptor() {
-        BlockAttackInnerInterceptor blockAttackInnerInterceptor = new BlockAttackInnerInterceptor();
-        log.trace("[Smart] |- Bean [Block Attack Inner Interceptor] Auto Configure.");
-        return blockAttackInnerInterceptor;
-    }
+	/**
+	 * 攻击 SQL 阻断解析器,防止全表更新与删除.
+	 * @return com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor
+	 * @author XYL
+	 * @date 2022/11/28 11:28:44
+	 **/
+	@Bean
+	public BlockAttackInnerInterceptor blockAttackInnerInterceptor() {
+		BlockAttackInnerInterceptor blockAttackInnerInterceptor = new BlockAttackInnerInterceptor();
+		log.trace("[Smart] |- Bean [Block Attack Inner Interceptor] Auto Configure.");
+		return blockAttackInnerInterceptor;
+	}
+
 }

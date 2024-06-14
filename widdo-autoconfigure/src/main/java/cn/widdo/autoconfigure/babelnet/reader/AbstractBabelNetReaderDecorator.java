@@ -12,9 +12,9 @@ package cn.widdo.autoconfigure.babelnet.reader;
 @SuppressWarnings("ALL")
 public abstract class AbstractBabelNetReaderDecorator<T, R> extends AbstractBabelNetReader<T, R> {
 
-    /**
-     * {@link BabelNetReader}.
-     */
-    protected BabelNetReader<T, R> babelNetReader;
+	/**
+	 * {@link BabelNetReader}.
+	 */
+	protected BabelNetReader<T, R> babelNetReader;
 
 }

@@ -5,19 +5,57 @@
     <parent>
         <artifactId>widdo-starters</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>305.2.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-starter-jena</artifactId>
-    <version>305.2.1.0</version>
+    <version>305.2.2.0</version>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>apache-jena-libs</artifactId>
             <type>pom</type>
-            <!--            <optional>true</optional>-->
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena</artifactId>
+            <type>pom</type>
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-core</artifactId>
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-base</artifactId>
+            <scope>test</scope>
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-iri</artifactId>
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-arq</artifactId>
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-rdfconnection</artifactId>
+<!--            <optional>true</optional>-->
         </dependency>
     </dependencies>
 

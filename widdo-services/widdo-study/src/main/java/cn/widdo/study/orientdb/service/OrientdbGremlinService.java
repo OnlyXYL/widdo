@@ -14,32 +14,30 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public interface OrientdbGremlinService {
 
-    /**
-     * 查询线.
-     *
-     * @param params params
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2022/07/15 9:53
-     **/
-    WiddoResult queryE(Map<String, Object> params);
+	/**
+	 * 查询线.
+	 * @param params params
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2022/07/15 9:53
+	 **/
+	WiddoResult queryE(Map<String, Object> params);
 
-    /**
-     * 查询点.
-     *
-     * @param params params
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2022/07/15 10:15
-     **/
-    WiddoResult queryV(Map<String, Object> params);
+	/**
+	 * 查询点.
+	 * @param params params
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2022/07/15 10:15
+	 **/
+	WiddoResult queryV(Map<String, Object> params);
 
-    /**
-     * 删除.
-     *
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2022/09/14 16:46
-     **/
-    WiddoResult delete();
+	/**
+	 * 删除.
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2022/09/14 16:46
+	 **/
+	WiddoResult delete();
+
 }

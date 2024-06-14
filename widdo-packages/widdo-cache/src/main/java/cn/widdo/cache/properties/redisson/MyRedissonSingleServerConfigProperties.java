@@ -12,18 +12,19 @@ import lombok.Data;
 @Data
 public class MyRedissonSingleServerConfigProperties {
 
-    /**
-     * 密码.
-     */
-    private String password;
+	/**
+	 * 密码.
+	 */
+	private String password;
 
-    /**
-     * 地址.
-     */
-    private String address;
+	/**
+	 * 地址.
+	 */
+	private String address;
 
-    /**
-     * 数据库.
-     */
-    private int database;
+	/**
+	 * 数据库.
+	 */
+	private int database;
+
 }

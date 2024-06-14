@@ -13,14 +13,14 @@ package cn.widdo.assistant.function;
 @FunctionalInterface
 public interface BeanCopyCallback<S, T> {
 
-    /**
-     * 回调方法.
-     *
-     * @param s s
-     * @param t t
-     * @author XYL
-     * @className cn.widdo.assistant.function.BeanCopyCallback
-     * @date 2022/11/10 19:24
-     **/
-    void callback(S s, T t);
+	/**
+	 * 回调方法.
+	 * @param s s
+	 * @param t t
+	 * @author XYL
+	 * @className cn.widdo.assistant.function.BeanCopyCallback
+	 * @date 2022/11/10 19:24
+	 **/
+	void callback(S s, T t);
+
 }

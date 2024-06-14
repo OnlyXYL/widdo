@@ -13,13 +13,13 @@ import cn.widdo.autoconfigure.babelnet.Runner;
  */
 public interface BabelNetReader<T, R> extends Runner {
 
-    /**
-     * query.
-     *
-     * @param params params
-     * @return R
-     * @author XYL
-     * @date 2022/12/02 18:49:50
-     **/
-    R read(T params);
+	/**
+	 * query.
+	 * @param params params
+	 * @return R
+	 * @author XYL
+	 * @date 2022/12/02 18:49:50
+	 **/
+	R read(T params);
+
 }

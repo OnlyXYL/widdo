@@ -15,12 +15,12 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultRDFWriter extends AbstractRDFWriter<Map<String, Object>, Map<String, Object>> {
 
-    @Override
-    public Map<String, Object> write(Map<String, Object> params) {
+	@Override
+	public Map<String, Object> write(Map<String, Object> params) {
 
-        final Model model = ModelFactory.createDefaultModel();
+		final Model model = ModelFactory.createDefaultModel();
 
+		return null;
+	}
 
-        return null;
-    }
 }

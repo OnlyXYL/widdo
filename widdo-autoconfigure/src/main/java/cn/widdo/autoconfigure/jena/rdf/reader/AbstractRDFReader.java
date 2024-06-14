@@ -11,4 +11,5 @@ package cn.widdo.autoconfigure.jena.rdf.reader;
  */
 @SuppressWarnings("ALL")
 public abstract class AbstractRDFReader<T, R> implements RDFReader<T, R> {
+
 }

@@ -6,12 +6,10 @@ spring:
         server-addr: 101.42.10.77:8848
         namespace: widdo-dev
         group: DEFAULT_GROUP
-        register-enabled: true
       config:
         server-addr: 101.42.10.77:8848
         namespace: widdo-dev
         group: DEFAULT_GROUP
-        register-enabled: true
       username: nacos
       password: widdo_nacos
   config:

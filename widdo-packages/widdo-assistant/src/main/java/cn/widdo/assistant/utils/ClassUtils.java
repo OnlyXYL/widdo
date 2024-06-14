@@ -13,28 +13,30 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class ClassUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClassUtils.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ClassUtils.class);
 
+	protected ClassUtils() {
+		throw new UnsupportedOperationException(ClassUtils.class.getName() + "can`t be instance");
+	}
 
-    protected ClassUtils() {
-        throw new UnsupportedOperationException(ClassUtils.class.getName() + "can`t be instance");
-    }
+	/**
+	 * determine whether the class exists.
+	 * @param className className
+	 * @return the result type of boolean
+	 */
+	public static boolean isPresent(String className) {
+		try {
+			Class.forName(className);
+			return true;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			LOG.error(
+					"[Widdo] |- Packages [Widdo Assistant] |- ClassUtils.isPresent(). [Result] |- error, [Message] |- {} not found. [Trace] |- {}.",
+					className, e.getStackTrace());
 
-    /**
-     * determine whether the class exists.
-     *
-     * @param className className
-     * @return the result type of boolean
-     */
-    public static boolean isPresent(String className) {
-        try {
-            Class.forName(className);
-            return true;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            LOG.error("[Widdo] |- Packages [Widdo Assistant] |- ClassUtils.isPresent(). [Result] |- error, [Message] |- {} not found. [Trace] |- {}.", className, e.getStackTrace());
+			return false;
+		}
+	}
 
-            return false;
-        }
-    }
 }

@@ -5,11 +5,12 @@
     <parent>
         <artifactId>widdo-starters</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>305.2.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>widdo-starter-babelnet</artifactId>
+    <version>305.2.2.0</version>
 
     <dependencies>
         <dependency>

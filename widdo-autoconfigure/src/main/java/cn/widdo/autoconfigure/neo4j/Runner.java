@@ -25,66 +25,66 @@ import java.util.Optional;
 @SuppressWarnings("ALL")
 public interface Runner extends Session {
 
-    /**
-     * method named run to execute neo4j cypher without explicit transaction.
-     *
-     * @param params params
-     * @return org.neo4j.driver.Result
-     * @author XYL
-     * @date 2023/03/02 17:40:38
-     */
-    default Result<List<Map<String, Value>>> run(Map<String, Object> params) {
+	/**
+	 * method named run to execute neo4j cypher without explicit transaction.
+	 * @param params params
+	 * @return org.neo4j.driver.Result
+	 * @author XYL
+	 * @date 2023/03/02 17:40:38
+	 */
+	default Result<List<Map<String, Value>>> run(Map<String, Object> params) {
 
-        final org.neo4j.driver.Session session = open(AccessMode.WRITE);
+		final org.neo4j.driver.Session session = open(AccessMode.WRITE);
 
-        try {
+		try {
 
-            String cqlStr = params.get(Neo4jConstants.PARAM_CYPHER_QL).toString();
+			String cqlStr = params.get(Neo4jConstants.PARAM_CYPHER_QL).toString();
 
-            Map<String, Object> map = Optional.ofNullable(params.get(Neo4jConstants.PARAM_MAP))
-                    .map(BeanUtils::<Map<String, Object>>cast)
-                    .orElse(null);
+			Map<String, Object> map = Optional.ofNullable(params.get(Neo4jConstants.PARAM_MAP))
+					.map(BeanUtils::<Map<String, Object>>cast).orElse(null);
 
-            final org.neo4j.driver.Result result = session.run(cqlStr, map);
+			final org.neo4j.driver.Result result = session.run(cqlStr, map);
 
-            return Neo4jUtil.packResult(result);
-        } catch (ServiceUnavailableException exception) {
-            return (Result) ResultUtil.error(ResultEnum.ERROR, 10010, exception.getMessage());
-        } catch (org.neo4j.driver.exceptions.ClientException exception) {
-            System.out.println("--error by ClientException");
-            return (Result) ResultUtil.error(ResultEnum.ERROR, exception.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+			return Neo4jUtil.packResult(result);
+		}
+		catch (ServiceUnavailableException exception) {
+			return (Result) ResultUtil.error(ResultEnum.ERROR, 10010, exception.getMessage());
+		}
+		catch (org.neo4j.driver.exceptions.ClientException exception) {
+			System.out.println("--error by ClientException");
+			return (Result) ResultUtil.error(ResultEnum.ERROR, exception.getMessage());
+		}
+		finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 
-    }
+	}
 
-    /**
-     * open the session.
-     *
-     * @param accessMode accessMode
-     * @return org.neo4j.driver.Session
-     * @author XYL
-     * @date 2023/03/02 17:14:24
-     */
-    @Override
-    default org.neo4j.driver.Session open(AccessMode accessMode) {
-        return this.driver().session(SessionConfig.builder().withDefaultAccessMode(accessMode).build());
-    }
+	/**
+	 * open the session.
+	 * @param accessMode accessMode
+	 * @return org.neo4j.driver.Session
+	 * @author XYL
+	 * @date 2023/03/02 17:14:24
+	 */
+	@Override
+	default org.neo4j.driver.Session open(AccessMode accessMode) {
+		return this.driver().session(SessionConfig.builder().withDefaultAccessMode(accessMode).build());
+	}
 
-    /**
-     * close the session.
-     *
-     * @param session session
-     * @author XYL
-     * @date 2023/03/02 17:17:16
-     */
-    @Override
-    default void close(org.neo4j.driver.Session session) {
-        if (session != null) {
-            session.close();
-        }
-    }
+	/**
+	 * close the session.
+	 * @param session session
+	 * @author XYL
+	 * @date 2023/03/02 17:17:16
+	 */
+	@Override
+	default void close(org.neo4j.driver.Session session) {
+		if (session != null) {
+			session.close();
+		}
+	}
+
 }

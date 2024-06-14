@@ -11,6 +11,7 @@ import cn.widdo.autoconfigure.jena.Reader;
  * @date 2023/03/13 19:04
  * @since 302.1.0.0
  */
-@SuppressWarnings({"AlibabaClassNamingShouldBeCamel"})
+@SuppressWarnings({ "AlibabaClassNamingShouldBeCamel" })
 public interface RDFReader<T, R> extends Reader<T, R> {
+
 }

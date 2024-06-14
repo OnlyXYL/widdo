@@ -16,28 +16,29 @@ import java.util.Map;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-public class CustomNeo4jReader extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public final class CustomNeo4jReader
+		extends AbstractNeo4jReaderDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    private final Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);
+	private final Logger logger = LoggerFactory.getLogger(CustomNeo4jReader.class);
 
-    /**
-     * constructor has one params called {@link Neo4jReader}.
-     *
-     * @param neo4jReader neo4jReader
-     */
-    public CustomNeo4jReader(final Neo4jReader neo4jReader) {
-        this.neo4jReader = neo4jReader;
-    }
+	/**
+	 * constructor has one params called {@link Neo4jReader}.
+	 * @param neo4jReader neo4jReader
+	 */
+	private CustomNeo4jReader(final Neo4jReader neo4jReader) {
+		this.neo4jReader = neo4jReader;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
-        return neo4jReader.query(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
+		return neo4jReader.query(params);
+	}
 
-    /**
-     * test.
-     */
-    private void print() {
-        logger.info("[Widdo] |- Autoconfigure [Custom Neo4j Reader].");
-    }
+	/**
+	 * test.
+	 */
+	private void print() {
+		logger.info("[Widdo] |- Autoconfigure [Custom Neo4j Reader].");
+	}
+
 }

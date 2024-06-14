@@ -2,3 +2,4 @@ cn.widdo.autoconfigure.neo4j.configure.WiddoNeo4jAutoConfigure
 cn.widdo.autoconfigure.neo4j.configure.WiddoNeo4jActuatorConfigure
 cn.widdo.autoconfigure.babelnet.configure.WiddoBabelNetAutoConfigure
 cn.widdo.autoconfigure.babelnet.configure.WiddoBabelNetActuatorConfigure
+cn.widdo.autoconfigure.elasticsearch.configuration.ElasticsearchAutoConfigure

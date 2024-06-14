@@ -14,13 +14,14 @@ import org.neo4j.driver.Driver;
  */
 public abstract class AbstractNeo4jWriter<T, R> extends ParamsValidator implements Neo4jWriter<T, R> {
 
-    /**
-     * driver.
-     */
-    protected Driver driver;
+	/**
+	 * driver.
+	 */
+	protected Driver driver;
 
-    @Override
-    public Driver driver() {
-        return driver;
-    }
+	@Override
+	public Driver driver() {
+		return driver;
+	}
+
 }

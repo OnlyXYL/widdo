@@ -4,7 +4,6 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * 标识类。用来启动widdo neo4j的自动配置类。包含neo4j使用所必须的工具和实体。防止认为创建该标识类，进行使用widdo neo4j的自动配置.
  * <p>
@@ -23,10 +22,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterNeo4j {
 
-    private final Logger log = LoggerFactory.getLogger(WiddoStarterNeo4j.class);
+	private final Logger log = LoggerFactory.getLogger(WiddoStarterNeo4j.class);
 
-    @PostConstruct
-    public final void postConstruct() {
-        log.info("[Widdo] |- Starters [Widdo Starter Neo4j].");
-    }
+	@PostConstruct
+	public final void postConstruct() {
+		log.info("[Widdo] |- Starters [Widdo Starter Neo4j].");
+	}
+
 }
