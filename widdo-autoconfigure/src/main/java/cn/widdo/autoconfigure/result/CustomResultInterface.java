@@ -10,5 +10,4 @@ package cn.widdo.autoconfigure.result;
 @SuppressWarnings("ALL")
 public interface CustomResultInterface extends WiddoResultInterface {
 
-
 }

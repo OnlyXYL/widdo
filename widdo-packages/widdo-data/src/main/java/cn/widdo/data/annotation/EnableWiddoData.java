@@ -12,9 +12,10 @@ import java.lang.annotation.*;
  * @date 2022/09/21 16:35
  * @since 263.1.1.0
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({DataConfiguration.class})
+@Import({ DataConfiguration.class })
 public @interface EnableWiddoData {
+
 }

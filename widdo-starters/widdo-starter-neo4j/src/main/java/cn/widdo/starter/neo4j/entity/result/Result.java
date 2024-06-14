@@ -11,132 +11,121 @@ package cn.widdo.starter.neo4j.entity.result;
 @SuppressWarnings("ALL")
 public class Result<T> {
 
-    /**
-     * status.
-     */
-    private ResultEnum status;
+	/**
+	 * status.
+	 */
+	private ResultEnum status;
 
-    /**
-     * code.
-     */
-    private Integer code;
+	/**
+	 * code.
+	 */
+	private Integer code;
 
-    /**
-     * msg.
-     */
-    private String msg;
+	/**
+	 * msg.
+	 */
+	private String msg;
 
-    /**
-     * data.
-     */
-    private T data;
+	/**
+	 * data.
+	 */
+	private T data;
 
-    /**
-     * resultPageInfo.
-     */
-    private ResultPageInfo resultPageInfo;
+	/**
+	 * resultPageInfo.
+	 */
+	private ResultPageInfo resultPageInfo;
 
-    /**
-     * 无参构造.
-     */
-    public Result() {
+	/**
+	 * 无参构造.
+	 */
+	public Result() {
 
-    }
+	}
 
-    /**
-     * get status.
-     *
-     * @return an Object type of {@link ResultEnum}
-     */
-    public ResultEnum getStatus() {
-        return status;
-    }
+	/**
+	 * get status.
+	 * @return an Object type of {@link ResultEnum}
+	 */
+	public ResultEnum getStatus() {
+		return status;
+	}
 
-    /**
-     * set status.
-     *
-     * @param code code
-     */
-    public void setStatus(ResultEnum code) {
-        this.status = code;
-    }
+	/**
+	 * set status.
+	 * @param code code
+	 */
+	public void setStatus(ResultEnum code) {
+		this.status = code;
+	}
 
-    /**
-     * get msg.
-     *
-     * @return a String msg
-     */
-    public String getMsg() {
-        return msg;
-    }
+	/**
+	 * get msg.
+	 * @return a String msg
+	 */
+	public String getMsg() {
+		return msg;
+	}
 
-    /**
-     * set msg.
-     *
-     * @param msg msg
-     */
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+	/**
+	 * set msg.
+	 * @param msg msg
+	 */
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
-    /**
-     * set code.
-     *
-     * @param code code
-     */
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+	/**
+	 * set code.
+	 * @param code code
+	 */
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 
-    /**
-     * getCode.
-     *
-     * @return a Integer code
-     */
-    public Integer getCode() {
-        return code;
-    }
+	/**
+	 * getCode.
+	 * @return a Integer code
+	 */
+	public Integer getCode() {
+		return code;
+	}
 
-    /**
-     * set data type of anything.
-     *
-     * @param data data
-     */
-    public void setData(T data) {
-        this.data = data;
-    }
+	/**
+	 * set data type of anything.
+	 * @param data data
+	 */
+	public void setData(T data) {
+		this.data = data;
+	}
 
-    /**
-     * get pageInfo.
-     *
-     * @return an Object type of {@link ResultPageInfo}
-     */
-    public ResultPageInfo getPageInfo() {
-        return resultPageInfo;
-    }
+	/**
+	 * get pageInfo.
+	 * @return an Object type of {@link ResultPageInfo}
+	 */
+	public ResultPageInfo getPageInfo() {
+		return resultPageInfo;
+	}
 
-    /**
-     * set pageInfo.
-     *
-     * @param pageInfo pageInfo
-     */
-    public void setPageInfo(ResultPageInfo pageInfo) {
-        this.resultPageInfo = pageInfo;
-    }
+	/**
+	 * set pageInfo.
+	 * @param pageInfo pageInfo
+	 */
+	public void setPageInfo(ResultPageInfo pageInfo) {
+		this.resultPageInfo = pageInfo;
+	}
 
-    /**
-     * get Data.
-     *
-     * @return a result type of anything
-     */
-    public T getData() {
-        return data;
-    }
+	/**
+	 * get Data.
+	 * @return a result type of anything
+	 */
+	public T getData() {
+		return data;
+	}
 
-    @Override
-    public String toString() {
-        return String.format("Result{status='%s',status_code='%d', msg='%s'}", status.name(), code, msg);
-    }
-
+	@Override
+	public String toString() {
+		return String.format("Result{status='%s',status_code='%d', msg='%s'}", status.name(), code, msg);
+	}
 
 }

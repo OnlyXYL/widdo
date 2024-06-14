@@ -13,4 +13,5 @@ import cn.widdo.autoconfigure.neo4j.writer.Neo4jWriter;
  * @since 263.1.1.0
  */
 public interface Neo4jActuator<T, R> extends Neo4jReader<T, R>, Neo4jWriter<T, R> {
+
 }

@@ -20,54 +20,54 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class CountProcedure {
 
-    /**
-     * tx.
-     */
-    @Context
-    @IgnoreNeo4jVisibility
-    public Transaction tx;
+	/**
+	 * tx.
+	 */
+	@Context
+	@IgnoreNeo4jVisibility
+	public Transaction tx;
 
-    /**
-     * count container.
-     */
-    public static class CountContainer {
+	/**
+	 * count container.
+	 */
+	public static class CountContainer {
 
-        /**
-         * count.
-         */
-        @IgnoreNeo4jVisibility
-        public Long count;
+		/**
+		 * count.
+		 */
+		@IgnoreNeo4jVisibility
+		public Long count;
 
-        /**
-         * constructor has one param called count.
-         *
-         * @param count count
-         */
-        public CountContainer(final Long count) {
-            this.count = count;
-        }
-    }
+		/**
+		 * constructor has one param called count.
+		 * @param count count
+		 */
+		public CountContainer(final Long count) {
+			this.count = count;
+		}
 
-    /**
-     * procedure named countNode.
-     *
-     * @param label label
-     * @return the count of node
-     */
-    @Procedure(name = "widdo.node.count", mode = Mode.READ)
-    @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
-    public Stream<CountContainer> countNode(@Name("label") String label) {
+	}
 
-        String cypher;
+	/**
+	 * procedure named countNode.
+	 * @param label label
+	 * @return the count of node
+	 */
+	@Procedure(name = "widdo.node.count", mode = Mode.READ)
+	@Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
+	public Stream<CountContainer> countNode(@Name("label") String label) {
 
-        if (StringUtils.isNotBlank(label)) {
-            cypher = String.format("MATCH (n:%s) RETURN count(n) AS count", label);
-        } else {
-            cypher = "MATCH (n) RETURN count(n)  AS count";
-        }
+		String cypher;
 
-        ResourceIterator<Long> nodes = tx.execute(cypher).columnAs("count");
-        return nodes.stream().map(CountContainer::new);
-    }
+		if (StringUtils.isNotBlank(label)) {
+			cypher = String.format("MATCH (n:%s) RETURN count(n) AS count", label);
+		}
+		else {
+			cypher = "MATCH (n) RETURN count(n)  AS count";
+		}
+
+		ResourceIterator<Long> nodes = tx.execute(cypher).columnAs("count");
+		return nodes.stream().map(CountContainer::new);
+	}
 
 }

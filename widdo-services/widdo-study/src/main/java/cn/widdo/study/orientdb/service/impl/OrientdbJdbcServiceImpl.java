@@ -24,126 +24,129 @@ import java.util.Map;
  */
 @SuppressWarnings("ALL")
 @Service
-@ConditionalOnBean({WiddoOrientdbConfigure.class})
+@ConditionalOnBean({ WiddoOrientdbConfigure.class })
 public class OrientdbJdbcServiceImpl implements OrientdbJdbcService {
 
-    /**
-     * pool.
-     */
-    @Resource
-    private ODatabasePool pool;
+	/**
+	 * pool.
+	 */
+	@Resource
+	private ODatabasePool pool;
 
-    @Override
-    public WiddoResult queryE(Map<String, Object> params) {
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-    }
+	@Override
+	public WiddoResult queryE(Map<String, Object> params) {
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+	}
 
-    @Override
-    public WiddoResult queryV(Map<String, Object> params) {
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-    }
+	@Override
+	public WiddoResult queryV(Map<String, Object> params) {
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+	}
 
-    @Override
-    public WiddoResult createV(Map<String, Object> params) {
+	@Override
+	public WiddoResult createV(Map<String, Object> params) {
 
-        final String label = params.get("label").toString();
+		final String label = params.get("label").toString();
 
-        params.put("date", System.currentTimeMillis());
+		params.put("date", System.currentTimeMillis());
 
-        OResultSet oResultSet = null;
+		OResultSet oResultSet = null;
 
-        try (ODatabaseSession session = pool.acquire()) {
+		try (ODatabaseSession session = pool.acquire()) {
 
-            //1. 判断class是否存在
-            final OClass oClass = session.getClass(label);
+			// 1. 判断class是否存在
+			final OClass oClass = session.getClass(label);
 
-            if (oClass == null) {
-                //创建class
-                final String createClassSql = String.format("create class %s extends V", label);
+			if (oClass == null) {
+				// 创建class
+				final String createClassSql = String.format("create class %s extends V", label);
 
-                oResultSet = session.execute("sql", createClassSql);
+				oResultSet = session.execute("sql", createClassSql);
 
-                oResultSet.close();
-            }
+				oResultSet.close();
+			}
 
-            final String format = String.format("create vertex %s set name = :name, age = :age, city = :city, date = :date", label);
+			final String format = String
+					.format("create vertex %s set name = :name, age = :age, city = :city, date = :date", label);
 
-            oResultSet = session.execute("sql", format, params);
+			oResultSet = session.execute("sql", format, params);
 
-            oResultSet.stream().forEach(s -> System.out.println(s.toJSON()));
+			oResultSet.stream().forEach(s -> System.out.println(s.toJSON()));
 
-            oResultSet.close();
+			oResultSet.close();
 
-        } catch (Exception e) {
+		}
+		catch (Exception e) {
 
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-        }
+			if (oResultSet != null) {
+				oResultSet.close();
+			}
+		}
 
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-    }
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+	}
 
-    @Override
-    public WiddoResult createE(Map<String, Object> params) {
+	@Override
+	public WiddoResult createE(Map<String, Object> params) {
 
-        final String vLabel = params.get("vLabel").toString();
-        final String eLabel = params.get("eLabel").toString();
+		final String vLabel = params.get("vLabel").toString();
+		final String eLabel = params.get("eLabel").toString();
 
-        params.put("date", System.currentTimeMillis());
+		params.put("date", System.currentTimeMillis());
 
-        OResultSet oResultSet = null;
+		OResultSet oResultSet = null;
 
-        try (ODatabaseSession session = pool.acquire()) {
+		try (ODatabaseSession session = pool.acquire()) {
 
-            //1. 判断class是否存在
-            final OClass oClass = session.getClass(eLabel);
+			// 1. 判断class是否存在
+			final OClass oClass = session.getClass(eLabel);
 
-            if (oClass == null) {
-                //创建class
-                final String createClassSql = String.format("create class %s extends E", eLabel);
+			if (oClass == null) {
+				// 创建class
+				final String createClassSql = String.format("create class %s extends E", eLabel);
 
-                oResultSet = session.execute("sql", createClassSql);
+				oResultSet = session.execute("sql", createClassSql);
 
-                oResultSet.close();
-            }
+				oResultSet.close();
+			}
 
-            final String format = String.format("create edge %s from (select from %s where name = :source) to (select from %s where name = :target) set date = :date", eLabel, vLabel, vLabel);
+			final String format = String.format(
+					"create edge %s from (select from %s where name = :source) to (select from %s where name = :target) set date = :date",
+					eLabel, vLabel, vLabel);
 
-            oResultSet = session.execute("sql", format, params);
+			oResultSet = session.execute("sql", format, params);
 
-            oResultSet.stream().forEach(s -> System.out.println(s.toJSON()));
+			oResultSet.stream().forEach(s -> System.out.println(s.toJSON()));
 
-            oResultSet.close();
+			oResultSet.close();
 
-        } catch (Exception e) {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-        }
+		}
+		catch (Exception e) {
+			if (oResultSet != null) {
+				oResultSet.close();
+			}
+		}
 
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-    }
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+	}
 
-    @Override
-    public WiddoResult delete() {
-        try (ODatabaseSession session = pool.acquire()) {
-            //执行删除
-            //<p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId = ?", kngraphId);</p>
-            OResultSet deleteEdgeRs = session.command("delete Edge where 1 = 1");
+	@Override
+	public WiddoResult delete() {
+		try (ODatabaseSession session = pool.acquire()) {
+			// 执行删除
+			// <p>OResultSet deleteEdgeRs = session.command("delete Edge where kngraphId =
+			// ?", kngraphId);</p>
+			OResultSet deleteEdgeRs = session.command("delete Edge where 1 = 1");
 
-            OResultSet deleteNodeRs = session.command("delete Vertex from v  where 1 = 1");
+			OResultSet deleteNodeRs = session.command("delete Vertex from v  where 1 = 1");
 
-            //关闭资源
-            OrientdbUtils.close(deleteNodeRs, null, null);
+			// 关闭资源
+			OrientdbUtils.close(deleteNodeRs, null, null);
 
-            OrientdbUtils.close(deleteEdgeRs, null, null);
-        }
+			OrientdbUtils.close(deleteEdgeRs, null, null);
+		}
 
-        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-    }
+		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+	}
+
 }
-
-
-
-

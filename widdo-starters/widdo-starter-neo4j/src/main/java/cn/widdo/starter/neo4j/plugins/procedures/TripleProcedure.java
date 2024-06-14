@@ -21,137 +21,72 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class TripleProcedure {
 
-    /**
-     * tx.
-     */
-    @Context
-    @IgnoreNeo4jVisibility
-    public Transaction tx;
+	/**
+	 * tx.
+	 */
+	@Context
+	@IgnoreNeo4jVisibility
+	public Transaction tx;
 
-    /**
-     * count container.
-     */
-    public static class TripleContainer {
+	/**
+	 * count container.
+	 */
+	public static class TripleContainer {
 
-        /**
-         * count.
-         */
-        @IgnoreNeo4jVisibility
-        public List<Long> relIds;
+		/**
+		 * count.
+		 */
+		@IgnoreNeo4jVisibility
+		public List<Long> relIds;
 
-        /**
-         * constructor has one param called count.
-         *
-         * @param relIds relIds
-         */
-        public TripleContainer(final List<Long> relIds) {
-            this.relIds = relIds;
-        }
-    }
+		/**
+		 * constructor has one param called count.
+		 * @param relIds relIds
+		 */
+		public TripleContainer(final List<Long> relIds) {
+			this.relIds = relIds;
+		}
 
-    /**
-     * procedure named countNode.
-     * <p>
-     * usage:
-     * call widdo.triple.write({
-     * triples:[
-     * {
-     * start:{
-     * labels:["Person"],
-     * match:{
-     * name:"張三"
-     * },
-     * onCreate:{
-     * name:"張三",
-     * age:18
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * },
-     * relation:{
-     * relType:"STUDY",
-     * match:{
-     * name:"學習"
-     * },
-     * onCreate:{
-     * name:"學習"
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * },
-     * end:{
-     * labels:["Course"],
-     * match:{
-     * name:"歷史"
-     * },
-     * onCreate:{
-     * name:"歷史"
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * }
-     * },
-     * {
-     * start:{
-     * labels:["Person"],
-     * match:{
-     * name:"李四"
-     * },
-     * onCreate:{
-     * name:"李四",
-     * age:20
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * },
-     * relation:{
-     * relType:"STUDY",
-     * match:{
-     * name:"學習"
-     * },
-     * onCreate:{
-     * name:"學習"
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * },
-     * end:{
-     * labels:["Course"],
-     * match:{
-     * name:"生物"
-     * },
-     * onCreate:{
-     * name:"生物"
-     * },
-     * onMatch:{
-     * <p>
-     * }
-     * }
-     * }
-     * ]
-     * }) yield relIds
-     *
-     * @param triples triples
-     * @return the count of node
-     */
-    @Procedure(name = "widdo.triple.write", mode = Mode.WRITE)
-    @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
-    public Stream<TripleProcedure.TripleContainer> writeTriple(@Name("triples") Map<String, Object> triples) {
+	}
 
-        String cypher = """
-                UNWIND $triples AS triple\s
-                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode
-                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
-                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel
-                RETURN collect(id(rel)) AS relationshipIds""";
+	/**
+	 * procedure named countNode.
+	 * <p>
+	 * usage: call widdo.triple.write({ triples:[ { start:{ labels:["Person"], match:{
+	 * name:"張三" }, onCreate:{ name:"張三", age:18 }, onMatch:{
+	 * <p>
+	 * } }, relation:{ relType:"STUDY", match:{ name:"學習" }, onCreate:{ name:"學習" },
+	 * onMatch:{
+	 * <p>
+	 * } }, end:{ labels:["Course"], match:{ name:"歷史" }, onCreate:{ name:"歷史" },
+	 * onMatch:{
+	 * <p>
+	 * } } }, { start:{ labels:["Person"], match:{ name:"李四" }, onCreate:{ name:"李四",
+	 * age:20 }, onMatch:{
+	 * <p>
+	 * } }, relation:{ relType:"STUDY", match:{ name:"學習" }, onCreate:{ name:"學習" },
+	 * onMatch:{
+	 * <p>
+	 * } }, end:{ labels:["Course"], match:{ name:"生物" }, onCreate:{ name:"生物" },
+	 * onMatch:{
+	 * <p>
+	 * } } } ] }) yield relIds
+	 * @param triples triples
+	 * @return the count of node
+	 */
+	@Procedure(name = "widdo.triple.write", mode = Mode.WRITE)
+	@Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
+	public Stream<TripleProcedure.TripleContainer> writeTriple(@Name("triples") Map<String, Object> triples) {
 
-        ResourceIterator<List<Long>> nodes = tx.execute(cypher, triples).columnAs("relationshipIds");
-        return nodes.stream().map(TripleProcedure.TripleContainer::new);
-    }
+		String cypher = """
+				UNWIND $triples AS triple\s
+				CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode
+				CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
+				CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel
+				RETURN collect(id(rel)) AS relationshipIds""";
+
+		ResourceIterator<List<Long>> nodes = tx.execute(cypher, triples).columnAs("relationshipIds");
+		return nodes.stream().map(TripleProcedure.TripleContainer::new);
+	}
 
 }

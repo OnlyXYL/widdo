@@ -1,0 +1,31 @@
+version: "3"
+services:
+  #mysql服务
+  mysql:
+    image: ${REGISTRY_URI}/${MYSQL_SERVICE_NAME}:${VERSION}
+    container_name: mysql
+    build:
+      context: ../context
+      dockerfile: develop/Dockerfile
+      args:
+        - VERSION=${VERSION}
+        - SERVICE_NAME=${MYSQL_SERVICE_NAME}
+        - SERVICE_PORT=${MYSQL_SERVICE_PORT}
+    ports:
+      - ${MYSQL_SERVICE_PORT}:${MYSQL_SERVICE_PORT}
+    #等同于docker run时的 -e
+    environment:
+      MYSQL_USER: ${MYSQL_USER:widdo}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:widdo_mysql}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:widdo_mysql}
+    #等同于docker run时的-v
+    volumes:
+      - /usr/local/software/docker/mysql/conf:/etc/mysql/conf.d
+      - /usr/local/software/docker/mysql/data:/var/lib/mysql
+      - /usr/local/software/docker/mysql/file:/var/lib/file
+    networks:
+      - my_network
+    # 解决外部无法访问
+    command: --default-authentication-plugin=mysql_native_password
+    #容器总是重新启动
+    restart: always

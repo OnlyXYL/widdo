@@ -26,134 +26,75 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TripleProcedureTest {
 
-    private Neo4j neo4j;
-    private Driver driver;
+	private Neo4j neo4j;
 
-    @BeforeAll
-    void initializeNeo4j() {
+	private Driver driver;
 
-        this.neo4j = Neo4jBuilders.newInProcessBuilder()
-                .withDisabledServer()
-                .withProcedure(TripleProcedure.class)
-                .build();
+	@BeforeAll
+	void initializeNeo4j() {
 
-        driver = GraphDatabase.driver(neo4j.boltURI());
-    }
+		this.neo4j = Neo4jBuilders.newInProcessBuilder().withDisabledServer().withProcedure(TripleProcedure.class)
+				.build();
 
-    @AfterAll
-    void closeDriver() {
-        this.driver.close();
-    }
+		driver = GraphDatabase.driver(neo4j.boltURI());
+	}
 
-    @AfterEach
-    void cleanDb() {
-        try (Session session = driver.session()) {
-            session.run("MATCH (n) DETACH DELETE n");
-        }
-    }
+	@AfterAll
+	void closeDriver() {
+		this.driver.close();
+	}
 
-    @Test
-    void allNodesShouldWork() {
-        try (final Session session = driver.session();) {
+	@AfterEach
+	void cleanDb() {
+		try (Session session = driver.session()) {
+			session.run("MATCH (n) DETACH DELETE n");
+		}
+	}
 
-            final Map params = params();
+	@Test
+	void allNodesShouldWork() {
+		try (final Session session = driver.session();) {
 
-            final Stream<List> stream = session.run("CALL widdo.triple.write($map) YIELD relIds", params)
-                    .stream().map(r -> r.get("relationshipIds").asList());
-            assertThat(stream).hasSize(2);
-        }
-    }
+			final Map params = params();
 
-    public Map params() {
+			final Stream<List> stream = session.run("CALL widdo.triple.write($map) YIELD relIds", params).stream()
+					.map(r -> r.get("relationshipIds").asList());
+			assertThat(stream).hasSize(2);
+		}
+	}
 
-        String paramsStr = "{\n" +
-                "\t\"triples\":[\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"start\":{\n" +
-                "\t\t\t\t\t\"labels\":[\"Person\"],\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"張三\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"張三\",\n" +
-                "\t\t\t\t\t\t\"age\":18\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t},\n" +
-                "\t\t\t\t\"relation\":{\n" +
-                "\t\t\t\t\t\"relType\":\"STUDY\",\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"學習\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"學習\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t},\n" +
-                "\t\t\t\t\"end\":{\n" +
-                "\t\t\t\t\t\"labels\":[\"Course\"],\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"歷史\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"歷史\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t}\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"start\":{\n" +
-                "\t\t\t\t\t\"labels\":[\"Person\"],\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"李四\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"李四\",\n" +
-                "\t\t\t\t\t\t\"age\":20\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t},\n" +
-                "\t\t\t\t\"relation\":{\n" +
-                "\t\t\t\t\t\"relType\":\"STUDY\",\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"學習\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"學習\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t},\n" +
-                "\t\t\t\t\"end\":{\n" +
-                "\t\t\t\t\t\"labels\":[\"Course\"],\n" +
-                "\t\t\t\t\t\"match\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"生物\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onCreate\":{\n" +
-                "\t\t\t\t\t\t\"name\":\"生物\"\n" +
-                "\t\t\t\t\t},\n" +
-                "\t\t\t\t\t\"onMatch\":{\n" +
-                "\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t}\n" +
-                "\t\t\t\t}\n" +
-                "\t\t\t}\n" +
-                "\t\t]\n" +
-                "}";
+	public Map params() {
 
-        final Map map = JSON.parseObject(paramsStr, Map.class);
+		String paramsStr = "{\n" + "\t\"triples\":[\n" + "\t\t\t{\n" + "\t\t\t\t\"start\":{\n"
+				+ "\t\t\t\t\t\"labels\":[\"Person\"],\n" + "\t\t\t\t\t\"match\":{\n" + "\t\t\t\t\t\t\"name\":\"張三\"\n"
+				+ "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onCreate\":{\n" + "\t\t\t\t\t\t\"name\":\"張三\",\n"
+				+ "\t\t\t\t\t\t\"age\":18\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n"
+				+ "\t\t\t\t\t}\n" + "\t\t\t\t},\n" + "\t\t\t\t\"relation\":{\n" + "\t\t\t\t\t\"relType\":\"STUDY\",\n"
+				+ "\t\t\t\t\t\"match\":{\n" + "\t\t\t\t\t\t\"name\":\"學習\"\n" + "\t\t\t\t\t},\n"
+				+ "\t\t\t\t\t\"onCreate\":{\n" + "\t\t\t\t\t\t\"name\":\"學習\"\n" + "\t\t\t\t\t},\n"
+				+ "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n" + "\t\t\t\t\t}\n" + "\t\t\t\t},\n"
+				+ "\t\t\t\t\"end\":{\n" + "\t\t\t\t\t\"labels\":[\"Course\"],\n" + "\t\t\t\t\t\"match\":{\n"
+				+ "\t\t\t\t\t\t\"name\":\"歷史\"\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onCreate\":{\n"
+				+ "\t\t\t\t\t\t\"name\":\"歷史\"\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n"
+				+ "\t\t\t\t\t}\n" + "\t\t\t\t}\n" + "\t\t\t},\n" + "\t\t\t{\n" + "\t\t\t\t\"start\":{\n"
+				+ "\t\t\t\t\t\"labels\":[\"Person\"],\n" + "\t\t\t\t\t\"match\":{\n" + "\t\t\t\t\t\t\"name\":\"李四\"\n"
+				+ "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onCreate\":{\n" + "\t\t\t\t\t\t\"name\":\"李四\",\n"
+				+ "\t\t\t\t\t\t\"age\":20\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n"
+				+ "\t\t\t\t\t}\n" + "\t\t\t\t},\n" + "\t\t\t\t\"relation\":{\n" + "\t\t\t\t\t\"relType\":\"STUDY\",\n"
+				+ "\t\t\t\t\t\"match\":{\n" + "\t\t\t\t\t\t\"name\":\"學習\"\n" + "\t\t\t\t\t},\n"
+				+ "\t\t\t\t\t\"onCreate\":{\n" + "\t\t\t\t\t\t\"name\":\"學習\"\n" + "\t\t\t\t\t},\n"
+				+ "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n" + "\t\t\t\t\t}\n" + "\t\t\t\t},\n"
+				+ "\t\t\t\t\"end\":{\n" + "\t\t\t\t\t\"labels\":[\"Course\"],\n" + "\t\t\t\t\t\"match\":{\n"
+				+ "\t\t\t\t\t\t\"name\":\"生物\"\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onCreate\":{\n"
+				+ "\t\t\t\t\t\t\"name\":\"生物\"\n" + "\t\t\t\t\t},\n" + "\t\t\t\t\t\"onMatch\":{\n" + "\t\t\t\t\t\t\n"
+				+ "\t\t\t\t\t}\n" + "\t\t\t\t}\n" + "\t\t\t}\n" + "\t\t]\n" + "}";
 
-        final HashMap hashMap = new HashMap();
-        hashMap.put("map", map);
+		final Map map = JSON.parseObject(paramsStr, Map.class);
 
-        return hashMap;
-    }
+		final HashMap hashMap = new HashMap();
+		hashMap.put("map", map);
+
+		return hashMap;
+	}
+
 }

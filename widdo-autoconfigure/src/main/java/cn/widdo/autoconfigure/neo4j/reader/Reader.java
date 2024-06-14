@@ -10,4 +10,5 @@ import cn.widdo.autoconfigure.neo4j.Runner;
  * @since 263.1.3.0
  */
 public interface Reader extends Runner {
+
 }

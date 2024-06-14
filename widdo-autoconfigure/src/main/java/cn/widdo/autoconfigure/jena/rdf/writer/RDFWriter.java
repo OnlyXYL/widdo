@@ -13,4 +13,5 @@ import cn.widdo.autoconfigure.jena.Writer;
  */
 @SuppressWarnings("ALL")
 public interface RDFWriter<T, R> extends Writer<T, R> {
+
 }

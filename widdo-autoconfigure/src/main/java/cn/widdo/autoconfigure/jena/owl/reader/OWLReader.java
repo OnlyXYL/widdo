@@ -13,4 +13,5 @@ import cn.widdo.autoconfigure.jena.Reader;
  */
 @SuppressWarnings("ALL")
 public interface OWLReader<T, R> extends Reader<T, R> {
+
 }

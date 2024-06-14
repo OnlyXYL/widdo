@@ -19,6 +19,6 @@ public class Base {
         final Base base = new Base();
         final Base base1 = new Base();
         base1.equals(base);
-        "".equals("");
+        "".isEmpty();
     }
 }

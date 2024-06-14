@@ -27,9 +27,9 @@ import java.util.Optional;
 @Service
 public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
+
     /**
-     * neo4j执行器.
-     * 使用构造方法注入，如果只有一个构造方法，那么 @Autowired注解可以省略；如果有多个构造方法，
+     * neo4j执行器. 使用构造方法注入，如果只有一个构造方法，那么 @Autowired注解可以省略；如果有多个构造方法，
      * 需要添加@Autowired注解来明确指定到底使用哪个构造方法
      */
     private final Neo4jActuator<Map<String, Object>, Result<List<Map<String, Value>>>> neo4jActuator;
@@ -46,7 +46,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
         final String cypher = params.get("cypher").toString();
 
-        //封裝參數
+        // 封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, map);
 
         final Result<List<Map<String, Value>>> result = neo4jActuator.read(cypherParam);
@@ -61,7 +61,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
         final String cypher = params.get("cypher").toString();
 
-        //封裝參數
+        // 封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, map);
 
         final Result<List<Map<String, Value>>> result = neo4jActuator.write(cypherParam);
@@ -75,7 +75,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
         final String cypher = params.get("cypher").toString();
 
-        //封裝參數
+        // 封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, map);
 
         final Result<List<Map<String, Value>>> result = neo4jActuator.run(cypherParam);
@@ -87,26 +87,29 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
     public WiddoResult writeTriples(Map<String, Object> params) {
 
         /*
-          you can replace the cypher with procedure
-          <code>
-             call widdo.triple.write()
-          </code>
-          {@see cn.widdo.starter.neo4j.plugins.procedures.TripleProcedure}
+         * you can replace the cypher with procedure <code> call widdo.triple.write()
+         * </code> {@see cn.widdo.starter.neo4j.plugins.procedures.TripleProcedure}
          */
-  /*      String cypher = """
-                UNWIND $triples AS triple \
-                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode \
-                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode \
-                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel \
-                RETURN collect(id(rel)) as relationshipIds""";*/
+        /*
+         * String cypher = """ UNWIND $triples AS triple \ CALL
+         * apoc.merge.node(triple.start.labels,
+         * triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as
+         * startNode \ CALL apoc.merge.node(triple.end.labels,
+         * triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
+         * \ CALL apoc.merge.relationship(startNode, triple.relation.relType,
+         * triple.relation.match, triple.relation.onCreate, endNode,
+         * triple.relation.onMatch) YIELD rel \ RETURN collect(id(rel)) as
+         * relationshipIds""";
+         */
 
-        String cypher = "UNWIND $triples AS triple\n"
-                + "                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode\n"
-                + "                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode\n"
-                + "                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel\n"
-                + "                RETURN collect(id(rel)) as relationshipIds";
+        String cypher = """
+                UNWIND $triples AS triple
+                                CALL apoc.merge.node(triple.start.labels, triple.start.match,triple.start.onCreate,triple.start.onMatch) YIELD node as startNode
+                                CALL apoc.merge.node(triple.end.labels, triple.end.match,triple.end.onCreate,triple.end.onMatch) YIELD node as endNode
+                                CALL apoc.merge.relationship(startNode, triple.relation.relType, triple.relation.match, triple.relation.onCreate, endNode, triple.relation.onMatch) YIELD rel
+                                RETURN collect(id(rel)) as relationshipIds""";
 
-        //封裝參數
+        // 封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, params);
 
         final Result<List<Map<String, Value>>> write = neo4jActuator.write(cypherParam);
@@ -130,7 +133,7 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
         Map<String, Object> map = null;
 
-        if (ids == null || ids.size() == 0) {
+        if (ids == null || ids.isEmpty()) {
             matchCypher = String.format(" MATCH (n%s)-[r]-()\n", label);
         } else {
             matchCypher = String.format(" MATCH (n%s)-[r]-() where id(n) in $ids\n", label);
@@ -145,11 +148,12 @@ public class Neo4jJdbcServiceImpl implements Neo4jJdbcService {
 
         final String cypher = String.format("%s %s %s", matchCypher, deleteRelCypher, deleteNodeCypher);
 
-        //封裝參數
+        // 封裝參數
         Map<String, Object> cypherParam = cypherWithParams(cypher, map);
 
         final Result<List<Map<String, Value>>> result = neo4jActuator.run(cypherParam);
 
         return WiddoResultInterface.NEO4j.ALL.wrapper(result);
     }
+
 }

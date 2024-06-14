@@ -12,8 +12,9 @@ package cn.widdo.autoconfigure.neo4j.actuator;
 @SuppressWarnings("ALL")
 public abstract class AbstractNeo4jActuatorDecorator<T, R> extends AbstractNeo4jActuator<T, R> {
 
-    /**
-     * {@link Neo4jActuator}.
-     */
-    protected Neo4jActuator<T, R> neo4jActuator;
+	/**
+	 * {@link Neo4jActuator}.
+	 */
+	protected Neo4jActuator<T, R> neo4jActuator;
+
 }

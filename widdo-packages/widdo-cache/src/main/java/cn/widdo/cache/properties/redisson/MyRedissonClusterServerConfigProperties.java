@@ -14,13 +14,14 @@ import java.util.List;
 @Data
 public class MyRedissonClusterServerConfigProperties {
 
-    /**
-     * nodeAddresses.
-     */
-    private List<String> nodeAddresses;
+	/**
+	 * nodeAddresses.
+	 */
+	private List<String> nodeAddresses;
 
-    /**
-     * scanInterval.
-     */
-    private int scanInterval;
+	/**
+	 * scanInterval.
+	 */
+	private int scanInterval;
+
 }

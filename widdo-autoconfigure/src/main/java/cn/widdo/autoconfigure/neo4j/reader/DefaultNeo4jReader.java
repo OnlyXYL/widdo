@@ -13,11 +13,9 @@ import java.util.Map;
  * <p>
  * 默认的实现方式是 cypher
  * <p>
- * 必填参数
- * map.put("cypher","");
+ * 必填参数 map.put("cypher","");
  * <p>
- * 可选参数
- * map.put("params","");
+ * 可选参数 map.put("params","");
  * <p>
  * 需要校验参数
  *
@@ -28,25 +26,25 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultNeo4jReader extends AbstractNeo4jReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    /**
-     * constructor has no param,at the same time, if you create instance by this constructor,
-     * it will throw exception typed {@link UnsupportedOperationException}.
-     */
-    protected DefaultNeo4jReader() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * constructor has no param,at the same time, if you create instance by this
+	 * constructor, it will throw exception typed {@link UnsupportedOperationException}.
+	 */
+	protected DefaultNeo4jReader() {
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * constructor has one param called {@link Driver}.
-     *
-     * @param driver driver
-     */
-    private DefaultNeo4jReader(final Driver driver) {
-        this.driver = driver;
-    }
+	/**
+	 * constructor has one param called {@link Driver}.
+	 * @param driver driver
+	 */
+	private DefaultNeo4jReader(final Driver driver) {
+		this.driver = driver;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
-        return this.validateAndRun(params, this::query, Neo4jConstants.PARAM_CYPHER_QL);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
+		return this.validateAndRun(params, this::query, Neo4jConstants.PARAM_CYPHER_QL);
+	}
+
 }

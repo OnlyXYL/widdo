@@ -17,15 +17,15 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public interface EnhanceWriter extends Neo4jHelper {
 
-    /**
-     * 打印日志.
-     *
-     * @param params params
-     * @return Result
-     * @author XYL
-     * @date 2023/03/02 18:15:29
-     */
-    default Result<List<Map<String, Value>>> print(Map<String, Object> params) {
-        return this.run(params);
-    }
+	/**
+	 * 打印日志.
+	 * @param params params
+	 * @return Result
+	 * @author XYL
+	 * @date 2023/03/02 18:15:29
+	 */
+	default Result<List<Map<String, Value>>> print(Map<String, Object> params) {
+		return this.run(params);
+	}
+
 }

@@ -15,10 +15,12 @@ import java.util.Map;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-public class DefaultOrientdbReader extends ParamsValidator implements OrientdbReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public class DefaultOrientdbReader extends ParamsValidator
+		implements OrientdbReader<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    @Override
-    public Result<List<Map<String, Value>>> query(Map<String, Object> map) {
-        return null;
-    }
+	@Override
+	public Result<List<Map<String, Value>>> query(Map<String, Object> map) {
+		return null;
+	}
+
 }

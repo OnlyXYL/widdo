@@ -11,4 +11,5 @@ package cn.widdo.autoconfigure.jena.rdf.writer;
  */
 @SuppressWarnings("ALL")
 public abstract class AbstractRDFWriter<T, R> implements RDFWriter<T, R> {
+
 }

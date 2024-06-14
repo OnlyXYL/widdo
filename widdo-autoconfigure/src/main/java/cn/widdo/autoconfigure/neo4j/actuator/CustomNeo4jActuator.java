@@ -14,24 +14,25 @@ import java.util.Map;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-public class CustomNeo4jActuator extends AbstractNeo4jActuatorDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public final class CustomNeo4jActuator
+		extends AbstractNeo4jActuatorDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    /**
-     * constructor has one param called {@link Neo4jActuator}.
-     *
-     * @param neo4jActuator {@link Neo4jActuator}
-     */
-    public CustomNeo4jActuator(final Neo4jActuator neo4jActuator) {
-        this.neo4jActuator = neo4jActuator;
-    }
+	/**
+	 * constructor has one param called {@link Neo4jActuator}.
+	 * @param neo4jActuator {@link Neo4jActuator}
+	 */
+	private CustomNeo4jActuator(final Neo4jActuator neo4jActuator) {
+		this.neo4jActuator = neo4jActuator;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
-        return neo4jActuator.read(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> read(Map<String, Object> params) {
+		return neo4jActuator.read(params);
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-        return neo4jActuator.write(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+		return neo4jActuator.write(params);
+	}
+
 }

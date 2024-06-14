@@ -23,29 +23,27 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 @RequestMapping(value = "/orientdb/gremlin")
 @RestController
-@ConditionalOnBean({WiddoOrientdbConfigure.class})
+@ConditionalOnBean({ WiddoOrientdbConfigure.class })
 public class OrientdbGremlinController extends BaseController {
 
-    /**
-     * orientdbGremlinService.
-     */
-    @Resource
-    private OrientdbGremlinService orientdbGremlinService;
+	/**
+	 * orientdbGremlinService.
+	 */
+	@Resource
+	private OrientdbGremlinService orientdbGremlinService;
 
-    /**
-     * 查询点.
-     * <p>
-     * params.put("key")
-     * params.put("value")
-     * params.put("label")
-     *
-     * @param params params
-     * @return cn.widdo.entity.JsonResult
-     * @author XYL
-     * @date 2022/07/15 11:49
-     **/
-    @PostMapping(value = "/query/v")
-    public WiddoResult queryV(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, p -> orientdbGremlinService.queryV(p), "key", "value", "label");
-    }
+	/**
+	 * 查询点.
+	 * <p>
+	 * params.put("key") params.put("value") params.put("label")
+	 * @param params params
+	 * @return cn.widdo.entity.JsonResult
+	 * @author XYL
+	 * @date 2022/07/15 11:49
+	 **/
+	@PostMapping(value = "/query/v")
+	public WiddoResult queryV(@RequestBody Map<String, Object> params) {
+		return this.validateAndRun(params, p -> orientdbGremlinService.queryV(p), "key", "value", "label");
+	}
+
 }

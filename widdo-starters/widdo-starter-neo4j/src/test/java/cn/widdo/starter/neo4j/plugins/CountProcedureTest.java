@@ -22,41 +22,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CountProcedureTest {
 
+	private Neo4j neo4j;
 
-    private Neo4j neo4j;
-    private Driver driver;
+	private Driver driver;
 
-    @BeforeAll
-    void initializeNeo4j() {
+	@BeforeAll
+	void initializeNeo4j() {
 
-        this.neo4j = Neo4jBuilders.newInProcessBuilder()
-                .withDisabledServer()
-                .withFixture("\t    UNWIND range(1, 5) AS i\n" +
-                        "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
-                .withProcedure(CountProcedure.class)
-                .build();
+		this.neo4j = Neo4jBuilders.newInProcessBuilder().withDisabledServer()
+				.withFixture("\t    UNWIND range(1, 5) AS i\n" + "\t\t\t\t    WITH i CREATE (n:SomeNode {idx: i})")
+				.withProcedure(CountProcedure.class).build();
 
-        driver = GraphDatabase.driver(neo4j.boltURI());
-    }
+		driver = GraphDatabase.driver(neo4j.boltURI());
+	}
 
-    @AfterAll
-    void closeDriver() {
-        this.driver.close();
-    }
+	@AfterAll
+	void closeDriver() {
+		this.driver.close();
+	}
 
-    @AfterEach
-    void cleanDb() {
-        try (Session session = driver.session()) {
-            session.run("MATCH (n) DETACH DELETE n");
-        }
-    }
+	@AfterEach
+	void cleanDb() {
+		try (Session session = driver.session()) {
+			session.run("MATCH (n) DETACH DELETE n");
+		}
+	}
 
-    @Test
-    void allNodesShouldWork() {
-        try (final Session session = driver.session();) {
-            final Stream<Integer> stream = session.run("CALL widdo.node.count('') YIELD count")
-                    .stream().map(r -> r.get("count").asInt());
-            assertThat(stream).hasSize(1).containsExactly(5);
-        }
-    }
+	@Test
+	void allNodesShouldWork() {
+		try (final Session session = driver.session();) {
+			final Stream<Integer> stream = session.run("CALL widdo.node.count('') YIELD count").stream()
+					.map(r -> r.get("count").asInt());
+			assertThat(stream).hasSize(1).containsExactly(5);
+		}
+	}
+
 }

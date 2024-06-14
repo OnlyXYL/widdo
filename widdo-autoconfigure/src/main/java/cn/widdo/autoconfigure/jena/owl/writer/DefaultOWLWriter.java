@@ -12,8 +12,9 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultOWLWriter extends AbstractOWLWriter<Map<String, Object>, Map<String, Object>> {
 
-    @Override
-    public Map<String, Object> write(Map<String, Object> params) {
-        return null;
-    }
+	@Override
+	public Map<String, Object> write(Map<String, Object> params) {
+		return null;
+	}
+
 }

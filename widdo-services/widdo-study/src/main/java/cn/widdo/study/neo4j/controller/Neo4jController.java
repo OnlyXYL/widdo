@@ -1,16 +1,15 @@
 package cn.widdo.study.neo4j.controller;
 
 import cn.widdo.assistant.base.BaseController;
+import cn.widdo.assistant.result.IResultInterface;
 import cn.widdo.assistant.result.WiddoResult;
 import cn.widdo.study.neo4j.service.Neo4jJdbcService;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -46,8 +45,7 @@ public class Neo4jController extends BaseController {
     /**
      * 執行查詢.
      * <p>
-     * params.put("cypher")
-     * params.put("params")
+     * params.put("cypher") params.put("params")
      *
      * @param params params
      * @return cn.widdo.assistant.entity.result.WebResult
@@ -110,8 +108,29 @@ public class Neo4jController extends BaseController {
      * @date 2023/03/01 15:09:31
      */
     @PostMapping(value = "/delete")
+
     public WiddoResult delete(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, neo4jJdbcService::delete);
     }
 
+    @PostMapping(value = {"/read", "/write", "/run", "/write/triples", "/delete"})
+    @ResponseStatus(HttpStatus.OK)
+    public WiddoResult operation(@RequestBody Map<String, Object> params) {
+        switch (
+                params.get("operation").toString()
+        ) {
+            case "read":
+                return validateAndRun(params, neo4jJdbcService::read, "cypher", "params", "operation");
+            case "write":
+                return validateAndRun(params, neo4jJdbcService::write, "cypher", "params", "operation");
+            case "run":
+                return validateAndRun(params, neo4jJdbcService::run, "cypher", "params", "operation");
+            case "write/triples":
+                return validateAndRun(params, neo4jJdbcService::writeTriples, "triples", "operation");
+            case "delete":
+                return validateAndRun(params, neo4jJdbcService::delete, "operation");
+            default:
+                return WiddoResult.response(IResultInterface.Neo4jResultEnum.FAIL, "operation is not exist.");
+        }
+    }
 }

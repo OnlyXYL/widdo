@@ -18,26 +18,25 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class DefaultNeo4jWriter extends AbstractNeo4jWriter<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    /**
-     * constructor has no param,at the same time, if you create instance by this constructor,
-     * it will throw exception typed {@link UnsupportedOperationException}.
-     */
-    protected DefaultNeo4jWriter() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * constructor has no param,at the same time, if you create instance by this
+	 * constructor, it will throw exception typed {@link UnsupportedOperationException}.
+	 */
+	protected DefaultNeo4jWriter() {
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * constructor has one param called {@link Driver}.
-     *
-     * @param driver {@link Driver}
-     */
-    private DefaultNeo4jWriter(final Driver driver) {
-        this.driver = driver;
-    }
+	/**
+	 * constructor has one param called {@link Driver}.
+	 * @param driver {@link Driver}
+	 */
+	private DefaultNeo4jWriter(final Driver driver) {
+		this.driver = driver;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-        return this.validateAndRun(params, this::execute, Neo4jConstants.PARAM_CYPHER_QL);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+		return this.validateAndRun(params, this::execute, Neo4jConstants.PARAM_CYPHER_QL);
+	}
 
 }

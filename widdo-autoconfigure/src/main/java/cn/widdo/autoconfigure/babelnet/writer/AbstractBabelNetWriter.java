@@ -12,4 +12,5 @@ import cn.widdo.starter.neo4j.validator.ParamsValidator;
  * @since 302.1.0.0
  */
 public abstract class AbstractBabelNetWriter<T, R> extends ParamsValidator implements BabelNetWriter<T, R> {
+
 }

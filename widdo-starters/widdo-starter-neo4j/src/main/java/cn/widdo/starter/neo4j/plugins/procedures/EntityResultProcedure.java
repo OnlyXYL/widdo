@@ -21,53 +21,54 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class EntityResultProcedure {
 
-    /**
-     * tx.
-     */
-    @Context
-    @IgnoreNeo4jVisibility
-    public Transaction tx;
+	/**
+	 * tx.
+	 */
+	@Context
+	@IgnoreNeo4jVisibility
+	public Transaction tx;
 
-    /**
-     * entity container.
-     */
-    public static class EntityContainer {
+	/**
+	 * entity container.
+	 */
+	public static class EntityContainer {
 
-        /**
-         * node.
-         */
-        @IgnoreNeo4jVisibility
-        public Node node;
+		/**
+		 * node.
+		 */
+		@IgnoreNeo4jVisibility
+		public Node node;
 
-        /**
-         * constructor has one param called {@link Node}.
-         *
-         * @param node node
-         */
-        public EntityContainer(final Node node) {
-            this.node = node;
-        }
-    }
+		/**
+		 * constructor has one param called {@link Node}.
+		 * @param node node
+		 */
+		public EntityContainer(final Node node) {
+			this.node = node;
+		}
 
-    /**
-     * procedure named allNodes.
-     *
-     * @param label label
-     * @return allNodes
-     */
-    @Procedure(name = "widdo.allNodes", mode = Mode.READ)
-    @Description("get allNodes with the label, return allNodes of labels if param named label is null.")
-    public Stream<EntityContainer> allNodes(@Name("label") String label) {
+	}
 
-        String cypher;
+	/**
+	 * procedure named allNodes.
+	 * @param label label
+	 * @return allNodes
+	 */
+	@Procedure(name = "widdo.allNodes", mode = Mode.READ)
+	@Description("get allNodes with the label, return allNodes of labels if param named label is null.")
+	public Stream<EntityContainer> allNodes(@Name("label") String label) {
 
-        if (StringUtils.isNotBlank(label)) {
-            cypher = String.format("MATCH (n:%s) RETURN n", label);
-        } else {
-            cypher = "MATCH (n) RETURN n";
-        }
+		String cypher;
 
-        ResourceIterator<Node> nodes = tx.execute(cypher).columnAs("n");
-        return nodes.stream().map(EntityContainer::new);
-    }
+		if (StringUtils.isNotBlank(label)) {
+			cypher = String.format("MATCH (n:%s) RETURN n", label);
+		}
+		else {
+			cypher = "MATCH (n) RETURN n";
+		}
+
+		ResourceIterator<Node> nodes = tx.execute(cypher).columnAs("n");
+		return nodes.stream().map(EntityContainer::new);
+	}
+
 }

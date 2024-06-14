@@ -9,30 +9,31 @@ package cn.widdo.starter.neo4j.constant;
  */
 public class Neo4jConstants {
 
-    /**
-     * constructor has none param.
-     */
-    protected Neo4jConstants() {
-        throw new UnsupportedOperationException(Neo4jConstants.class.getName() + " can`t be instance.");
-    }
+	/**
+	 * constructor has none param.
+	 */
+	protected Neo4jConstants() {
+		throw new UnsupportedOperationException(Neo4jConstants.class.getName() + " can`t be instance.");
+	}
 
-    /**
-     * the parameter key named 'cypherQL' about cypher.
-     */
-    public static final String PARAM_CYPHER_QL = "cypherQL";
+	/**
+	 * the parameter key named 'cypherQL' about cypher.
+	 */
+	public static final String PARAM_CYPHER_QL = "cypherQL";
 
-    /**
-     * the parameter key named 'map' about cypher.
-     */
-    public static final String PARAM_MAP = "map";
+	/**
+	 * the parameter key named 'map' about cypher.
+	 */
+	public static final String PARAM_MAP = "map";
 
-    /**
-     * constants about neo4j.
-     */
-    public static final String RUNNER_WRITE = "write";
+	/**
+	 * constants about neo4j.
+	 */
+	public static final String RUNNER_WRITE = "write";
 
-    /**
-     * constants about parameter start with param.
-     */
-    public static final String RUNNER_READ = "read";
+	/**
+	 * constants about parameter start with param.
+	 */
+	public static final String RUNNER_READ = "read";
+
 }

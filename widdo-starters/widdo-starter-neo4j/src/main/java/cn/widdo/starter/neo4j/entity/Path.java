@@ -15,142 +15,130 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class Path implements Serializable {
 
-    /**
-     * startNode.
-     */
-    private Node startNode;
+	/**
+	 * startNode.
+	 */
+	private Node startNode;
 
-    /**
-     * endNode.
-     */
-    private Node endNode;
+	/**
+	 * endNode.
+	 */
+	private Node endNode;
 
-    /**
-     * relationships.
-     */
-    private Collection<Relationship> relationships = new ArrayList<>();
+	/**
+	 * relationships.
+	 */
+	private Collection<Relationship> relationships = new ArrayList<>();
 
-    /**
-     * nodes.
-     */
-    private Collection<Node> nodes = new ArrayList<>();
+	/**
+	 * nodes.
+	 */
+	private Collection<Node> nodes = new ArrayList<>();
 
-    /**
-     * get startedNode.
-     *
-     * @return an object result type of {@link Node}
-     */
-    public Node getStartNode() {
-        return startNode;
-    }
+	/**
+	 * get startedNode.
+	 * @return an object result type of {@link Node}
+	 */
+	public Node getStartNode() {
+		return startNode;
+	}
 
-    /**
-     * set startedNode.
-     *
-     * @param startNode startNode
-     */
-    public void setStartNode(Node startNode) {
-        this.startNode = startNode;
-    }
+	/**
+	 * set startedNode.
+	 * @param startNode startNode
+	 */
+	public void setStartNode(Node startNode) {
+		this.startNode = startNode;
+	}
 
-    /**
-     * get endedNode.
-     *
-     * @return an object result type of {@link Node}
-     */
-    public Node getEndNode() {
-        return endNode;
-    }
+	/**
+	 * get endedNode.
+	 * @return an object result type of {@link Node}
+	 */
+	public Node getEndNode() {
+		return endNode;
+	}
 
-    /**
-     * set endedNode.
-     *
-     * @param endNode endNode
-     */
-    public void setEndNode(Node endNode) {
-        this.endNode = endNode;
-    }
+	/**
+	 * set endedNode.
+	 * @param endNode endNode
+	 */
+	public void setEndNode(Node endNode) {
+		this.endNode = endNode;
+	}
 
-    /**
-     * get relationship.
-     *
-     * @return a collection of relationship
-     */
-    public Collection<Relationship> getRelationships() {
-        return relationships;
-    }
+	/**
+	 * get relationship.
+	 * @return a collection of relationship
+	 */
+	public Collection<Relationship> getRelationships() {
+		return relationships;
+	}
 
-    /**
-     * set relationship collection.
-     *
-     * @param relationships relationships
-     */
-    public void setRelationships(List<Relationship> relationships) {
-        this.relationships = relationships;
-    }
+	/**
+	 * set relationship collection.
+	 * @param relationships relationships
+	 */
+	public void setRelationships(List<Relationship> relationships) {
+		this.relationships = relationships;
+	}
 
-    /**
-     * add relationship to collection.
-     *
-     * @param relationship relationship
-     */
-    public void addRelationship(Relationship relationship) {
-        this.relationships.add(relationship);
-    }
+	/**
+	 * add relationship to collection.
+	 * @param relationship relationship
+	 */
+	public void addRelationship(Relationship relationship) {
+		this.relationships.add(relationship);
+	}
 
-    /**
-     * get node collection.
-     *
-     * @return a node collection
-     */
-    public Collection<Node> getNodes() {
-        return nodes;
-    }
+	/**
+	 * get node collection.
+	 * @return a node collection
+	 */
+	public Collection<Node> getNodes() {
+		return nodes;
+	}
 
-    /**
-     * set node collection.
-     *
-     * @param nodes nodes
-     */
-    public void setNodes(Iterable<Node> nodes) {
-        nodes.forEach(n -> this.nodes.add(n));
-    }
+	/**
+	 * set node collection.
+	 * @param nodes nodes
+	 */
+	public void setNodes(Iterable<Node> nodes) {
+		nodes.forEach(n -> this.nodes.add(n));
+	}
 
-    /**
-     * add {@link Node} to collection.
-     *
-     * @param node node
-     */
-    public void addNode(Node node) {
-        this.nodes.add(node);
-    }
+	/**
+	 * add {@link Node} to collection.
+	 * @param node node
+	 */
+	public void addNode(Node node) {
+		this.nodes.add(node);
+	}
 
-    /**
-     * size of relationShip collection.
-     *
-     * @return relationShip collection size
-     */
-    public int size() {
-        return this.relationships.size();
-    }
+	/**
+	 * size of relationShip collection.
+	 * @return relationShip collection size
+	 */
+	public int size() {
+		return this.relationships.size();
+	}
 
-    /**
-     * check {@link Node}.
-     *
-     * @param node node
-     * @return a result type of boolean,which tell you if the node exists.
-     */
-    public boolean containsNode(Node node) {
-        return this.nodes.contains(node);
-    }
+	/**
+	 * check {@link Node}.
+	 * @param node node
+	 * @return a result type of boolean,which tell you if the node exists.
+	 */
+	public boolean containsNode(Node node) {
+		return this.nodes.contains(node);
+	}
 
-    /**
-     * check {@link Relationship}.
-     *
-     * @param relationship relationship
-     * @return a result type of boolean, which tell you if the relationship exists.
-     */
-    public boolean containsRelationship(Relationship relationship) {
-        return this.relationships.contains(relationship);
-    }
+	/**
+	 * check {@link Relationship}.
+	 * @param relationship relationship
+	 * @return a result type of boolean, which tell you if the relationship exists.
+	 */
+	public boolean containsRelationship(Relationship relationship) {
+		return this.relationships.contains(relationship);
+	}
+
 }

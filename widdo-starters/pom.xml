@@ -5,9 +5,10 @@
     <parent>
         <artifactId>widdo</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.1.0</version>
+        <version>305.2.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>305.2.2.0</version>
 
     <artifactId>widdo-starters</artifactId>
     <packaging>pom</packaging>
@@ -17,6 +18,9 @@
         <module>widdo-starter-jwi</module>
         <module>widdo-starter-babelnet</module>
         <module>widdo-starter-jena</module>
+        <module>widdo-starter-hadoop</module>
+        <module>widdo-starter-sql</module>
+        <module>widdo-starter-elasticsearch</module>
     </modules>
 
     <dependencies>

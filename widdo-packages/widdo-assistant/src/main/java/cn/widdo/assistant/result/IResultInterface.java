@@ -10,206 +10,251 @@ package cn.widdo.assistant.result;
 @SuppressWarnings("ALL")
 public interface IResultInterface {
 
-    /**
-     * return code of current result.
-     *
-     * @return java.lang.Integer
-     * @author XYL
-     * @date 2022/12/29 17:40:09
-     **/
-    Integer getCode();
+	/**
+	 * return code of current result.
+	 * @return java.lang.Integer
+	 * @author XYL
+	 * @date 2022/12/29 17:40:09
+	 **/
+	Integer getCode();
 
-    /**
-     * return the message of current result.
-     *
-     * @return java.lang.String
-     * @author XYL
-     * @date 2022/12/29 17:40:41
-     **/
-    String getMsg();
+	/**
+	 * return the message of current result.
+	 * @return java.lang.String
+	 * @author XYL
+	 * @date 2022/12/29 17:40:41
+	 **/
+	String getMsg();
 
-    enum SysResultEnum implements IResultInterface {
-        /**
-         * success.
-         */
-        SUCCESS(0, "成功"),
+	enum SysResultEnum implements IResultInterface {
 
-        /**
-         * fail.
-         */
-        FAIL(-1, "失败"),
+		/**
+		 * success.
+		 */
+		SUCCESS(0, "成功"),
 
-        /**
-         * params error.
-         */
-        PARAMS_ERROR(-2, "参数异常"),
+		/**
+		 * fail.
+		 */
+		FAIL(-1, "失败"),
 
-        /**
-         * no access.
-         */
-        NO_ACCESS(-3, "禁止访问");
+		/**
+		 * params error.
+		 */
+		PARAMS_ERROR(-2, "参数异常"),
 
-        /**
-         * code.
-         */
-        private final Integer code;
+		/**
+		 * no access.
+		 */
+		NO_ACCESS(-3, "禁止访问");
 
-        /**
-         * msg.
-         */
-        private final String msg;
+		/**
+		 * code.
+		 */
+		private final Integer code;
 
-        /**
-         * constructor of has two params.One called:code,another called:msg.
-         *
-         * @param code code
-         * @param msg  msg
-         */
-        SysResultEnum(final Integer code, final String msg) {
-            this.code = code;
-            this.msg = msg;
-        }
+		/**
+		 * msg.
+		 */
+		private final String msg;
 
-        @Override
-        public Integer getCode() {
-            return code;
-        }
+		/**
+		 * constructor of has two params.One called:code,another called:msg.
+		 * @param code code
+		 * @param msg msg
+		 */
+		SysResultEnum(final Integer code, final String msg) {
+			this.code = code;
+			this.msg = msg;
+		}
 
-        @Override
-        public String getMsg() {
-            return msg;
-        }
-    }
+		@Override
+		public Integer getCode() {
+			return code;
+		}
 
-    enum StudyResultEnum implements IResultInterface {
+		@Override
+		public String getMsg() {
+			return msg;
+		}
 
-        /**
-         * success.
-         */
-        SUCCESS(0, "成功"),
+	}
 
-        /**
-         * fail.
-         */
-        FAIL(-1, "失败");
+	enum StudyResultEnum implements IResultInterface {
 
-        /**
-         * code.
-         */
-        private final Integer code;
+		/**
+		 * success.
+		 */
+		SUCCESS(0, "成功"),
 
-        /**
-         * msg.
-         */
-        private final String msg;
+		/**
+		 * fail.
+		 */
+		FAIL(-1, "失败");
 
-        /**
-         * constructor of has two params.One called:code,another called:msg.
-         *
-         * @param code code
-         * @param msg  msg
-         */
-        StudyResultEnum(final Integer code, final String msg) {
-            this.code = code;
-            this.msg = msg;
-        }
+		/**
+		 * code.
+		 */
+		private final Integer code;
 
-        @Override
-        public Integer getCode() {
-            return code;
-        }
+		/**
+		 * msg.
+		 */
+		private final String msg;
 
-        @Override
-        public String getMsg() {
-            return msg;
-        }
-    }
+		/**
+		 * constructor of has two params.One called:code,another called:msg.
+		 * @param code code
+		 * @param msg msg
+		 */
+		StudyResultEnum(final Integer code, final String msg) {
+			this.code = code;
+			this.msg = msg;
+		}
 
-    enum LifeResultEnum implements IResultInterface {
+		@Override
+		public Integer getCode() {
+			return code;
+		}
 
-        /**
-         * the result typed success of life.
-         */
-        SUCCESS(0, "成功"),
+		@Override
+		public String getMsg() {
+			return msg;
+		}
 
-        /**
-         * the result typed fail of life.
-         */
-        FAIL(-1, "失败");
+	}
 
-        /**
-         * code.
-         */
-        private final Integer code;
+	enum LifeResultEnum implements IResultInterface {
 
-        /**
-         * msg.
-         */
-        private final String msg;
+		/**
+		 * the result typed success of life.
+		 */
+		SUCCESS(0, "成功"),
 
-        /**
-         * constructor has two params,one called code,another called msg.
-         *
-         * @param code code
-         * @param msg  msg
-         */
-        LifeResultEnum(final Integer code, final String msg) {
-            this.code = code;
-            this.msg = msg;
-        }
+		/**
+		 * the result typed fail of life.
+		 */
+		FAIL(-1, "失败");
 
-        @Override
-        public Integer getCode() {
-            return code;
-        }
+		/**
+		 * code.
+		 */
+		private final Integer code;
 
-        @Override
-        public String getMsg() {
-            return msg;
-        }
-    }
+		/**
+		 * msg.
+		 */
+		private final String msg;
 
-    enum Neo4jResultEnum implements IResultInterface {
+		/**
+		 * constructor has two params,one called code,another called msg.
+		 * @param code code
+		 * @param msg msg
+		 */
+		LifeResultEnum(final Integer code, final String msg) {
+			this.code = code;
+			this.msg = msg;
+		}
 
-        /**
-         * the result typed enum of neo4jResult.
-         */
-        SUCCESS(0, "成功"),
+		@Override
+		public Integer getCode() {
+			return code;
+		}
 
-        /**
-         * the result typed enum of neo4jResult.
-         */
-        FAIL(-1, "失败");
+		@Override
+		public String getMsg() {
+			return msg;
+		}
 
-        /**
-         * code.
-         */
-        private final Integer code;
+	}
 
-        /**
-         * msg.
-         */
-        private final String msg;
+	enum Neo4jResultEnum implements IResultInterface {
 
-        /**
-         * constructor has two params,one called code,another called msg.
-         *
-         * @param code code
-         * @param msg  msg
-         */
-        Neo4jResultEnum(final Integer code, final String msg) {
-            this.code = code;
-            this.msg = msg;
-        }
+		/**
+		 * the result typed enum of neo4jResult.
+		 */
+		SUCCESS(0, "成功"),
 
-        @Override
-        public Integer getCode() {
-            return code;
-        }
+		/**
+		 * the result typed enum of neo4jResult.
+		 */
+		FAIL(-1, "失败");
 
-        @Override
-        public String getMsg() {
-            return msg;
-        }
-    }
+		/**
+		 * code.
+		 */
+		private final Integer code;
+
+		/**
+		 * msg.
+		 */
+		private final String msg;
+
+		/**
+		 * constructor has two params,one called code,another called msg.
+		 * @param code code
+		 * @param msg msg
+		 */
+		Neo4jResultEnum(final Integer code, final String msg) {
+			this.code = code;
+			this.msg = msg;
+		}
+
+		@Override
+		public Integer getCode() {
+			return code;
+		}
+
+		@Override
+		public String getMsg() {
+			return msg;
+		}
+
+	}
+
+	enum HadoopEnum implements IResultInterface {
+
+		/**
+		 * the result typed enum of neo4jResult.
+		 */
+		SUCCESS(0, "成功"),
+
+		/**
+		 * the result typed enum of neo4jResult.
+		 */
+		FAIL(-1, "失败");
+		;
+
+		/**
+		 * code.
+		 */
+		private final Integer code;
+
+		/**
+		 * msg.
+		 */
+		private final String msg;
+
+		/**
+		 * constructor has two params,one called code,another called msg.
+		 * @param code code
+		 * @param msg msg
+		 */
+		HadoopEnum(final Integer code, final String msg) {
+			this.code = code;
+			this.msg = msg;
+		}
+
+		@Override
+		public Integer getCode() {
+			return code;
+		}
+
+		@Override
+		public String getMsg() {
+			return msg;
+		}
+
+	}
+
 }

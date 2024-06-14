@@ -11,12 +11,13 @@ import cn.widdo.assistant.result.WiddoResult;
  */
 public interface ExceptionService {
 
-    /**
-     * 测试异常.
-     *
-     * @author XYL
-     * @date 2023/06/16 16:24:41
-     * @return cn.widdo.assistant.result.WiddoResult
-     */
-    WiddoResult test();
+	/**
+	 * 测试异常.
+	 *
+	 * @author XYL
+	 * @date 2023/06/16 16:24:41
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 */
+	WiddoResult test();
+
 }

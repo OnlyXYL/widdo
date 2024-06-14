@@ -14,14 +14,14 @@ import cn.widdo.autoconfigure.neo4j.Neo4jHelper;
 @SuppressWarnings("ALL")
 public interface Neo4jWriter<T, R> extends Writer, Neo4jHelper, EnhanceWriter {
 
-    /**
-     * 写方法.
-     *
-     * @param params 参数
-     * @return R
-     * @author XYL
-     * @className cn.widdo.autoconfigure.neo4j.write.Neo4jWriter
-     * @date 2022/10/14 16:37
-     **/
-    R write(T params);
+	/**
+	 * 写方法.
+	 * @param params 参数
+	 * @return R
+	 * @author XYL
+	 * @className cn.widdo.autoconfigure.neo4j.write.Neo4jWriter
+	 * @date 2022/10/14 16:37
+	 **/
+	R write(T params);
+
 }

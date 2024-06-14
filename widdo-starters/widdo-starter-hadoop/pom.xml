@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>widdo-starters</artifactId>
+        <groupId>cn.widdo</groupId>
+        <version>305.2.2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>widdo-starter-hadoop</artifactId>
+    <version>305.2.2.0</version>
+
+    <dependencies>
+        <!--neo4j-spark @since 302.1.0.0-->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-connector-apache-spark_2.12</artifactId>
+        </dependency>
+
+        <!--spark core @since 302.1.0.0-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.12</artifactId>
+        </dependency>
+
+        <!--spark sql @since 302.1.0.0-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.12</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

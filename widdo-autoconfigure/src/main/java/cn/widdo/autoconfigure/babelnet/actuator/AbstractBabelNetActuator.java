@@ -10,4 +10,5 @@ package cn.widdo.autoconfigure.babelnet.actuator;
  * @since 302.1.0.0
  */
 public abstract class AbstractBabelNetActuator<T, R> implements BabelNetActuator<T, R> {
+
 }

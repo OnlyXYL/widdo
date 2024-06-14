@@ -23,46 +23,41 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 @RequestMapping(value = "/orientdb/jdbc")
 @RestController
-@ConditionalOnBean({WiddoOrientdbConfigure.class})
+@ConditionalOnBean({ WiddoOrientdbConfigure.class })
 public class OrientdbJdbcController extends BaseController {
 
-    /**
-     * orientdbJdbcService.
-     */
-    @Resource
-    private OrientdbJdbcService orientdbJdbcService;
+	/**
+	 * orientdbJdbcService.
+	 */
+	@Resource
+	private OrientdbJdbcService orientdbJdbcService;
 
-    /**
-     * 创建点.
-     * <p>
-     * params.put("name")
-     * params.put("age")
-     * params.put("city")
-     *
-     * @param params params
-     * @return java.util.Map<java.lang.String, java.lang.Object>
-     * @author XYL
-     * @date 2022/07/15 11:43
-     **/
-    @PostMapping(value = "/create/v")
-    public WiddoResult createV(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, p -> orientdbJdbcService.createV(p), "name", "age", "city");
-    }
+	/**
+	 * 创建点.
+	 * <p>
+	 * params.put("name") params.put("age") params.put("city")
+	 * @param params params
+	 * @return java.util.Map<java.lang.String, java.lang.Object>
+	 * @author XYL
+	 * @date 2022/07/15 11:43
+	 **/
+	@PostMapping(value = "/create/v")
+	public WiddoResult createV(@RequestBody Map<String, Object> params) {
+		return this.validateAndRun(params, p -> orientdbJdbcService.createV(p), "name", "age", "city");
+	}
 
-    /**
-     * 创建关系.
-     * <p>
-     * params.put("label")
-     * params.put("source")
-     * params.put("target")
-     *
-     * @param params params typed map {@link Map}
-     * @return cn.widdo.entity.JsonResult
-     * @author XYL
-     * @date 2022/07/15 11:46
-     **/
-    @PostMapping(value = "/create/e")
-    public WiddoResult createE(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, p -> orientdbJdbcService.createE(p), "label", "source", "target");
-    }
+	/**
+	 * 创建关系.
+	 * <p>
+	 * params.put("label") params.put("source") params.put("target")
+	 * @param params params typed map {@link Map}
+	 * @return cn.widdo.entity.JsonResult
+	 * @author XYL
+	 * @date 2022/07/15 11:46
+	 **/
+	@PostMapping(value = "/create/e")
+	public WiddoResult createE(@RequestBody Map<String, Object> params) {
+		return this.validateAndRun(params, p -> orientdbJdbcService.createE(p), "label", "source", "target");
+	}
+
 }

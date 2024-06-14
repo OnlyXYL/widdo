@@ -13,8 +13,9 @@ package cn.widdo.autoconfigure.neo4j.writer;
  */
 public abstract class AbstractNeo4jWriterDecorator<T, R> extends AbstractNeo4jWriter<T, R> {
 
-    /**
-     * {@link Neo4jWriter}.
-     */
-    protected Neo4jWriter<T, R> neo4jWriter;
+	/**
+	 * {@link Neo4jWriter}.
+	 */
+	protected Neo4jWriter<T, R> neo4jWriter;
+
 }

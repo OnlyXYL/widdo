@@ -7,12 +7,12 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS_HOST:widdo-register}:${NACOS_PORT:8846}
-        namespace: ${NACOS_NAMESPACE:@nacos.namespace@}
-        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        namespace: @nacos.namespace@
+        group: @nacos.group@
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: ${NACOS_NAMESPACE:@nacos.namespace@}
-        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        namespace: @nacos.namespace@
+        group: @nacos.group@
       username: ${NACOS_USERNAME:nacos}
       password: ${NACOS_PASSWORD:nacos}
   config:
@@ -27,3 +27,9 @@ info:
     name: ${spring.application.name}
     description: "@project.description@"
     version: "@project.version@"
+
+
+management:
+  endpoint:
+    threaddump:
+      enabled: true

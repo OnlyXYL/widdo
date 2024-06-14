@@ -12,34 +12,34 @@ import lombok.Data;
 @Data
 public class MyRedissonConfigProperties {
 
-    /**
-     * mode.
-     */
-    private String mode;
+	/**
+	 * mode.
+	 */
+	private String mode;
 
-    /**
-     * threads.
-     */
-    private int threads;
+	/**
+	 * threads.
+	 */
+	private int threads;
 
-    /**
-     * nettyThreads.
-     */
-    private int nettyThreads;
+	/**
+	 * nettyThreads.
+	 */
+	private int nettyThreads;
 
-    /**
-     * transportMode.
-     */
-    private String transportMode;
+	/**
+	 * transportMode.
+	 */
+	private String transportMode;
 
-    /**
-     * 单节点配置.
-     */
-    private MyRedissonSingleServerConfigProperties singleServerConfig = new MyRedissonSingleServerConfigProperties();
+	/**
+	 * 单节点配置.
+	 */
+	private MyRedissonSingleServerConfigProperties singleServerConfig = new MyRedissonSingleServerConfigProperties();
 
-    /**
-     * 集群配置.
-     */
-    private MyRedissonClusterServerConfigProperties clusterServerConfig = new MyRedissonClusterServerConfigProperties();
+	/**
+	 * 集群配置.
+	 */
+	private MyRedissonClusterServerConfigProperties clusterServerConfig = new MyRedissonClusterServerConfigProperties();
+
 }
-

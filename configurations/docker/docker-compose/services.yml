@@ -1,0 +1,62 @@
+version: "3"
+services:
+  #docker私有仓库
+  registry:
+    image: ${REGISTRY_URI}/${REGISTRY_SERVICE_NAME}:${VERSION}
+    container_name: registry
+    build:
+      context: ../context
+      dockerfile: develop/Dockerfile
+      args:
+        - VERSION=${VERSION}
+        - SERVICE_NAME=${REGISTRY_SERVICE_NAME}
+        - SERVICE_PORT=${REGISTRY_SERVICE_PORT}
+    volumes:
+      - /docker/registry/auth:/auth/
+    ports:
+      - ${REGISTRY_SERVICE_PORT}:${REGISTRY_SERVICE_PORT}
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    restart: always
+  #gateway服务
+  gateway:
+    image: ${REGISTRY_URI}/${GATEWAY_SERVICE_NAME}:${VERSION}
+    container_name: gateway
+    build:
+      context: ../context
+      dockerfile: develop/Dockerfile
+      args:
+        - VERSION=${VERSION}
+        - SERVICE_NAME=${GATEWAY_SERVICE_NAME}
+        - SERVICE_PORT=${GATEWAY_SERVICE_PORT}
+    ports:
+      - ${GATEWAY_SERVICE_PORT}:${GATEWAY_SERVICE_PORT}
+    restart: always
+    command:
+      - --spring.profiles.active=env
+      - --spring.config.location=../../nacos/gateway.yaml
+    #指定网络，所有服务处于同一网络
+    #networks:
+      #- my_network
+    #可以设置依赖的容器。这里取消，把数据库的单独拆出来
+  #    depends_on:
+  #      - mysql
+  widdo-study:
+    image: ${REGISTRY_URI}/${WIDDO_STUDY_SERVICE_NAME}:${VERSION}
+    container_name: widdo-study
+    build:
+      context: ../context
+      dockerfile: develop/Dockerfile
+      args:
+        - VERSION=${VERSION}
+        - SERVICE_NAME=${WIDDO_STUDY_SERVICE_NAME}
+        - SERVICE_PORT=${WIDDO_STUDY_SERVICE_PORT}
+    ports:
+      - ${WIDDO_STUDY_SERVICE_PORT}:${WIDDO_STUDY_SERVICE_PORT}
+    restart: always
+    command:
+      - --spring.profiles.active=env
+      - --spring.config.location=../../nacos/gateway.yaml

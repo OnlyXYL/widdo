@@ -8,4 +8,5 @@ package cn.widdo.starter.neo4j.annotation;
  * @since 263.1.2.0
  */
 public @interface IgnoreNeo4jVisibility {
+
 }

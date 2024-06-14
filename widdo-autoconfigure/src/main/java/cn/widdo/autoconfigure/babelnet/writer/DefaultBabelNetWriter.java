@@ -11,14 +11,15 @@ import java.util.Map;
  */
 public final class DefaultBabelNetWriter extends AbstractBabelNetWriter<Map<String, Object>, Map<String, Object>> {
 
-    /**
-     * constructor has none params.
-     */
-    private DefaultBabelNetWriter() {
-    }
+	/**
+	 * constructor has none params.
+	 */
+	private DefaultBabelNetWriter() {
+	}
 
-    @Override
-    public Map<String, Object> write(Map<String, Object> params) {
-        return null;
-    }
+	@Override
+	public Map<String, Object> write(Map<String, Object> params) {
+		return null;
+	}
+
 }

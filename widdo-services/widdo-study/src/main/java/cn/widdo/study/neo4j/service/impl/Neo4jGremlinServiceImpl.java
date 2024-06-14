@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 /**
  * Neo4jGremlinServiceImpl.
  *
@@ -17,14 +16,16 @@ import java.util.Map;
 @Service
 public class Neo4jGremlinServiceImpl implements Neo4jGremlinService {
 
-    @Override
-    public WiddoResult query(Map<String, Object> params) {
+	@Override
+	public WiddoResult query(Map<String, Object> params) {
 
-//        final GraphTraversalSource g = new GraphTraversalSource(null);
+		// final GraphTraversalSource g = new GraphTraversalSource(null);
 
-        //<p>GraphTraversalSource g = traversal().withRemote(DriverRemoteConnection.using("localhost",8182,"g"));</p>
-//        final Object next = g.V().hasLabel("label").select("name").next();
+		// <p>GraphTraversalSource g =
+		// traversal().withRemote(DriverRemoteConnection.using("localhost",8182,"g"));</p>
+		// final Object next = g.V().hasLabel("label").select("name").next();
 
-        return null;
-    }
+		return null;
+	}
+
 }

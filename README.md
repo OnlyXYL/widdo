@@ -44,12 +44,14 @@ widdo
 ├─widdo-services                                ------ 服务模块
 │   ├─widdo-life                                ------ 生活服务（9901）
 │   ├─widdo-study                               ------ 学习服务（9902）
+│   ├─widdo-hadoop                              ------ hadoop服务（9903）
 └─widdo-starters                                ------ 引用模块
     ├─widdo-starter-babelnet                    ------ BABELNET模块
     ├─widdo-starter-jena                        ------ JENA模块
     ├─widdo-starter-jwi                         ------ JWI模块
     ├─widdo-starter-neo4j                       ------ NEO4J模块
     ├─widdo-starter-orientdb                    ------ ORIENTDB模块
+    ├─widdo-starter-hadoop                      ------ HADOOP模块
 
 ```
 
@@ -60,7 +62,21 @@ widdo
 widdo 是一个名称有内涵（^_^）。目前，用来记录日常的工作，学习，生活中的点点滴滴。同时，会记录对应的操作日志，用来收集信息。
 同时，还会提供图谱可视化，用来直观的看关系。目前提供一下功能：
 
-* ***java动态编译：***
+> `widdo-study`提供一些公共服务
+- `widdo-study`
+  - `algorithm`
+  - `babelnet`
+  - `hanlp`
+  - `neo4j`
+  - `orientdb`
+  - `regex`
+> `widdo-hadoop`提供`hadoop`生态的一些操作
+- `widdo-hadoop`
+  - `neo4j-spark`
+  - `scala`
+  - `spark`
+
+
 
 #### [3. 版本说明]()
 

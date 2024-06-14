@@ -14,19 +14,20 @@ import java.util.Map;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-public class CustomNeo4jWriter extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+public final class CustomNeo4jWriter
+		extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-    /**
-     * constructor has one param called {@link Neo4jWriter}.
-     *
-     * @param neo4jWriter neo4jWriter
-     */
-    public CustomNeo4jWriter(final Neo4jWriter neo4jWriter) {
-        this.neo4jWriter = neo4jWriter;
-    }
+	/**
+	 * constructor has one param called {@link Neo4jWriter}.
+	 * @param neo4jWriter neo4jWriter
+	 */
+	private CustomNeo4jWriter(final Neo4jWriter neo4jWriter) {
+		this.neo4jWriter = neo4jWriter;
+	}
 
-    @Override
-    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-        return neo4jWriter.write(params);
-    }
+	@Override
+	public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+		return neo4jWriter.write(params);
+	}
+
 }

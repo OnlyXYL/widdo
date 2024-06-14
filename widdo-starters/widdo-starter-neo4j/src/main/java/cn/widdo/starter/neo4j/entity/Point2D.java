@@ -12,123 +12,119 @@ import java.io.Serializable;
 @SuppressWarnings("ALL")
 public class Point2D implements Serializable {
 
-    /**
-     * srid.
-     */
-    private double srid;
+	/**
+	 * srid.
+	 */
+	private double srid;
 
-    /**
-     * x.
-     */
-    private double x;
-    /**
-     * y.
-     */
-    private double y;
+	/**
+	 * x.
+	 */
+	private double x;
 
-    /**
-     * construct has no params.
-     */
-    public Point2D() {
-    }
+	/**
+	 * y.
+	 */
+	private double y;
 
-    /**
-     * Point2D.
-     *
-     * @param srid srid
-     * @param x    x
-     * @param y    y
-     * @author XYL
-     * @date 2022/11/28 14:39:36
-     **/
-    public Point2D(final int srid, final double x, final double y) {
-        this.x = x;
-        this.y = y;
-        this.srid = srid;
-    }
+	/**
+	 * construct has no params.
+	 */
+	public Point2D() {
+	}
 
-    /**
-     * get srid.
-     *
-     * @return a result type of double
-     */
-    public double getSrid() {
-        return srid;
-    }
+	/**
+	 * Point2D.
+	 * @param srid srid
+	 * @param x x
+	 * @param y y
+	 * @author XYL
+	 * @date 2022/11/28 14:39:36
+	 **/
+	public Point2D(final int srid, final double x, final double y) {
+		this.x = x;
+		this.y = y;
+		this.srid = srid;
+	}
 
-    /**
-     * set srid.
-     *
-     * @param srid srid
-     */
-    public void setSrid(double srid) {
-        this.srid = srid;
-    }
+	/**
+	 * get srid.
+	 * @return a result type of double
+	 */
+	public double getSrid() {
+		return srid;
+	}
 
-    /**
-     * get x.
-     *
-     * @return a result type of double
-     */
-    public double getX() {
-        return x;
-    }
+	/**
+	 * set srid.
+	 * @param srid srid
+	 */
+	public void setSrid(double srid) {
+		this.srid = srid;
+	}
 
-    /**
-     * set x.
-     *
-     * @param x x
-     */
-    public void setX(double x) {
-        this.x = x;
-    }
+	/**
+	 * get x.
+	 * @return a result type of double
+	 */
+	public double getX() {
+		return x;
+	}
 
-    /**
-     * get y.
-     *
-     * @return a result typ of double
-     */
-    public double getY() {
-        return y;
-    }
+	/**
+	 * set x.
+	 * @param x x
+	 */
+	public void setX(double x) {
+		this.x = x;
+	}
 
-    /**
-     * set y.
-     *
-     * @param y y
-     */
-    public void setY(double y) {
-        this.y = y;
-    }
+	/**
+	 * get y.
+	 * @return a result typ of double
+	 */
+	public double getY() {
+		return y;
+	}
 
-    /**
-     * get Z.
-     *
-     * @return a result type of double
-     */
-    public double getZ() {
-        return Double.NaN;
-    }
+	/**
+	 * set y.
+	 * @param y y
+	 */
+	public void setY(double y) {
+		this.y = y;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        } else if (o != null && this.getClass() == o.getClass()) {
-            Point2D that = (Point2D) o;
-            return this.srid == that.srid && Double.compare(that.x, this.x) == 0 && Double.compare(that.y, this.y) == 0;
-        } else {
-            return false;
-        }
-    }
+	/**
+	 * get Z.
+	 * @return a result type of double
+	 */
+	public double getZ() {
+		return Double.NaN;
+	}
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		else if (o != null && this.getClass() == o.getClass()) {
+			Point2D that = (Point2D) o;
+			return this.srid == that.srid && Double.compare(that.x, this.x) == 0 && Double.compare(that.y, this.y) == 0;
+		}
+		else {
+			return false;
+		}
+	}
 
-    @Override
-    public String toString() {
-        return "Point{srid=" + this.srid + ", x=" + this.x + ", y=" + this.y + '}';
-    }
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "Point{srid=" + this.srid + ", x=" + this.x + ", y=" + this.y + '}';
+	}
+
 }

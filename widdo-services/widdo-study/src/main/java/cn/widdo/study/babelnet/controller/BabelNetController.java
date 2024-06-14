@@ -26,33 +26,33 @@ import java.util.Map;
 @RestController
 public class BabelNetController extends BaseController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BabelNetController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(BabelNetController.class);
 
-    @PostConstruct
-    private void postConstruct() {
-        LOG.info("[Widdo] |- Service [Widdo Study] BabelNetController.");
-    }
+	@PostConstruct
+	private void postConstruct() {
+		LOG.info("[Widdo] |- Service [Widdo Study] BabelNetController.");
+	}
 
-    /**
-     * BabelNetService.
-     */
-    private final BabelNetService babelNetService;
+	/**
+	 * BabelNetService.
+	 */
+	private final BabelNetService babelNetService;
 
-    @Autowired
-    public BabelNetController(final BabelNetService babelNetService) {
-        this.babelNetService = babelNetService;
-    }
+	@Autowired
+	public BabelNetController(final BabelNetService babelNetService) {
+		this.babelNetService = babelNetService;
+	}
 
-    /**
-     * babelNet query.
-     *
-     * @param params params
-     * @return cn.widdo.assistant.result.WiddoResult
-     * @author XYL
-     * @date 2023/03/15 13:39:48
-     */
-    @PostMapping(value = "/query")
-    public WiddoResult query(@RequestBody Map<String, Object> params) {
-        return this.validateAndRun(params, babelNetService::query, "lemma");
-    }
+	/**
+	 * babelNet query.
+	 * @param params params
+	 * @return cn.widdo.assistant.result.WiddoResult
+	 * @author XYL
+	 * @date 2023/03/15 13:39:48
+	 */
+	@PostMapping(value = "/query")
+	public WiddoResult query(@RequestBody Map<String, Object> params) {
+		return this.validateAndRun(params, babelNetService::query, "lemma");
+	}
+
 }
