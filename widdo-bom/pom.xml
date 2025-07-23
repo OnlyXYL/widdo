@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-<!--    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        &lt;!&ndash;升级 &ndash;&gt;
-        <version>3.0.5</version>
-        &lt;!&ndash; lookup parent from repository。为空时等于../pom.xml &ndash;&gt;
-        <relativePath/>
-    </parent>-->
-<!--    <parent>
-        <artifactId>widdo</artifactId>
-        <groupId>cn.widdo</groupId>
-        <version>305.2.2.0</version>
-    </parent>-->
+    <!--    <parent>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            &lt;!&ndash;升级 &ndash;&gt;
+            <version>3.0.5</version>
+            &lt;!&ndash; lookup parent from repository。为空时等于../pom.xml &ndash;&gt;
+            <relativePath/>
+        </parent>-->
+    <!--    <parent>
+            <artifactId>widdo</artifactId>
+            <groupId>cn.widdo</groupId>
+            <version>353.0.0.0</version>
+        </parent>-->
     <groupId>cn.widdo</groupId>
     <artifactId>widdo-bom</artifactId>
-    <version>305.2.2.0</version>
+    <version>353.0.0.0</version>
     <packaging>pom</packaging>
 
-    <name>widdo-dependencies</name>
-    <description>widdo dependencies</description>
+    <name>widdo-bom</name>
+    <description>widdo bom</description>
 
     <properties>
 
         <!--spring相关依赖包-->
-        <spring-boot-dependencies.version>3.0.5</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
-<!--        <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>-->
+        <spring-boot-dependencies.version>3.5.3</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0</spring-cloud-alibaba-dependencies.version>
         <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
-        <spring-framework-bom.version>6.0.7</spring-framework-bom.version>
-        <spring-security-bom.version>6.0.2</spring-security-bom.version>
+        <spring-framework-bom.version>6.2.8</spring-framework-bom.version>
+        <spring-security-bom.version>6.5.1</spring-security-bom.version>
 
         <!--Maven Plugin 相关组件-->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -55,7 +54,8 @@
         <google-guava.version>31.0.1-jre</google-guava.version>
 
         <!--辅助工具依赖包-->
-        <lombok.version>1.18.22</lombok.version>
+        <!---->
+        <lombok.version>1.18.36</lombok.version>
         <p6spy.version>3.9.1</p6spy.version>
 
         <!--阿里巴巴开源工具-->
@@ -75,8 +75,8 @@
         <aspectj.version>1.9.19</aspectj.version>
 
         <!--图数据库相关工具依赖包-->
-        <neo4j-java-driver.version>5.4.0</neo4j-java-driver.version>
-        <neo4j.version>5.4.0</neo4j.version>
+        <neo4j-java-driver.version>5.28.9</neo4j-java-driver.version>
+        <neo4j.version>5.26.5</neo4j.version>
         <!--start @since 302.1.0.0-->
         <neo4j-spark.version>4.1.5_for_spark_3</neo4j-spark.version>
         <!--        <neo4j-spark.version>4.1.1_for_spark_2.4</neo4j-spark.version>-->
@@ -88,7 +88,7 @@
         <!--系统信息-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <resource.delimiter>@</resource.delimiter>
 
         <!--wordnet相关-->
@@ -136,6 +136,17 @@
         <!--elasticsearch-->
         <elasticsearch.version>7.17.14</elasticsearch.version>
 
+        <!--配置参数-->
+        <!--为了便于Docker的构建，减少上下文影响，将所有Docker资源放置在同一个目录中进行构建-->
+        <!--docker信息改为自己的-->
+        <docker.build.directory>../../configurations/docker/context/target</docker.build.directory>
+        <docker.resource.name>${project.build.finalName}.${project.packaging}</docker.resource.name>
+        <docker.host>http://101.42.10.77:2375</docker.host>
+        <docker.namespace>101.42.10.77:5000</docker.namespace>
+        <!--        <docker.registry>https://hub.docker.com</docker.registry>-->
+        <docker.registry>101.42.10.77:5000</docker.registry>
+        <docker.username>widdo</docker.username>
+        <docker.password>widdo_docker</docker.password>
     </properties>
 
     <dependencyManagement>
@@ -266,11 +277,11 @@
             </dependency>
 
             <!--通用开源工具-->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
+            <!--            <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-lang3</artifactId>
+                            <version>${commons-lang3.version}</version>
+                        </dependency>-->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -356,6 +367,7 @@
                 <groupId>org.neo4j</groupId>
                 <artifactId>neo4j</artifactId>
                 <version>${neo4j.version}</version>
+                <scope>provided</scope>
                 <exclusions>
                     <!--解决漏洞：排除1.5.2，升级为1.5.4-->
                     <exclusion>
@@ -364,6 +376,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
             <!--Add dependencies that are necessary for testing the procedure.-->
             <dependency>
                 <groupId>org.neo4j.test</groupId>
@@ -595,14 +608,14 @@
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-module-junit4</artifactId>
                 <version>${powermock.version}</version>
-<!--                <scope>test</scope>-->
+                <!--                <scope>test</scope>-->
             </dependency>
 
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-api-mockito2</artifactId>
                 <version>${powermock.version}</version>
-<!--                <scope>test</scope>-->
+                <!--                <scope>test</scope>-->
             </dependency>
 
             <!--druid-->
@@ -647,222 +660,4 @@
             <url>http://localhost:8081/repository/semanticcube-snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <!--jdk8和更早版本，编译器指定jdk版本方式-->
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <!--                        <release>14</release>-->
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <!--打包跳过测试-->
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                    <configuration>
-                        <skipTests>true</skipTests>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                    <configuration>
-                        <attach>true</attach>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot-dependencies.version}</version>
-                    <configuration>
-                        <layers>
-                            <enabled>true</enabled>
-                        </layers>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>${versions-maven-plugin.version}</version>
-                    <configuration>
-                        <generateBackupPoms>false</generateBackupPoms>
-                    </configuration>
-                </plugin>
-                <!--<plugin>
-                    <groupId>pl.project13.maven</groupId>
-                    <artifactId>git-commit-id-plugin</artifactId>
-                    <version>${git-commit-id-plugin.version}</version>
-                    <configuration>
-                        &lt;!&ndash; 检查的仓库根目录，${project.basedir}：项目根目录，即包含pom.xml文件的目录 &ndash;&gt;
-                        <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-                        &lt;!&ndash; git属性文件中各属性前缀，默认值git，可以不配置 &ndash;&gt;
-                        <prefix>git</prefix>
-                        &lt;!&ndash; false：扫描路径时不打印更多信息，默认值false，可以不配置 &ndash;&gt;
-                        <verbose>false</verbose>
-                        &lt;!&ndash; 生成git属性文件，默认false：不生成 &ndash;&gt;
-                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                        &lt;!&ndash; 生成git属性文件路径及文件名，默认${project.build.outputDirectory}/git.properties &ndash;&gt;
-                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
-                        </generateGitPropertiesFilename>
-                        <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
-                        &lt;!&ndash; 生成git属性文件格式，默认值properties &ndash;&gt;
-                        &lt;!&ndash;                        <format>json</format>&ndash;&gt;
-                        &lt;!&ndash; 配置git-describe命令 &ndash;&gt;
-                        <gitDescribe>
-                            <skip>false</skip>
-                            <always>false</always>
-                            <dirty>-dirty</dirty>
-                        </gitDescribe>
-                    </configuration>
-                </plugin>-->
-                <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-archetype-plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-archetype-plugin</artifactId>
-                    <version>${maven-archetype-plugin.version}</version>
-                </plugin>
-
-                <!--checkstyle：校验代码规范-->
-                <!-- <plugin>
-                     <groupId>org.apache.maven.plugins</groupId>
-                     <artifactId>maven-checkstyle-plugin</artifactId>
-                     <version>${maven-checkstyle-plugin.vesion}</version>
-                     <configuration>
-                         <configLocation>../configurations/style/sun_checks.xml</configLocation>
-                         <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                         <consoleOutput>true</consoleOutput>
-                         <failsOnError>true</failsOnError>
-                     </configuration>
-                     <executions>
-                         <execution>
-                             <id>validate</id>
-                             <phase>validate</phase>
-                             <goals>
-                                 <goal>check</goal>
-                             </goals>
-                         </execution>
-                     </executions>
-                 </plugin>-->
-
-                <!--   <plugin>
-                       <groupId>com.github.shalousun</groupId>
-                       <artifactId>smart-doc-maven-plugin</artifactId>
-                       <version>2.6.0</version>
-                       <configuration>
-                           &lt;!&ndash;Specify the configuration file used to generate the document&ndash;&gt;
-                           <configFile>./src/main/resources/smart-doc.json</configFile>
-                           <projectName>test</projectName>
-                           &lt;!&ndash;smart-doc implements automatic analysis of the dependency tree to load the source code of third-party dependencies. If some framework dependency libraries are not loaded, an error is reported, then use excludes to exclude&ndash;&gt;
-                           <excludes>
-                               &lt;!&ndash;The format is: groupId: artifactId; refer to the following&ndash;&gt;
-                               &lt;!&ndash;Regular expressions can also be used, such as: com.google:.* &ndash;&gt;
-                               <exclude>com.google.guava:guava</exclude>
-                           </excludes>
-                           &lt;!&ndash;Since version 1.0.8, the plugin provides includes support&ndash;&gt;
-                           &lt;!&ndash;smart-doc can automatically analyze the dependency tree to load all dependent source code. In principle, it will affect the efficiency of document construction, so you can use includes to let the plugin load the components you configure.&ndash;&gt;
-                           <includes>
-                               &lt;!&ndash;The format is: groupId: artifactId; refer to the following&ndash;&gt;
-                               &lt;!&ndash;Regular expressions can also be used, such as: com.google:.* &ndash;&gt;
-                               <include>com.alibaba:fastjson</include>
-                               &lt;!&ndash; If includes is configured, paging using mybatis-plus requires the source package used by include &ndash;&gt;
-                               <include>com.baomidou:mybatis-plus-extension</include>
-                               &lt;!&ndash; If includes is configured, paging using jpa requires the source package used by include &ndash;&gt;
-                               <include>org.springframework.data:spring-data-commons</include>
-                           </includes>
-                       </configuration>
-                       <executions>
-                           <execution>
-                               &lt;!&ndash;Comment out phase if you don't need to start smart-doc when compiling&ndash;&gt;
-                               <phase>compile</phase>
-                               <goals>
-                                   &lt;!&ndash;smart-doc provides html, openapi, markdown, adoc and other goals&ndash;&gt;
-                                   <goal>html</goal>
-                               </goals>
-                           </execution>
-                       </executions>
-                   </plugin>-->
-
-                <!-- PMD插件 -->
-                <!--  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-pmd-plugin</artifactId>
-                      <version>3.19.0</version>
-                      <configuration>
-                          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-                          <targetJdk>${java.version}</targetJdk>
-                          <printFailingErrors>true</printFailingErrors>
-                          &lt;!&ndash; 代码检查规则,用不着全部，按需 &ndash;&gt;
-                          <rulesets>
-                              <ruleset>rulesets/java/ali-comment.xml</ruleset>
-                              &lt;!&ndash;                        <ruleset>rulesets/java/ali-concurrent.xml</ruleset>&ndash;&gt;
-                              <ruleset>rulesets/java/ali-constant.xml</ruleset>
-                              <ruleset>rulesets/java/ali-exception.xml</ruleset>
-                              <ruleset>rulesets/java/ali-flowcontrol.xml</ruleset>
-                              &lt;!&ndash;                        <ruleset>rulesets/java/ali-naming.xml</ruleset>&ndash;&gt;
-                              <ruleset>rulesets/java/ali-oop.xml</ruleset>
-                              &lt;!&ndash;                        <ruleset>rulesets/java/ali-orm.xml</ruleset>&ndash;&gt;
-                              &lt;!&ndash;                        <ruleset>rulesets/java/ali-other.xml</ruleset>&ndash;&gt;
-                              &lt;!&ndash;                        <ruleset>rulesets/java/ali-set.xml</ruleset>&ndash;&gt;
-                          </rulesets>
-                      </configuration>
-                      <executions>
-                          &lt;!&ndash;绑定pmd:check到verify生命周期&ndash;&gt;
-                          <execution>
-                              <id>pmd-check-package</id>
-                              <phase>package</phase>
-                              <goals>
-                                  <goal>check</goal>
-                              </goals>
-                          </execution>
-                          &lt;!&ndash; 绑定pmd:check到verify生命周期 &ndash;&gt;
-                          <execution>
-                              <id>pmd-check-verify</id>
-                              <phase>verify</phase>
-                              <goals>
-                                  <goal>check</goal>
-                              </goals>
-                          </execution>
-                          &lt;!&ndash; 绑定pmd:pmd到site生命周期 &ndash;&gt;
-                          <execution>
-                              <id>pmd-pmd-site</id>
-                              <phase>site</phase>
-                              <goals>
-                                  <goal>pmd</goal>
-                              </goals>
-                          </execution>
-                      </executions>
-                      &lt;!&ndash; p3c依赖 &ndash;&gt;
-                      <dependencies>
-                          <dependency>
-                              <groupId>com.alibaba.p3c</groupId>
-                              <artifactId>p3c-pmd</artifactId>
-                              <version>1.3.5</version>
-                          </dependency>
-                      </dependencies>
-                  </plugin>-->
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>

@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class JavaHiveReader extends AbstractHiveReader<Map<String, Object>, WiddoResultInterface> {
 
-	@Override
-	public WiddoResultInterface get(Map<String, Object> stringObjectMap) throws Exception {
-		return null;
-	}
+    @Override
+    public WiddoResultInterface get(Map<String, Object> stringObjectMap) throws Exception {
+        return null;
+    }
 
 }

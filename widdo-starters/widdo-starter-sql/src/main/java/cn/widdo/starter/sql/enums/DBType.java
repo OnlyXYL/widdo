@@ -9,19 +9,19 @@ package cn.widdo.starter.sql.enums;
  */
 public enum DBType {
 
-	/**
-	 * hive.
-	 */
-	HIVE,
+    /**
+     * hive.
+     */
+    HIVE,
 
-	/**
-	 * mysql.
-	 */
-	MYSQL,
+    /**
+     * mysql.
+     */
+    MYSQL,
 
-	/**
-	 * neo4j.
-	 */
-	NEO4j
+    /**
+     * neo4j.
+     */
+    NEO4j
 
 }

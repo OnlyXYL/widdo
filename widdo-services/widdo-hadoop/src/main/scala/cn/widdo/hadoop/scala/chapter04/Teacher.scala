@@ -11,8 +11,8 @@ package cn.widdo.hadoop.scala.chapter04
  */
 class Teacher(var name: String, var course: String) {
 
-  def this(name: String){
-    this(name,Teacher.course)
+  def this(name: String) {
+    this(name, Teacher.course)
 
   }
 }

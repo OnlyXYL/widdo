@@ -17,17 +17,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WiddoStudyApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(WiddoStudyApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WiddoStudyApplication.class);
 
-	@PostConstruct
-	private void postConstruct() {
-		LOG.info("#############################################");
-		LOG.info("[Widdo] |- Service [Widdo Study] Application.");
-		LOG.info("#############################################");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WiddoStudyApplication.class, args);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(WiddoStudyApplication.class, args);
-	}
+    @PostConstruct
+    private void postConstruct() {
+        LOG.info("#############################################");
+        LOG.info("[Widdo] |- Service [Widdo Study] Application.");
+        LOG.info("#############################################");
+    }
 
 }

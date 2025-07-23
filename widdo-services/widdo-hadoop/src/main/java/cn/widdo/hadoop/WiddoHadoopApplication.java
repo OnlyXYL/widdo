@@ -17,17 +17,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WiddoHadoopApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(WiddoHadoopApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WiddoHadoopApplication.class);
 
-	@PostConstruct
-	private void postConstruct() {
-		LOG.info("#############################################");
-		LOG.info("[Widdo] |- Service [Widdo Hadoop] Application.");
-		LOG.info("#############################################");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WiddoHadoopApplication.class, args);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(WiddoHadoopApplication.class, args);
-	}
+    @PostConstruct
+    private void postConstruct() {
+        LOG.info("#############################################");
+        LOG.info("[Widdo] |- Service [Widdo Hadoop] Application.");
+        LOG.info("#############################################");
+    }
 
 }

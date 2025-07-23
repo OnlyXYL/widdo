@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterSQL {
 
-	private final Logger log = LoggerFactory.getLogger(WiddoStarterSQL.class);
+    private final Logger log = LoggerFactory.getLogger(WiddoStarterSQL.class);
 
-	@PostConstruct
-	public final void postConstruct() {
-		log.info("[Widdo] |- Starters [Widdo Starter SQL].");
-	}
+    @PostConstruct
+    public final void postConstruct() {
+        log.info("[Widdo] |- Starters [Widdo Starter SQL].");
+    }
 
 }

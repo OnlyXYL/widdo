@@ -16,391 +16,417 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_WIDDO_HADOOP)
 public class WiddoHadoopProperties {
 
-	/**
-	 * enabled.
-	 */
-	private boolean enabled;
+    /**
+     * actuator.
+     */
+    private final Actuator actuator = new Actuator();
+    /**
+     * enabled.
+     */
+    private boolean enabled;
+    /**
+     * hdfs.
+     */
+    private Hdfs hdfs = new Hdfs();
+    /**
+     * user.
+     */
+    private String user;
 
-	/**
-	 * hdfs.
-	 */
-	private Hdfs hdfs = new Hdfs();
+    /**
+     * get hdfs key.
+     *
+     * @return return a hdfs key type of String
+     */
+    public Hdfs getHdfs() {
+        return hdfs;
+    }
 
-	/**
-	 * actuator.
-	 */
-	private final Actuator actuator = new Actuator();
+    /**
+     * set hdfs.
+     *
+     * @param hdfs hdfs
+     */
+    public void setHdfs(Hdfs hdfs) {
+        this.hdfs = hdfs;
+    }
 
-	/**
-	 * user.
-	 */
-	private String user;
+    /**
+     * 开关状态.
+     *
+     * @return 返回开关
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	/**
-	 * get hdfs key.
-	 * @return return a hdfs key type of String
-	 */
-	public Hdfs getHdfs() {
-		return hdfs;
-	}
+    /**
+     * 设置开关.
+     *
+     * @param enabled 开关
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	/**
-	 * set hdfs.
-	 * @param hdfs hdfs
-	 */
-	public void setHdfs(Hdfs hdfs) {
-		this.hdfs = hdfs;
-	}
+    /**
+     * 获取执行器.
+     *
+     * @return Actuator
+     */
+    public Actuator getActuator() {
+        return actuator;
+    }
 
-	/**
-	 * 开关状态.
-	 * @return 返回开关
-	 */
-	public boolean isEnabled() {
-		return enabled;
-	}
+    /**
+     * 获取用户.
+     *
+     * @return 用户
+     */
+    public String getUser() {
+        return user;
+    }
 
-	/**
-	 * 设置开关.
-	 * @param enabled 开关
-	 */
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    /**
+     * 设置用户.
+     *
+     * @param user
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	/**
-	 * 获取执行器.
-	 * @return Actuator
-	 */
-	public Actuator getActuator() {
-		return actuator;
-	}
+    public static class Actuator {
 
-	/**
-	 * 获取用户.
-	 * @return 用户
-	 */
-	public String getUser() {
-		return user;
-	}
+        /**
+         * reader.
+         */
+        private final Reader reader = new Reader();
+        /**
+         * writer.
+         */
+        private final Writer writer = new Writer();
+        /**
+         * 开启读写开关.
+         */
+        private Boolean enable = false;
+        /**
+         * the className of {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
+         */
+        private String className;
 
-	/**
-	 * 设置用户.
-	 * @param user
-	 */
-	public void setUser(String user) {
-		this.user = user;
-	}
+        /**
+         * return the switch of hadoop actuator.
+         *
+         * @return the result of switch
+         */
+        public Boolean getEnable() {
+            return enable;
+        }
 
-	public class Hdfs {
+        /**
+         * set the switch of hadoop actuator.
+         *
+         * @param enable the result of switch
+         */
+        public void setEnable(Boolean enable) {
+            this.enable = enable;
+        }
 
-		/**
-		 * 开关.
-		 */
-		private boolean enabled;
+        /**
+         * get the className of
+         * {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
+         *
+         * @return the classname of
+         * {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * NameNode.
-		 */
-		private NN nn = new NN();
+        /**
+         * set className of {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
+         *
+         * @param className set className of
+         *                  {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-		/**
-		 * 2nn:secondaryNameNode.
-		 */
-		private SNN snn = new SNN();
+        /**
+         * get reader.
+         *
+         * @return an instance of reader
+         */
+        public Reader getReader() {
+            return reader;
+        }
 
-		/**
-		 * 无参构造.
-		 */
-		public Hdfs() {
-		}
+        /**
+         * get writer.
+         *
+         * @return an instance of writer
+         */
+        public Writer getWriter() {
+            return writer;
+        }
 
-		/**
-		 * 构造方法.
-		 * @param enabled 开关状态
-		 * @param nn NameNode key
-		 * @param snn SecondaryNameNode key
-		 */
-		public Hdfs(final boolean enabled, final NN nn, final SNN snn) {
-			this.enabled = enabled;
-			this.nn = nn;
-			this.snn = snn;
-		}
+    }
 
-		/**
-		 * get a nameNode key.
-		 * @return return a nameNode key type of String
-		 */
-		public NN getNn() {
-			return nn;
-		}
+    public static class Reader {
 
-		/**
-		 * 设置NameNode.
-		 * @param nn nn
-		 */
-		public void setNn(NN nn) {
-			this.nn = nn;
-		}
+        /**
+         * className.
+         */
+        private String className;
 
-		/**
-		 * 获取 SecondaryNameNode key.
-		 * @return 获取一个SecondaryNameNode key
-		 */
-		public SNN getSnn() {
-			return snn;
-		}
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * 设置SecondaryNameNode key.
-		 * @param snn snn
-		 */
-		public void setSnn(SNN snn) {
-			this.snn = snn;
-		}
+        /**
+         * set className.
+         *
+         * @param className the className of neo4j Reader
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-		/**
-		 * 获取开关.
-		 * @return 返回开关
-		 */
-		public boolean isEnabled() {
-			return enabled;
-		}
+    }
 
-		/**
-		 * 设置开关.
-		 * @param enabled 开关
-		 */
-		public void setEnabled(boolean enabled) {
-			this.enabled = enabled;
-		}
+    public static class Writer {
 
-	}
+        /**
+         * className.
+         */
+        private String className;
 
-	public class NN {
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * NameNode web 地址.
-		 */
-		private String webAddr;
+        /**
+         * set className.
+         *
+         * @param className the className of Neo4j Writer
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-		/**
-		 * NameNode 内部地址.
-		 */
-		private String insideAddr;
+    }
 
-		/**
-		 * 无参构造.
-		 */
-		public NN() {
-		}
+    public class Hdfs {
 
-		/**
-		 * 有参构造.
-		 * @param webAddr webAddr
-		 * @param insideAddr insideAddr
-		 */
-		public NN(final String webAddr, final String insideAddr) {
-			this.webAddr = webAddr;
-			this.insideAddr = insideAddr;
-		}
+        /**
+         * 开关.
+         */
+        private boolean enabled;
 
-		/**
-		 * 获取 NameNode web地址.
-		 * @return 返回一个web地址
-		 */
-		public String getWebAddr() {
-			return webAddr;
-		}
+        /**
+         * NameNode.
+         */
+        private NN nn = new NN();
 
-		/**
-		 * 设置 NameNode web地址.
-		 * @param webAddr webAddr
-		 */
-		public void setWebAddr(String webAddr) {
-			this.webAddr = webAddr;
-		}
+        /**
+         * 2nn:secondaryNameNode.
+         */
+        private SNN snn = new SNN();
 
-		/**
-		 * 获取 NameNode 内部访问地址.
-		 * @return 返回NameNode内部访问地址
-		 */
-		public String getInsideAddr() {
-			return insideAddr;
-		}
+        /**
+         * 无参构造.
+         */
+        public Hdfs() {
+        }
 
-		/**
-		 * 设置 NameNode 内部访问地址.
-		 * @param insideAddr NameNode内部地址
-		 */
-		public void setInsideAddr(String insideAddr) {
-			this.insideAddr = insideAddr;
-		}
+        /**
+         * 构造方法.
+         *
+         * @param enabled 开关状态
+         * @param nn      NameNode key
+         * @param snn     SecondaryNameNode key
+         */
+        public Hdfs(final boolean enabled, final NN nn, final SNN snn) {
+            this.enabled = enabled;
+            this.nn = nn;
+            this.snn = snn;
+        }
 
-	}
+        /**
+         * get a nameNode key.
+         *
+         * @return return a nameNode key type of String
+         */
+        public NN getNn() {
+            return nn;
+        }
 
-	public class SNN {
+        /**
+         * 设置NameNode.
+         *
+         * @param nn nn
+         */
+        public void setNn(NN nn) {
+            this.nn = nn;
+        }
 
-		/**
-		 * SecondaryNameNode web地址.
-		 */
-		private String webAddr;
+        /**
+         * 获取 SecondaryNameNode key.
+         *
+         * @return 获取一个SecondaryNameNode key
+         */
+        public SNN getSnn() {
+            return snn;
+        }
 
-		/**
-		 * 无参构造.
-		 */
-		public SNN() {
-		}
+        /**
+         * 设置SecondaryNameNode key.
+         *
+         * @param snn snn
+         */
+        public void setSnn(SNN snn) {
+            this.snn = snn;
+        }
 
-		/**
-		 * 有参构造.
-		 * @param webAddr SecondaryNameNode Web 访问地址
-		 */
-		public SNN(final String webAddr) {
-			this.webAddr = webAddr;
-		}
+        /**
+         * 获取开关.
+         *
+         * @return 返回开关
+         */
+        public boolean isEnabled() {
+            return enabled;
+        }
 
-		/**
-		 * 获取 SecondaryNameNode web访问地址.
-		 * @return 返回一个 SecondaryNameNode web 访问地址
-		 */
-		public String getWebAddr() {
-			return webAddr;
-		}
+        /**
+         * 设置开关.
+         *
+         * @param enabled 开关
+         */
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
 
-		/**
-		 * 设置 SecondaryNameNode web访问地址.
-		 * @param webAddr SecondaryNameNode web 访问地址
-		 */
-		public void setWebAddr(String webAddr) {
-			this.webAddr = webAddr;
-		}
+    }
 
-	}
+    public class NN {
 
-	public static class Actuator {
+        /**
+         * NameNode web 地址.
+         */
+        private String webAddr;
 
-		/**
-		 * 开启读写开关.
-		 */
-		private Boolean enable = false;
+        /**
+         * NameNode 内部地址.
+         */
+        private String insideAddr;
 
-		/**
-		 * the className of {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
-		 */
-		private String className;
+        /**
+         * 无参构造.
+         */
+        public NN() {
+        }
 
-		/**
-		 * reader.
-		 */
-		private final Reader reader = new Reader();
+        /**
+         * 有参构造.
+         *
+         * @param webAddr    webAddr
+         * @param insideAddr insideAddr
+         */
+        public NN(final String webAddr, final String insideAddr) {
+            this.webAddr = webAddr;
+            this.insideAddr = insideAddr;
+        }
 
-		/**
-		 * writer.
-		 */
-		private final Writer writer = new Writer();
+        /**
+         * 获取 NameNode web地址.
+         *
+         * @return 返回一个web地址
+         */
+        public String getWebAddr() {
+            return webAddr;
+        }
 
-		/**
-		 * return the switch of hadoop actuator.
-		 * @return the result of switch
-		 */
-		public Boolean getEnable() {
-			return enable;
-		}
+        /**
+         * 设置 NameNode web地址.
+         *
+         * @param webAddr webAddr
+         */
+        public void setWebAddr(String webAddr) {
+            this.webAddr = webAddr;
+        }
 
-		/**
-		 * set the switch of hadoop actuator.
-		 * @param enable the result of switch
-		 */
-		public void setEnable(Boolean enable) {
-			this.enable = enable;
-		}
+        /**
+         * 获取 NameNode 内部访问地址.
+         *
+         * @return 返回NameNode内部访问地址
+         */
+        public String getInsideAddr() {
+            return insideAddr;
+        }
 
-		/**
-		 * get the className of
-		 * {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
-		 * @return the classname of
-		 * {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}
-		 */
-		public String getClassName() {
-			return className;
-		}
+        /**
+         * 设置 NameNode 内部访问地址.
+         *
+         * @param insideAddr NameNode内部地址
+         */
+        public void setInsideAddr(String insideAddr) {
+            this.insideAddr = insideAddr;
+        }
 
-		/**
-		 * set className of {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}.
-		 * @param className set className of
-		 * {@link cn.widdo.autoconfigure.hadoop.actuator.HadoopActuator}
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
+    }
 
-		/**
-		 * get reader.
-		 * @return an instance of reader
-		 */
-		public Reader getReader() {
-			return reader;
-		}
+    public class SNN {
 
-		/**
-		 * get writer.
-		 * @return an instance of writer
-		 */
-		public Writer getWriter() {
-			return writer;
-		}
+        /**
+         * SecondaryNameNode web地址.
+         */
+        private String webAddr;
 
-	}
+        /**
+         * 无参构造.
+         */
+        public SNN() {
+        }
 
-	public static class Reader {
+        /**
+         * 有参构造.
+         *
+         * @param webAddr SecondaryNameNode Web 访问地址
+         */
+        public SNN(final String webAddr) {
+            this.webAddr = webAddr;
+        }
 
-		/**
-		 * className.
-		 */
-		private String className;
+        /**
+         * 获取 SecondaryNameNode web访问地址.
+         *
+         * @return 返回一个 SecondaryNameNode web 访问地址
+         */
+        public String getWebAddr() {
+            return webAddr;
+        }
 
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
+        /**
+         * 设置 SecondaryNameNode web访问地址.
+         *
+         * @param webAddr SecondaryNameNode web 访问地址
+         */
+        public void setWebAddr(String webAddr) {
+            this.webAddr = webAddr;
+        }
 
-		/**
-		 * set className.
-		 * @param className the className of neo4j Reader
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
-
-	}
-
-	public static class Writer {
-
-		/**
-		 * className.
-		 */
-		private String className;
-
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
-
-		/**
-		 * set className.
-		 * @param className the className of Neo4j Writer
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
-
-	}
+    }
 
 }

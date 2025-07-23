@@ -14,13 +14,14 @@ import cn.widdo.autoconfigure.hadoop.HadoopRunner;
 @SuppressWarnings("ALL")
 public interface HadoopReader<T, R> extends HadoopRunner {
 
-	/**
-	 * 读取hdfs文件.
-	 * @param t
-	 * @return R
-	 * @author XYL
-	 * @date 2023/09/13 00:41:15
-	 */
-	R get(T t) throws Exception;
+    /**
+     * 读取hdfs文件.
+     *
+     * @param t
+     * @return R
+     * @author XYL
+     * @date 2023/09/13 00:41:15
+     */
+    R get(T t) throws Exception;
 
 }

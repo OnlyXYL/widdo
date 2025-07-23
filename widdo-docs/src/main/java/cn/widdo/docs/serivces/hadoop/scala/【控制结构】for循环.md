@@ -1,6 +1,6 @@
 `scala`控制结构之for循环，参考：`ControlStructure`
 
- - 循环List集合
+- 循环List集合
 
 ```
 //list
@@ -14,7 +14,8 @@ nums.foreach(println)
 
 ```
 
- - 循环Map集合
+- 循环Map集合
+
 ```
 //map
 val map = Map(

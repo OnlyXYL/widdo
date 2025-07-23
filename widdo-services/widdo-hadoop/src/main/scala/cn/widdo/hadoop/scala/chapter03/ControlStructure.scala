@@ -234,19 +234,6 @@ object ControlStructure {
   }
 
   /**
-   * if/else.
-   *
-   * @param bool
-   * @author XYL
-   * @date 2023/06/30 11:27:04
-   * @return void
-   */
-  def convertBoolean(bool: Boolean): Unit = {
-    val str: String = if (bool) "you said true" else "you said false"
-    println(str)
-  }
-
-  /**
    * match表达式作为方法体
    *
    * 效果等同于上面.
@@ -291,6 +278,19 @@ object ControlStructure {
       println("这里是 scala 的 异常 finally代码块.")
     }
 
+  }
+
+  /**
+   * if/else.
+   *
+   * @param bool
+   * @author XYL
+   * @date 2023/06/30 11:27:04
+   * @return void
+   */
+  def convertBoolean(bool: Boolean): Unit = {
+    val str: String = if (bool) "you said true" else "you said false"
+    println(str)
   }
 
 

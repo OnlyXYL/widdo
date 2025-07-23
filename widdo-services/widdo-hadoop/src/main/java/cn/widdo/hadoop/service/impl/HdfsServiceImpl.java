@@ -28,112 +28,106 @@ import java.util.Map;
 @WiddoHadoop
 public class HdfsServiceImpl implements HdfsService {
 
-	private static final Logger log = LoggerFactory.getLogger(HdfsServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(HdfsServiceImpl.class);
 
-	/**
-	 * hdfs nn uri: hdsf://hadoop102:8020.
-	 */
-	@Value("${widdo.hadoop.hdfs.nn.inside-addr}")
-	private String hdfsNnInsideAddr;
+    /**
+     * hdfs nn uri: hdsf://hadoop102:8020.
+     */
+    @Value("${widdo.hadoop.hdfs.nn.inside-addr}")
+    private String hdfsNnInsideAddr;
 
-	@Override
-	public WiddoResult mkdirs(Map<String, Object> params) {
+    @Override
+    public WiddoResult mkdirs(Map<String, Object> params) {
 
-		FileSystem fs = null;
+        FileSystem fs = null;
 
-		try {
+        try {
 
-			// 目录 /xiyou/huaguoshan
-			final String path = params.get("path").toString();
+            // 目录 /xiyou/huaguoshan
+            final String path = params.get("path").toString();
 
-			final String user = params.get("user").toString();
+            final String user = params.get("user").toString();
 
-			// 获取客户端
-			fs = HdfsClient.fs(hdfsNnInsideAddr, user);
+            // 获取客户端
+            fs = HdfsClient.fs(hdfsNnInsideAddr, user);
 
-			// 创建文件夹
-			fs.mkdirs(new Path(path));
+            // 创建文件夹
+            fs.mkdirs(new Path(path));
 
-			// 关闭资源
-			HdfsClient.close(fs);
+            // 关闭资源
+            HdfsClient.close(fs);
 
-			return WiddoResultInterface.HADOOP.HDFS.wrapper(null);
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			// 关闭资源
-			if (fs != null) {
-				HdfsClient.close(fs);
-			}
-		}
-	}
+            return WiddoResultInterface.HADOOP.HDFS.wrapper(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 关闭资源
+            if (fs != null) {
+                HdfsClient.close(fs);
+            }
+        }
+    }
 
-	@Override
-	public WiddoResult put(Map<String, Object> params) {
+    @Override
+    public WiddoResult put(Map<String, Object> params) {
 
-		FileSystem fs = null;
+        FileSystem fs = null;
 
-		try {
+        try {
 
-			final List<String> sourceList = (List<String>) params.get("source");
+            final List<String> sourceList = (List<String>) params.get("source");
 
-			final Path[] paths = HdfsClient.sources(sourceList);
+            final Path[] paths = HdfsClient.sources(sourceList);
 
-			final String target = params.get("target").toString();
+            final String target = params.get("target").toString();
 
-			final String user = params.get("user").toString();
+            final String user = params.get("user").toString();
 
-			// 获取客户端
-			fs = HdfsClient.fs(hdfsNnInsideAddr, user);
+            // 获取客户端
+            fs = HdfsClient.fs(hdfsNnInsideAddr, user);
 
-			// 文件上传。参数一：是否删除元数据，参数二：是否允许覆盖，参数三：源文件路径，参数四：目标路径
-			fs.copyFromLocalFile(true, true, paths, new Path(target));
+            // 文件上传。参数一：是否删除元数据，参数二：是否允许覆盖，参数三：源文件路径，参数四：目标路径
+            fs.copyFromLocalFile(true, true, paths, new Path(target));
 
-			return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			// 关闭资源
-			if (fs != null) {
-				HdfsClient.close(fs);
-			}
-		}
-	}
+            return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 关闭资源
+            if (fs != null) {
+                HdfsClient.close(fs);
+            }
+        }
+    }
 
-	@Override
-	public WiddoResult get(Map<String, Object> params) {
+    @Override
+    public WiddoResult get(Map<String, Object> params) {
 
-		FileSystem fs = null;
+        FileSystem fs = null;
 
-		try {
+        try {
 
-			final String source = params.get("source").toString();
+            final String source = params.get("source").toString();
 
-			final String target = params.get("target").toString();
+            final String target = params.get("target").toString();
 
-			final String user = params.get("user").toString();
+            final String user = params.get("user").toString();
 
-			// 获取客户端
-			fs = HdfsClient.fs(hdfsNnInsideAddr, user);
+            // 获取客户端
+            fs = HdfsClient.fs(hdfsNnInsideAddr, user);
 
-			// 文件上传。参数一：是否删除元数据，参数二：源文件路径，参数三：目标路径，参数四：？
-			fs.copyToLocalFile(false, new Path(source), new Path(target), false);
+            // 文件上传。参数一：是否删除元数据，参数二：源文件路径，参数三：目标路径，参数四：？
+            fs.copyToLocalFile(false, new Path(source), new Path(target), false);
 
-			return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			// 关闭资源
-			if (fs != null) {
-				HdfsClient.close(fs);
-			}
-		}
-	}
+            return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 关闭资源
+            if (fs != null) {
+                HdfsClient.close(fs);
+            }
+        }
+    }
 
 }

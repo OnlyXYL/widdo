@@ -18,18 +18,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ExceptionServiceImpl implements ExceptionService {
 
-	@Override
-	public WiddoResult test() {
+    @Override
+    public WiddoResult test() {
 
-		try {
-			throw new BaseException(IResultInterface.StudyResultEnum.FAIL);
-		}
-		catch (BaseException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
-		}
-	}
+        try {
+            throw new BaseException(IResultInterface.StudyResultEnum.FAIL);
+        } catch (BaseException e) {
+            throw new RuntimeException(e);
+        } finally {
+            return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
+        }
+    }
 
 }

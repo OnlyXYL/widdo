@@ -1,4 +1,3 @@
-
 /**
  * hanlp service package.
  *

@@ -13,9 +13,9 @@ import cn.widdo.autoconfigure.hadoop.writer.HiveWriter;
  */
 public abstract class AbstractHiveWriterDecorator<T, R> extends AbstractHiveWriter<T, R> {
 
-	/**
-	 * hiveWriter.
-	 */
-	protected HiveWriter<T, R> hiveWriter;
+    /**
+     * hiveWriter.
+     */
+    protected HiveWriter<T, R> hiveWriter;
 
 }

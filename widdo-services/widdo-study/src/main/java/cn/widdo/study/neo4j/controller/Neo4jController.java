@@ -26,12 +26,6 @@ import java.util.Map;
 public class Neo4jController extends BaseController {
 
     private static final Logger LOG = LoggerFactory.getLogger(Neo4jController.class);
-
-    @PostConstruct
-    private void postConstruct() {
-        LOG.info("[Widdo] |- Service [Widdo Study] Neo4jController.");
-    }
-
     /**
      * service.
      */
@@ -40,6 +34,11 @@ public class Neo4jController extends BaseController {
     @Autowired
     public Neo4jController(final Neo4jJdbcService neo4jJdbcService) {
         this.neo4jJdbcService = neo4jJdbcService;
+    }
+
+    @PostConstruct
+    private void postConstruct() {
+        LOG.info("[Widdo] |- Service [Widdo Study] Neo4jController.");
     }
 
     /**
@@ -113,7 +112,15 @@ public class Neo4jController extends BaseController {
         return this.validateAndRun(params, neo4jJdbcService::delete);
     }
 
-    @PostMapping(value = {"/read", "/write", "/run", "/write/triples", "/delete"})
+    /**
+     * neo4j操作接口.
+     *
+     * @param params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2025/07/21 00:06:41
+     */
+    @PostMapping(value = {"/operation"})
     @ResponseStatus(HttpStatus.OK)
     public WiddoResult operation(@RequestBody Map<String, Object> params) {
         switch (

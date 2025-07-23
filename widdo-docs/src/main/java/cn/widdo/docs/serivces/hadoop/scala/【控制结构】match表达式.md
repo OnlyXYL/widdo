@@ -2,7 +2,7 @@
 
 > 主要包括两种用法：
 
- - **模式匹配**
+- **模式匹配**
 
 > ```
 > val i = true 
@@ -14,7 +14,8 @@
 > }
 > ```
 
- - **`match` 作为方法体**
+- **`match` 作为方法体**
+
 > ```
 > def convertBooleanToStringMessage(bool: Boolean): Unit = bool match {
 >   

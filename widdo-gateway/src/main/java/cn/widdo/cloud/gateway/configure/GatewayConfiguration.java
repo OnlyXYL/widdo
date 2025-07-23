@@ -28,44 +28,47 @@ import java.util.List;
 @Configuration
 public class GatewayConfiguration {
 
-	private static final Logger log = LoggerFactory.getLogger(GatewayConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(GatewayConfiguration.class);
 
-	/**
-	 * 自定义异常处理[@@]注册Bean时依赖的Bean，会从容器中直接获取，所以直接注入即可.
-	 * @param viewResolversProvider
-	 * @param serverCodecConfigurer
-	 * @return an instance typed {@link ErrorWebExceptionHandler}
-	 */
-	@Primary
-	@Bean
-	@Order(Ordered.HIGHEST_PRECEDENCE)
-	public ErrorWebExceptionHandler errorWebExceptionHandler(ObjectProvider<List<ViewResolver>> viewResolversProvider,
-			ServerCodecConfigurer serverCodecConfigurer) {
+    /**
+     * 自定义异常处理[@@]注册Bean时依赖的Bean，会从容器中直接获取，所以直接注入即可.
+     *
+     * @param viewResolversProvider
+     * @param serverCodecConfigurer
+     * @return an instance typed {@link ErrorWebExceptionHandler}
+     */
+    @Primary
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public ErrorWebExceptionHandler errorWebExceptionHandler(ObjectProvider<List<ViewResolver>> viewResolversProvider,
+                                                             ServerCodecConfigurer serverCodecConfigurer) {
 
-		GatewayExceptionHandler jsonExceptionHandler = new GatewayExceptionHandler();
-		jsonExceptionHandler.setViewResolvers(viewResolversProvider.getIfAvailable(Collections::emptyList));
-		jsonExceptionHandler.setMessageWriters(serverCodecConfigurer.getWriters());
-		jsonExceptionHandler.setMessageReaders(serverCodecConfigurer.getReaders());
-		log.debug("Init Json Exception Handler Instead Default ErrorWebExceptionHandler Success");
-		return jsonExceptionHandler;
-	}
+        GatewayExceptionHandler jsonExceptionHandler = new GatewayExceptionHandler();
+        jsonExceptionHandler.setViewResolvers(viewResolversProvider.getIfAvailable(Collections::emptyList));
+        jsonExceptionHandler.setMessageWriters(serverCodecConfigurer.getWriters());
+        jsonExceptionHandler.setMessageReaders(serverCodecConfigurer.getReaders());
+        log.debug("Init Json Exception Handler Instead Default ErrorWebExceptionHandler Success");
+        return jsonExceptionHandler;
+    }
 
-	/**
-	 * WebProperties.Resources.
-	 * @return an instance typed {@link WebProperties.Resources}
-	 */
-	@Bean
-	public WebProperties.Resources resources() {
-		return new WebProperties.Resources();
-	}
+    /**
+     * WebProperties.Resources.
+     *
+     * @return an instance typed {@link WebProperties.Resources}
+     */
+    @Bean
+    public WebProperties.Resources resources() {
+        return new WebProperties.Resources();
+    }
 
-	/**
-	 * ErrorProperties.
-	 * @return an instance typed {@link ErrorProperties}
-	 */
-	@Bean
-	public ErrorProperties errorProperties() {
-		return new ErrorProperties();
-	}
+    /**
+     * ErrorProperties.
+     *
+     * @return an instance typed {@link ErrorProperties}
+     */
+    @Bean
+    public ErrorProperties errorProperties() {
+        return new ErrorProperties();
+    }
 
 }

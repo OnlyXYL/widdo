@@ -14,186 +14,196 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_WIDDO_BABELNET)
 public class WiddoBabelNetProperties {
 
-	/**
-	 * 开启babelnet开关.
-	 */
-	private Boolean enabled = false;
+    /**
+     * actuator.
+     */
+    private final Actuator actuator = new Actuator();
+    /**
+     * 开启babelnet开关.
+     */
+    private Boolean enabled = false;
+    /**
+     * apiType.
+     */
+    private String apiType;
 
-	/**
-	 * apiType.
-	 */
-	private String apiType;
+    /**
+     * get enabled.
+     *
+     * @return a result type of boolean,which tell you if the neo4j is open or close.
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
 
-	/**
-	 * actuator.
-	 */
-	private final Actuator actuator = new Actuator();
+    /**
+     * set babelNet actuator to enabled.
+     *
+     * @param enabled enabled
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	/**
-	 * get enabled.
-	 * @return a result type of boolean,which tell you if the neo4j is open or close.
-	 */
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    /**
+     * return api type.
+     *
+     * @return a result type of String
+     */
+    public String getApiType() {
+        return apiType;
+    }
 
-	/**
-	 * return api type.
-	 * @return a result type of String
-	 */
-	public String getApiType() {
-		return apiType;
-	}
+    /**
+     * set babelNet apiType.
+     *
+     * @param apiType apiType
+     */
+    public void setApiType(String apiType) {
+        this.apiType = apiType;
+    }
 
-	/**
-	 * actuator.
-	 * @return {@link Actuator}
-	 */
-	public Actuator getActuator() {
-		return actuator;
-	}
+    /**
+     * actuator.
+     *
+     * @return {@link Actuator}
+     */
+    public Actuator getActuator() {
+        return actuator;
+    }
 
-	/**
-	 * set babelNet actuator to enabled.
-	 * @param enabled enabled
-	 */
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    public static class Actuator {
 
-	/**
-	 * set babelNet apiType.
-	 * @param apiType apiType
-	 */
-	public void setApiType(String apiType) {
-		this.apiType = apiType;
-	}
+        /**
+         * reader.
+         */
+        private final Reader reader = new Reader();
+        /**
+         * writer.
+         */
+        private final Writer writer = new Writer();
+        /**
+         * 开启读写开关.
+         */
+        private Boolean enabled = false;
+        /**
+         * the className of
+         * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
+         */
+        private String className;
 
-	public static class Actuator {
+        /**
+         * return the switch of neo4j actuator.
+         *
+         * @return the result of switch
+         */
+        public Boolean getEnabled() {
+            return enabled;
+        }
 
-		/**
-		 * 开启读写开关.
-		 */
-		private Boolean enabled = false;
+        /**
+         * set the switch of neo4j actuator.
+         *
+         * @param enabled the result of switch
+         */
+        public void setEnabled(Boolean enabled) {
+            this.enabled = enabled;
+        }
 
-		/**
-		 * the className of
-		 * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
-		 */
-		private String className;
+        /**
+         * get the className of
+         * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
+         *
+         * @return the classname of
+         * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * reader.
-		 */
-		private final Reader reader = new Reader();
+        /**
+         * set className of
+         * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
+         *
+         * @param className set className of
+         *                  {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-		/**
-		 * writer.
-		 */
-		private final Writer writer = new Writer();
+        /**
+         * get reader.
+         *
+         * @return an instance of reader
+         */
+        public Reader getReader() {
+            return reader;
+        }
 
-		/**
-		 * return the switch of neo4j actuator.
-		 * @return the result of switch
-		 */
-		public Boolean getEnabled() {
-			return enabled;
-		}
+        /**
+         * get writer.
+         *
+         * @return an instance of writer
+         */
+        public Writer getWriter() {
+            return writer;
+        }
 
-		/**
-		 * set the switch of neo4j actuator.
-		 * @param enabled the result of switch
-		 */
-		public void setEnabled(Boolean enabled) {
-			this.enabled = enabled;
-		}
+    }
 
-		/**
-		 * get the className of
-		 * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
-		 * @return the classname of
-		 * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}
-		 */
-		public String getClassName() {
-			return className;
-		}
+    public static class Reader {
 
-		/**
-		 * set className of
-		 * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}.
-		 * @param className set className of
-		 * {@link cn.widdo.autoconfigure.babelnet.actuator.BabelNetActuator}
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
+        /**
+         * className.
+         */
+        private String className;
 
-		/**
-		 * get reader.
-		 * @return an instance of reader
-		 */
-		public Reader getReader() {
-			return reader;
-		}
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * get writer.
-		 * @return an instance of writer
-		 */
-		public Writer getWriter() {
-			return writer;
-		}
+        /**
+         * set className.
+         *
+         * @param className the className of neo4j Reader
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-	}
+    }
 
-	public static class Reader {
+    public static class Writer {
 
-		/**
-		 * className.
-		 */
-		private String className;
+        /**
+         * className.
+         */
+        private String className;
 
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * set className.
-		 * @param className the className of neo4j Reader
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
+        /**
+         * set className.
+         *
+         * @param className the className of Neo4j Writer
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-	}
-
-	public static class Writer {
-
-		/**
-		 * className.
-		 */
-		private String className;
-
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
-
-		/**
-		 * set className.
-		 * @param className the className of Neo4j Writer
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
-
-	}
+    }
 
 }

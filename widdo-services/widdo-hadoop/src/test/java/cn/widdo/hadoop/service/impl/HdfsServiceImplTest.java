@@ -17,17 +17,17 @@ import java.util.HashMap;
  */
 public class HdfsServiceImplTest {
 
-	@InjectMocks
-	HdfsServiceImpl hdfsService;
+    @InjectMocks
+    HdfsServiceImpl hdfsService;
 
-	@Test
-	public void put() throws Exception {
+    @Test
+    public void put() throws Exception {
 
-		PowerMockito.when(hdfsService.put(Mockito.anyMap())).thenReturn(WiddoResultInterface.HADOOP.HDFS.wrapper(null));
+        PowerMockito.when(hdfsService.put(Mockito.anyMap())).thenReturn(WiddoResultInterface.HADOOP.HDFS.wrapper(null));
 
-		final WiddoResult result = hdfsService.put(new HashMap<>());
+        final WiddoResult result = hdfsService.put(new HashMap<>());
 
-		Assert.assertEquals("结果不是预期", WiddoResultInterface.HADOOP.HDFS.wrapper(null), result);
-	}
+        Assert.assertEquals("结果不是预期", WiddoResultInterface.HADOOP.HDFS.wrapper(null), result);
+    }
 
 }

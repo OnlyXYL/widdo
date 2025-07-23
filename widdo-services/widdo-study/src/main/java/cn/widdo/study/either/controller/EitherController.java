@@ -24,21 +24,22 @@ import java.util.Map;
 @AllArgsConstructor
 public class EitherController extends BaseController {
 
-	/**
-	 * ` eitherService.
-	 */
-	private final EitherService eitherService;
+    /**
+     * ` eitherService.
+     */
+    private final EitherService eitherService;
 
-	/**
-	 * test.
-	 * @param params
-	 * @return cn.widdo.assistant.result.WiddoResult
-	 * @author XYL
-	 * @date 2023/07/31 10:04:23
-	 */
-	@PostMapping(value = "/test")
-	public WiddoResult testEither(@RequestBody Map<String, Object> params) throws Exception {
-		return WiddoResult.response(Either.liftWithValue(eitherService::testEither, "input").apply(params));
-	}
+    /**
+     * test.
+     *
+     * @param params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2023/07/31 10:04:23
+     */
+    @PostMapping(value = "/test")
+    public WiddoResult testEither(@RequestBody Map<String, Object> params) throws Exception {
+        return WiddoResult.response(Either.liftWithValue(eitherService::testEither, "input").apply(params));
+    }
 
 }

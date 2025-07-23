@@ -38,8 +38,8 @@ services:
     command:
       - --spring.profiles.active=env
       - --spring.config.location=../../nacos/gateway.yaml
-    #指定网络，所有服务处于同一网络
-    #networks:
+      #指定网络，所有服务处于同一网络
+      #networks:
       #- my_network
     #可以设置依赖的容器。这里取消，把数据库的单独拆出来
   #    depends_on:

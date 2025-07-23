@@ -59,20 +59,20 @@ object WiddoArrayBuffer {
     ints.foreach(println)
 
     //追加多个元素
-    ints.appendAll(List(2,3))
+    ints.appendAll(List(2, 3))
 
-    ints.appendAll(Seq(4,5))
+    ints.appendAll(Seq(4, 5))
 
     println("追加多个元素：")
     ints.foreach(println)
 
     //指定位置插入元素
-    ints.insert(0,10)
+    ints.insert(0, 10)
     println("指定位置插入元素：")
     ints.foreach(println)
 
     //指定位置插入多个元素
-    ints.insertAll(0,List(1,2))
+    ints.insertAll(0, List(1, 2))
     println("指定位置插入多个元素：")
     ints.foreach(println)
 
@@ -87,7 +87,7 @@ object WiddoArrayBuffer {
     ints.foreach(println)
 
     //从指定位置开始，移除指定个数的元素
-    ints.remove(0,3)
+    ints.remove(0, 3)
     println(s"从 ${0}开始，移除${3}个元素")
     ints.foreach(println)
 

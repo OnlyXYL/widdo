@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterHadoop {
 
-	private final Logger log = LoggerFactory.getLogger(WiddoStarterHadoop.class);
+    private final Logger log = LoggerFactory.getLogger(WiddoStarterHadoop.class);
 
-	@PostConstruct
-	public final void postConstruct() {
-		log.info("[Widdo] |- Starters [Widdo Starter Hadoop].");
-	}
+    @PostConstruct
+    public final void postConstruct() {
+        log.info("[Widdo] |- Starters [Widdo Starter Hadoop].");
+    }
 
 }

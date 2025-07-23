@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * ThreadController
+ * ThreadController.
  *
  * @author XYL
  * @date 2024/02/26 18:53
@@ -22,22 +22,24 @@ import java.util.Map;
 @RequestMapping(value = "/thread")
 public class ThreadController extends BaseController {
 
+    /**
+     * threadService.
+     */
     private final ThreadService threadService;
 
 
     @Autowired
-    public ThreadController(ThreadService threadService) {
+    public ThreadController(final ThreadService threadService) {
         this.threadService = threadService;
     }
 
     /**
-     * runnable
+     * runnable.
      *
      * @param params
-     *
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @date 2024/02/26 19:14:29
-     * @return cn.widdo.assistant.result.WiddoResult
      */
     @PostMapping(value = "runnable")
     public WiddoResult runnable(@RequestBody Map<String, Object> params) {
@@ -45,16 +47,28 @@ public class ThreadController extends BaseController {
     }
 
     /**
-     * callable
+     * callable.
      *
      * @param params
-     *
+     * @return cn.widdo.assistant.result.WiddoResult
      * @author XYL
      * @date 2024/02/26 19:14:29
-     * @return cn.widdo.assistant.result.WiddoResult
      */
     @PostMapping(value = "callable")
     public WiddoResult callable(@RequestBody Map<String, Object> params) {
         return this.validateAndRun(params, threadService::callable);
+    }
+
+    /**
+     * 有序性：重排序引起.
+     *
+     * @param params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2024/06/14 16:29:39
+     */
+    @PostMapping(value = "/reorder")
+    public WiddoResult reorder(@RequestBody Map<String, Object> params) {
+        return this.validateAndRun(params, threadService::reorder);
     }
 }

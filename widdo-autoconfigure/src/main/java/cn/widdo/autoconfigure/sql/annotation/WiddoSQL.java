@@ -13,7 +13,7 @@ import java.lang.annotation.*;
  * @since 305.2.2.0
  */
 @SuppressWarnings("ALL")
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnSQLParseEnabled

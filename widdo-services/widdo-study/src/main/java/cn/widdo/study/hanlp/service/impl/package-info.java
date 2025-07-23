@@ -1,4 +1,3 @@
-
 /**
  * hanlp serviceImpl package.
  *

@@ -36,9 +36,10 @@ object Chapter02 {
 
     //仅包含空格和注释，这是个空行，scala会进行忽略
 
-    val a: Int = 1;val b : Int = 2
+    val a: Int = 1;
+    val b: Int = 2
 
-    print(a,b)
+    print(a, b)
   }
 
 }

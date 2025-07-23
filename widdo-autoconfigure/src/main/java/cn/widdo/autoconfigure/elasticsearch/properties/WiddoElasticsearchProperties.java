@@ -14,12 +14,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_WIDDO_ELASTICSEARCH)
 public class WiddoElasticsearchProperties {
 
+    /**
+     * 开关.
+     */
     private Boolean enabled;
 
     /**
-     * uris.集群时逗号分割.
+     * hosts.集群时逗号分割.
      */
-    private String uris;
+    private String hosts;
 
     /**
      * 用户名.
@@ -29,22 +32,7 @@ public class WiddoElasticsearchProperties {
     /**
      * 密码.
      */
-    private String passsword;
-
-    /**
-     * 构造方法.
-     *
-     * @param enabled   enabled
-     * @param uris      uris
-     * @param username  username
-     * @param passsword password
-     */
-    public WiddoElasticsearchProperties(Boolean enabled, String uris, String username, String passsword) {
-        this.enabled = enabled;
-        this.uris = uris;
-        this.username = username;
-        this.passsword = passsword;
-    }
+    private String password;
 
     /**
      * 获取开关.
@@ -65,21 +53,21 @@ public class WiddoElasticsearchProperties {
     }
 
     /**
-     * 获取uris.
+     * 获取hosts.
      *
      * @return 字符串
      */
-    public String getUris() {
-        return uris;
+    public String getHosts() {
+        return hosts;
     }
 
     /**
-     * 设置uris.
+     * 设置hosts.
      *
-     * @param uris uris
+     * @param hosts hosts
      */
-    public void setUris(String uris) {
-        this.uris = uris;
+    public void setHosts(String hosts) {
+        this.hosts = hosts;
     }
 
     /**
@@ -105,16 +93,16 @@ public class WiddoElasticsearchProperties {
      *
      * @return 密码
      */
-    public String getPasssword() {
-        return passsword;
+    public String getPassword() {
+        return password;
     }
 
     /**
      * 设置秘密.
      *
-     * @param passsword 密码
+     * @param password 密码
      */
-    public void setPasssword(String passsword) {
-        this.passsword = passsword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -14,19 +14,17 @@ package cn.widdo.hadoop.scala.chapter04
 class Person(var name: String, var age: Int = 18, var country: String = "北京") extends Action with Likes {
 
   /**
-   * 默认访问权限为 public
-   */
-  var address = "北京"
-
-  /**
    * 对象私有字段
    */
   private[this] val HOME = "对象私有字段"
-
   /**
    * 私有字段
    */
   private val myProperty = "私有字段，只能在类的内部使用"
+  /**
+   * 默认访问权限为 public
+   */
+  var address = "北京"
 
   /**
    * 辅助构造器，必须以主构造器或者其他的辅助构造器开始

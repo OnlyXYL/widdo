@@ -13,9 +13,9 @@ import cn.widdo.autoconfigure.hadoop.reader.HiveReader;
  */
 public abstract class AbstractHiveReaderDecorator<T, R> extends AbstractHiveReader<T, R> {
 
-	/**
-	 * hiveReader.
-	 */
-	protected HiveReader<T, R> hiveReader;
+    /**
+     * hiveReader.
+     */
+    protected HiveReader<T, R> hiveReader;
 
 }

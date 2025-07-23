@@ -26,33 +26,33 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class HiveSQLParser extends AbstractSQLParserDecorator<Map<String, Object>, List<Sql>> {
 
-	private final Logger logger = LoggerFactory.getLogger(HiveSQLParser.class);
+    private final Logger logger = LoggerFactory.getLogger(HiveSQLParser.class);
 
-	@Override
-	public boolean support(DBType dbType) {
-		return DBType.HIVE.equals(dbType);
-	}
+    @Override
+    public boolean support(DBType dbType) {
+        return DBType.HIVE.equals(dbType);
+    }
 
-	@Override
-	public List<Sql> parse(Map<String, Object> params) {
+    @Override
+    public List<Sql> parse(Map<String, Object> params) {
 
-		final String sql = params.get("sql").toString();
+        final String sql = params.get("sql").toString();
 
-		logger.info("------------【Hive SQL 解析】，SQL：{} -------------", sql);
+        logger.info("------------【Hive SQL 解析】，SQL：{} -------------", sql);
 
-		return parseSQL(sql);
-	}
+        return parseSQL(sql);
+    }
 
-	@Override
-	protected HiveSchemaStatVisitor visitor(String sql) {
-		final SQLStatementParser parser = SQLParserUtils.createSQLStatementParser(sql, DbType.hive);
+    @Override
+    protected HiveSchemaStatVisitor visitor(String sql) {
+        final SQLStatementParser parser = SQLParserUtils.createSQLStatementParser(sql, DbType.hive);
 
-		// 解析sql
-		final SQLStatement statement = parser.parseStatement();
+        // 解析sql
+        final SQLStatement statement = parser.parseStatement();
 
-		final HiveSchemaStatVisitor visitor = (HiveSchemaStatVisitor) SQLUtils.createSchemaStatVisitor(DbType.hive);
-		statement.accept(visitor);
-		return visitor;
-	}
+        final HiveSchemaStatVisitor visitor = (HiveSchemaStatVisitor) SQLUtils.createSchemaStatVisitor(DbType.hive);
+        statement.accept(visitor);
+        return visitor;
+    }
 
 }

@@ -31,125 +31,123 @@ import java.util.List;
  */
 public class HdfsClient {
 
-	/**
-	 * hdfs schema.
-	 */
-	public static final String HDFS_SCHEMA = "hdfs://";
+    /**
+     * hdfs schema.
+     */
+    public static final String HDFS_SCHEMA = "hdfs://";
 
-	/**
-	 * 无参构造.
-	 */
-	protected HdfsClient() {
-		throw new UnsupportedOperationException("工具类不能被实例化.");
-	}
+    /**
+     * 无参构造.
+     */
+    protected HdfsClient() {
+        throw new UnsupportedOperationException("工具类不能被实例化.");
+    }
 
-	/**
-	 * 获取客户端.
-	 * <p>
-	 * 参数为nameNode地址,例如：hdsf://hadoop102:8020
-	 * @param nnInsideAddr nnInsideAddr
-	 * @param user 用户
-	 * @return org.apache.hadoop.fs.FileSystem
-	 * @author XYL
-	 * @date 2023/09/08 00:50:26
-	 */
-	public static FileSystem fs(String nnInsideAddr, String user) {
+    /**
+     * 获取客户端.
+     * <p>
+     * 参数为nameNode地址,例如：hdsf://hadoop102:8020
+     *
+     * @param nnInsideAddr nnInsideAddr
+     * @param user         用户
+     * @return org.apache.hadoop.fs.FileSystem
+     * @author XYL
+     * @date 2023/09/08 00:50:26
+     */
+    public static FileSystem fs(String nnInsideAddr, String user) {
 
-		try {
+        try {
 
-			if (!nnInsideAddr.startsWith(HDFS_SCHEMA)) {
-				nnInsideAddr = String.format("%s%s", HDFS_SCHEMA, nnInsideAddr);
-			}
+            if (!nnInsideAddr.startsWith(HDFS_SCHEMA)) {
+                nnInsideAddr = String.format("%s%s", HDFS_SCHEMA, nnInsideAddr);
+            }
 
-			// 连接集群nameNode
-			final URI uri = new URI(nnInsideAddr);
+            // 连接集群nameNode
+            final URI uri = new URI(nnInsideAddr);
 
-			// 创建一个配置文件
-			final Configuration configuration = new Configuration(false);
+            // 创建一个配置文件
+            final Configuration configuration = new Configuration(false);
 
-			if (StringUtils.isBlank(user)) {
-				return FileSystem.get(uri, configuration);
-			}
+            if (StringUtils.isBlank(user)) {
+                return FileSystem.get(uri, configuration);
+            }
 
-			// 获取客户端对象
-			return FileSystem.get(uri, configuration, user);
+            // 获取客户端对象
+            return FileSystem.get(uri, configuration, user);
 
-		}
-		catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	/**
-	 * 获取客户端.
-	 * @param nnInsideAddr
-	 * @return org.apache.hadoop.fs.FileSystem
-	 * @author XYL
-	 * @date 2023/09/08 00:57:09
-	 */
-	public static FileSystem fs(String nnInsideAddr) {
+    /**
+     * 获取客户端.
+     *
+     * @param nnInsideAddr
+     * @return org.apache.hadoop.fs.FileSystem
+     * @author XYL
+     * @date 2023/09/08 00:57:09
+     */
+    public static FileSystem fs(String nnInsideAddr) {
 
-		try {
-			if (!nnInsideAddr.startsWith(HDFS_SCHEMA)) {
-				nnInsideAddr = String.format("%s%s", HDFS_SCHEMA, nnInsideAddr);
-			}
+        try {
+            if (!nnInsideAddr.startsWith(HDFS_SCHEMA)) {
+                nnInsideAddr = String.format("%s%s", HDFS_SCHEMA, nnInsideAddr);
+            }
 
-			// 连接集群nameNode
-			final URI uri = new URI(nnInsideAddr);
+            // 连接集群nameNode
+            final URI uri = new URI(nnInsideAddr);
 
-			// 创建一个配置文件
-			final Configuration configuration = new Configuration(false);
+            // 创建一个配置文件
+            final Configuration configuration = new Configuration(false);
 
-			// 获取客户端对象
-			return FileSystem.get(uri, configuration);
+            // 获取客户端对象
+            return FileSystem.get(uri, configuration);
 
-		}
-		catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	/**
-	 * 释放资源.
-	 * @param fs
-	 * @author XYL
-	 * @date 2023/09/08 00:55:00
-	 */
-	public static void close(FileSystem fs) {
-		try {
-			if (fs != null) {
-				fs.close();
-			}
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    /**
+     * 释放资源.
+     *
+     * @param fs
+     * @author XYL
+     * @date 2023/09/08 00:55:00
+     */
+    public static void close(FileSystem fs) {
+        try {
+            if (fs != null) {
+                fs.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	/**
-	 * 源文件转换path.
-	 * @param sources 源文件
-	 * @return org.apache.hadoop.fs.Path[]
-	 * @author XYL
-	 * @date 2023/09/08 15:43:15
-	 */
-	public static Path[] sources(List<String> sources) {
+    /**
+     * 源文件转换path.
+     *
+     * @param sources 源文件
+     * @return org.apache.hadoop.fs.Path[]
+     * @author XYL
+     * @date 2023/09/08 15:43:15
+     */
+    public static Path[] sources(List<String> sources) {
 
-		final Path[] paths = new Path[sources.size()];
+        final Path[] paths = new Path[sources.size()];
 
-		for (int i = 0; i < sources.size(); i++) {
-			paths[i] = new Path(sources.get(i));
-		}
-		return paths;
-	}
+        for (int i = 0; i < sources.size(); i++) {
+            paths[i] = new Path(sources.get(i));
+        }
+        return paths;
+    }
 
 }

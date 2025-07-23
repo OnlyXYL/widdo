@@ -30,9 +30,9 @@ import cn.widdo.starter.neo4j.validator.ParamsValidator;
 @SuppressWarnings("ALL")
 public abstract class AbstractOrientdbReaderDecorator<T, R> extends ParamsValidator implements OrientdbReader<T, R> {
 
-	/**
-	 * the implement of OrientdbReader which you want to add something new.
-	 */
-	protected OrientdbReader<T, R> orientdbReader;
+    /**
+     * the implement of OrientdbReader which you want to add something new.
+     */
+    protected OrientdbReader<T, R> orientdbReader;
 
 }

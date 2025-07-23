@@ -1,5 +1,4 @@
 /**
- *
  * package of elasticsearch config.
  *
  * @author XYL

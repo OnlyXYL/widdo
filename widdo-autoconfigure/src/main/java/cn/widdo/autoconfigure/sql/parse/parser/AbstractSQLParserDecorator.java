@@ -12,9 +12,9 @@ package cn.widdo.autoconfigure.sql.parse.parser;
 @SuppressWarnings("ALL")
 public abstract class AbstractSQLParserDecorator<T, R> extends AbstractSQLParser<T, R> {
 
-	/**
-	 * {@link SQLParser}.
-	 */
-	protected SQLParser<T, R> sqlParser;
+    /**
+     * {@link SQLParser}.
+     */
+    protected SQLParser<T, R> sqlParser;
 
 }

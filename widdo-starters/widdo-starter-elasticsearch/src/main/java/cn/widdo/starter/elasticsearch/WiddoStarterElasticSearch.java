@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterElasticSearch {
 
-	private final Logger log = LoggerFactory.getLogger(WiddoStarterElasticSearch.class);
+    private final Logger log = LoggerFactory.getLogger(WiddoStarterElasticSearch.class);
 
-	@PostConstruct
-	public final void postConstruct() {
-		log.info("[Widdo] |- Starters [Widdo Starter ElasticSearch].");
-	}
+    @PostConstruct
+    public final void postConstruct() {
+        log.info("[Widdo] |- Starters [Widdo Starter ElasticSearch].");
+    }
 
 }

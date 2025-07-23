@@ -3,7 +3,7 @@ package cn.widdo.study.thread.task;
 import java.util.concurrent.Callable;
 
 /**
- * TaskCallable
+ * TaskCallable.
  *
  * @author XYL
  * @date 2024/02/26 19:02
@@ -11,11 +11,23 @@ import java.util.concurrent.Callable;
  */
 public class TaskCallable implements Callable<Boolean> {
 
+    /**
+     * name.
+     */
     private final String name;
 
+    /**
+     * time.
+     */
     private final int time;
 
-    public TaskCallable(String name, int time) {
+    /**
+     * constructor method of TaskCallable.
+     *
+     * @param name name
+     * @param time time
+     */
+    public TaskCallable(final String name, final int time) {
         this.name = name;
         this.time = time;
     }

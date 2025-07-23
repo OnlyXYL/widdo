@@ -20,54 +20,55 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class CountProcedure {
 
-	/**
-	 * tx.
-	 */
-	@Context
-	@IgnoreNeo4jVisibility
-	public Transaction tx;
+    /**
+     * tx.
+     */
+    @Context
+    @IgnoreNeo4jVisibility
+    public Transaction tx;
 
-	/**
-	 * count container.
-	 */
-	public static class CountContainer {
+    /**
+     * procedure named countNode.
+     *
+     * @param label label
+     * @return the count of node
+     */
+    @Procedure(name = "widdo.node.count", mode = Mode.READ)
+    @Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
+    public Stream<CountContainer> countNode(@Name("label") String label) {
 
-		/**
-		 * count.
-		 */
-		@IgnoreNeo4jVisibility
-		public Long count;
+        String cypher;
 
-		/**
-		 * constructor has one param called count.
-		 * @param count count
-		 */
-		public CountContainer(final Long count) {
-			this.count = count;
-		}
+        if (StringUtils.isNotBlank(label)) {
+            cypher = String.format("MATCH (n:%s) RETURN count(n) AS count", label);
+        } else {
+            cypher = "MATCH (n) RETURN count(n)  AS count";
+        }
 
-	}
+        ResourceIterator<Long> nodes = tx.execute(cypher).columnAs("count");
+        return nodes.stream().map(CountContainer::new);
+    }
 
-	/**
-	 * procedure named countNode.
-	 * @param label label
-	 * @return the count of node
-	 */
-	@Procedure(name = "widdo.node.count", mode = Mode.READ)
-	@Description("return count of the node which has the label of param, return  count of all node if param named label is null.")
-	public Stream<CountContainer> countNode(@Name("label") String label) {
+    /**
+     * count container.
+     */
+    public static class CountContainer {
 
-		String cypher;
+        /**
+         * count.
+         */
+        @IgnoreNeo4jVisibility
+        public Long count;
 
-		if (StringUtils.isNotBlank(label)) {
-			cypher = String.format("MATCH (n:%s) RETURN count(n) AS count", label);
-		}
-		else {
-			cypher = "MATCH (n) RETURN count(n)  AS count";
-		}
+        /**
+         * constructor has one param called count.
+         *
+         * @param count count
+         */
+        public CountContainer(final Long count) {
+            this.count = count;
+        }
 
-		ResourceIterator<Long> nodes = tx.execute(cypher).columnAs("count");
-		return nodes.stream().map(CountContainer::new);
-	}
+    }
 
 }

@@ -13,9 +13,6 @@ import scala.util.Random
  */
 object Neo4jSparkWrite {
 
-  //样例类。樣例類的定義，需要放在方法的作用域之外（即java的成員變量位置）
-  case class Person(name: String, age: Int)
-
   def main(args: Array[String]): Unit = {
     val spark: SparkSession = SparkSession
       .builder()
@@ -54,4 +51,7 @@ object Neo4jSparkWrite {
 
     spark.close()
   }
+
+  //样例类。樣例類的定義，需要放在方法的作用域之外（即java的成員變量位置）
+  case class Person(name: String, age: Int)
 }

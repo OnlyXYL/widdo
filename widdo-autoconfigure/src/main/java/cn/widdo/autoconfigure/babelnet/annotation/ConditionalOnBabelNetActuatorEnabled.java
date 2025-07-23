@@ -12,7 +12,7 @@ import java.lang.annotation.*;
  * @date 2023/03/15 15:36
  * @since 302.1.0.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnProperty(value = PropertyConstant.ITEM_BABELNET_ACTUATOR_ENABLED, havingValue = "true")

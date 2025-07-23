@@ -22,11 +22,11 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("ALL")
 public class WiddoStarterNeo4j {
 
-	private final Logger log = LoggerFactory.getLogger(WiddoStarterNeo4j.class);
+    private final Logger log = LoggerFactory.getLogger(WiddoStarterNeo4j.class);
 
-	@PostConstruct
-	public final void postConstruct() {
-		log.info("[Widdo] |- Starters [Widdo Starter Neo4j].");
-	}
+    @PostConstruct
+    public final void postConstruct() {
+        log.info("[Widdo] |- Starters [Widdo Starter Neo4j].");
+    }
 
 }

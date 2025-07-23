@@ -13,13 +13,14 @@ import java.util.Map;
  */
 public interface TableService {
 
-	/**
-	 * 解析sql.
-	 * @param params
-	 * @return void
-	 * @author XYL
-	 * @date 2023/08/03 10:23:53
-	 */
-	WiddoResult parser(Map<String, Object> params);
+    /**
+     * 解析sql.
+     *
+     * @param params
+     * @return void
+     * @author XYL
+     * @date 2023/08/03 10:23:53
+     */
+    WiddoResult parser(Map<String, Object> params);
 
 }

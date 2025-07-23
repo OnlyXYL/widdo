@@ -14,243 +14,258 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PropertyConstant.PROPERTY_GRAPH_NEO4J)
 public class WiddoNeo4jProperties {
 
-	/**
-	 * 开启neo4j开关.
-	 */
-	private Boolean enabled = false;
+    /**
+     * host相关配置.
+     */
+    private final Host host = new Host();
+    /**
+     * actuator.
+     */
+    private final Actuator actuator = new Actuator();
+    /**
+     * 开启neo4j开关.
+     */
+    private Boolean enabled = false;
 
-	/**
-	 * host相关配置.
-	 */
-	private final Host host = new Host();
+    /**
+     * get enabled.
+     *
+     * @return a result type of boolean,which tell you if the neo4j is open or close.
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
 
-	/**
-	 * actuator.
-	 */
-	private final Actuator actuator = new Actuator();
+    /**
+     * set enabled.
+     *
+     * @param enabled the switch of neo4j
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	/**
-	 * get enabled.
-	 * @return a result type of boolean,which tell you if the neo4j is open or close.
-	 */
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    /**
+     * get host.
+     *
+     * @return a result type of {@link Host}
+     */
+    public Host getHost() {
+        return host;
+    }
 
-	/**
-	 * set enabled.
-	 * @param enabled the switch of neo4j
-	 */
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    /**
+     * get Actuator.
+     *
+     * @return an instance of actuator
+     */
+    public Actuator getActuator() {
+        return actuator;
+    }
 
-	/**
-	 * get host.
-	 * @return a result type of {@link Host}
-	 */
-	public Host getHost() {
-		return host;
-	}
+    public static class Host {
 
-	/**
-	 * get Actuator.
-	 * @return an instance of actuator
-	 */
-	public Actuator getActuator() {
-		return actuator;
-	}
+        /**
+         * url.
+         */
+        private String url;
 
-	public static class Host {
+        /**
+         * username.
+         */
+        private String username;
 
-		/**
-		 * url.
-		 */
-		private String url;
+        /**
+         * password.
+         */
+        private String password;
 
-		/**
-		 * username.
-		 */
-		private String username;
+        /**
+         * get url.
+         *
+         * @return a result type of String
+         */
+        public String getUrl() {
+            return url;
+        }
 
-		/**
-		 * password.
-		 */
-		private String password;
+        /**
+         * set url.
+         *
+         * @param url the url of neo4j server
+         */
+        public void setUrl(String url) {
+            this.url = url;
+        }
 
-		/**
-		 * get url.
-		 * @return a result type of String
-		 */
-		public String getUrl() {
-			return url;
-		}
+        /**
+         * get username.
+         *
+         * @return a result type of String
+         */
+        public String getUsername() {
+            return username;
+        }
 
-		/**
-		 * set url.
-		 * @param url the url of neo4j server
-		 */
-		public void setUrl(String url) {
-			this.url = url;
-		}
+        /**
+         * set username.
+         *
+         * @param username the username of neo4j server
+         */
+        public void setUsername(String username) {
+            this.username = username;
+        }
 
-		/**
-		 * get username.
-		 * @return a result type of String
-		 */
-		public String getUsername() {
-			return username;
-		}
+        /**
+         * get password.
+         *
+         * @return a result type of String
+         */
+        public String getPassword() {
+            return password;
+        }
 
-		/**
-		 * set username.
-		 * @param username the username of neo4j server
-		 */
-		public void setUsername(String username) {
-			this.username = username;
-		}
+        /**
+         * set password.
+         *
+         * @param password the password of neo4j server
+         */
+        public void setPassword(String password) {
+            this.password = password;
+        }
 
-		/**
-		 * get password.
-		 * @return a result type of String
-		 */
-		public String getPassword() {
-			return password;
-		}
+    }
 
-		/**
-		 * set password.
-		 * @param password the password of neo4j server
-		 */
-		public void setPassword(String password) {
-			this.password = password;
-		}
+    public static class Actuator {
 
-	}
+        /**
+         * reader.
+         */
+        private final Reader reader = new Reader();
+        /**
+         * writer.
+         */
+        private final Writer writer = new Writer();
+        /**
+         * 开启读写开关.
+         */
+        private Boolean enable = false;
+        /**
+         * the className of {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
+         */
+        private String className;
 
-	public static class Actuator {
+        /**
+         * return the switch of neo4j actuator.
+         *
+         * @return the result of switch
+         */
+        public Boolean getEnable() {
+            return enable;
+        }
 
-		/**
-		 * 开启读写开关.
-		 */
-		private Boolean enable = false;
+        /**
+         * set the switch of neo4j actuator.
+         *
+         * @param enable the result of switch
+         */
+        public void setEnable(Boolean enable) {
+            this.enable = enable;
+        }
 
-		/**
-		 * the className of {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
-		 */
-		private String className;
+        /**
+         * get the className of
+         * {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
+         *
+         * @return the classname of
+         * {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * reader.
-		 */
-		private final Reader reader = new Reader();
+        /**
+         * set className of {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
+         *
+         * @param className set className of
+         *                  {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-		/**
-		 * writer.
-		 */
-		private final Writer writer = new Writer();
+        /**
+         * get reader.
+         *
+         * @return an instance of reader
+         */
+        public Reader getReader() {
+            return reader;
+        }
 
-		/**
-		 * return the switch of neo4j actuator.
-		 * @return the result of switch
-		 */
-		public Boolean getEnable() {
-			return enable;
-		}
+        /**
+         * get writer.
+         *
+         * @return an instance of writer
+         */
+        public Writer getWriter() {
+            return writer;
+        }
 
-		/**
-		 * set the switch of neo4j actuator.
-		 * @param enable the result of switch
-		 */
-		public void setEnable(Boolean enable) {
-			this.enable = enable;
-		}
+    }
 
-		/**
-		 * get the className of
-		 * {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
-		 * @return the classname of
-		 * {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}
-		 */
-		public String getClassName() {
-			return className;
-		}
+    public static class Reader {
 
-		/**
-		 * set className of {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}.
-		 * @param className set className of
-		 * {@link cn.widdo.autoconfigure.neo4j.actuator.Neo4jActuator}
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
+        /**
+         * className.
+         */
+        private String className;
 
-		/**
-		 * get reader.
-		 * @return an instance of reader
-		 */
-		public Reader getReader() {
-			return reader;
-		}
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * get writer.
-		 * @return an instance of writer
-		 */
-		public Writer getWriter() {
-			return writer;
-		}
+        /**
+         * set className.
+         *
+         * @param className the className of neo4j Reader
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-	}
+    }
 
-	public static class Reader {
+    public static class Writer {
 
-		/**
-		 * className.
-		 */
-		private String className;
+        /**
+         * className.
+         */
+        private String className;
 
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
+        /**
+         * get className.
+         *
+         * @return a result type of String
+         */
+        public String getClassName() {
+            return className;
+        }
 
-		/**
-		 * set className.
-		 * @param className the className of neo4j Reader
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
+        /**
+         * set className.
+         *
+         * @param className the className of Neo4j Writer
+         */
+        public void setClassName(String className) {
+            this.className = className;
+        }
 
-	}
-
-	public static class Writer {
-
-		/**
-		 * className.
-		 */
-		private String className;
-
-		/**
-		 * get className.
-		 * @return a result type of String
-		 */
-		public String getClassName() {
-			return className;
-		}
-
-		/**
-		 * set className.
-		 * @param className the className of Neo4j Writer
-		 */
-		public void setClassName(String className) {
-			this.className = className;
-		}
-
-	}
+    }
 
 }

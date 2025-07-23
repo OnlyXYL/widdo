@@ -16,6 +16,10 @@ object MSI extends AbstractEvent {
    * 事件名
    */
   override var name: String = "MSI"
+  /**
+   * 时间
+   */
+  override var date: String = "2021-01-01"
 
   /**
    * 事件
@@ -23,9 +27,4 @@ object MSI extends AbstractEvent {
   override def event(): String = {
     "英雄联盟季中邀请赛"
   }
-
-  /**
-   * 时间
-   */
-  override var date: String = "2021-01-01"
 }

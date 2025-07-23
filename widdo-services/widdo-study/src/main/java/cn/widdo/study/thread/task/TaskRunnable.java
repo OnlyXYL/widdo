@@ -1,7 +1,7 @@
 package cn.widdo.study.thread.task;
 
 /**
- * TaskRunnable
+ * TaskRunnable.
  *
  * @author XYL
  * @date 2024/02/26 18:58
@@ -9,11 +9,23 @@ package cn.widdo.study.thread.task;
  */
 public class TaskRunnable implements Runnable {
 
-    public String name;
-
+    /**
+     * time.
+     */
     private final int time;
 
-    public TaskRunnable(String name, int time) {
+    /**
+     * name.
+     */
+    private final String name;
+
+    /**
+     * constructor method of TaskRunnable.
+     *
+     * @param name name
+     * @param time time
+     */
+    public TaskRunnable(final String name, final int time) {
         this.name = name;
         this.time = time;
     }

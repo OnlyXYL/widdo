@@ -1,4 +1,3 @@
-
 /**
  * widdo result package.
  *

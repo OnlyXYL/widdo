@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * ThreadServiceImpl
+ * ThreadServiceImpl.
  *
  * @author XYL
  * @date 2024/02/26 18:55
@@ -84,4 +84,91 @@ public class ThreadServiceImpl implements ThreadService {
 
         return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS);
     }
+
+
+    @Override
+    public WiddoResult reorder(Map<String, Object> params) {
+        int j = 0;
+        try {
+            final Integer threadNumber = (Integer) params.getOrDefault("threadNumber", 1000);
+
+            while (true) {
+                j++;
+
+                final Example example = new Example();
+
+                Runnable writerTask = () -> {
+                    for (int i = 0; i < threadNumber; i++) {
+                        example.writer();
+                    }
+                };
+
+                Runnable readerTask = () -> {
+                    for (int i = 0; i < threadNumber; i++) {
+                        try {
+                            example.reader();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                };
+
+                Thread write = new Thread(writerTask);
+                write.setName("write-");
+
+                Thread read = new Thread(readerTask);
+                read.setName("read-");
+
+                write.start();
+                read.start();
+
+                try {
+                    write.join();
+                    read.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("第" + j + "次");
+            throw new RuntimeException(e);
+        }
+    }
+
 }
+
+class Example {
+
+    /**
+     * x.
+     */
+    private int x = 0;
+
+    /**
+     * flag.
+     */
+    private boolean flag = false;
+
+    /**
+     * writer.
+     */
+    public void writer() {
+        x = 42;        // A
+        flag = true;   // B
+    }
+
+    /**
+     * reader.
+     * @throws Exception e
+     */
+    public void reader() throws Exception {
+        if (flag) {    // C
+            if (x == 0) {
+                System.out.println(Thread.currentThread().getName() + ": " + x); // D
+                throw new Exception();
+            }
+        }
+    }
+}
+

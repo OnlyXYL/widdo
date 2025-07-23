@@ -12,7 +12,7 @@ import java.lang.annotation.*;
  * @date 2023/10/27 15:34
  * @since 305.2.2.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnProperty(value = PropertyConstant.ITEM_ELASTICSEARCH_ENABLED, havingValue = "true")

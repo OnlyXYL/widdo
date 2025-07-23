@@ -14,14 +14,14 @@ import org.springframework.context.annotation.Import;
  * @since 263.1.1.0
  */
 @Configuration
-@Import({ MybatisPlusConfiguration.class })
+@Import({MybatisPlusConfiguration.class})
 public class DataConfiguration {
 
-	private static final Logger log = LoggerFactory.getLogger(DataConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(DataConfiguration.class);
 
-	@PostConstruct
-	public final void postConstruct() {
-		log.info("[Widdo] |- Components [Widdo Data] Auto Configure.");
-	}
+    @PostConstruct
+    public final void postConstruct() {
+        log.info("[Widdo] |- Components [Widdo Data] Auto Configure.");
+    }
 
 }

@@ -10,27 +10,29 @@ package cn.widdo.autoconfigure.sql.parse.configuration;
 @SuppressWarnings("ALL")
 public class SQLParserManager {
 
-	/**
-	 * sqlParserProvider.
-	 */
-	private static SQLParserProvider sqlParserProvider;
+    /**
+     * sqlParserProvider.
+     */
+    private static SQLParserProvider sqlParserProvider;
 
-	/**
-	 * method to set sqlParserProvider.
-	 * @param sqlParserProvider sqlParserProvider
-	 */
-	public void setSqlParserProvider(SQLParserProvider sqlParserProvider) {
-		if (sqlParserProvider == null) {
-			SQLParserManager.sqlParserProvider = sqlParserProvider;
-		}
-	}
+    /**
+     * method to get SQLParserProvider.
+     *
+     * @return a Object of SQLParserProvider
+     */
+    public static SQLParserProvider provider() {
+        return sqlParserProvider;
+    }
 
-	/**
-	 * method to get SQLParserProvider.
-	 * @return a Object of SQLParserProvider
-	 */
-	public static SQLParserProvider provider() {
-		return sqlParserProvider;
-	}
+    /**
+     * method to set sqlParserProvider.
+     *
+     * @param sqlParserProvider sqlParserProvider
+     */
+    public void setSqlParserProvider(SQLParserProvider sqlParserProvider) {
+        if (sqlParserProvider == null) {
+            SQLParserManager.sqlParserProvider = sqlParserProvider;
+        }
+    }
 
 }

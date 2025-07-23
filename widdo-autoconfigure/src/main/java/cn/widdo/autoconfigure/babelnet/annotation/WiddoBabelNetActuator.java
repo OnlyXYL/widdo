@@ -14,7 +14,7 @@ import java.lang.annotation.*;
  * @since 302.1.0.0
  */
 @SuppressWarnings("ALL")
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @AutoConfigureAfter(WiddoBabelNetAutoConfigure.class)

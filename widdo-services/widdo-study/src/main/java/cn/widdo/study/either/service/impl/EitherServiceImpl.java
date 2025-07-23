@@ -17,10 +17,10 @@ import java.util.Map;
 @Service
 public class EitherServiceImpl implements EitherService {
 
-	@Override
-	public WiddoResult testEither(Map<String, Object> params) {
-		final String input = params.get("input").toString();
-		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, input);
-	}
+    @Override
+    public WiddoResult testEither(Map<String, Object> params) {
+        final String input = params.get("input").toString();
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, input);
+    }
 
 }

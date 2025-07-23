@@ -25,13 +25,14 @@ abstract class AbstractEvent extends Event {
   var date: String
 
   /**
-   * 事件
-   */
-  override def event(): String = name
-
-  /**
    * 重写toString方法
+   *
    * @return
    */
   override def toString: String = s"${event()},简称：${name}"
+
+  /**
+   * 事件
+   */
+  override def event(): String = name
 }

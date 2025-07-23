@@ -15,109 +15,118 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class Node implements Serializable {
 
-	/**
-	 * properties.
-	 */
-	private Map<String, Object> properties;
+    /**
+     * labels.
+     */
+    private final Collection<String> labels = new HashSet<>();
+    /**
+     * properties.
+     */
+    private Map<String, Object> properties;
+    /**
+     * id.
+     */
+    private String id;
 
-	/**
-	 * labels.
-	 */
-	private final Collection<String> labels = new HashSet<>();
+    /**
+     * get properties.
+     *
+     * @return a properties result type of map
+     */
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
 
-	/**
-	 * id.
-	 */
-	private String id;
+    /**
+     * set properties.
+     *
+     * @param properties properties
+     */
+    public void setProperties(Map<String, Object> properties) {
+        this.properties = properties;
+    }
 
-	/**
-	 * get properties.
-	 * @return a properties result type of map
-	 */
-	public Map<String, Object> getProperties() {
-		return properties;
-	}
+    /**
+     * get label collection.
+     *
+     * @return a label collection result
+     */
+    public Collection<String> getLabels() {
+        return labels;
+    }
 
-	/**
-	 * set properties.
-	 * @param properties properties
-	 */
-	public void setProperties(Map<String, Object> properties) {
-		this.properties = properties;
-	}
+    /**
+     * set labels.
+     *
+     * @param labels labels
+     */
+    public void setLabels(Iterable<String> labels) {
+        labels.forEach(l -> this.labels.add(l));
+    }
 
-	/**
-	 * get label collection.
-	 * @return a label collection result
-	 */
-	public Collection<String> getLabels() {
-		return labels;
-	}
+    /**
+     * get id.
+     *
+     * @return a result type of String
+     */
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * set labels.
-	 * @param labels labels
-	 */
-	public void setLabels(Iterable<String> labels) {
-		labels.forEach(l -> this.labels.add(l));
-	}
+    /**
+     * set id.
+     *
+     * @param id id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	/**
-	 * get id.
-	 * @return a result type of String
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * check label.
+     *
+     * @param label label
+     * @return a result type of boolean,which tell you if the label exists
+     */
+    public boolean hasLabel(String label) {
+        return labels.contains(label);
+    }
 
-	/**
-	 * set id.
-	 * @param id id
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * check key.
+     *
+     * @param key key
+     * @return a result type of boolean,which tell you if the key exists
+     */
+    public boolean containsKey(String key) {
+        return this.properties.containsKey(key);
+    }
 
-	/**
-	 * check label.
-	 * @param label label
-	 * @return a result type of boolean,which tell you if the label exists
-	 */
-	public boolean hasLabel(String label) {
-		return labels.contains(label);
-	}
+    /**
+     * properties size.
+     *
+     * @return a properties size result type of Integer
+     */
+    public int size() {
+        return properties.size();
+    }
 
-	/**
-	 * check key.
-	 * @param key key
-	 * @return a result type of boolean,which tell you if the key exists
-	 */
-	public boolean containsKey(String key) {
-		return this.properties.containsKey(key);
-	}
+    /**
+     * keys iterable.
+     *
+     * @return key`s iterable type of {@link Iterable}
+     */
+    public Iterable<String> keys() {
+        return properties.keySet();
+    }
 
-	/**
-	 * properties size.
-	 * @return a properties size result type of Integer
-	 */
-	public int size() {
-		return properties.size();
-	}
-
-	/**
-	 * keys iterable.
-	 * @return key`s iterable type of {@link Iterable}
-	 */
-	public Iterable<String> keys() {
-		return properties.keySet();
-	}
-
-	/**
-	 * values iterable.
-	 * @return value`s iterable type of {@link Iterable}
-	 */
-	public Iterable<Object> values() {
-		return properties.values();
-	}
+    /**
+     * values iterable.
+     *
+     * @return value`s iterable type of {@link Iterable}
+     */
+    public Iterable<Object> values() {
+        return properties.values();
+    }
 
 }

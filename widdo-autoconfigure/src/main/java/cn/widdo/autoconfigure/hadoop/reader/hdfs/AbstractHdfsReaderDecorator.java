@@ -14,34 +14,36 @@ import org.apache.hadoop.conf.Configuration;
  */
 public abstract class AbstractHdfsReaderDecorator<T, R> extends AbstractHdfsReader<T, R> {
 
-	/**
-	 * hdfsReader.
-	 */
-	protected HdfsReader<T, R> hdfsReader;
+    /**
+     * hdfsReader.
+     */
+    protected HdfsReader<T, R> hdfsReader;
 
-	/**
-	 * 无参构造.
-	 */
-	protected AbstractHdfsReaderDecorator() {
-	}
+    /**
+     * 无参构造.
+     */
+    protected AbstractHdfsReaderDecorator() {
+    }
 
-	/**
-	 * 构造方法.
-	 * @param uri hdfs访问地址
-	 * @param user hadoop 用户
-	 */
-	protected AbstractHdfsReaderDecorator(final String uri, final String user) {
-		super(uri, user);
-	}
+    /**
+     * 构造方法.
+     *
+     * @param uri  hdfs访问地址
+     * @param user hadoop 用户
+     */
+    protected AbstractHdfsReaderDecorator(final String uri, final String user) {
+        super(uri, user);
+    }
 
-	/**
-	 * 构造方法.
-	 * @param uri hdfs访问地址
-	 * @param user hadoop 用户
-	 * @param conf 配置
-	 */
-	protected AbstractHdfsReaderDecorator(final String uri, final String user, final Configuration conf) {
-		super(uri, user, conf);
-	}
+    /**
+     * 构造方法.
+     *
+     * @param uri  hdfs访问地址
+     * @param user hadoop 用户
+     * @param conf 配置
+     */
+    protected AbstractHdfsReaderDecorator(final String uri, final String user, final Configuration conf) {
+        super(uri, user, conf);
+    }
 
 }

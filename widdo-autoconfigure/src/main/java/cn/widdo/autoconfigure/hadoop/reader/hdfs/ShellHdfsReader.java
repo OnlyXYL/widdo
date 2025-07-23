@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class ShellHdfsReader extends AbstractHdfsReader<Map<String, Object>, WiddoResult> {
 
-	@Override
-	public WiddoResult get(Map<String, Object> stringObjectMap) throws Exception {
-		return null;
-	}
+    @Override
+    public WiddoResult get(Map<String, Object> stringObjectMap) throws Exception {
+        return null;
+    }
 
 }

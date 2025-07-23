@@ -9,14 +9,14 @@ package cn.widdo.starter.neo4j.entity.result;
  */
 public enum ResultEnum {
 
-	/**
-	 * 成功.
-	 */
-	SUCCESS,
+    /**
+     * 成功.
+     */
+    SUCCESS,
 
-	/**
-	 * 失败.
-	 */
-	ERROR
+    /**
+     * 失败.
+     */
+    ERROR
 
 }

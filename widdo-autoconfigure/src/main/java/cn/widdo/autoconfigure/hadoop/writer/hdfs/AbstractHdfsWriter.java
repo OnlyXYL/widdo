@@ -14,18 +14,18 @@ import org.apache.hadoop.fs.FileSystem;
  */
 public abstract class AbstractHdfsWriter<T, R> implements HdfsWriter<T, R> {
 
-	/**
-	 * 客户端.
-	 */
-	protected FileSystem fs;
+    /**
+     * 客户端.
+     */
+    protected FileSystem fs;
 
-	/**
-	 * 关闭资源.
-	 */
-	protected void safelyCloseResources() throws Exception {
-		if (fs != null) {
-			fs.close();
-		}
-	}
+    /**
+     * 关闭资源.
+     */
+    protected void safelyCloseResources() throws Exception {
+        if (fs != null) {
+            fs.close();
+        }
+    }
 
 }

@@ -21,6 +21,7 @@ trait Action {
 
   /**
    * 喝
+   *
    * @param drink 喝的东西
    */
   def drink(drink: String): Unit

@@ -1,6 +1,7 @@
 package cn.widdo.autoconfigure.elasticsearch.annotation;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import cn.widdo.starter.elasticsearch.WiddoStarterElasticSearch;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 
 import java.lang.annotation.*;
 
@@ -12,11 +13,11 @@ import java.lang.annotation.*;
  * @since 305.2.2.0
  */
 @SuppressWarnings("ALL")
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnElasticsearchEnabled
-@ConditionalOnBean(WiddoElasticsearch.class)
+@ConditionalOnClass(WiddoStarterElasticSearch.class)
 public @interface WiddoElasticsearch {
 
 }

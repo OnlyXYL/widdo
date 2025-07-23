@@ -16,18 +16,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class FallbackController {
 
-	/**
-	 * 测试.
-	 * @param name name
-	 * @return cn.widdo.assistant.result.WiddoResult
-	 * @author XYL
-	 * @date 2022/11/18 0018 18:34
-	 **/
-	@GetMapping("/fallback/{name}")
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public WiddoResult systemFallback(@PathVariable String name) {
-		String response = String.format("访问%s超时或者服务不可用", name);
-		return new WiddoResult(response);
-	}
+    /**
+     * 测试.
+     *
+     * @param name name
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2022/11/18 0018 18:34
+     **/
+    @GetMapping("/fallback/{name}")
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public WiddoResult systemFallback(@PathVariable String name) {
+        String response = String.format("访问%s超时或者服务不可用", name);
+        return new WiddoResult(response);
+    }
 
 }

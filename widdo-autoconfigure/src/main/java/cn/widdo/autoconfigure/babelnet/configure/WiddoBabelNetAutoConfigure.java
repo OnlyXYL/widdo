@@ -1,7 +1,7 @@
 package cn.widdo.autoconfigure.babelnet.configure;
 
-import cn.widdo.autoconfigure.babelnet.properties.WiddoBabelNetProperties;
 import cn.widdo.autoconfigure.babelnet.annotation.WiddoBabelNet;
+import cn.widdo.autoconfigure.babelnet.properties.WiddoBabelNetProperties;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +19,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(WiddoBabelNetProperties.class)
 public class WiddoBabelNetAutoConfigure {
 
-	private static final Logger log = LoggerFactory.getLogger(WiddoBabelNetAutoConfigure.class);
+    private static final Logger log = LoggerFactory.getLogger(WiddoBabelNetAutoConfigure.class);
 
-	@PostConstruct
-	private void postConstruct() {
-		log.info("[Widdo] |- AutoConfigure [Widdo BabelNet] Auto Configure.");
-	}
+    @PostConstruct
+    private void postConstruct() {
+        log.info("[Widdo] |- AutoConfigure [Widdo BabelNet] Auto Configure.");
+    }
 
 }

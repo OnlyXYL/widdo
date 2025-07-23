@@ -14,6 +14,10 @@ object WORLDS extends AbstractEvent {
    * 事件名
    */
   override var name: String = "WORLDS"
+  /**
+   * 时间
+   */
+  override var date: String = "2021-01-01"
 
   /**
    * 事件
@@ -21,9 +25,4 @@ object WORLDS extends AbstractEvent {
   override def event(): String = {
     "英雄联盟全球总决赛"
   }
-
-  /**
-   * 时间
-   */
-  override var date: String = "2021-01-01"
 }

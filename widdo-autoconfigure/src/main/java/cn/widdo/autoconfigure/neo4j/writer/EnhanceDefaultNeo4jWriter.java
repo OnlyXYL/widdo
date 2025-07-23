@@ -16,20 +16,21 @@ import java.util.Map;
  */
 @SuppressWarnings("ALL")
 public class EnhanceDefaultNeo4jWriter
-		extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
+        extends AbstractNeo4jWriterDecorator<Map<String, Object>, Result<List<Map<String, Value>>>> {
 
-	/**
-	 * constructor has one param typed {@link Neo4jWriter}.
-	 * @param neo4jWriter neo4jWriter
-	 */
-	public EnhanceDefaultNeo4jWriter(final Neo4jWriter neo4jWriter) {
-		this.driver = neo4jWriter.driver();
-		this.neo4jWriter = neo4jWriter;
-	}
+    /**
+     * constructor has one param typed {@link Neo4jWriter}.
+     *
+     * @param neo4jWriter neo4jWriter
+     */
+    public EnhanceDefaultNeo4jWriter(final Neo4jWriter neo4jWriter) {
+        this.driver = neo4jWriter.driver();
+        this.neo4jWriter = neo4jWriter;
+    }
 
-	@Override
-	public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
-		return neo4jWriter.write(params);
-	}
+    @Override
+    public Result<List<Map<String, Value>>> write(Map<String, Object> params) {
+        return neo4jWriter.write(params);
+    }
 
 }

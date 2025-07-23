@@ -13,7 +13,7 @@ import java.lang.annotation.*;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnBabelNetEnabled

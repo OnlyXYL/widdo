@@ -60,20 +60,21 @@ widdo 是一个名称有内涵（^_^）。目前，用来记录日常的工作�
 同时，还会提供图谱可视化，用来直观的看关系。目前提供一下功能：
 
 > `widdo-study`提供一些公共服务
+
 - `widdo-study`
-  - `algorithm`
-  - `babelnet`
-  - `hanlp`
-  - `neo4j`
-  - `orientdb`
-  - `regex`
+    - `algorithm`
+    - `babelnet`
+    - `hanlp`
+    - `neo4j`
+    - `orientdb`
+    - `regex`
+
 > `widdo-hadoop`提供`hadoop`生态的一些操作
+
 - `widdo-hadoop`
-  - `neo4j-spark`
-  - `scala`
-  - `spark`
-
-
+    - `neo4j-spark`
+    - `scala`
+    - `spark`
 
 #### [3. 版本说明]()
 

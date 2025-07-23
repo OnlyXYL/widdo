@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>widdo</artifactId>
         <groupId>cn.widdo</groupId>
-        <version>305.2.2.0</version>
+        <version>353.0.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -48,6 +48,12 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
+        <!--版本升级时，工程运行时在控制台打印需要更新的属性-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>

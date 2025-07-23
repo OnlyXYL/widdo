@@ -1,5 +1,4 @@
 /**
- *
  * the interface package of either.
  *
  * @author XYL

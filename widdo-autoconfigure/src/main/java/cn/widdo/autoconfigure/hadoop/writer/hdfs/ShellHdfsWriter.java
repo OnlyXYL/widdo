@@ -11,14 +11,14 @@ import java.util.Map;
  */
 public class ShellHdfsWriter extends AbstractHdfsWriter<Map<String, Object>, Map<String, Object>> {
 
-	@Override
-	public Map<String, Object> put(Map<String, Object> stringObjectMap) {
-		return null;
-	}
+    @Override
+    public Map<String, Object> put(Map<String, Object> stringObjectMap) {
+        return null;
+    }
 
-	@Override
-	public Map<String, Object> mkdirs(Map<String, Object> stringObjectMap) {
-		return null;
-	}
+    @Override
+    public Map<String, Object> mkdirs(Map<String, Object> stringObjectMap) {
+        return null;
+    }
 
 }

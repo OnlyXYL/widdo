@@ -31,12 +31,16 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.outV;
 public class OrientdbGremlinServiceImpl implements OrientdbGremlinService {
 
     /**
-     * orientdbFactory.
+     * orientGraphFactory.
+     */
+    private final OrientGraphFactory orientGraphFactory;
+
+    /**
+     * @param orientGraphFactory
      */
     public OrientdbGremlinServiceImpl(final OrientGraphFactory orientGraphFactory) {
         this.orientGraphFactory = orientGraphFactory;
     }
-    private final OrientGraphFactory orientGraphFactory;
 
     @Autowired
 

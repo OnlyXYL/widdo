@@ -61,18 +61,6 @@ object GameEventFactory {
     init(factory = factory)
   }
 
-  /**
-   * 根据游戏获取事件
-   *
-   * @param gameEnum
-   * @author XYL
-   * @date 2023/07/04 10:02:10
-   * @return scala.collection.immutable.List<cn.widdo.study.scala.chapter04.games.Event>
-   */
-  def get(gameEnum: GameEnum): List[Event] = {
-    map.get(gameEnum).getOrElse(List[Event]())
-  }
-
   /** *
    * 初始化游戏事件
    *
@@ -89,13 +77,25 @@ object GameEventFactory {
 
     //英雄联盟
     factory.put(gameEnum = LOL, event = LPL)
-    factory.put(gameEnum = LOL,event = MSI)
-    factory.put(gameEnum = LOL,event = WORLDS)
+    factory.put(gameEnum = LOL, event = MSI)
+    factory.put(gameEnum = LOL, event = WORLDS)
 
     //坦克世界
     factory.put(gameEnum = WOT, event = LPL)
 
     //梦三国
     factory.put(gameEnum = MSG, event = LPL)
+  }
+
+  /**
+   * 根据游戏获取事件
+   *
+   * @param gameEnum
+   * @author XYL
+   * @date 2023/07/04 10:02:10
+   * @return scala.collection.immutable.List<cn.widdo.study.scala.chapter04.games.Event>
+   */
+  def get(gameEnum: GameEnum): List[Event] = {
+    map.get(gameEnum).getOrElse(List[Event]())
   }
 }

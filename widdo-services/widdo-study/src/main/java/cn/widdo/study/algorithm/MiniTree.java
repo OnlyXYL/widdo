@@ -9,8 +9,8 @@ package cn.widdo.study.algorithm;
  */
 public class MiniTree {
 
-	public class Prim {
+    public class Prim {
 
-	}
+    }
 
 }

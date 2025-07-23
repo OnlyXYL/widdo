@@ -27,9 +27,3 @@ info:
     name: ${spring.application.name}
     description: "@project.description@"
     version: "@project.version@"
-
-
-management:
-  endpoint:
-    threaddump:
-      enabled: true

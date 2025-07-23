@@ -13,9 +13,9 @@ import cn.widdo.autoconfigure.hadoop.writer.HdfsWriter;
  */
 public abstract class AbstractHdfsWriterDecorator<T, R> extends AbstractHdfsWriter<T, R> {
 
-	/**
-	 * hdfsWriter.
-	 */
-	protected HdfsWriter<T, R> hdfsWriter;
+    /**
+     * hdfsWriter.
+     */
+    protected HdfsWriter<T, R> hdfsWriter;
 
 }

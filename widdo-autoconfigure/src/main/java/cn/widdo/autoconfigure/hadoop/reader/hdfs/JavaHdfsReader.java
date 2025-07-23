@@ -19,55 +19,55 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class JavaHdfsReader extends AbstractHdfsReader<Map<String, Object>, WiddoResult> {
 
-	private static final Logger log = LoggerFactory.getLogger(JavaHdfsReader.class);
+    private static final Logger log = LoggerFactory.getLogger(JavaHdfsReader.class);
 
-	/**
-	 * 无参构造，不让自己实例化.
-	 */
-	protected JavaHdfsReader() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * 无参构造，不让自己实例化.
+     */
+    protected JavaHdfsReader() {
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * 构造方法.
-	 * @param uri uri
-	 * @param user user
-	 */
-	private JavaHdfsReader(final String uri, final String user) {
-		super(uri, user);
-	}
+    /**
+     * 构造方法.
+     *
+     * @param uri  uri
+     * @param user user
+     */
+    private JavaHdfsReader(final String uri, final String user) {
+        super(uri, user);
+    }
 
-	/**
-	 * 构造方法.
-	 * @param uri uri
-	 * @param user user
-	 * @param conf conf
-	 */
-	private JavaHdfsReader(final String uri, final String user, final Configuration conf) {
-		super(uri, user, conf);
-	}
+    /**
+     * 构造方法.
+     *
+     * @param uri  uri
+     * @param user user
+     * @param conf conf
+     */
+    private JavaHdfsReader(final String uri, final String user, final Configuration conf) {
+        super(uri, user, conf);
+    }
 
-	@Override
-	public WiddoResult get(Map<String, Object> params) throws Exception {
+    @Override
+    public WiddoResult get(Map<String, Object> params) throws Exception {
 
-		try {
+        try {
 
-			final String source = params.get("source").toString();
+            final String source = params.get("source").toString();
 
-			final String target = params.get("target").toString();
+            final String target = params.get("target").toString();
 
-			// 文件上传。参数一：是否删除元数据，参数二：源文件路径，参数三：目标路径，参数四：？
-			fs().copyToLocalFile(false, new Path(source), new Path(target), false);
+            // 文件上传。参数一：是否删除元数据，参数二：源文件路径，参数三：目标路径，参数四：？
+            fs().copyToLocalFile(false, new Path(source), new Path(target), false);
 
-			return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			// 关闭资源
-			close();
-		}
-	}
+            return WiddoResult.response(IResultInterface.HadoopEnum.SUCCESS);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 关闭资源
+            close();
+        }
+    }
 
 }

@@ -14,9 +14,9 @@ import org.apache.hadoop.fs.FileSystem;
  */
 public abstract class AbstractHiveWriter<T, R> implements HiveWriter<T, R> {
 
-	/**
-	 * 客户端.
-	 */
-	protected FileSystem fs;
+    /**
+     * 客户端.
+     */
+    protected FileSystem fs;
 
 }

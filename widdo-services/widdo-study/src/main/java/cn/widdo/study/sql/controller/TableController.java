@@ -24,21 +24,22 @@ import java.util.Map;
 @AllArgsConstructor
 public class TableController extends BaseController {
 
-	/**
-	 * tableService.
-	 */
-	private final TableService tableService;
+    /**
+     * tableService.
+     */
+    private final TableService tableService;
 
-	/**
-	 * 解析sql.
-	 * @param params params
-	 * @return cn.widdo.assistant.result.WiddoResult
-	 * @author XYL
-	 * @date 2023/08/03 10:47:57
-	 */
-	@PostMapping(value = "/parse")
-	public WiddoResult parser(@RequestBody Map<String, Object> params) throws Exception {
-		return WiddoResult.response(Either.liftWithValue(tableService::parser, "sql").apply(params));
-	}
+    /**
+     * 解析sql.
+     *
+     * @param params params
+     * @return cn.widdo.assistant.result.WiddoResult
+     * @author XYL
+     * @date 2023/08/03 10:47:57
+     */
+    @PostMapping(value = "/parse")
+    public WiddoResult parser(@RequestBody Map<String, Object> params) throws Exception {
+        return WiddoResult.response(Either.liftWithValue(tableService::parser, "sql").apply(params));
+    }
 
 }

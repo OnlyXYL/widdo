@@ -9,34 +9,34 @@ package cn.widdo.starter.sql.enums;
  */
 public enum DBModeTypeEnum {
 
-	/**
-	 * select.
-	 */
-	SELECT,
+    /**
+     * select.
+     */
+    SELECT,
 
-	/**
-	 * insert.
-	 */
-	INSERT,
+    /**
+     * insert.
+     */
+    INSERT,
 
-	/**
-	 * update.
-	 */
-	UPDATE,
+    /**
+     * update.
+     */
+    UPDATE,
 
-	/**
-	 * delete.
-	 */
-	DELETE,
+    /**
+     * delete.
+     */
+    DELETE,
 
-	/**
-	 * drop.
-	 */
-	DROP,
+    /**
+     * drop.
+     */
+    DROP,
 
-	/**
-	 * alter.
-	 */
-	ALTER;
+    /**
+     * alter.
+     */
+    ALTER;
 
 }

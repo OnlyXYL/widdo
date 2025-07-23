@@ -15,16 +15,18 @@ import cn.widdo.autoconfigure.hadoop.writer.HadoopWriter;
 @SuppressWarnings("ALL")
 public interface HadoopActuator<T, R> {
 
-	/**
-	 * reader.
-	 * @return HadoopReader
-	 */
-	HadoopReader<T, R> reader();
+    /**
+     * reader.
+     *
+     * @return HadoopReader
+     */
+    HadoopReader<T, R> reader();
 
-	/**
-	 * writer.
-	 * @return HadoopWriter
-	 */
-	HadoopWriter<T, R> writer();
+    /**
+     * writer.
+     *
+     * @return HadoopWriter
+     */
+    HadoopWriter<T, R> writer();
 
 }

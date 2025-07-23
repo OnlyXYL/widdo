@@ -20,23 +20,22 @@ import java.util.Map;
  * @author XYL
  * @date 2023/08/03 10:23
  * @since 305.2.2.0
- *
  */
 @Service
 public class TableServiceImpl implements TableService {
 
-	private static final Logger log = LoggerFactory.getLogger(TableServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(TableServiceImpl.class);
 
-	@Override
-	public WiddoResult parser(Map<String, Object> params) {
+    @Override
+    public WiddoResult parser(Map<String, Object> params) {
 
-		final String sql = params.get("sql").toString();
+        final String sql = params.get("sql").toString();
 
-		final HiveSQLParser parser = SQLParserProvider.<HiveSQLParser>parser(DbType.hive);
+        final HiveSQLParser parser = SQLParserProvider.<HiveSQLParser>parser(DbType.hive);
 
-		final List<Sql> parse = parser.parse(params);
+        final List<Sql> parse = parser.parse(params);
 
-		return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, parse);
-	}
+        return WiddoResult.response(IResultInterface.StudyResultEnum.SUCCESS, parse);
+    }
 
 }

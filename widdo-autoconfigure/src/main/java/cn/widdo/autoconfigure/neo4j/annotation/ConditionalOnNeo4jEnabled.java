@@ -24,7 +24,7 @@ import java.lang.annotation.*;
  * @date 2022/08/15 15:19
  * @since 263.1.1.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ConditionalOnProperty(value = PropertyConstant.ITEM_NEO4j_ENABLED, havingValue = "true")

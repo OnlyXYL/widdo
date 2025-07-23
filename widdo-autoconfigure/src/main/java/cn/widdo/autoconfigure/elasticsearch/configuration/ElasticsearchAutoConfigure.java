@@ -7,6 +7,9 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +37,7 @@ public class ElasticsearchAutoConfigure {
     /**
      * elastic client.
      *
+     * @param widdoElasticsearchProperties 配置信息
      * @return co.elastic.clients.elasticsearch.ElasticsearchClient
      * @author XYL
      * @date 2023/11/14 19:20:48
@@ -41,14 +45,24 @@ public class ElasticsearchAutoConfigure {
     @Bean
     public ElasticsearchClient restClient(WiddoElasticsearchProperties widdoElasticsearchProperties) {
 
-        final String[] split = widdoElasticsearchProperties.getUris().split(",");
+        log.info("[Widdo] |- AutoConfigure [Widdo Elasticsearch] AutoConfigure.");
+        log.info("[Widdo] |- Elasticsearch [enabled]:{}", widdoElasticsearchProperties.getEnabled());
+        log.info("[Widdo] |- Elasticsearch [hosts]:{}", widdoElasticsearchProperties.getHosts());
 
-        //转换参数
-        final HttpHost[] httpHosts = Arrays.asList(split).stream().map(this::setHost).toArray(HttpHost[]::new);
+        final RestClient restClient = RestClient.builder(createHttpHosts(widdoElasticsearchProperties))
+                .setHttpClientConfigCallback(httpClientBuilder -> {
+                    if (widdoElasticsearchProperties.getUsername() != null && widdoElasticsearchProperties.getPassword() != null) {
+                        final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 
-        log.info("[Widdo] |- AutoConfigure [Widdo Elasticsearch] AutoConfigure. Cluster：{}", Arrays.toString(httpHosts));
+                        credentialsProvider.setCredentials(AuthScope.ANY,
+                                new UsernamePasswordCredentials(widdoElasticsearchProperties.getUsername(), widdoElasticsearchProperties.getPassword()));
 
-        RestClient restClient = RestClient.builder(httpHosts).build();
+                        httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+
+                    }
+                    return httpClientBuilder;
+                })
+                .build();
 
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
@@ -58,16 +72,20 @@ public class ElasticsearchAutoConfigure {
     }
 
     /**
-     * 转换HttpHost.
+     * 创建 HttpHosts.
      *
-     * @param uri
-     * @return org.apache.http.HttpHost
+     * @param widdoElasticsearchProperties
+     * @return org.apache.http.HttpHost[]
      * @author XYL
-     * @date 2024/03/06 20:39:40
+     * @date 2025/07/21 16:02:07
      */
-    private HttpHost setHost(String uri) {
-        final String[] split = uri.split("\\:");
-        return new HttpHost(split[0], Integer.valueOf(split[1]));
+    private HttpHost[] createHttpHosts(WiddoElasticsearchProperties widdoElasticsearchProperties) {
+        return Arrays.stream(widdoElasticsearchProperties.getHosts().split(","))
+                .map(host -> {
+                    final String[] hosts = host.split(":");
+                    return new HttpHost(hosts[0], Integer.valueOf(hosts[1]));
+                })
+                .toArray(HttpHost[]::new);
     }
 
 }

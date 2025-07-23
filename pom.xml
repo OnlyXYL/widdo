@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-<!--    <parent>
-        <groupId>cn.widdo</groupId>
-        <artifactId>widdo-dependencies</artifactId>
-        &lt;!&ndash;升级 &ndash;&gt;
-        <version>305.2.2.0</version>
-        <relativePath>widdo-dependencies/pom.xml</relativePath>
-    </parent>-->
+    <!--    <parent>
+            <groupId>cn.widdo</groupId>
+            <artifactId>widdo-dependencies</artifactId>
+            &lt;!&ndash;升级 &ndash;&gt;
+            <version>353.0.0.0</version>
+            <relativePath>widdo-dependencies/pom.xml</relativePath>
+        </parent>-->
 
     <artifactId>widdo</artifactId>
     <groupId>cn.widdo</groupId>
-    <version>305.2.2.0</version>
+    <version>353.0.0.0</version>
     <packaging>pom</packaging>
 
     <name>widdo</name>
@@ -38,14 +38,8 @@
     <!-- ${project.xxx} 当前pom文件的任意节点的内容 如project.artifactId -->
     <properties>
         <!--spring相关依赖包-->
-        <spring-boot-dependencies.version>3.0.5</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
-        <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
-        <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
-        <spring-framework-bom.version>6.0.7</spring-framework-bom.version>
-        <spring-security-bom.version>6.0.2</spring-security-bom.version>
-        <!--dubbo-->
-        <dubbo.version>3.2.4</dubbo.version>
+        <spring-boot-dependencies.version>3.5.3</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
 
         <!--Maven Plugin 相关组件-->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -65,59 +59,26 @@
         <!--系统信息-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <resource.delimiter>@</resource.delimiter>
 
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
 
         <!--配置参数-->
         <!--为了便于Docker的构建，减少上下文影响，将所有Docker资源放置在同一个目录中进行构建-->
         <!--docker信息改为自己的-->
         <docker.build.directory>../../configurations/docker/context/target</docker.build.directory>
         <docker.resource.name>${project.build.finalName}.${project.packaging}</docker.resource.name>
-        <docker.host>http://101.42.10.77:2375</docker.host>
-        <docker.namespace>101.42.10.77:5000</docker.namespace>
+        <docker.host>http://192.168.22.105:2375</docker.host>
+        <docker.namespace>192.168.22.105:5000</docker.namespace>
         <!--        <docker.registry>https://hub.docker.com</docker.registry>-->
-        <docker.registry>101.42.10.77:5000</docker.registry>
+        <docker.registry>192.168.22.105:5000</docker.registry>
         <docker.username>widdo</docker.username>
         <docker.password>widdo_docker</docker.password>
     </properties>
 
-
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- 升级，替换为 com.alibaba.cloud -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!--dubbo-->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-bom</artifactId>
-                <version>${dubbo.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <dependency>
                 <groupId>cn.widdo</groupId>
                 <artifactId>widdo-bom</artifactId>
@@ -127,7 +88,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
     <!-- 环境 -->
     <profiles>
@@ -370,6 +330,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <!--jdk8和更早版本，编译器指定jdk版本方式-->
                     <source>${java.version}</source>
@@ -396,30 +357,34 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
                 <configuration>
                     <delimiters>${resource.delimiter}</delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
-            </plugin>-->
-<!--            <plugin>
-                &lt;!&ndash;打包跳过测试&ndash;&gt;
+            </plugin>
+            <plugin>
+                <!--打包跳过测试-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>-->
- <!--           <plugin>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
                 <configuration>
                     <skipSource>${skip.build.source.package}</skipSource>
                 </configuration>
-            </plugin>-->
-<!--            <plugin>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-            </plugin>-->
+                <version>${versions-maven-plugin.version}</version>
+            </plugin>
             <!--打包jar 与git commit 关联插件-->
             <plugin>
                 <groupId>io.github.git-commit-id</groupId>
@@ -445,12 +410,12 @@
                     </includeOnlyProperties>
                 </configuration>
             </plugin>
- <!--           <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-archetype-plugin</artifactId>
-            </plugin>-->
+            <!--           <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-archetype-plugin</artifactId>
+                       </plugin>-->
             <!--checkstyle：校验代码规范-->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
@@ -469,26 +434,26 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <!--
             代码格式插件，默认使用spring 规则，可运行命令进行项目格式化：./mvnw spring-javaformat:apply 或 mvn spring-javaformat:apply，可在IDEA中安装插件以下插件进行自动格式化：
             https://repo1.maven.org/maven2/io/spring/javaformat/spring-javaformat-intellij-idea-plugin
         -->
-     <!--       <plugin>
-                <groupId>io.spring.javaformat</groupId>
-                <artifactId>spring-javaformat-maven-plugin</artifactId>
-                <version>${spring.checkstyle.plugin}</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <inherited>true</inherited>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
+            <!--       <plugin>
+                       <groupId>io.spring.javaformat</groupId>
+                       <artifactId>spring-javaformat-maven-plugin</artifactId>
+                       <version>${spring.checkstyle.plugin}</version>
+                       <executions>
+                           <execution>
+                               <phase>validate</phase>
+                               <inherited>true</inherited>
+                               <goals>
+                                   <goal>validate</goal>
+                               </goals>
+                           </execution>
+                       </executions>
+                   </plugin>-->
         </plugins>
     </build>
 
