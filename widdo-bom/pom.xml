@@ -4,21 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--    <parent>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-parent</artifactId>
-            &lt;!&ndash;升级 &ndash;&gt;
-            <version>3.0.5</version>
-            &lt;!&ndash; lookup parent from repository。为空时等于../pom.xml &ndash;&gt;
-            <relativePath/>
-        </parent>-->
-    <!--    <parent>
-            <artifactId>widdo</artifactId>
-            <groupId>cn.widdo</groupId>
-            <version>353.0.0.0</version>
-        </parent>-->
-    <groupId>cn.widdo</groupId>
     <artifactId>widdo-bom</artifactId>
+    <groupId>cn.widdo</groupId>
     <version>353.0.0.0</version>
     <packaging>pom</packaging>
 
@@ -27,13 +14,13 @@
 
     <properties>
 
-        <!--spring相关依赖包-->
         <spring-boot-dependencies.version>3.5.3</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0</spring-cloud-alibaba-dependencies.version>
         <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
         <spring-framework-bom.version>6.2.8</spring-framework-bom.version>
         <spring-security-bom.version>6.5.1</spring-security-bom.version>
+
 
         <!--Maven Plugin 相关组件-->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -174,15 +161,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--           &lt;!&ndash;spring-cloud-stream&ndash;&gt;
-                       <dependency>
-                           <groupId>org.springframework.cloud</groupId>
-                           <artifactId>spring-cloud-stream-dependencies</artifactId>
-                           <version>${spring-cloud-stream-dependencies.version}</version>
-                           <type>pom</type>
-                           <scope>import</scope>
-                       </dependency>-->
-
             <!--dubbo-->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -207,8 +185,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
             <!--widdo依赖-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -647,17 +623,17 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
-            <!--id的名字可以任意取，但是在setting文件中的属性<server>的ID与这里一致-->
+            &lt;!&ndash;id的名字可以任意取，但是在setting文件中的属性<server>的ID与这里一致&ndash;&gt;
             <id>releases</id>
-            <!--指向仓库类型为host(宿主仓库）的储存类型为Release的仓库-->
+            &lt;!&ndash;指向仓库类型为host(宿主仓库）的储存类型为Release的仓库&ndash;&gt;
             <url>http://localhost:8081/repository/semanticcube-release/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
-            <!--指向仓库类型为host(宿主仓库）的储存类型为Snapshot的仓库-->
+            &lt;!&ndash;指向仓库类型为host(宿主仓库）的储存类型为Snapshot的仓库&ndash;&gt;
             <url>http://localhost:8081/repository/semanticcube-snapshot/</url>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement>-->
 </project>

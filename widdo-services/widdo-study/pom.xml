@@ -140,9 +140,33 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--      <configuration>
-                          <includeSystemScope>true</includeSystemScope>
-                      </configuration>-->
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-devtools</artifactId>
+                        </exclude>
+                    </excludes>
+
+                    <!--<image>
+                        <env>
+                            &lt;!&ndash; 安全加固 &ndash;&gt;
+                            <BP_OCI_USER_ID>1000</BP_OCI_USER_ID>
+                            <BP_OCI_USER_NAME>appuser</BP_OCI_USER_NAME>
+
+                            &lt;!&ndash; JVM 优化 &ndash;&gt;
+                            <BPE_DELIM_JAVA_TOOL_OPTIONS xml:space="preserve"> </BPE_DELIM_JAVA_TOOL_OPTIONS>
+                            <BPE_APPEND_JAVA_TOOL_OPTIONS>-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0</BPE_APPEND_JAVA_TOOL_OPTIONS>
+
+                            &lt;!&ndash; 生产配置 &ndash;&gt;
+                            <BPL_SPRING_CLOUD_BINDINGS_ENABLED>false</BPL_SPRING_CLOUD_BINDINGS_ENABLED>
+                        </env>
+                    </image>-->
+                </configuration>
             </plugin>
 
             <plugin>

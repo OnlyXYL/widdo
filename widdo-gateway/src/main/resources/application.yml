@@ -6,13 +6,13 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${NACOS_HOST:widdo-register}:${NACOS_PORT:8846}
-        namespace: @nacos.namespace@
-        group: @nacos.group@
+        server-addr: ${NACOS_SERVER_ADDR:widdo-register}:${NACOS_PORT:8846}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
       config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: @nacos.namespace@
-        group: @nacos.group@
+        server-addr: ${NACOS_SERVER_ADDR:widdo-register}:${NACOS_PORT:8846}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
       username: ${NACOS_USERNAME:nacos}
       password: ${NACOS_PASSWORD:nacos}
   config:

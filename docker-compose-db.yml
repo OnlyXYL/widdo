@@ -1,0 +1,129 @@
+version: '3.8'
+
+services:
+  # ========== 日志收集系统 ==========
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
+    container_name: widdo-es
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - widdo-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.7.0
+    container_name: widdo-kibana
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    ports:
+      - "5601:5601"
+    networks:
+      - widdo-net
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+
+  # Filebeat 作为 sidecar 容器
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.7.0
+    container_name: widdo-filebeat
+    user: root
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    volumes:
+      - ./logging/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - shared-logs:/logs:ro
+    networks:
+      - widdo-net
+
+  # ========== 基础设施 ==========
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: widdo-nacos
+    environment:
+      MODE: standalone
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+    ports:
+      - "8848:8848"
+    networks:
+      - widdo-net
+
+  # ========== 业务服务 ==========
+  gateway:
+    image: widdo-system:latest
+    container_name: widdo-gateway
+    environment:
+      SERVICE_TYPE: GATEWAY
+      JAVA_OPTS: "-Xmx256m -Xss512k"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9900
+    ports:
+      - "9900:9900"
+    volumes:
+      - shared-logs:/logs
+    depends_on:
+      nacos:
+        condition: service_healthy
+    networks:
+      - widdo-net
+
+  life:
+    image: widdo-system:latest
+    container_name: widdo-life
+    environment:
+      SERVICE_TYPE: LIFE
+      JAVA_OPTS: "-Xmx512m -XX:MaxRAMPercentage=75%"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9901
+    volumes:
+      - shared-logs:/logs
+    networks:
+      - widdo-net
+
+  study:
+    image: widdo-system:latest
+    container_name: widdo-study
+    environment:
+      SERVICE_TYPE: STUDY
+      JAVA_OPTS: "-Xmx512m -XX:MaxRAMPercentage=75%"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9902
+    volumes:
+      - shared-logs:/logs
+    networks:
+      - widdo-net
+
+  hadoop:
+    image: widdo-system:latest
+    container_name: widdo-hadoop
+    environment:
+      SERVICE_TYPE: HADOOP
+      JAVA_OPTS: "-Xmx1024m -XX:MaxRAMPercentage=75%"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9903
+    volumes:
+      - shared-logs:/logs
+    networks:
+      - widdo-net
+
+# ========== 网络与存储 ==========
+volumes:
+  es-data:
+    driver: local
+  shared-logs:
+    driver: local
+
+networks:
+  widdo-net:
+    driver: bridge

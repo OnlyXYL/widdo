@@ -3,14 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--    <parent>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-dependencies</artifactId>
-            &lt;!&ndash;升级 &ndash;&gt;
-            <version>353.0.0.0</version>
-            <relativePath>widdo-dependencies/pom.xml</relativePath>
-        </parent>-->
-
     <artifactId>widdo</artifactId>
     <groupId>cn.widdo</groupId>
     <version>353.0.0.0</version>
@@ -21,13 +13,14 @@
 
     <modules>
         <module>widdo-bom</module>
-        <module>widdo-register</module>
-        <module>widdo-gateway</module>
         <module>widdo-packages</module>
         <module>widdo-docs</module>
+        <module>widdo-register</module>
+        <module>widdo-gateway</module>
+        <module>widdo-starters</module>
         <module>widdo-autoconfigure</module>
         <module>widdo-services</module>
-        <module>widdo-starters</module>
+
     </modules>
 
     <!-- ${basedir} 项目根目录 -->
@@ -40,6 +33,15 @@
         <!--spring相关依赖包-->
         <spring-boot-dependencies.version>3.5.3</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
+        <dependency-check.version>9.0.9</dependency-check.version>
+
+        <spring-cloud-alibaba-dependencies.version>2022.0.0.0</spring-cloud-alibaba-dependencies.version>
+        <!--        <spring-cloud-stream-dependencies.version>3.2.2</spring-cloud-stream-dependencies.version>-->
+        <spring-framework-bom.version>6.2.8</spring-framework-bom.version>
+        <spring-security-bom.version>6.5.1</spring-security-bom.version>
+
+        <!--dubbo-->
+        <dubbo.version>3.2.4</dubbo.version>
 
         <!--Maven Plugin 相关组件-->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -75,6 +77,7 @@
         <docker.registry>192.168.22.105:5000</docker.registry>
         <docker.username>widdo</docker.username>
         <docker.password>widdo_docker</docker.password>
+        <buildpacks.image.name>192.168.22.105:5000/${project.artifactId}</buildpacks.image.name>
     </properties>
 
     <dependencyManagement>
@@ -110,6 +113,8 @@
                 <skip.copy.docker.resource>false</skip.copy.docker.resource>
                 <!--不执行git commit 构建-->
                 <skip.build.git.commit.info>false</skip.build.git.commit.info>
+
+
                 <nacos.namespace>public</nacos.namespace>
                 <nacos.group>DEFAULT_GROUP</nacos.group>
                 <yaml.prefix>widdo</yaml.prefix>
@@ -132,15 +137,61 @@
         </resources>
         <pluginManagement>
             <plugins>
+
+                <!-- Spring Boot 打包插件。自动配置，默认启用了资源过滤，并自动处理了常见资源文件。
+                       默认行为：
+                           1. 自动开启过滤：对src/main/resources下的所有文件启用过滤
+                           2. 特殊占位符处理：支持springboot特有的@...@占位符（如@project.version@）
+                           3. 配置文件优先：特别处理application*.yml和application*.properties
+
+                       Maven的默认行为：
+                           1. 复制但不过滤：默认执行资源复制，复制src/main/resources,src/test/resources,但filtering默认为false
+                           2. 保留原文件：所有资源文件鸳鸯复制到target/classes
+
+
+                       maven项目中配置了<resources>部分后，仍然需要maven-resources-plugins,但是不需要额外配置该插件了，因为该插件是maven默认生命周期的一部分，即使在pom中没有配置，
+                       maven也会在process-resources阶段执行它。但是这样的话，如果我们要自定义资源处理，就必须在<build><resources></resources></build>中配置，或者显示配置
+                       maven-resources-plugin.
+
+
+                       总结就是maven-resources-plugin 和 spring-boot-maven-plugin都是必选的，前者需要配置资源过滤，后者不需要。自定义资源可以使用前者或者 <resources>。如果用了
+                       <resources>，就不需要显示配置maven-resources-plugin插件了，因为它是maven声明周期默认的一部分。
+                    -->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot-dependencies.version}</version>
                     <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                        <!--分层打包优化-->
                         <layers>
                             <enabled>true</enabled>
                         </layers>
                     </configuration>
+                </plugin>
+
+
+                <!-- 安全扫描插件 -->
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${dependency-check.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>aggregate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+       <!--             <configuration>
+                        <failBuildOnCVSS>7</failBuildOnCVSS>
+                        <suppressionFile>security/suppressions.xml</suppressionFile>
+                    </configuration>-->
                 </plugin>
 
                 <plugin>
@@ -179,6 +230,46 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <plugin>
+                    <!--是 Maven 构建生命周期中执行单元测试的核心插件，其名称 "Surefire" 寓意着它能可靠地验证代码质量。它在 test 阶段自动触发，负责运行项目的单元测试（JUnit、TestNG 等），并生成详细的测试报告。
+                        核心功能
+                            1. 自动化测试执行
+                                - 在 mvn test 或 mvn verify 时，自动执行 src/test/java 下的所有测试类
+                            2. 测试报告生成，生成两种格式的报告
+                                - 控制台输出：实时显示测试进度和结果
+                                - xml/html 报告（默认路径：target/surefire-reports）
+                            3. 测试流程控制
+                                参数                          作用                          实例命令
+                                -Dtest=MyTest            运行单个测试类                   mvn test -Dtest=MyTest
+                                -Dtest=MyTest#Test*      运行类中特定方法                 mvn test -Dtest=MyTest#testAdd
+                                -DfailIfNoTests=false    无测试时构建不失败（默认true）
+                                -DskipTests              跳过测试                        mvn install -DskipTests
+                    -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <!-- 包含/排除测试用例 -->
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/*IntegrationTest.java</exclude>
+                        </excludes>
+
+                        <!-- 并行执行测试 -->
+                        <parallel>methods</parallel>
+                        <threadCount>4</threadCount>
+
+                        <!-- 测试超时设置 -->
+                        <forkedProcessTimeoutInSeconds>30</forkedProcessTimeoutInSeconds>
+
+                        <!-- 关键配置：无测试时不报错。默认true：必须有测试类，设置false：没有测试也可以-->
+                        <failIfNoTests>false</failIfNoTests>
+                    </configuration>
+                </plugin>
+
                 <!-- docker打包插件 -->
                 <!--存在问题，target目录下，嵌套好多层。很慢-->
                 <!-- <plugin>
@@ -263,41 +354,41 @@
                         </buildArgs>
                     </configuration>
                 </plugin>-->
-                <plugin>
+                <!--<plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>${docker-maven-plugin.version}</version>
-                    <!--全局配置-->
+                    &lt;!&ndash;全局配置&ndash;&gt;
                     <configuration>
-                        <!--配置远程docker守护进程url-->
+                        &lt;!&ndash;配置远程docker守护进程url&ndash;&gt;
                         <dockerHost>${docker.host}</dockerHost>
-                        <!--认证配置,用于私有registry认证.maven.setting中配置的话，此处不需要了-->
-                        <!-- <authConfig>
+                        &lt;!&ndash;认证配置,用于私有registry认证.maven.setting中配置的话，此处不需要了&ndash;&gt;
+                        &lt;!&ndash; <authConfig>
                              <username>${docker.username}</username>
                              <password>${docker.password}</password>
-                         </authConfig>-->
-                        <!--registry地址,用于推送,拉取镜像-->
+                         </authConfig>&ndash;&gt;
+                        &lt;!&ndash;registry地址,用于推送,拉取镜像&ndash;&gt;
                         <registry>${docker.registry}</registry>
 
-                        <!--用于在标准输出中打开详细输出的字符串属性，默认是false-->
+                        &lt;!&ndash;用于在标准输出中打开详细输出的字符串属性，默认是false&ndash;&gt;
                         <verbose>true</verbose>
 
-                        <!--镜像相关配置,支持多镜像-->
+                        &lt;!&ndash;镜像相关配置,支持多镜像&ndash;&gt;
                         <images>
-                            <!-- 单个镜像配置 -->
+                            &lt;!&ndash; 单个镜像配置 &ndash;&gt;
                             <image>
-                                <!--镜像名(含版本号)-->
-                                <!--                                <name>${docker.username}/${project.name}:${project.version}</name>-->
+                                &lt;!&ndash;镜像名(含版本号)&ndash;&gt;
+                                &lt;!&ndash;                                <name>${docker.username}/${project.name}:${project.version}</name>&ndash;&gt;
                                 <name>${docker.namespace}/${project.name}:${project.version}</name>
-                                <!--镜像build相关配置-->
+                                &lt;!&ndash;镜像build相关配置&ndash;&gt;
                                 <build>
 
-                                    <!--docker-assembly.xml 定义镜像中的文件-->
-                                    <!--       <assembly>
+                                    &lt;!&ndash;docker-assembly.xml 定义镜像中的文件&ndash;&gt;
+                                    &lt;!&ndash;       <assembly>
 
-                                           </assembly>-->
+                                           </assembly>&ndash;&gt;
 
-                                    <!--使用dockerFile文件，定义构建镜像的流程-->
+                                    &lt;!&ndash;使用dockerFile文件，定义构建镜像的流程&ndash;&gt;
                                     <dockerFile>${project.basedir}/Dockerfile</dockerFile>
                                 </build>
                             </image>
@@ -305,7 +396,7 @@
                     </configuration>
 
                     <executions>
-                        <!--绑定maven的生命周期-->
+                        &lt;!&ndash;绑定maven的生命周期&ndash;&gt;
                         <execution>
                             <id>docker-build</id>
                             <phase>site</phase>
@@ -322,23 +413,50 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
+                </plugin>-->
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--maven的compiler插件，默认只支持jdk1.3，因此需要指定jdk版本-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--安全扫描插件，扫描漏洞-->
+<!--            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+
+            <!--maven的compiler插件，默认只支持jdk1.3，因此需要指定jdk版本。
+            负责 Java 源代码的编译。它在 Maven 生命周期的 compile 阶段自动触发，将 .java 文件编译为 .class 字节码文件，是项目构建过程中不可或缺的环节。
+            <source> 指定源代码兼容的JDK版本
+            <target> 指定生成的字节码版本
+            <release> 同时设置source/target
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <!--jdk8和更早版本，编译器指定jdk版本方式-->
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <!--                    <release>14</release>-->
+                    <!--<source>${java.version}</source>
+                    <target>${java.version}</target>-->
+
+                    <!--jdk9+ 之后，推荐使用 release 代替 source + target -->
+                    <release>${java.version}</release>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
                     <annotationProcessorPaths>
+                        <!--添加lombok处理器，解决lombok注解不生效-->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -357,21 +475,34 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
+            <!--主要负责项目资源文件的复制、过滤和预处理。它在 Maven 生命周期的 process-resources 和 process-test-resources 阶段自动执行，是项目构建中不可或缺的基础设施。
+                核心功能：
+                    1. 资源复制与定位
+                        - 将src/main/resources下的文件复制到target/classes
+                        - 将src/test/resources下的文件复制到target/test-classes
+                        - 支持自定义资源目录配置
+                    2. 资源过滤（动态替换）
+                        在资源文件中使用${property}占位符，构建时自动替换为实际值
+                    3. 多环境配置支持
+                        - 通过profile实现环境差异化配置
+                    4. 自定义分隔符（避免与框架冲突）
+
+            -->
+            <!--当前配置有了resources，这里可以不用配置了-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources-plugin.version}</version>
                 <configuration>
+                    <!--自定义分隔符-->
                     <delimiters>${resource.delimiter}</delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
             </plugin>
-            <plugin>
-                <!--打包跳过测试-->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-            </plugin>
+
+
+            <!--主要功能是将项目源代码打包成独立的 JAR 文件（通常称为 -sources.jar）。这个插件解决了开发过程中源代码访问的关键需求，尤其在依赖管理和调试场景中至关重要。-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -379,13 +510,48 @@
                 <configuration>
                     <skipSource>${skip.build.source.package}</skipSource>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
+            <!--是 Maven 生态中用于自动化管理依赖版本和插件版本的核心工具。它专注于解决项目依赖的版本升级、降级、冲突检测等维护难题，显著提升依赖管理的效率。
+                核心功能：
+                    1. 依赖版本检查与升级
+                        1.1 检测可用更新  mvn versions:display-dependency-updates. 扫描所有依赖，列出可用的新版本
+                        1.2 自动升级依赖  mvn versions:use-latest-versions.自动将素有依赖升级到最新版本 （谨慎使用）
+                    2. 插件版本管理
+                        2.1 检查插件更新  mvn versions:display-plugin-updates. 列出项目中所有maven插件的可用新版本
+                        2.2 升级插件版本  mvn versions:update-plugins. 将插件升级到最新版本
+                    3. 版本冲突解决
+                        3.1 检测依赖冲突  mvn versions:display-dependency-updates. 间接显示因版本冲突导致的依赖树问题
+                        3.2 统一版本号    mvn versions:use-releases -Dincludes=com.google.guava:guava. 强制指定某个依赖的版本
+            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>${versions-maven-plugin.version}</version>
+                <configuration>
+                    <!-- 仅检查重大更新 -->
+                    <allowMajorUpdates>false</allowMajorUpdates>
+                    <!-- 排除特定依赖 -->
+                    <excludes>
+                        <exclude>org.junit.jupiter:junit-jupiter</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
-            <!--打包jar 与git commit 关联插件-->
+            <!--打包jar 与git commit 关联插件。工作流程：
+                1. 构建触发：执行 mvn package 或者 mvn install
+                2. 信息采集：插件读取本地.get目录的元数据
+                3. 文件生成：在target/classes/git.properties生成属性文件
+                4. 资源打包：该文件被打包进最终产物（JAR/WAR）
+            -->
             <plugin>
                 <groupId>io.github.git-commit-id</groupId>
                 <artifactId>git-commit-id-maven-plugin</artifactId>
@@ -405,15 +571,12 @@
                     <!--因为项目定制了jackson的日期时间序列化/反序列化格式，因此这里要进行配置,不然通过management.info.git.mode=full进行完整git信息监控时会存在问题-->
                     <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
                     <includeOnlyProperties>
+                        <includeOnlyProperty>git.branch</includeOnlyProperty>
                         <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
                         <includeOnlyProperty>^git.commit.(id|message|time).*$</includeOnlyProperty>
                     </includeOnlyProperties>
                 </configuration>
             </plugin>
-            <!--           <plugin>
-                           <groupId>org.apache.maven.plugins</groupId>
-                           <artifactId>maven-archetype-plugin</artifactId>
-                       </plugin>-->
             <!--checkstyle：校验代码规范-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -435,25 +598,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--
-            代码格式插件，默认使用spring 规则，可运行命令进行项目格式化：./mvnw spring-javaformat:apply 或 mvn spring-javaformat:apply，可在IDEA中安装插件以下插件进行自动格式化：
-            https://repo1.maven.org/maven2/io/spring/javaformat/spring-javaformat-intellij-idea-plugin
-        -->
-            <!--       <plugin>
-                       <groupId>io.spring.javaformat</groupId>
-                       <artifactId>spring-javaformat-maven-plugin</artifactId>
-                       <version>${spring.checkstyle.plugin}</version>
-                       <executions>
-                           <execution>
-                               <phase>validate</phase>
-                               <inherited>true</inherited>
-                               <goals>
-                                   <goal>validate</goal>
-                               </goals>
-                           </execution>
-                       </executions>
-                   </plugin>-->
         </plugins>
     </build>
 

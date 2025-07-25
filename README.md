@@ -30,9 +30,8 @@
 widdo
 │
 ├─widdo-autoconfigure                           ------ 自动配置模块
-├─widdo-cloud                                   ------ 生活模块
-│   ├─widdo-gateway                             ------ 网关模块（9900）
-├─widdo-dependencies                            ------ 公共pom
+├─widdo-gateway                                   ------ 网关模块（9900）
+├─widdo-bom                                     ------ 公共pom
 ├─widdo-docs                                    ------ 公共pom
 ├─widdo-packages                                ------ 公共包模块
 │   ├─widdo-assistant                           ------ 辅助包

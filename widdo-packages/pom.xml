@@ -12,8 +12,8 @@
     <artifactId>widdo-packages</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>widdo-cache</module>
         <module>widdo-assistant</module>
+        <module>widdo-cache</module>
         <module>widdo-data</module>
     </modules>
 </project>

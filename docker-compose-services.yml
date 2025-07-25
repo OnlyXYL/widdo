@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # Nacos 配置中心
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: widdo-nacos
+    environment:
+      MODE: standalone
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+    ports:
+      - "8848:8848"
+    networks:
+      - widdo-net
+
+  # 网关服务
+  gateway:
+    image: widdo-system:latest
+    container_name: widdo-gateway
+    environment:
+      SERVICE_TYPE: GATEWAY
+      JAVA_OPTS: "-Xmx256m -Xss512k -Dspring.profiles.active=prod"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      #springboot 会自动把环境变量SERVER_PORT 解析为server.port。
+      SERVER_PORT: 9900
+    ports:
+      - "9900:9900"
+    depends_on:
+      nacos:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9900/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - widdo-net
+
+  # 生活服务
+  life:
+    image: widdo-system:latest
+    container_name: widdo-life
+    environment:
+      SERVICE_TYPE: LIFE
+      JAVA_OPTS: "-Xmx512m -XX:MaxRAMPercentage=75% -Dspring.profiles.active=prod"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9901
+    depends_on:
+      gateway:
+        condition: service_healthy
+    networks:
+      - widdo-net
+
+  # 学习服务
+  study:
+    image: widdo-system:latest
+    container_name: widdo-study
+    environment:
+      SERVICE_TYPE: STUDY
+      JAVA_OPTS: "-Xmx512m -XX:MaxRAMPercentage=75% -Dspring.profiles.active=prod"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9902
+    depends_on:
+      gateway:
+        condition: service_healthy
+    networks:
+      - widdo-net
+
+  # Hadoop 服务
+  hadoop:
+    image: widdo-system:latest
+    container_name: widdo-hadoop
+    environment:
+      SERVICE_TYPE: HADOOP
+      JAVA_OPTS: "-Xmx1024m -XX:MaxRAMPercentage=75% -Dspring.profiles.active=prod"
+      NACOS_SERVER_ADDR: "nacos:8848"
+      SERVER_PORT: 9903
+    depends_on:
+      gateway:
+        condition: service_healthy
+    networks:
+      - widdo-net
+
+networks:
+  widdo-net:
+    driver: bridge

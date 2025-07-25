@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * @author XYL
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 263.1.1.0
  */
 @SuppressWarnings("ALL")
+@RefreshScope
 @SpringBootApplication
 public class WiddoGatewayApplication {
 
