@@ -1,5 +1,5 @@
 # ========== 第一阶段：构建阶段 (JDK 21) ==========
-FROM 192.168.22.105:5000/maven:3.8.6-eclipse-temurin-21-alpine AS builder
+FROM 192.168.22.105:5000/maven:3.9.11-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
 # 1. 复制POM文件（利用Docker缓存层）
