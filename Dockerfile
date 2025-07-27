@@ -10,7 +10,8 @@ COPY widdo-services/pom.xml widdo-services/
 COPY widdo-starters/pom.xml widdo-starters/
 
 # 2. 下载所有依赖（节省80%构建时间）
-RUN mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
+RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
+RUN mvn -B dependency:go-offline -T 1C
 
 # 3. 复制源代码并构建
 COPY . .
