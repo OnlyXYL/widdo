@@ -1,5 +1,5 @@
 # ========== 第一阶段：构建阶段 (JDK 21) ==========
-FROM 192.168.22.105:5000/maven:3.9.11-eclipse-temurin-21-alpine AS builder
+FROM xiayaling/maven:3.9.11-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
 # 1. 复制POM文件（利用Docker缓存层）
@@ -31,13 +31,13 @@ RUN mvn -B dependency:resolve
 
 # 3. 复制源代码并构建
 COPY . .
-RUN mvn -B clean package -DskipTests\
+RUN mvn -B clean install -DskipTests\
     -Dmaven.compiler.release=21 \
     -pl '!widdo-docs,!widdo-register' \
     -am
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
-FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine-3.21
+FROM xiayaling/eclipse-temurin:21-jre-alpine-3.21
 WORKDIR /app
 
 # 设置时区
