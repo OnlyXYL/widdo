@@ -27,14 +27,14 @@ COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
 RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
-RUN mvn -B dependency:resolve -T 1C
+RUN mvn -B dependency:resolve
 
 # 3. 复制源代码并构建
 COPY . .
-RUN mvn -B clean package -DskipTests -T 1C \
+RUN mvn -B clean package -DskipTests\
     -Dmaven.compiler.release=21 \
     -pl '!widdo-docs,!widdo-register' \
-        -am
+    -am
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
 FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine-3.21
