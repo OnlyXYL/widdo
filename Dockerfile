@@ -10,6 +10,8 @@ COPY widdo-gateway/pom.xml widdo-gateway/
 COPY widdo-docs/pom.xml widdo-docs/
 COPY widdo-packages/pom.xml widdo-packages/
 COPY widdo-packages/widdo-assistant/pom.xml widdo-packages/widdo-assistant/
+COPY widdo-packages/widdo-cache/pom.xml widdo-packages/widdo-cache/
+COPY widdo-packages/widdo-data/pom.xml widdo-packages/widdo-data/
 COPY widdo-register/pom.xml widdo-register/
 COPY widdo-services/pom.xml widdo-services/
 COPY widdo-services/widdo-life/pom.xml widdo-services/widdo-life/
