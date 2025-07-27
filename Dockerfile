@@ -18,7 +18,7 @@ RUN mvn -B clean package -DskipTests -T 1C \
     -Dmaven.compiler.release=21
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
-FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine
+FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine-3.21
 WORKDIR /app
 
 # 设置时区
