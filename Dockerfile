@@ -5,13 +5,23 @@ WORKDIR /build
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
 COPY widdo-bom/pom.xml widdo-bom/
-COPY widdo-packages/pom.xml widdo-packages/
-COPY widdo-docs/pom.xml widdo-docs/
-COPY widdo-register/pom.xml widdo-register/
-COPY widdo-gateway/pom.xml widdo-gateway/
-COPY widdo-starters/pom.xml widdo-starters/
 COPY widdo-autoconfigure/pom.xml widdo-autoconfigure/
+COPY widdo-gateway/pom.xml widdo-gateway/
+COPY widdo-docs/pom.xml widdo-docs/
+COPY widdo-packages/pom.xml widdo-packages/
+COPY widdo-packages/widdo-assistant/pom.xml widdo-packages/widdo-assistant/
+COPY widdo-register/pom.xml widdo-register/
 COPY widdo-services/pom.xml widdo-services/
+COPY widdo-services/widdo-life/pom.xml widdo-services/widdo-life/
+COPY widdo-services/widdo-study/pom.xml widdo-services/widdo-study/
+COPY widdo-services/widdo-hadoop/pom.xml widdo-services/widdo-hadoop/
+COPY widdo-starters/pom.xml widdo-starters/
+COPY widdo-starters/widdo-starter-babelnet/pom.xml widdo-starters/widdo-starter-babelnet/
+COPY widdo-starters/widdo-starter-jena/pom.xml widdo-starters/widdo-starter-jena/
+COPY widdo-starters/widdo-starter-jwi/pom.xml widdo-starters/widdo-starter-jwi/
+COPY widdo-starters/widdo-starter-neo4j/pom.xml widdo-starters/widdo-starter-neo4j/
+COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-orientdb/
+COPY widdo-starters/widdo-starter-hadoop/pom.xml widdo-starters/widdo-starter-hadoop/
 
 # 2. 下载所有依赖（节省80%构建时间）
 RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
@@ -21,7 +31,7 @@ RUN mvn -B dependency:go-offline -T 1C
 COPY . .
 RUN mvn -B clean package -DskipTests -T 1C \
     -Dmaven.compiler.release=21 \
-    -pl '!widdo-packages,!widdo-docs,!widdo-autoconfigure,!widdo-register' \
+    -pl '!widdo-docs,!widdo-register' \
         -am
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
