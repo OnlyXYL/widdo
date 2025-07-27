@@ -39,18 +39,6 @@
             <artifactId>widdo-starter-orientdb</artifactId>
         </dependency>
 
-        <!--jwi starter-->
-        <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-starter-jwi</artifactId>
-        </dependency>
-
-        <!--babelnet starter-->
-        <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-starter-babelnet</artifactId>
-        </dependency>
-
         <!--@since 302.1.0.0-->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
@@ -81,35 +69,6 @@
         <dependency>
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.babelnet</groupId>
-            <artifactId>babelnet-api</artifactId>
-            <version>5.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/babelnet-api-5.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>it.uniroma1.lcl.jlt</groupId>
-            <artifactId>lcl-jlt</artifactId>
-            <version>2.6.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/lcl-jlt-2.6.4.jar</systemPath>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-codec</artifactId>
-                    <groupId>commons-codec</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!--druid-->

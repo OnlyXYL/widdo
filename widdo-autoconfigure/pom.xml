@@ -48,13 +48,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!--babelNet-->
-        <dependency>
-            <groupId>cn.widdo</groupId>
-            <artifactId>widdo-starter-babelnet</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!--sql-->
         <dependency>
             <groupId>cn.widdo</groupId>

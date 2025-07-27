@@ -18,9 +18,7 @@ COPY widdo-services/widdo-life/pom.xml widdo-services/widdo-life/
 COPY widdo-services/widdo-study/pom.xml widdo-services/widdo-study/
 COPY widdo-services/widdo-hadoop/pom.xml widdo-services/widdo-hadoop/
 COPY widdo-starters/pom.xml widdo-starters/
-COPY widdo-starters/widdo-starter-babelnet/pom.xml widdo-starters/widdo-starter-babelnet/
 COPY widdo-starters/widdo-starter-jena/pom.xml widdo-starters/widdo-starter-jena/
-COPY widdo-starters/widdo-starter-jwi/pom.xml widdo-starters/widdo-starter-jwi/
 COPY widdo-starters/widdo-starter-neo4j/pom.xml widdo-starters/widdo-starter-neo4j/
 COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-orientdb/
 COPY widdo-starters/widdo-starter-hadoop/pom.xml widdo-starters/widdo-starter-hadoop/
