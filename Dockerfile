@@ -5,17 +5,24 @@ WORKDIR /build
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
 COPY widdo-bom/pom.xml widdo-bom/
+COPY widdo-packages/pom.xml widdo-packages/
+COPY widdo-docs/pom.xml widdo-docs/
+COPY widdo-register/pom.xml widdo-register/
 COPY widdo-gateway/pom.xml widdo-gateway/
-COPY widdo-services/pom.xml widdo-services/
 COPY widdo-starters/pom.xml widdo-starters/
+COPY widdo-autoconfigure/pom.xml widdo-autoconfigure/
+COPY widdo-services/pom.xml widdo-services/
 
 # 2. 下载所有依赖（节省80%构建时间）
-RUN mvn -B dependency:resolve -T 1C
+RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
+RUN mvn -B dependency:go-offline -T 1C
 
 # 3. 复制源代码并构建
 COPY . .
 RUN mvn -B clean package -DskipTests -T 1C \
-    -Dmaven.compiler.release=21
+    -Dmaven.compiler.release=21 \
+    -pl '!widdo-packages,!widdo-docs,!widdo-autoconfigure,!widdo-register' \
+        -am
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
 FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine-3.21
