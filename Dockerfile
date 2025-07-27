@@ -1,5 +1,5 @@
 # ========== 第一阶段：构建阶段 (JDK 21) ==========
-FROM maven:3.8.6-eclipse-temurin-21-alpine AS builder
+FROM 192.168.22.105:5000/maven:3.8.6-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
 # 1. 复制POM文件（利用Docker缓存层）
@@ -18,7 +18,7 @@ RUN mvn -B clean package -DskipTests -T 1C \
     -Dmaven.compiler.release=21
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
-FROM eclipse-temurin:21-jre-alpine
+FROM 192.168.22.105:5000/eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # 设置时区
