@@ -18,10 +18,12 @@ COPY widdo-services/widdo-life/pom.xml widdo-services/widdo-life/
 COPY widdo-services/widdo-study/pom.xml widdo-services/widdo-study/
 COPY widdo-services/widdo-hadoop/pom.xml widdo-services/widdo-hadoop/
 COPY widdo-starters/pom.xml widdo-starters/
+COPY widdo-starters/widdo-starter-elasticsearch/pom.xml widdo-starters/widdo-starter-elasticsearch/
+COPY widdo-starters/widdo-starter-hadoop/pom.xml widdo-starters/widdo-starter-hadoop/
 COPY widdo-starters/widdo-starter-jena/pom.xml widdo-starters/widdo-starter-jena/
 COPY widdo-starters/widdo-starter-neo4j/pom.xml widdo-starters/widdo-starter-neo4j/
 COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-orientdb/
-COPY widdo-starters/widdo-starter-hadoop/pom.xml widdo-starters/widdo-starter-hadoop/
+COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
 RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C

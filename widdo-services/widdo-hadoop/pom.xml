@@ -72,11 +72,6 @@
                 <artifactId>maven-antrun-plugin</artifactId>
             </plugin>
 
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-            </plugin>
-
             <!--proto-->
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
