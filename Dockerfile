@@ -31,7 +31,7 @@ COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
 RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
-RUN mvn -B dependency:go-offline
+RUN mvn -B dependency:resolve -T 1C
 
 # 3. 复制源代码并构建
 COPY . .
