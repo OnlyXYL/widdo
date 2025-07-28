@@ -2,6 +2,10 @@
 FROM xiayaling/maven:3.9.11-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
+# 设置本地仓库位置
+ENV MAVEN_REPO_LOCAL=/build/.m2/repository
+ENV MAVEN_OPTS="-Dmaven.repo.local=${MAVEN_REPO_LOCAL} -Xmx1024m"
+
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
 COPY widdo-bom/pom.xml widdo-bom/
@@ -27,12 +31,13 @@ COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
 RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
-RUN mvn -B dependency:resolve
+RUN mvn -B dependency:go-offline
 
 # 3. 复制源代码并构建
 COPY . .
 RUN mvn -B clean install -DskipTests\
     -Dmaven.compiler.release=21 \
+    -Dmaven.repo.local=${MAVEN_REPO_LOCAL} \
     -pl '!widdo-docs,!widdo-register' \
     -am
 
