@@ -7,7 +7,7 @@ ENV MAVEN_REPO_LOCAL=/build/.m2/repository
 ENV MAVEN_OPTS="-Dmaven.repo.local=${MAVEN_REPO_LOCAL} -Xmx1024m"
 
 RUN echo "MAVEN_REPO_LOCAL: ${MAVEN_REPO_LOCAL}" && \
-    mkdir -p ${MAVEN_REPO_LOCAL}
+    mkdir -p ${MAVEN_REPO_LOCAL}  && chmod -R 777 ${MAVEN_REPO_LOCAL}
 
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
