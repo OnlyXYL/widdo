@@ -33,7 +33,7 @@ COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-
 COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
-RUN mvn -B dependency:resolve -T 1C -Dmaven.repo.local=${MAVEN_REPO_LOCAL}
+RUN mvn -B dependency:resolve -Dmaven.repo.local=${MAVEN_REPO_LOCAL}
 
 # 3. 复制源代码并构建
 COPY . .
