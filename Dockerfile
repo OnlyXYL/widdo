@@ -6,6 +6,9 @@ WORKDIR /build
 ENV MAVEN_REPO_LOCAL=/build/.m2/repository
 ENV MAVEN_OPTS="-Dmaven.repo.local=${MAVEN_REPO_LOCAL} -Xmx1024m"
 
+RUN echo "MAVEN_REPO_LOCAL: ${MAVEN_REPO_LOCAL}" && \
+    mkdir -p ${MAVEN_REPO_LOCAL}
+
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
 COPY widdo-bom/pom.xml widdo-bom/
@@ -30,8 +33,7 @@ COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-
 COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
-RUN #mvn -B dependency:go-offline -DexcludeGroupIds=org.projectlombok -T 1C
-RUN mvn -B dependency:resolve
+RUN mvn -B dependency:resolve -T 1C -Dmaven.repo.local=${MAVEN_REPO_LOCAL}
 
 # 3. 复制源代码并构建
 COPY . .
@@ -40,6 +42,7 @@ RUN mvn -B clean install -DskipTests\
     -Dmaven.repo.local=${MAVEN_REPO_LOCAL} \
     -pl '!widdo-docs,!widdo-register' \
     -am
+
 
 # ========== 第二阶段：运行时阶段 (JRE 21) ==========
 FROM xiayaling/eclipse-temurin:21-jre-alpine-3.21
