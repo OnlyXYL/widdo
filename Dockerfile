@@ -7,7 +7,7 @@ ENV MAVEN_REPO_LOCAL=/build/.m2/repository
 ENV MAVEN_OPTS="-Dmaven.repo.local=${MAVEN_REPO_LOCAL} -Xmx1024m"
 
 RUN echo "MAVEN_REPO_LOCAL: ${MAVEN_REPO_LOCAL}" && \
-    mkdir -p ${MAVEN_REPO_LOCAL}  && chmod -R 777 ${MAVEN_REPO_LOCAL}
+    mkdir -p ${MAVEN_REPO_LOCAL} && chmod -R 777 ${MAVEN_REPO_LOCAL}
 
 # 1. 复制POM文件（利用Docker缓存层）
 COPY pom.xml .
@@ -33,7 +33,11 @@ COPY widdo-starters/widdo-starter-orientdb/pom.xml widdo-starters/widdo-starter-
 COPY widdo-starters/widdo-starter-sql/pom.xml widdo-starters/widdo-starter-sql/
 
 # 2. 下载所有依赖（节省80%构建时间）
-RUN mvn -B dependency:resolve -Dmaven.repo.local=${MAVEN_REPO_LOCAL}
+# 2. 下载依赖并安装POM（保留缓存优势）
+# 分两步操作：先下载外部依赖，再安装内部POM
+RUN mvn -B dependency:go-offline -Dmaven.repo.local=${MAVEN_REPO_LOCAL} && \
+    mvn -B install -N -Dmaven.main.skip -Dmaven.resources.skip -nsu \
+        -Dmaven.repo.local=${MAVEN_REPO_LOCAL}
 
 # 3. 复制源代码并构建
 COPY . .

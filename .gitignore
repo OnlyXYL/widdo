@@ -17,7 +17,7 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-*.mvn
+#*.mvn
 *.txt
 *.gz
 log/

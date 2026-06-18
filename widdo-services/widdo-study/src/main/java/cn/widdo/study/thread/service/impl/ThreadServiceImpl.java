@@ -154,8 +154,10 @@ class Example {
      * writer.
      */
     public void writer() {
-        x = 42;        // A
-        flag = true;   // B
+        // A
+        x = 42;
+        // B
+        flag = true;
     }
 
     /**
@@ -163,9 +165,11 @@ class Example {
      * @throws Exception e
      */
     public void reader() throws Exception {
-        if (flag) {    // C
+        if (flag) {
+            // C
             if (x == 0) {
-                System.out.println(Thread.currentThread().getName() + ": " + x); // D
+                // D
+                System.out.println(Thread.currentThread().getName() + ": " + x);
                 throw new Exception();
             }
         }
