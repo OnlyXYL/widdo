@@ -1,10 +1,13 @@
 # widdo
 
+[![OSCS Status](https://www.oscs1024.com/platform/badge/widdo.svg?size=small)](https://www.murphysec.com/accept?code=71a2ccea0bac400f61c54db5ac91c1eb&type=1&from=2)
+
+
 [![](https://img.shields.io/github/languages/code-size/OnlyXYL/widdo)]()
 
 [![](https://img.shields.io/github/commit-activity/w/OnlyXYL/widdo)](https://github.com/OnlyXYL)
 
-[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.2.x/f8bf0bf)]()
+<!--[![](https://img.shields.io/github/commit-status/OnlyXYL/widdo/263.1.2.x/f8bf0bf)]()-->
 
 [![](https://img.shields.io/github/v/release/OnlyXYl/widdo?display_name=tag&include_prereleases)]()
 
